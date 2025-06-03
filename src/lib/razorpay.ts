@@ -1,0 +1,3 @@
+const razorpay = {};
+
+export { razorpay };
