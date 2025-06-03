@@ -76,3 +76,5 @@ vercel: update config for preview deployment
 - `vercel`: Vercel-specific configuration
 
 > Your commits will be linted automatically. Please follow the structure above to avoid errors.
+
+[![Tests and Lint Check](https://github.com/k34a/aid-global-web/actions/workflows/test-and-lint-check.yml/badge.svg)](https://github.com/k34a/aid-global-web/actions/workflows/test-and-lint-check.yml)
