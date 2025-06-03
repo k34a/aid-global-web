@@ -34,3 +34,45 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📝 Commit Message Guidelines
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/) for writing commit messages. This helps with consistent history, changelogs, and automation.
+
+### 🔧 Format
+
+```
+<type>(optional scope): <short description>
+```
+
+### ✅ Examples
+
+```
+feat: add donation form
+fix: resolve navbar flicker issue
+docs: update README with usage instructions
+chore: configure commit linting
+style: format footer component
+refactor: simplify auth context logic
+ci: update GitHub Actions node version
+test: add tests for Button component
+revert: revert donation logic to previous state
+perf: improve image load times
+vercel: update config for preview deployment
+```
+
+### 🔠 Allowed Types
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only changes
+- `chore`: Build tools or setup-related changes
+- `style`: Formatting, whitespace, etc.
+- `refactor`: Code changes that neither fix a bug nor add a feature
+- `ci`: CI/CD related changes
+- `test`: Adding or updating tests
+- `revert`: Reverting previous commits
+- `perf`: Performance improvements
+- `vercel`: Vercel-specific configuration
+
+> Your commits will be linted automatically. Please follow the structure above to avoid errors.
