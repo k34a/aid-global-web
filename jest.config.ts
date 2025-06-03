@@ -24,6 +24,20 @@ const config: Config = {
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
 
+  collectCoverageFrom: ["./src/**/*.{js,jsx,ts,tsx}", "!src/app/**/layout.*"],
+
+  coverageThreshold: {
+    global: {
+      lines: 60,
+    },
+    "./src/**/*.{jsx,tsx}": {
+      lines: 50,
+    },
+    "./src/**/*.{js,ts}": {
+      lines: 90,
+    },
+  },
+
   // The test environment that will be used for testing
   testEnvironment: "jsdom",
 
