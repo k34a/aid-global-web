@@ -1,7 +1,9 @@
-name: PR Check
+name: Tests and Lint Check
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   lint-and-test:
