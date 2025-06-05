@@ -3,13 +3,13 @@ import { getArticle } from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
 
 type ArticlePageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
-  const article = await getArticle(params.slug);
+  const article = await getArticle((await params).slug);
 
   if (!article) {
     return {
@@ -25,7 +25,7 @@ export async function generateMetadata({
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticle(params.slug);
+  const article = await getArticle((await params).slug);
 
   if (!article) {
     return (
