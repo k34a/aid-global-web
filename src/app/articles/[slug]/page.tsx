@@ -1,18 +1,20 @@
-import { Metadata } from 'next';
-import { getArticle } from '@/lib/supabase';
-import ReactMarkdown from 'react-markdown';
+import { Metadata } from "next";
+import { getArticle } from "@/lib/supabase";
+import ReactMarkdown from "react-markdown";
 
 type ArticlePageProps = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ArticlePageProps): Promise<Metadata> {
   const article = await getArticle(params.slug);
 
   if (!article) {
     return {
-      title: 'Article Not Found',
-      description: 'The requested article does not exist.',
+      title: "Article Not Found",
+      description: "The requested article does not exist.",
     };
   }
 
@@ -26,7 +28,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const article = await getArticle(params.slug);
 
   if (!article) {
-    return <h1 className="text-center mt-10 text-xl">404 - Article Not Found</h1>;
+    return (
+      <h1 className="text-center mt-10 text-xl">404 - Article Not Found</h1>
+    );
   }
 
   return (

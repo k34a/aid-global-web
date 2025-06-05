@@ -76,4 +76,3 @@ vercel: update config for preview deployment
 - `vercel`: Vercel-specific configuration
 
 > Your commits will be linted automatically. Please follow the structure above to avoid errors.
-

@@ -1,15 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import { ArticleMeta } from '@/lib/supabase';
+import React from "react";
+import Link from "next/link";
+import { ArticleMeta } from "@/lib/supabase";
 
 interface ArticleListProps {
-  articles: ArticleMeta[];  
+  articles: ArticleMeta[];
 }
 
 const ArticleList = ({ articles }: ArticleListProps) => {
   return (
     <ul>
-      {articles.map(article => (
+      {articles.map((article) => (
         <li key={article.id}>
           <Link
             href={`/articles/${article.slug}`}

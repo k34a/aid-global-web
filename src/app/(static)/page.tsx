@@ -1,9 +1,8 @@
-import ArticleList from '@/components/ArticleList';
-import { getAllArticles, ArticleMeta } from '@/lib/supabase';
+import ArticleList from "@/components/ArticleList";
+import { getAllArticles, ArticleMeta } from "@/lib/supabase";
 
 export default async function HomePage() {
   try {
-
     const articles: ArticleMeta[] = await getAllArticles(3);
     return (
       <main className="p-6">
