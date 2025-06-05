@@ -1,18 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Youtube,
-} from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 import { ngoDetails } from '@/config';
-import {links} from '@/links';
-
+import { links } from '@/links';
+import { Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,21 +20,14 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-white shadow-md'
+          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-md'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,6 +40,7 @@ const Header: React.FC = () => {
                     src={ngoDetails.logo}
                     alt={`${ngoDetails.name} Logo`}
                     fill
+                    sizes="(max-width: 768px) 40px, 48px"
                     className="object-contain"
                     priority
                   />
@@ -81,8 +68,7 @@ const Header: React.FC = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
                 </Link>
               ))}
-              
-              {/* Primary CTA Button */}
+
               <Link
                 href="/donate"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
@@ -91,12 +77,55 @@ const Header: React.FC = () => {
               </Link>
             </nav>
 
+            {/* Mobile: 1st primary link + Menu toggle */}
+            <div className="flex items-center lg:hidden space-x-4">
+              {links.primaryLinks[0] && (
+                <Link
+                  href={links.primaryLinks[0].href}
+                  className="text-gray-700 hover:text-blue-600 font-medium"
+                >
+                  {links.primaryLinks[0].name}
+                </Link>
+              )}
+
+              <button
+                onClick={toggleMenu}
+                className="text-gray-700 hover:text-blue-600 focus:outline-none"
+                aria-label="Toggle Menu"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden bg-white shadow-md px-4 py-4 space-y-3">
+            {links.primaryLinks.slice(1).map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={closeMenu}
+                className="block text-gray-700 hover:text-blue-600 font-medium"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <Link
+              href="/donate"
+              onClick={closeMenu}
+              className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-center font-semibold transition-all duration-200"
+            >
+              Donate Now
+            </Link>
           </div>
+        )}
       </header>
 
-      {/* Spacer to prevent content from being hidden behind fixed header */}
-      <div className="h-20"></div>
+      <div className="h-20" />
     </>
   );
-};export default Header;
+};
+
+export default Header;

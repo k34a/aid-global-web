@@ -1,5 +1,5 @@
 // src/config.ts
-
+export const APP_ENV = process.env.APP_ENV || 'test';
 
 export interface SocialLink {
   name: string;
