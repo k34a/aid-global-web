@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Facebook,
   Twitter,
@@ -19,11 +19,8 @@ import NewsLetter from '@/components/newsletter';
 import { links } from '@/config/links';
 
 const Footer: React.FC = () =>{
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
+ const currentYear = new Date().getFullYear();
 
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
 
   return (
     <footer className="bg-gray-900 text-white">
