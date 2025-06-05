@@ -12,6 +12,7 @@ export interface SocialLink {
 
 export interface Links{
     primaryLinks: NavigationLink[];
+    donateLink : NavigationLink
     secondaryLinks: NavigationLink[];
     tertiaryLinks: NavigationLink[];
     socialLinks: SocialLink[];
@@ -24,9 +25,12 @@ export const links: Links = {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Programs", href: "/programs" },
-    { name: "Donate", href: "/donate" },
-    { name: "Contact", href: "/contact" }
+    { name: "Contact", href: "/contact" },
   ],
+  
+  donateLink: {
+    name: "Donate", href: "/donate"
+  },
   
   secondaryLinks: [
     { name: "Our Impact", href: "/impact" },
