@@ -35,6 +35,18 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Pre-commit Checks
+
+This repository runs the following checks automatically before each commit:
+
+- **Linting (`npm run lint`)**: Ensures that your code follows the defined style and syntax rules to maintain code quality and consistency.
+
+- **Testing (`npm run test`)**: Runs the test suite to make sure that existing functionality is not broken by your changes.
+
+- **Prettying (`npx prettier . --write`)**: Applies prettier to make the file format consistent. This applies only to the files staged for commit, making the lint process faster and more focused.
+
+- **Commit Message Validation (`commitlint`)**: Checks if your commit messages follow the conventional format to ensure clarity and consistency in commit history. See Commit Message Guidelines below.
+
 ## 📝 Commit Message Guidelines
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/) for writing commit messages. This helps with consistent history, changelogs, and automation.
