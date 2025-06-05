@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ngoDetails } from '@/config';
-import { links } from '@/links';
+import { ngoDetails } from '@/config/config';
+import { links } from '@/config/links';
 import { Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -70,30 +70,29 @@ const Header: React.FC = () => {
               ))}
 
               <Link
-                href="/donate"
+                href={links.donateLink.href}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
-                Donate Now
+                Donate
               </Link>
             </nav>
 
             {/* Mobile: 1st primary link + Menu toggle */}
             <div className="flex items-center lg:hidden space-x-4">
-              {links.primaryLinks[0] && (
-                <Link
-                  href={links.primaryLinks[0].href}
-                  className="text-gray-700 hover:text-blue-600 font-medium"
-                >
-                  {links.primaryLinks[0].name}
-                </Link>
-              )}
+               <Link
+                href={links.donateLink.href}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+              >
+                Donate
+              </Link>
 
               <button
                 onClick={toggleMenu}
                 className="text-gray-700 hover:text-blue-600 focus:outline-none"
                 aria-label="Toggle Menu"
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMenuOpen ? <X size={29} strokeWidth={3} /> : <Menu size={29} strokeWidth={3} />}
+
               </button>
             </div>
           </div>
@@ -102,7 +101,7 @@ const Header: React.FC = () => {
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
           <div className="lg:hidden bg-white shadow-md px-4 py-4 space-y-3">
-            {links.primaryLinks.slice(1).map((link) => (
+            {links.primaryLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}

@@ -1,5 +1,5 @@
 import robots from '@/app/robots';
-import { ngoDetails } from '@/config';
+import { ngoDetails } from '@/config/config';
 
 describe('robots.ts', () => {
   it('should return correct robots metadata', () => {

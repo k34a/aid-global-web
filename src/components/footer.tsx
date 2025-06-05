@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
-import { ngoDetails } from '@/config';
+import { ngoDetails } from '@/config/config';
 import NewsLetter from '@/components/newsletter';
-import { links } from '@/links';
+import { links } from '@/config/links';
 
 const Footer: React.FC = () =>{
   const [currentYear, setCurrentYear] = useState<number | null>(null);

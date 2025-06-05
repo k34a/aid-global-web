@@ -1,5 +1,5 @@
 // app/robots.ts
-import { ngoDetails } from '@/config'
+import { ngoDetails } from '@/config/config'
 import { type MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
