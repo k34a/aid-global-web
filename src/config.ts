@@ -1,12 +1,6 @@
 // src/config.ts
 export const APP_ENV = process.env.APP_ENV || 'test';
 
-export interface SocialLink {
-  name: string;
-  href: string;
-  icon: string;
-}
-
 export interface ContactInfo {
   address: string;
   email: string;
@@ -20,8 +14,6 @@ export interface NGODetails {
   description: string;
   keywords : string[];
   logo: string;
- 
-  socialLinks: SocialLink[];
   contact: ContactInfo;
   //twitter metadata
   twitterHandle: string;    
@@ -44,17 +36,7 @@ export const ngoDetails: NGODetails = {
   ],
   logo: "/logo.png", // You'll need to add your logo file
   
- 
-  
-  socialLinks: [
-    { name: "Facebook", href: "https://facebook.com/aidglobal", icon: "facebook" },
-    { name: "Twitter", href: "https://twitter.com/aidglobal", icon: "twitter" },
-    { name: "Instagram", href: "https://instagram.com/aidglobal", icon: "instagram" },
-    { name: "LinkedIn", href: "https://linkedin.com/company/aidglobal", icon: "linkedin" },
-    { name: "YouTube", href: "https://youtube.com/@aidglobal", icon: "youtube" }
-  ],
-  
-  contact: {
+ contact: {
     address: "123 Main Street, Suite 456, New York, NY 10001, United States",
     email: "info@aidglobalfoundation.org",
     phone: "+1 (555) 123-4567",

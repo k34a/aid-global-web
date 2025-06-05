@@ -4,11 +4,20 @@ export interface NavigationLink {
   icon?: string;
 }
 
+export interface SocialLink {
+  name: string;
+  href: string;
+  icon: string;
+}
+
 export interface Links{
     primaryLinks: NavigationLink[];
     secondaryLinks: NavigationLink[];
     tertiaryLinks: NavigationLink[];
+    socialLinks: SocialLink[];
 }
+
+
 
 export const links: Links = {
     primaryLinks: [
@@ -31,5 +40,12 @@ export const links: Links = {
     { name: "Terms of Service", href: "/terms" },
     { name: "Annual Reports", href: "/reports" },
     { name: "Transparency", href: "/transparency" }
+  ],
+    socialLinks: [
+    { name: "Facebook", href: "https://facebook.com/aidglobal", icon: "facebook" },
+    { name: "Twitter", href: "https://twitter.com/aidglobal", icon: "twitter" },
+    { name: "Instagram", href: "https://instagram.com/aidglobal", icon: "instagram" },
+    { name: "LinkedIn", href: "https://linkedin.com/company/aidglobal", icon: "linkedin" },
+    { name: "YouTube", href: "https://youtube.com/@aidglobal", icon: "youtube" }
   ],
 }
