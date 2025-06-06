@@ -1,4 +1,4 @@
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/articleList";
 import { getAllArticles, ArticleMeta } from "@/lib/supabase";
 
 export default async function HomePage() {
