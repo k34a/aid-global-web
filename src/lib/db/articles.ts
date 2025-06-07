@@ -1,25 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
+import { supabaseAdmin } from "./supabase";
 
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
-
-export type ArticleMeta = {
+type ArticleMeta = {
   id: number;
   title: string;
   slug: string;
   description: string;
 };
 
-export type Article = {
+type Article = {
   title: string;
   description: string;
   content: string;
 };
 
-export async function getAllArticles(limit = 10): Promise<ArticleMeta[]> {
-  const { data, error } = await supabase
+async function getAllArticles(limit = 10): Promise<ArticleMeta[]> {
+  const { data, error } = await supabaseAdmin
     .from("articles")
     .select("id, title, slug, description")
     .order("created_at", { ascending: false })
@@ -33,8 +28,8 @@ export async function getAllArticles(limit = 10): Promise<ArticleMeta[]> {
   return data || [];
 }
 
-export async function getArticle(slug: string): Promise<Article | null> {
-  const { data: meta, error: metaError } = await supabase
+async function getArticle(slug: string): Promise<Article | null> {
+  const { data: meta, error: metaError } = await supabaseAdmin
     .from("articles")
     .select("title, description")
     .eq("slug", slug);
@@ -56,7 +51,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
 
   const articleMeta = meta[0];
 
-  const { data: file, error: fileError } = await supabase.storage
+  const { data: file, error: fileError } = await supabaseAdmin.storage
     .from("content")
     .download(`articles/${slug}.md`);
 
@@ -85,3 +80,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
     content: fixedMarkdown,
   };
 }
+
+export { getAllArticles, getArticle };
+
+export type { Article, ArticleMeta };
