@@ -4,6 +4,7 @@ import { ngoDetails } from "@/config/config";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
 import numWords from "num-words";
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
 	title: "Donation Status",
@@ -35,7 +36,7 @@ export default async function DonationStatusPage({
 					404 - Not Found
 				</h1>
 				<p className="mt-2 text-gray-600">
-					We couldn't find a donation with this ID.
+					We couldn&apos;t find a donation with this ID.
 				</p>
 			</div>
 		);
@@ -51,11 +52,15 @@ export default async function DonationStatusPage({
 		<main className="max-w-3xl mx-auto p-6 bg-white print:bg-white rounded-xl shadow print:shadow-none text-sm text-black">
 			{/* Header */}
 			<div className="text-center border-b pb-4 mb-6">
-				<img
-					src={ngoDetails.logo}
-					alt="NGO Logo"
-					className="w-24 mx-auto mb-2"
-				/>
+				<div className="relative w-24 h-24 mx-auto shrink-0">
+					<Image
+						src={ngoDetails.logo}
+						alt={`${ngoDetails.name} Logo`}
+						sizes="(max-width: 768px) 300px, 300px"
+						fill
+						className="object-contain"
+					/>
+				</div>
 				<h1 className="text-2xl font-bold">{ngoDetails.name}</h1>
 				<p className="text-gray-600">{ngoDetails.tagline}</p>
 			</div>
