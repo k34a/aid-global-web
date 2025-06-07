@@ -1,3 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Lowercase script content check
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|jsx|tsx)$')
+for file in $files; do
+  if grep -q '[A-Z]' "$file"; then
+    echo "Error: Uppercase letters found in $file. Only lowercase allowed."
+    exit 1
+  fi
+done
+
 npm run lint
 npm run test
 npx lint-staged

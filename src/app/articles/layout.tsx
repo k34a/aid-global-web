@@ -1,16 +1,22 @@
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { ngoDetails } from "@/config/config";
+
 export const metadata = {
-  title: "Your App Title",
-  description: "Your app description",
+	title: `Article | ${ngoDetails.name}`,
+	description: ngoDetails.description,
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<>
+			<Header />
+			<main>{children}</main>
+			<Footer />
+		</>
+	);
 }

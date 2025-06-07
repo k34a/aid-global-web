@@ -1,0 +1,3 @@
+const DEFAULT_CAMPAIGN = "ac7e4f49-4775-4c54-8a2b-69292a777a68";
+
+export { DEFAULT_CAMPAIGN };
