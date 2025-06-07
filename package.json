@@ -18,9 +18,13 @@
     "@tailwindcss/typography": "^0.5.16",
     "lucide-react": "^0.513.0",
     "next": "15.3.2",
+    "num-words": "^1.2.3",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-markdown": "^10.1.0"
+    "react-hot-toast": "^2.5.2",
+    "react-markdown": "^10.1.0",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArticleMeta } from "@/lib/supabase";
+import { ArticleMeta } from "@/lib/db/articles";
 
 interface ArticleListProps {
   articles: ArticleMeta[];
