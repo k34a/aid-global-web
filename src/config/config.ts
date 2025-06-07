@@ -21,9 +21,9 @@ export const ngoDetails: NGODetails = {
 
 	contact: {
 		address:
-			"123 Main Street, Suite 456, New York, NY 10001, United States",
+			"H.no. 4453, Sathe Nagar near Manoj Kirana Store, Narpoli, Bhiwandi, Thane, Maharashtra-421305",
 		email: "info@aidglobalfoundation.org",
-		phone: "+1 (555) 123-4567",
+		phone: "+91 96077-53148",
 		website: "https://aid-global-web.vercel.app",
 	},
 	twitterHandle: "@aidglobal",
