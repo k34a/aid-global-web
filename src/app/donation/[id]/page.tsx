@@ -1,4 +1,3 @@
-// app/donation/[id]/page.tsx
 import { getBackerDetailsById } from "@/lib/db/donation";
 import { ngoDetails } from "@/config/config";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
@@ -22,11 +21,11 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function DonationStatusPage({
-	params,
-}: {
-	params: { id: string };
-}) {
+type PageProps = {
+	params: Promise<{ id: string }>;
+};
+
+export default async function DonationStatusPage({ params }: PageProps) {
 	const donation = await getBackerDetailsById((await params).id);
 
 	if (!donation) {
