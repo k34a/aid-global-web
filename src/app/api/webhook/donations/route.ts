@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { markPaymentDetailsCaptured } from "@/lib/db/donation";
+import { capturePayment } from "@/lib/db/donation";
 import razorpay from "razorpay";
 
 export async function POST(request: NextRequest) {
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 		}
 
 		if (event === "payment.captured") {
-			await markPaymentDetailsCaptured(orderId, paymentId);
+			await capturePayment(orderId, paymentId);
 		}
 
 		return NextResponse.json(
