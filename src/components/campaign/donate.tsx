@@ -19,6 +19,7 @@ interface DonateArgs {
 	products?: Record<string, number>;
 	amount: number;
 	is_anon: boolean;
+	auto_allocate?: boolean;
 }
 
 async function onDonateButtonClick(args: DonateArgs) {
@@ -34,8 +35,8 @@ async function onDonateButtonClick(args: DonateArgs) {
 		const data = await response.json();
 
 		if (!response.ok) {
-			console.error(data);
-			throw Error(data);
+			toast.error(data.message ?? "Failed to create donation.");
+			return;
 		}
 
 		const options = {
@@ -46,7 +47,7 @@ async function onDonateButtonClick(args: DonateArgs) {
 			description: ngoDetails.description,
 			logo: `${ngoDetails.contact.website}${ngoDetails.logo}`,
 			order_id: data.order_id,
-			callback_url: `${ngoDetails.contact.website}/donation/${data.backer_id}`,
+			callback_url: `${ngoDetails.contact.website}/donation/${data.donation_intent_id}`,
 			prefill: {
 				name: args.name,
 				email: args.email,
@@ -60,8 +61,10 @@ async function onDonateButtonClick(args: DonateArgs) {
 		const rzp1 = new window.Razorpay(options);
 		rzp1.open();
 	} catch (error) {
-		toast.error(`Failed to initiate donation. ${error}`);
 		console.error("Donation failed!", error);
+		toast.error(
+			"An unexpected error occurred while processing your donation.",
+		);
 	}
 }
 
@@ -77,6 +80,7 @@ interface DonateButtonProps {
 	products?: Record<string, number>;
 	amount: number;
 	is_anon: boolean;
+	auto_allocate: boolean;
 	className?: string;
 	text?: string;
 }
