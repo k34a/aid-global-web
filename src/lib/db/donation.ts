@@ -173,7 +173,6 @@ interface ReceiptDetails {
 }
 
 async function getBackerDetailsById(id: string) {
-	console.log("Fetching donation details for ID:", id);
 	const {
 		data: donation,
 		error,
