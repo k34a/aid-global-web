@@ -89,7 +89,7 @@ vercel: update config for preview deployment
 
 > Your commits will be linted automatically. Please follow the structure above to avoid errors.
 
-### To-do
+## To-do
 
 Nightly Jobs:
 
