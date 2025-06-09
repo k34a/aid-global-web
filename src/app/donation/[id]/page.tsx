@@ -4,6 +4,7 @@ import { DEFAULT_CAMPAIGN } from "@/config/data";
 import numWords from "num-words";
 import { Metadata } from "next";
 import Image from "next/image";
+import DownloadReceipt from "@/components/receipt/download-receipt";
 
 export const metadata: Metadata = {
 	title: "Donation Status",
@@ -259,6 +260,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 					Please retain a printed or digital copy for your records.
 				</p>
 			</div>
+			<DownloadReceipt />
 
 			{/* Footer */}
 			<div className="pt-4 text-sm text-gray-700">
