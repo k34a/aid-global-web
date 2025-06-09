@@ -1,7 +1,7 @@
 import ArticleList from "@/components/articleList";
 import { DonateButton } from "@/components/campaign/donate";
 import { getAllArticles, type ArticleMeta } from "@/lib/db/articles";
-
+import Link from "next/link";
 export default async function HomePage() {
 	try {
 		const articles: ArticleMeta[] = await getAllArticles(3);
@@ -22,6 +22,8 @@ export default async function HomePage() {
 						"71246dba-94fd-4d13-8fb9-4ffc733acfbd": 2, // 10
 					}}
 				/>
+
+			
 			</main>
 		);
 	} catch (error) {
