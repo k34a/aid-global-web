@@ -2,25 +2,8 @@ import { getBackerDetailsById } from "@/lib/db/donation";
 import { ngoDetails } from "@/config/config";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
 import numWords from "num-words";
-import { Metadata } from "next";
 import Image from "next/image";
 import DownloadReceipt from "@/components/receipt/download-receipt";
-
-export const metadata: Metadata = {
-	title: "Donation Status",
-	description: "View the status of your donation and download the receipt",
-	openGraph: {
-		title: "Donation Status",
-		description:
-			"View the status of your donation and download the receipt",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Donation Status",
-		description:
-			"View the status of your donation and download the receipt",
-	},
-};
 
 type PageProps = {
 	params: Promise<{ id: string }>;
