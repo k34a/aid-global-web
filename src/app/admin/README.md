@@ -20,4 +20,3 @@ To authorize, get the user's role from the DB.
 - Admin
 - Editor
 - Read-Only
-- Guest
