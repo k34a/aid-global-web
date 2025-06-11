@@ -19,11 +19,11 @@ export default async function AuthLayout({
 			}
 		} catch (err) {
 			// Token invalid or expired
-			console.log("Token invalid or expired");
+			console.error("Token invalid or expired");
 		}
 
 		if (isValidToken) {
-			redirect("/admin");
+			redirect("/admin/dashboard");
 		}
 	}
 

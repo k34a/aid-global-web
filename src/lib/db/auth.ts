@@ -25,7 +25,7 @@ async function canAdminRegister(email: string) {
 		.maybeSingle();
 
 	if (error) {
-		console.log(error);
+		console.error(error);
 		throw new UnableToRegisterError(
 			"Unable to create your account. Please try again later.",
 		);
