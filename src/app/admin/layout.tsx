@@ -1,4 +1,3 @@
-import "@/app/globals.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +12,7 @@ export default function RootLayout({
 }) {
 	return (
 		<>
-			<main className="hidden md:block">{children}</main>
+			<main className="hidden md:block p-5">{children}</main>
 			<div className="md:hidden h-screen flex items-center justify-center font-bold text-2xl text-center">
 				Admin functionality is currently only supported for desktop
 				users.
