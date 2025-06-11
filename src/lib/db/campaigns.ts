@@ -15,4 +15,18 @@ const getCampaignBySlug = async (slug: string) => {
 	return campaign;
 };
 
-export { getCampaignBySlug };
+const getAllCampaigns = async () => {
+	const { data: campaigns, error } = await supabaseAdmin
+		.from("campaigns")
+		.select("*")
+		.order("created_at", { ascending: false });
+
+	if (error) {
+		console.error("Error fetching campaigns:", error.message);
+		return [];
+	}
+
+	return campaigns || [];
+};
+
+export { getCampaignBySlug, getAllCampaigns };

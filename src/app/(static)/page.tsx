@@ -1,7 +1,7 @@
 import ArticleList from "@/components/articleList";
 import { DonateButton } from "@/components/campaign/donate";
 import { getAllArticles, type ArticleMeta } from "@/lib/db/articles";
-import Link from "next/link";
+import CampaignList from "@/components/campaign/CampaignList";
 export default async function HomePage() {
 	try {
 		const articles: ArticleMeta[] = await getAllArticles(3);
@@ -22,7 +22,15 @@ export default async function HomePage() {
 						"71246dba-94fd-4d13-8fb9-4ffc733acfbd": 2, // 10
 					}}
 				/>
+<div className="text-center">
+				<h1 className="text-3xl font-bold">Active Campaigns</h1>
+				<p className="text-gray-600 dark:text-gray-400 mt-2">
+					Support a cause and make an impact today.
+				</p>
+			</div>
 
+			{/* Campaigns */}
+			<CampaignList />
 			
 			</main>
 		);
