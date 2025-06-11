@@ -33,7 +33,7 @@ export default function LoginPage() {
 			}
 
 			toast.success("Logged in successfully!");
-			router.push("/admin");
+			router.push("/admin/dashboard");
 		} catch (err) {
 			toast.error("Something went wrong.");
 		} finally {
