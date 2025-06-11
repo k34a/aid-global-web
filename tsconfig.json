@@ -23,6 +23,6 @@
     },
     "baseUrl": "./"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/campaign/CampaignDetail.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/campaign/CampaignCard.tsx"],
   "exclude": ["node_modules"]
 }
