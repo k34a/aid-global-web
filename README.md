@@ -91,26 +91,6 @@ vercel: update config for preview deployment
 
 ### To-do
 
-Verification of transaction:
-
-- Whenever a donation intent is recorded, verify if the donated amount >= total price of donated products
-    - If yes, and user has allowed to auto_allocate, then add the costliest products which are required. Skip allocation to products that are fully funded.
-- On receiving razorpay confirmation (via webhook), received amount == amount
-
-    - Iterate over the all donated products (costliest first) and keep adding until received amount.
-    - Delete any additional products that don't fit in the received amount, and save any additional amount to unallocated funds of campaign
-    - Update the following
-
-        - campaign_products.units_collected
-        - campaign.collection
-        - campaign.backers
-        - campaign.unallocated_amount
-        - backers.payment_id
-        - backers.status
-
-    - But, user can't modify the amount donated....because it is tied to the order_id
-    - So we can avoid some of those checks and do them beforehand to reduce load on the DB.
-
 Nightly Jobs:
 
 - Delete any long-pending Donation Intent
