@@ -85,7 +85,7 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
               href={`/campaign/${campaign.slug}`}
               className="flex-1 bg-teal-600 text-white text-center font-semibold py-2 rounded hover:bg-teal-700 transition text-sm"
             >
-              Donate Now
+              Donate Now 
             </Link>
           </div>
         </div>
