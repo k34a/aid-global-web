@@ -3,12 +3,13 @@
 import {
   FaUserFriends,
   FaCalendarAlt,
-  FaFacebookF,
-  FaTwitter,
-  FaWhatsapp,
   FaLink,
   FaCheckCircle,
 } from "react-icons/fa";
+
+import Facebook from "@/components/icons/facebook";
+import Twitter from "@/components/icons/twitter";
+import Whatsapp from "@/components/icons/whatsapp";
 
 interface CampaignSidebarProps {
   backers: number;
@@ -18,17 +19,16 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href).then(() => {
+    navigator.clipboard.writeText(url).then(() => {
       alert("Campaign link copied to clipboard!");
     });
   };
 
   return (
     <div className="space-y-6">
-    
+      {/* Stats Card */}
       <div className="bg-white rounded-xl shadow-lg p-6">
         <h3 className="text-lg font-bold text-gray-800 mb-4">Campaign Stats</h3>
-
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -37,7 +37,6 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
             </div>
             <span className="font-bold text-gray-800">{backers}</span>
           </div>
-
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FaCalendarAlt className="text-teal-600 text-xl" />
@@ -48,9 +47,9 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
         </div>
       </div>
 
+      {/* Share Card */}
       <div className="bg-white rounded-xl shadow-lg p-6">
         <h3 className="text-lg font-bold text-gray-800 mb-4">Spread The Word</h3>
-
         <div className="flex items-center gap-3">
           <button
             onClick={() =>
@@ -58,7 +57,7 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
             }
             className="bg-[#3b5998] text-white p-3 rounded-full hover:scale-105 transition"
           >
-            <FaFacebookF />
+            <Facebook className="w-4 h-4" />
           </button>
 
           <button
@@ -67,7 +66,7 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
             }
             className="bg-[#1da1f2] text-white p-3 rounded-full hover:scale-105 transition"
           >
-            <FaTwitter />
+            <Twitter className="w-4 h-4" />
           </button>
 
           <button
@@ -83,12 +82,12 @@ export default function CampaignSidebar({ backers }: CampaignSidebarProps) {
             }
             className="bg-[#25d366] text-white p-3 rounded-full hover:scale-105 transition"
           >
-            <FaWhatsapp />
+            <Whatsapp className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-     
+      {/* Milestones */}
       <div className="bg-white rounded-xl shadow-lg p-6">
         <h3 className="text-lg font-bold text-gray-800 mb-4">Campaign Milestones</h3>
         <ul className="space-y-3 text-sm text-gray-700">
