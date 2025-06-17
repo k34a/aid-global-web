@@ -1,0 +1,45 @@
+export const aids = [
+	{
+		id: 1,
+		image: "/aids/shiksha.webp",
+		title: "Shiksha Aid",
+		desc: "Access to education for underpriviliged children. Partner with Aid Global Foundation to provide quality education and resources to children in need.",
+		button: "Read More",
+		link: "/shiksha-aid",
+	},
+	{
+		id: 2,
+		image: "/aids/enable.webp",
+		title: "Enable Aid",
+		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
+		button: "Donate Now",
+	},
+	{
+		id: 3,
+		image: "/aids/cure.jpg",
+		title: "Cure Aid",
+		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
+		button: "Donate Now",
+	},
+	{
+		id: 4,
+		image: "/aids/vision.jpg",
+		title: "Vision Aid",
+		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
+		button: "Donate Now",
+	},
+	{
+		id: 5,
+		image: "/aids/ghar.jpg",
+		title: "Ghar Aid",
+		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
+		button: "Donate Now",
+	},
+	{
+		id: 6,
+		image: "/aids/sakhi.jpg",
+		title: "Sakhi Aid",
+		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
+		button: "Donate Now",
+	},
+];
