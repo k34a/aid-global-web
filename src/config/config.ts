@@ -4,7 +4,7 @@ export const APP_ENV = process.env.NODE_ENV;
 
 export const ngoDetails: NGODetails = {
 	name: "Aid Global Foundation",
-	tagline: "Empowering Communities, Transforming Lives",
+	tagline: "Aid with heart. Impact with purpose",
 	description:
 		"Aid Global Foundation is dedicated to creating sustainable change in communities worldwide through education, healthcare, and humanitarian support.",
 	keywords: [

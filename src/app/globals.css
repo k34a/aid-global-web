@@ -2,3 +2,8 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/aspect-ratio";
+
+
+/* @utility no-scrollbar{
+    @apply [scrollbar-width: none] [&::-webkit-scrollbar]:hidden;
+} */
