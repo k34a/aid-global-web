@@ -41,11 +41,13 @@ export default function TestimonialsSection() {
 						</div>
 
 						<div className="flex-shrink-0">
-							<div className="relative">
+							<div className="relative w-48 sm:w-56 md:w-64 lg:w-72 h-16 sm:h-20 md:h-22 lg:h-24">
 								<Image
 									src="/reviews/image.png"
 									alt="our team"
-									className="w-48 sm:w-56 md:w-64 lg:w-72 h-16 sm:h-20 md:h-22 lg:h-24 object-cover rounded-xl sm:rounded-2xl shadow-lg"
+									fill
+									className="object-cover rounded-xl sm:rounded-2xl shadow-lg"
+									sizes="(max-width: 640px) 12rem, (max-width: 768px) 14rem, (max-width: 1024px) 16rem, 18rem"
 								/>
 							</div>
 						</div>

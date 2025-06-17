@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { DonationCardType } from "@/components/homepage/categories/types";
+import { Share2 } from "lucide-react";
 
 interface DonationCardProps {
 	card: DonationCardType;
@@ -12,11 +13,13 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 
 	return (
 		<div className="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 w-full sm:w-72 md:w-80 m-1 sm:m-2 flex flex-col">
-			<div className="relative">
+			<div className="relative w-full h-32 sm:h-36 md:h-40 rounded-lg overflow-hidden">
 				<Image
 					src={card.image}
 					alt={card.title}
-					className="rounded-lg h-32 sm:h-36 md:h-40 w-full object-cover"
+					fill
+					sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 33vw"
+					className="object-cover"
 				/>
 				{card.tag && (
 					<span className="absolute top-2 right-2 bg-yellow-300 text-xs px-2 py-1 rounded">
@@ -50,7 +53,10 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 				</div>
 				<div className="flex justify-between mt-2 sm:mt-3 gap-2">
 					<button className="flex items-center px-2 sm:px-3 py-1 border rounded text-gray-600 hover:bg-gray-100 text-xs sm:text-sm">
-						<span className="mr-1">🔗</span> Share
+						<span className="mr-1">
+							<Share2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 font-bold" />
+						</span>{" "}
+						Share
 					</button>
 					<button className="bg-blue-500 text-white px-3 sm:px-4 py-1 rounded hover:bg-pink-600 text-xs sm:text-sm">
 						Donate Now
