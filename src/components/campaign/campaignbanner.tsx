@@ -26,7 +26,7 @@ export default function CampaignBanner({
 	collection = 0,
 	amount = 0,
 }: CampaignBannerProps) {
-	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${bannerImage}`;
+	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${bannerImage.trim()}`;
 	const percent = calculateProgressPercentage(collection, amount);
 
 	const handleScrollToProducts = () => {

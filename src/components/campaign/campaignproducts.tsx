@@ -85,7 +85,6 @@ export default function CampaignProducts({
 	);
 
 	useEffect(() => {
-		// Only update if this is the first time or if totalCost changed
 		if (previousTotalCostRef.current === 0) {
 			setAmountInput(totalCost);
 		} else {
