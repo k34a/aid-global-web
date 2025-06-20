@@ -1,22 +1,19 @@
-import type { NextConfig } from 'next';
-import dotenv from 'dotenv';
-dotenv.config();
-
+import type { NextConfig } from "next";
 
 const hostname = process.env.NEXT_PUBLIC_SUPABASE_HOSTNAME;
 if (!hostname) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_HOSTNAME in .env file');
+	throw new Error("Missing NEXT_PUBLIC_SUPABASE_HOSTNAME in .env file");
 }
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: hostname,
-      },
-    ],
-  },
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: hostname,
+			},
+		],
+	},
 };
 
 export default nextConfig;

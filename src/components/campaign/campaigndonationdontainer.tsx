@@ -3,6 +3,17 @@
 import CampaignBanner from "./campaignbanner";
 import CampaignProducts from "./campaignproducts";
 
+interface CampaignProduct {
+	id: number;
+	campaign_id: number;
+	title: string;
+	description: string;
+	price_per_unit: number;
+	image?: string;
+	units_required: number;
+	units_collected: number;
+}
+
 interface CampaignDonationContainerProps {
 	slug: string;
 	bannerImage: string;
@@ -10,8 +21,8 @@ interface CampaignDonationContainerProps {
 	description?: string;
 	collection?: number;
 	amount?: number;
-	products: any[];
-	campaign_id: string;
+	products: CampaignProduct[];
+	campaignId: string;
 }
 
 export default function CampaignDonationContainer({
@@ -22,7 +33,7 @@ export default function CampaignDonationContainer({
 	collection,
 	amount,
 	products,
-	campaign_id,
+	campaignId,
 }: CampaignDonationContainerProps) {
 	return (
 		<>
@@ -38,7 +49,7 @@ export default function CampaignDonationContainer({
 			<CampaignProducts
 				products={products}
 				slug={slug}
-				campaignId={campaign_id}
+				campaignId={campaignId}
 			/>
 		</>
 	);

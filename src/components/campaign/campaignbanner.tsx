@@ -3,8 +3,11 @@
 import Image from "next/image";
 import { IndianRupee } from "lucide-react";
 import { SUPABASE_CAMPAIGN_BASE_URL } from "@/lib/db/config";
-import toast from "react-hot-toast";
 import { copyToClipboard } from "@/lib/utils/copytoclipboard";
+import {
+	calculateProgressPercentage,
+	formatProgressPercentage,
+} from "@/lib/utils/progress";
 
 interface CampaignBannerProps {
 	slug: string;
@@ -24,7 +27,7 @@ export default function CampaignBanner({
 	amount = 0,
 }: CampaignBannerProps) {
 	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${bannerImage}`;
-	const percent = Math.min(100, (collection / amount) * 100);
+	const percent = calculateProgressPercentage(collection, amount);
 
 	const handleScrollToProducts = () => {
 		const section = document.getElementById("donation-section");
@@ -69,7 +72,7 @@ export default function CampaignBanner({
 						<div className="flex justify-between text-xs text-gray-600 font-medium">
 							<span>Progress</span>
 							<span className="text-teal-600">
-								{percent.toFixed(1)}%
+								{formatProgressPercentage(collection, amount)}%
 							</span>
 						</div>
 
@@ -117,14 +120,7 @@ export default function CampaignBanner({
 								className="w-full border border-teal-600 text-teal-600 py-2 px-4 rounded-lg hover:bg-teal-50 transition-colors text-sm font-semibold"
 								onClick={() => {
 									const url = window.location.href;
-									copyToClipboard(url).then((success) => {
-										if (success)
-											toast.success(
-												"Campaign link copied to clipboard!",
-											);
-										else
-											toast.error("Failed to copy link.");
-									});
+									copyToClipboard(url);
 								}}
 							>
 								Share Campaign
