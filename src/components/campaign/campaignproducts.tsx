@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ShoppingCart } from "lucide-react";
 import { CartSummary } from "./cartsummary";
 import { ProductCard } from "./productcard";
@@ -49,6 +49,8 @@ export default function CampaignProducts({
 	>({});
 	const [amountInput, setAmountInput] = useState(0);
 	const [autoAllocate, setAutoAllocate] = useState(false);
+	const previousTotalCostRef = useRef(0);
+	const currentAmountInputRef = useRef(0);
 
 	const increment = (id: number) => {
 		setSelectedProducts((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
@@ -83,8 +85,22 @@ export default function CampaignProducts({
 	);
 
 	useEffect(() => {
-		setAmountInput(totalCost);
+		// Only update if this is the first time or if totalCost changed
+		if (previousTotalCostRef.current === 0) {
+			setAmountInput(totalCost);
+		} else {
+			const extraAmount = Math.max(
+				0,
+				currentAmountInputRef.current - previousTotalCostRef.current,
+			);
+			setAmountInput(totalCost + extraAmount);
+		}
+		previousTotalCostRef.current = totalCost;
 	}, [totalCost]);
+
+	useEffect(() => {
+		currentAmountInputRef.current = amountInput;
+	}, [amountInput]);
 
 	const handleAmountChange = (value: number) => {
 		setAmountInput(Math.max(0, value));

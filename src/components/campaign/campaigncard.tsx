@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaUserFriends, FaShareAlt, FaRupeeSign } from "react-icons/fa";
+import { Users, Share2, IndianRupee } from "lucide-react";
 import { SUPABASE_CAMPAIGN_BASE_URL } from "@/lib/db/config";
+import { copyToClipboard } from "@/lib/utils/copytoclipboard";
+import { calculateProgressPercentage } from "@/lib/utils/progress";
 
 export default function CampaignCard({ campaign }: { campaign: any }) {
-	const percent = Math.min(
-		100,
-		(campaign.collection / campaign.amount) * 100,
+	const percent = calculateProgressPercentage(
+		campaign.collection,
+		campaign.amount,
 	);
 
 	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${campaign.slug}/images/${campaign.banner_image}`;
@@ -56,11 +58,12 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 
 					<div className="flex items-center justify-between text-xs text-gray-500 mb-2">
 						<span className="flex items-center gap-1">
-							<FaRupeeSign className="inline text-sm" />
+							<IndianRupee className="w-4 h-4" />
 							<strong>{campaign.collection}</strong> Raised
 						</span>
 						<span className="flex items-center gap-1">
-							<FaUserFriends /> {campaign.backers} Backers
+							<Users className="w-4 h-4" /> {campaign.backers}{" "}
+							Backers
 						</span>
 					</div>
 
@@ -77,18 +80,12 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 							onClick={(e) => {
 								e.stopPropagation();
 								e.preventDefault();
-								navigator.clipboard
-									.writeText(
-										`${window.location.origin}/campaign/${campaign.slug}`,
-									)
-									.then(() => {
-										alert(
-											"Campaign link copied to clipboard!",
-										);
-									});
+								copyToClipboard(
+									`${window.location.origin}/campaign/${campaign.slug}`,
+								);
 							}}
 						>
-							<FaShareAlt /> Share
+							<Share2 className="w-4 h-4" /> Share
 						</button>
 						<Link
 							href={`/campaign/${campaign.slug}`}

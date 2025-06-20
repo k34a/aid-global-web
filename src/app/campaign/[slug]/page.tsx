@@ -1,10 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { fetchCampaignMarkdown } from "@/lib/db/fetchCampaignMarkdown";
+import { fetchCampaignMarkdown } from "@/lib/db/fetchmarkdown";
 import { getCampaignBySlug } from "@/lib/db/campaigns";
 
-import CampaignDonationContainer from "@/components/campaign/campaigndonationdontainer";
 import CampaignBanner from "@/components/campaign/campaignbanner";
 import CampaignDescription from "@/components/campaign/campaigndescription";
 import CampaignSidebar from "@/components/campaign/campaignsidebar";
@@ -16,11 +15,11 @@ export const metadata: Metadata = {
 };
 
 type PageProps = {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 };
 
 export default async function CampaignDetailPage({ params }: PageProps) {
-	const slug = params.slug;
+	const { slug } = await params;
 	const campaign = await getCampaignBySlug(slug);
 	if (!campaign) return notFound();
 

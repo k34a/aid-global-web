@@ -4,10 +4,6 @@ import { getAllCampaigns } from "@/lib/db/campaigns";
 export default async function CampaignList() {
 	const campaigns = await getAllCampaigns();
 
-	// Debug: Log campaigns data
-	console.log("All campaigns from database:", campaigns);
-
-	// If no campaigns found, show a message
 	if (!campaigns || campaigns.length === 0) {
 		return (
 			<div className="text-center py-10">
