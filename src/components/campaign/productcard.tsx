@@ -32,7 +32,7 @@ export const ProductCard = ({
 	onRemove,
 }: ProductCardProps) => {
 	const imageUrl = product.image
-		? `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${product.image}`
+		? `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${product.image.trim()}`
 		: null;
 
 	const remainingUnits = product.units_required - product.units_collected;
