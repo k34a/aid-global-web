@@ -3,7 +3,7 @@
 export type NewsItem = {
 	id: string;
 	title: string;
-	date: string; // Keep as string if you’re parsing it later
+	date: string;
 	image: string;
 	description: string;
 	link: string;

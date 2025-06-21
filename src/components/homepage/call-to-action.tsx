@@ -4,7 +4,7 @@ import Image from "next/image";
 const CallToAction = () => {
 	return (
 		<section className="bg-white rounded-xl mx-2 sm:mx-4 md:mx-10 lg:mx-15 px-2 sm:px-4 md:px-6">
-			<div className="my-8 sm:my-12 md:my-16 lg:my-20 mx-2 sm:mx-4 md:mx-10 lg:mx-30 px-2 sm:px-4 md:px-8 lg:px-32 cursor-pointer">
+			<div className="my-8 sm:my-12 md:my-14 lg:my-15 mx-2 sm:mx-4 md:mx-10 lg:mx-30 px-2 sm:px-4 md:px-8 lg:px-32 cursor-pointer">
 				<h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-black-900 font-mono text-center mx-2 sm:mx-4 md:mx-10 lg:mx-20">
 					Be the <span className="text-blue-600"> Hope </span> for the
 					Helpless
