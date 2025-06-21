@@ -117,9 +117,9 @@ export const DonationSummary = ({
 						htmlFor="auto-allocate"
 						className="text-sm text-blue-800 flex items-center gap-1"
 					>
-						Allocate extra{" "}
+						Automatically allocate extra{" "}
 						<IndianRupee size={12} className="inline" />{" "}
-						{amountInput - totalCost} towards selected products
+						{amountInput - totalCost} towards other products
 					</label>
 				</div>
 			)}
@@ -130,15 +130,6 @@ export const DonationSummary = ({
 					<p className="text-sm text-red-800 flex items-center gap-1">
 						Donation amount must be at least{" "}
 						<IndianRupee size={12} className="inline" /> {totalCost}
-					</p>
-				</div>
-			)}
-
-			{amountInput > totalCost && !autoAllocate && (
-				<div className="p-3 bg-yellow-50 rounded-lg border border-yellow-200 mb-4">
-					<p className="text-sm text-yellow-800">
-						Please check the allocation checkbox to donate more than
-						the product cost
 					</p>
 				</div>
 			)}

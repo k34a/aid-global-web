@@ -38,7 +38,7 @@ export default function CampaignProducts({
 		Record<string, number>
 	>({});
 	const [amountInput, setAmountInput] = useState(0);
-	const [autoAllocate, setAutoAllocate] = useState(false);
+	const [autoAllocate, setAutoAllocate] = useState(true);
 	const previousTotalCostRef = useRef(0);
 	const currentAmountInputRef = useRef(0);
 
