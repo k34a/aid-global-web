@@ -116,3 +116,5 @@ async function getAllCampaignsCount(): Promise<number> {
 }
 
 export { getCampaignBySlug, getCampaigns, getAllCampaignsCount };
+
+export type { CampaignDetails, CampaignProduct };
