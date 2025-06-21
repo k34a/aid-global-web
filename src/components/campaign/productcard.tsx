@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ShoppingCart, Plus, Minus, IndianRupee } from "lucide-react";
 import { getImageUrl } from "./utils";
@@ -13,6 +13,8 @@ interface ProductCardProps {
 	onIncrement: (id: string) => void;
 	onDecrement: (id: string) => void;
 	onRemove: (id: string) => void;
+	onSetQuantity: (id: string, quantity: number) => void;
+	disabled?: boolean;
 }
 
 export const ProductCard = ({
@@ -22,11 +24,57 @@ export const ProductCard = ({
 	onIncrement,
 	onDecrement,
 	onRemove,
+	onSetQuantity,
+	disabled = false,
 }: ProductCardProps) => {
 	const imageUrl = product.image ? getImageUrl(slug, product.image) : null;
-
+	const [inputValue, setInputValue] = useState(selectedQty.toString());
 	const remainingUnits = product.units_required - product.units_collected;
 	const isSelected = selectedQty > 0;
+
+	// Update input value when selectedQty changes
+	useEffect(() => {
+		setInputValue(selectedQty > 0 ? selectedQty.toString() : "");
+	}, [selectedQty]);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		// Only allow numeric input
+		if (value === "" || /^\d+$/.test(value)) {
+			setInputValue(value);
+
+			// Only update quantity if we have a valid number (not empty)
+			if (value !== "") {
+				const numValue = parseInt(value) || 0;
+				const clampedValue = Math.max(
+					0,
+					Math.min(numValue, remainingUnits),
+				);
+				onSetQuantity(product.id, clampedValue);
+			}
+		}
+	};
+
+	const handleInputBlur = () => {
+		// When user finishes typing, update with final value
+		const numValue = parseInt(inputValue) || 0;
+		const clampedValue = Math.max(0, Math.min(numValue, remainingUnits));
+		setInputValue(clampedValue > 0 ? clampedValue.toString() : "");
+		onSetQuantity(product.id, clampedValue);
+	};
+
+	const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			handleInputBlur();
+			e.currentTarget.blur();
+		}
+	};
+
+	const isInputValid = () => {
+		const numValue = parseInt(inputValue) || 0;
+		return numValue >= 0 && numValue <= remainingUnits;
+	};
 
 	return (
 		<div
@@ -34,7 +82,7 @@ export const ProductCard = ({
 				isSelected
 					? "ring-2 ring-teal-500 shadow-lg"
 					: "hover:shadow-md"
-			}`}
+			} ${disabled ? "opacity-50 pointer-events-none" : ""}`}
 		>
 			<div className="relative h-36 w-full mb-3">
 				{imageUrl ? (
@@ -76,22 +124,46 @@ export const ProductCard = ({
 				</span>
 			</div>
 
-			{isSelected ? (
+			{disabled ? (
+				<div className="text-center py-4">
+					<p className="text-sm text-gray-500">
+						Direct donation mode active
+					</p>
+				</div>
+			) : isSelected ? (
 				<div className="space-y-2">
-					<div className="flex items-center justify-between bg-gray-50 p-2 rounded">
+					<div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
 						<button
 							onClick={() => onDecrement(product.id)}
-							className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
-							disabled={selectedQty <= 1}
+							className="w-8 h-8 rounded-full bg-white hover:bg-gray-100 border border-gray-300 flex items-center justify-center transition-colors shadow-sm"
 						>
-							<Minus className="text-xs" size={16} />
+							<Minus
+								className="text-gray-600 text-xs"
+								size={16}
+							/>
 						</button>
-						<span className="font-medium text-gray-800">
-							{selectedQty}
-						</span>
+						<div className="flex flex-col items-center">
+							<input
+								type="text"
+								value={inputValue}
+								onChange={handleInputChange}
+								onBlur={handleInputBlur}
+								onKeyPress={handleInputKeyPress}
+								className={`w-20 h-9 text-center bg-white border-2 ${
+									isInputValid()
+										? "border-gray-300 focus:border-teal-500"
+										: "border-red-400"
+								} rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-teal-200 transition-colors`}
+								title={`Max: ${remainingUnits} units`}
+								placeholder="0"
+							/>
+							<span className="text-xs text-gray-500 mt-1 font-medium">
+								Max: {remainingUnits}
+							</span>
+						</div>
 						<button
 							onClick={() => onIncrement(product.id)}
-							className="w-8 h-8 rounded-full bg-teal-600 hover:bg-teal-700 text-white flex items-center justify-center transition-colors"
+							className="w-8 h-8 rounded-full bg-teal-600 hover:bg-teal-700 text-white flex items-center justify-center transition-colors shadow-sm"
 							disabled={selectedQty >= remainingUnits}
 						>
 							<Plus className="text-xs" size={16} />
@@ -99,7 +171,7 @@ export const ProductCard = ({
 					</div>
 					<button
 						onClick={() => onRemove(product.id)}
-						className="w-full text-sm text-red-600 hover:text-red-700 hover:bg-red-50 py-1 rounded transition-colors"
+						className="w-full text-sm text-red-600 hover:text-red-700 hover:bg-red-50 py-2 px-3 rounded-lg transition-colors font-medium border border-red-200 hover:border-red-300"
 					>
 						Remove from cart
 					</button>
