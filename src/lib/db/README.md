@@ -117,3 +117,29 @@ exception
 end;
 $$;
 ```
+
+## Get the number of rows in a table
+
+```
+CREATE OR REPLACE FUNCTION get_table_row_count(
+    arg_schema_name TEXT,
+    arg_table_name TEXT
+)
+RETURNS BIGINT
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+    row_count BIGINT;
+    query_text TEXT;
+BEGIN
+    -- Build the dynamic query with proper quoting
+    query_text := format('SELECT COUNT(*) FROM %I.%I', arg_schema_name, arg_table_name);
+
+    -- Execute the query and get the result
+    EXECUTE query_text INTO row_count;
+
+    RETURN row_count;
+END;
+$$;
+```
