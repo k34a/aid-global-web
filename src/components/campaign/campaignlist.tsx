@@ -1,8 +1,8 @@
 import CampaignCard from "./campaigncard";
-import { getAllCampaigns } from "@/lib/db/campaigns";
+import { getCampaigns } from "@/lib/db/campaigns";
 
 export default async function CampaignList() {
-	const campaigns = await getAllCampaigns();
+	const campaigns = await getCampaigns(null);
 
 	if (!campaigns || campaigns.length === 0) {
 		return (
