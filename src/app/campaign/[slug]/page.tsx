@@ -44,7 +44,11 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 					</div>
 
 					<div>
-						<CampaignSidebar backers={campaign.backers} />
+						<CampaignSidebar
+							backers={campaign.backers}
+							goal={campaign.amount}
+							currentAmount={campaign.collection}
+						/>
 					</div>
 				</div>
 

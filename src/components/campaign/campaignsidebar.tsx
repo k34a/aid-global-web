@@ -6,19 +6,19 @@ import Facebook from "@/components/icons/facebook";
 import Twitter from "@/components/icons/twitter";
 import Whatsapp from "@/components/icons/whatsapp";
 import { useEffect, useState } from "react";
-import { copyToClipboard } from "@/lib/utils/copytoclipboard";
+import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
 import { getCampaignMilestones, Milestone } from "@/data/campaignmilestones";
 
 interface CampaignSidebarProps {
 	backers: number;
-	goal?: number;
-	currentAmount?: number;
+	goal: number;
+	currentAmount: number;
 }
 
 export default function CampaignSidebar({
 	backers,
-	goal = 10000,
-	currentAmount = 0,
+	goal,
+	currentAmount,
 }: CampaignSidebarProps) {
 	const [url, setUrl] = useState("");
 	const [copied, setCopied] = useState(false);
@@ -75,8 +75,7 @@ export default function CampaignSidebar({
 								</span>
 							</div>
 							<span className="font-bold text-gray-800">
-								₹{currentAmount.toLocaleString()} / ₹
-								{goal.toLocaleString()}
+								&#8377;{currentAmount} / &#8377;{goal}
 							</span>
 						</div>
 					)}

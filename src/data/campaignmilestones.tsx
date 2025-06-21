@@ -4,7 +4,7 @@ import { CheckCircle, Target } from "lucide-react";
 export interface Milestone {
 	id: string;
 	title: string;
-	description: string;
+	description: string | React.JSX.Element;
 	condition: (props: {
 		backers: number;
 		currentAmount?: number;
@@ -24,7 +24,9 @@ export const getCampaignMilestones = (goal: number = 10000): Milestone[] => [
 	{
 		id: "emergency_response",
 		title: "Emergency Response Fund",
-		description: `Raised ₹${goal ? (goal * 0.25).toLocaleString() : "2,500"} for immediate aid`,
+		description: (
+			<>Raised &#8377;{goal ? goal * 0.25 : "2,500"} for immediate aid</>
+		),
 		condition: ({ currentAmount, goal }) =>
 			goal && currentAmount ? currentAmount / goal >= 0.25 : false,
 		icon: <Target className="w-4 h-4" />,

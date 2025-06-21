@@ -1,18 +1,8 @@
 "use client";
 
+import { CampaignProduct } from "@/lib/db/campaigns";
 import CampaignBanner from "./campaignbanner";
 import CampaignProducts from "./campaignproducts";
-
-interface CampaignProduct {
-	id: number;
-	campaign_id: number;
-	title: string;
-	description: string;
-	price_per_unit: number;
-	image?: string;
-	units_required: number;
-	units_collected: number;
-}
 
 interface CampaignDonationContainerProps {
 	slug: string;

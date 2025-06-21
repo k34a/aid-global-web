@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Users, Share2, IndianRupee } from "lucide-react";
-import { SUPABASE_CAMPAIGN_BASE_URL } from "@/lib/db/config";
-import { copyToClipboard } from "@/lib/utils/copytoclipboard";
-import { calculateProgressPercentage } from "@/lib/utils/progress";
+import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
+import { calculateProgressPercentage } from "@/lib/client-utils/progress";
+import { getImageUrl } from "./utils";
 
 export default function CampaignCard({ campaign }: { campaign: any }) {
 	const percent = calculateProgressPercentage(
@@ -13,7 +13,7 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 		campaign.amount,
 	);
 
-	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${campaign.slug}/images/${campaign.banner_image}`;
+	const imageUrl = getImageUrl(campaign.slug, campaign.banner_image);
 
 	return (
 		<div className="flex flex-col w-full max-w-sm mx-auto">

@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { IndianRupee } from "lucide-react";
-import { SUPABASE_CAMPAIGN_BASE_URL } from "@/lib/db/config";
-import { copyToClipboard } from "@/lib/utils/copytoclipboard";
+import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
 import {
 	calculateProgressPercentage,
 	formatProgressPercentage,
-} from "@/lib/utils/progress";
+} from "@/lib/client-utils/progress";
+import { getImageUrl } from "./utils";
 
 interface CampaignBannerProps {
 	slug: string;
@@ -26,7 +26,7 @@ export default function CampaignBanner({
 	collection = 0,
 	amount = 0,
 }: CampaignBannerProps) {
-	const imageUrl = `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${bannerImage.trim()}`;
+	const imageUrl = getImageUrl(slug, bannerImage);
 	const percent = calculateProgressPercentage(collection, amount);
 
 	const handleScrollToProducts = () => {
