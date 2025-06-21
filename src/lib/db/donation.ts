@@ -43,7 +43,7 @@ class UnableToRecordDonationIntentError extends Error {
 async function createDonationIntent(
 	request: NewDonationRequest,
 ): Promise<string> {
-	let donationProducts = request.products ?? {};
+	const donationProducts = request.products ?? {};
 
 	const { data: productsData, error: productsError } = await supabaseAdmin
 		.from("campaign_products")
@@ -173,7 +173,6 @@ interface ReceiptDetails {
 }
 
 async function getBackerDetailsById(id: string) {
-	console.log("Fetching donation details for ID:", id);
 	const {
 		data: donation,
 		error,

@@ -5,9 +5,15 @@ import Script from "next/script";
 import { ngoDetails } from "@/config/config";
 import toast from "react-hot-toast";
 
+interface RazorpayInstance {
+	open(): void;
+	on(event: string, callback: (...args: Array<unknown>) => void): void;
+	close(): void;
+}
+
 declare global {
 	interface Window {
-		Razorpay: any;
+		Razorpay: new (options: unknown) => RazorpayInstance;
 	}
 }
 
