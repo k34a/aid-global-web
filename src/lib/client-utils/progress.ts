@@ -1,3 +1,5 @@
+"use client";
+
 export const calculateProgressPercentage = (
 	collected: number,
 	target: number,

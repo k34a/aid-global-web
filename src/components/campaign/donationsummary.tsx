@@ -1,21 +1,11 @@
 import React, { useState } from "react";
 import { IndianRupee } from "lucide-react";
 import { DonateButton } from "./donate";
-
-interface CampaignProduct {
-	id: number;
-	campaign_id: number;
-	title: string;
-	description: string;
-	price_per_unit: number;
-	image?: string;
-	units_required: number;
-	units_collected: number;
-}
+import { CampaignProduct } from "@/lib/db/campaigns";
 
 interface DonationSummaryProps {
 	products: CampaignProduct[];
-	selectedProducts: Record<number, number>;
+	selectedProducts: Record<string, number>;
 	totalCost: number;
 	amountInput: number;
 	autoAllocate: boolean;

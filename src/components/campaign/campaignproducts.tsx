@@ -5,17 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import { CartSummary } from "./cartsummary";
 import { ProductCard } from "./productcard";
 import { DonationSummary } from "./donationsummary";
-
-interface CampaignProduct {
-	id: number;
-	campaign_id: number;
-	title: string;
-	description: string;
-	price_per_unit: number;
-	image?: string;
-	units_required: number;
-	units_collected: number;
-}
+import { CampaignProduct } from "@/lib/db/campaigns";
 
 interface CampaignProductsProps {
 	products: CampaignProduct[];
@@ -45,18 +35,18 @@ export default function CampaignProducts({
 	campaignId,
 }: CampaignProductsProps) {
 	const [selectedProducts, setSelectedProducts] = useState<
-		Record<number, number>
+		Record<string, number>
 	>({});
 	const [amountInput, setAmountInput] = useState(0);
 	const [autoAllocate, setAutoAllocate] = useState(false);
 	const previousTotalCostRef = useRef(0);
 	const currentAmountInputRef = useRef(0);
 
-	const increment = (id: number) => {
+	const increment = (id: string) => {
 		setSelectedProducts((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
 	};
 
-	const decrement = (id: number) => {
+	const decrement = (id: string) => {
 		setSelectedProducts((prev) => {
 			const current = prev[id] || 0;
 			if (current <= 1) {
@@ -67,7 +57,7 @@ export default function CampaignProducts({
 		});
 	};
 
-	const removeProduct = (id: number) => {
+	const removeProduct = (id: string) => {
 		setSelectedProducts((prev) => {
 			const { [id]: _, ...rest } = prev;
 			return rest;

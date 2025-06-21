@@ -1,26 +1,18 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { ShoppingCart, Plus, Minus, IndianRupee } from "lucide-react";
-import { SUPABASE_CAMPAIGN_BASE_URL } from "@/lib/db/config";
-
-interface CampaignProduct {
-	id: number;
-	campaign_id: number;
-	title: string;
-	description: string;
-	price_per_unit: number;
-	image?: string;
-	units_required: number;
-	units_collected: number;
-}
+import { getImageUrl } from "./utils";
+import { CampaignProduct } from "@/lib/db/campaigns";
 
 interface ProductCardProps {
 	product: CampaignProduct;
 	slug: string;
 	selectedQty: number;
-	onIncrement: (id: number) => void;
-	onDecrement: (id: number) => void;
-	onRemove: (id: number) => void;
+	onIncrement: (id: string) => void;
+	onDecrement: (id: string) => void;
+	onRemove: (id: string) => void;
 }
 
 export const ProductCard = ({
@@ -31,9 +23,7 @@ export const ProductCard = ({
 	onDecrement,
 	onRemove,
 }: ProductCardProps) => {
-	const imageUrl = product.image
-		? `${SUPABASE_CAMPAIGN_BASE_URL}/${slug}/images/${product.image.trim()}`
-		: null;
+	const imageUrl = product.image ? getImageUrl(slug, product.image) : null;
 
 	const remainingUnits = product.units_required - product.units_collected;
 	const isSelected = selectedQty > 0;
