@@ -6,6 +6,7 @@ import { CartSummary } from "./cartsummary";
 import { ProductCard } from "./productcard";
 import { DonationSummary } from "./donationsummary";
 import { CampaignProduct } from "@/lib/db/campaigns";
+import { DirectDonationCard } from "./directdonationcard";
 
 interface CampaignProductsProps {
 	products: CampaignProduct[];
@@ -21,10 +22,10 @@ const EmptyState = () => (
 			size={64}
 		/>
 		<h3 className="text-xl font-medium text-gray-600 mb-2">
-			Your donation cart is empty
+			Choose a donation method above
 		</h3>
 		<p className="text-gray-500">
-			Select items above to start your donation
+			Select specific items or enter a direct donation amount
 		</p>
 	</div>
 );
@@ -39,6 +40,10 @@ export default function CampaignProducts({
 	>({});
 	const [amountInput, setAmountInput] = useState(0);
 	const [autoAllocate, setAutoAllocate] = useState(true);
+
+	const [directDonationMode, setDirectDonationMode] = useState(false);
+	const [directDonationAmount, setDirectDonationAmount] = useState(0);
+
 	const previousTotalCostRef = useRef(0);
 	const currentAmountInputRef = useRef(0);
 
@@ -61,6 +66,22 @@ export default function CampaignProducts({
 		setSelectedProducts((prev) => {
 			const { [id]: _, ...rest } = prev;
 			return rest;
+		});
+	};
+
+	const onSetQuantity = (id: string, quantity: number) => {
+		const product = products.find((p) => p.id === id);
+		if (!product) return;
+
+		const remainingUnits = product.units_required - product.units_collected;
+		const validQuantity = Math.max(0, Math.min(quantity, remainingUnits));
+
+		setSelectedProducts((prev) => {
+			if (validQuantity === 0) {
+				const { [id]: _, ...rest } = prev;
+				return rest;
+			}
+			return { ...prev, [id]: validQuantity };
 		});
 	};
 
@@ -95,47 +116,96 @@ export default function CampaignProducts({
 		setAmountInput(Math.max(0, value));
 	};
 
+	// Direct donation handlers
+	const handleDirectDonationToggle = () => {
+		if (directDonationMode) {
+			// Cancel direct donation mode
+			setDirectDonationMode(false);
+			setDirectDonationAmount(0);
+		} else {
+			setDirectDonationMode(true);
+			setSelectedProducts({});
+		}
+	};
+
+	const handleDirectDonationAmountChange = (amount: number) => {
+		setDirectDonationAmount(Math.max(0, amount));
+	};
+
+	// Determine if we should show donation summary
+	const shouldShowDonationSummary =
+		selectedProductsCount > 0 ||
+		(directDonationMode && directDonationAmount > 0);
+
 	return (
 		<div id="donation-section" className="mt-12 space-y-6">
 			<h2 className="text-2xl font-bold text-gray-800 mb-4">
-				Items You Can Donate
+				Choose Your Donation Method
 			</h2>
 
-			{selectedProductsCount > 0 && (
-				<CartSummary
-					selectedProductsCount={selectedProductsCount}
-					totalCost={totalCost}
+			{/* Direct Donation Option */}
+			<div className="mb-8">
+				<DirectDonationCard
+					amount={directDonationAmount}
+					onAmountChange={handleDirectDonationAmountChange}
+					isSelected={directDonationMode}
+					onToggle={handleDirectDonationToggle}
 				/>
-			)}
-
-			<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-				{products.map((product) => (
-					<ProductCard
-						key={product.id}
-						product={product}
-						slug={slug}
-						selectedQty={selectedProducts[product.id] || 0}
-						onIncrement={increment}
-						onDecrement={decrement}
-						onRemove={removeProduct}
-					/>
-				))}
 			</div>
 
-			{selectedProductsCount > 0 && (
+			{/* Product Selection Section */}
+			<div className="space-y-4">
+				<h3 className="text-xl font-semibold text-gray-800">
+					Or Select Specific Items to Donate
+				</h3>
+
+				{selectedProductsCount > 0 && (
+					<CartSummary
+						selectedProductsCount={selectedProductsCount}
+						totalCost={totalCost}
+					/>
+				)}
+
+				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+					{products.map((product) => (
+						<ProductCard
+							key={product.id}
+							product={product}
+							slug={slug}
+							selectedQty={selectedProducts[product.id] || 0}
+							onIncrement={increment}
+							onDecrement={decrement}
+							onRemove={removeProduct}
+							onSetQuantity={onSetQuantity}
+							disabled={directDonationMode}
+						/>
+					))}
+				</div>
+			</div>
+
+			{shouldShowDonationSummary && (
 				<DonationSummary
 					products={products}
 					selectedProducts={selectedProducts}
-					totalCost={totalCost}
-					amountInput={amountInput}
-					autoAllocate={autoAllocate}
+					totalCost={
+						directDonationMode ? directDonationAmount : totalCost
+					}
+					amountInput={
+						directDonationMode ? directDonationAmount : amountInput
+					}
+					autoAllocate={directDonationMode || autoAllocate}
 					setAutoAllocate={setAutoAllocate}
-					handleAmountChange={handleAmountChange}
+					handleAmountChange={
+						directDonationMode
+							? handleDirectDonationAmountChange
+							: handleAmountChange
+					}
 					campaignId={campaignId}
+					isDirectDonation={directDonationMode}
 				/>
 			)}
 
-			{selectedProductsCount === 0 && <EmptyState />}
+			{!shouldShowDonationSummary && <EmptyState />}
 		</div>
 	);
 }
