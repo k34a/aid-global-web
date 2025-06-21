@@ -2,24 +2,8 @@ import { getBackerDetailsById } from "@/lib/db/donation";
 import { ngoDetails } from "@/config/config";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
 import numWords from "num-words";
-import { Metadata } from "next";
 import Image from "next/image";
-
-export const metadata: Metadata = {
-	title: "Donation Status",
-	description: "View the status of your donation and download the receipt",
-	openGraph: {
-		title: "Donation Status",
-		description:
-			"View the status of your donation and download the receipt",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Donation Status",
-		description:
-			"View the status of your donation and download the receipt",
-	},
-};
+import DownloadReceipt from "@/components/receipt/download-receipt";
 
 type PageProps = {
 	params: Promise<{ id: string }>;
@@ -259,6 +243,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 					Please retain a printed or digital copy for your records.
 				</p>
 			</div>
+			<DownloadReceipt />
 
 			{/* Footer */}
 			<div className="pt-4 text-sm text-gray-700">

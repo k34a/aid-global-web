@@ -1,5 +1,4 @@
 import { supabaseAdmin } from "./supabase";
-import { fetchArticleMarkdown } from "./fetchmarkdown";
 
 type ArticleMeta = {
 	id: number;
@@ -14,19 +13,35 @@ type Article = {
 	content: string;
 };
 
-async function getAllArticles(limit = 10): Promise<ArticleMeta[]> {
+async function getAllArticles(limit = 10, offset = 0): Promise<ArticleMeta[]> {
 	const { data, error } = await supabaseAdmin
 		.from("articles")
 		.select("id, title, slug, description")
 		.order("created_at", { ascending: false })
-		.limit(limit);
+		.range(offset, offset + limit);
 
 	if (error) {
-		console.error("Error fetching articles:", error.message);
+		console.error("Error fetching articles:", error);
 		return [];
 	}
 
 	return data || [];
+}
+
+async function getAllArticlesCount(): Promise<number> {
+	const { data, error } = await supabaseAdmin
+		.rpc("get_table_row_count", {
+			arg_schema_name: "public",
+			arg_table_name: "articles",
+		})
+		.single();
+
+	if (error) {
+		console.error("Error fetching articles count:", error);
+		return 0;
+	}
+
+	return (data as unknown as number) || 0;
 }
 
 async function getArticle(slug: string): Promise<Article | null> {
@@ -35,31 +50,53 @@ async function getArticle(slug: string): Promise<Article | null> {
 		.select("title, description")
 		.eq("slug", slug);
 
-	if (metaError || !meta?.[0]) {
-		console.error("Error fetching article metadata:", metaError?.message);
+	if (metaError) {
+		console.error("Metadata fetch error:", metaError.message);
 		return null;
 	}
 
-	const markdown = await fetchArticleMarkdown(slug);
-
-	if (!markdown) {
+	if (!meta || meta.length === 0) {
+		console.warn("No article found for slug:", slug);
 		return null;
 	}
 
-	const baseImageURL =
-		process.env.NEXT_PUBLIC_SUPABASE_ARTICLE_IMAGE_BASE_URL!;
+	if (meta.length > 1) {
+		console.warn("Multiple articles found for slug:", slug);
+		return null;
+	}
 
-	const fixedMarkdown = markdown.replace(
+	const articleMeta = meta[0];
+
+	const { data: file, error: fileError } = await supabaseAdmin.storage
+		.from("content")
+		.download(`articles/${slug}.md`);
+
+	if (fileError || !file) {
+		console.error("Markdown file fetch error:", fileError?.message);
+		return null;
+	}
+
+	const text = await file.text();
+
+	if (!text) {
+		console.warn("Markdown content empty for slug:", slug);
+		return null;
+	}
+
+	const baseImageURL = process.env.SUPABASE_IMAGE_STORE_BASE_URL!;
+
+	const fixedMarkdown = text.replace(
 		/!\[(.*?)\]\((?!https?:\/\/)(.*?)\)/g,
 		`![$1](${baseImageURL}$2)`,
 	);
 
 	return {
-		title: meta[0].title,
-		description: meta[0].description,
+		title: articleMeta.title,
+		description: articleMeta.description,
 		content: fixedMarkdown,
 	};
 }
 
-export { getAllArticles, getArticle };
+export { getAllArticles, getArticle, getAllArticlesCount };
+
 export type { Article, ArticleMeta };
