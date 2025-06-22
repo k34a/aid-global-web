@@ -111,7 +111,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 								Amount Donated
 							</td>
 							<td className="p-2 font-bold text-green-700">
-								&#8377;{donation.amount.toLocaleString("en-IN")}
+								&#8377;{donation.amount}
 							</td>
 						</tr>
 						<tr>
