@@ -14,7 +14,7 @@ export default function TeamCard({
 	linkedinUrl,
 }: TeamCardProps) {
 	return (
-		<li className="text-center border p-4 rounded-lg bg-amber-100 w-full sm:w-60">
+		<li className="text-center border p-4 rounded-lg bg-amber-100 w-[90%] max-w-xs mx-auto sm:w-60">
 			<Image
 				src={imageSrc}
 				alt={`${name} profile`}
