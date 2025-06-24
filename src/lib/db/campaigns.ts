@@ -41,6 +41,41 @@ const getCampaignBySlug = async (slug: string) => {
 	return campaign as CampaignDetails;
 };
 
+interface BackerDetailsForCampaign {
+	id: string;
+	amount: number;
+	name: string;
+	is_anon: boolean;
+	created_at: Date;
+}
+
+const getBackersForCampaign = async (campaignId: string, limit = 10) => {
+	const { data, error } = await supabaseAdmin
+		.from("backers")
+		.select("id, amount, is_anon, created_at, name")
+		.eq("campaign_id", campaignId)
+		.neq("payment_id", null)
+		.order("created_at", { ascending: false })
+		.range(0, limit);
+
+	if (error) {
+		console.error("Error fetching backers for campaign:", error.message);
+		return null;
+	}
+
+	const backerDetails = data as BackerDetailsForCampaign[];
+
+	return backerDetails.map((backer) => {
+		if (backer.is_anon) {
+			return {
+				...backer,
+				name: "Anonymous",
+			};
+		}
+		return backer;
+	});
+};
+
 interface PaginationCampaignFilters {
 	limit: number;
 	offset: number;
@@ -115,6 +150,11 @@ async function getAllCampaignsCount(): Promise<number> {
 	return (data as unknown as number) || 0;
 }
 
-export { getCampaignBySlug, getCampaigns, getAllCampaignsCount };
+export {
+	getCampaignBySlug,
+	getCampaigns,
+	getAllCampaignsCount,
+	getBackersForCampaign,
+};
 
-export type { CampaignDetails, CampaignProduct };
+export type { CampaignDetails, CampaignProduct, BackerDetailsForCampaign };
