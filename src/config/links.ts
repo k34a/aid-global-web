@@ -3,7 +3,8 @@ import type { Links } from "@/config/types";
 export const links: Links = {
 	primaryLinks: [
 		{ name: "Home", href: "/" },
-		{ name: "About", href: "/about" },
+
+		{ name: "Who We Are", href: "/who-we-are" },
 		{ name: "Programs", href: "/programs" },
 		{ name: "Contact", href: "/contact" },
 	],
@@ -22,8 +23,9 @@ export const links: Links = {
 
 	tertiaryLinks: [
 		{ name: "Privacy Policy", href: "/privacy" },
-		{ name: "Terms & Conditions", href: "/terms" },
-		{ name: "Refund Policy", href: "/refund-policy" },
+		{ name: "Terms of Service", href: "/terms" },
+		{ name: "Annual Reports", href: "/reports" },
+		{ name: "Transparency", href: "/transparency" },
 	],
 	socialLinks: [
 		{
