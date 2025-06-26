@@ -49,14 +49,18 @@ interface BackerDetailsForCampaign {
 	created_at: Date;
 }
 
-const getBackersForCampaign = async (campaignId: string, limit = 10) => {
+const getBackersForCampaign = async (
+	campaignId: string,
+	limit = 10,
+	offset = 0,
+) => {
 	const { data, error } = await supabaseAdmin
 		.from("backers")
 		.select("id, amount, is_anon, created_at, name")
 		.eq("campaign_id", campaignId)
 		.neq("payment_id", null)
 		.order("created_at", { ascending: false })
-		.range(0, limit);
+		.range(offset, offset + limit - 1);
 
 	if (error) {
 		console.error("Error fetching backers for campaign:", error.message);

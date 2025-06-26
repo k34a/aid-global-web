@@ -1,8 +1,8 @@
 "use client";
 
+import ShareCampaignDropdown from "@/components/campaign/sharecampaigndropdown";
 import Image from "next/image";
 import { IndianRupee } from "lucide-react";
-import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
 import {
 	calculateProgressPercentage,
 	formatProgressPercentage,
@@ -37,7 +37,7 @@ export default function CampaignBanner({
 	};
 
 	return (
-		<div className="bg-white rounded-xl overflow-hidden mb-8">
+		<div className="bg-white rounded-xl overflow-visible mb-8">
 			<div className="flex flex-col lg:flex-row">
 				<div className="lg:w-2/3 h-64 lg:h-96 relative">
 					<Image
@@ -56,7 +56,7 @@ export default function CampaignBanner({
 					/>
 				</div>
 
-				<div className="lg:w-1/3 p-4 lg:p-5 flex flex-col gap-4 bg-gray-50 border-l border-gray-200">
+				<div className="lg:w-1/3 p-5 lg:p-6 flex flex-col gap-5 bg-gray-50 border-l border-gray-200">
 					<div>
 						<h2 className="text-lg font-semibold text-gray-800">
 							{title}
@@ -102,7 +102,7 @@ export default function CampaignBanner({
 						</div>
 					</div>
 
-					<div className="mt-6 text-sm text-gray-700 space-y-4">
+					<div className="mt-2 text-sm text-gray-700 space-y-4">
 						<p className="text-gray-600 italic">
 							Every contribution helps us reach our goal faster.
 							Support this cause today!
@@ -116,15 +116,7 @@ export default function CampaignBanner({
 								Start Donating
 							</button>
 
-							<button
-								className="w-full border border-teal-600 text-teal-600 py-2 px-4 rounded-lg hover:bg-teal-50 transition-colors text-sm font-semibold"
-								onClick={() => {
-									const url = window.location.href;
-									copyToClipboard(url);
-								}}
-							>
-								Share Campaign
-							</button>
+							<ShareCampaignDropdown />
 						</div>
 					</div>
 				</div>
