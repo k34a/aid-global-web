@@ -6,11 +6,12 @@ import { wrap } from "@popmotion/popcorn";
 import Image from "next/image";
 import { emergencies } from "@/components/homepage/data/emergencies";
 import {
-	Stethoscope,
+	CircleDotDashed,
 	ArrowRight,
 	BadgeInfo,
 	ChevronsLeft,
 	ChevronsRight,
+	CircleDot,
 } from "lucide-react";
 
 const sliderVariants = {
@@ -81,8 +82,8 @@ const EmergencySection = () => {
 		<section className="bg-white rounded-xl p-2 sm:p-4 md:p-8 lg:p-10 xl:p-12 mx-2 sm:mx-4 md:mx-10 lg:mx-20">
 			<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
 				<h2 className="text-base sm:text-lg font-bold flex items-center gap-2">
-					<Stethoscope className="text-blue-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
-					Medical Emergency
+					<CircleDotDashed className="text-blue-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
+					Active Campaigns
 				</h2>
 				<a
 					href="#"

@@ -78,7 +78,7 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 	};
 
 	return (
-		<section className="py-10 px-4 sm:px-6 md:px-16 bg-[#F0F8FF] relative">
+		<section className="py-10 px-4 sm:px-6 md:px-16 bg-[#bde0ff] relative">
 			<h2 className="text-lg font-bold flex items-center gap-2">
 				<CircleDotDashed className="text-blue-600 h-6 w-6 font-bold" />
 				Our Latest News
