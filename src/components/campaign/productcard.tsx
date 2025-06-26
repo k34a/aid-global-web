@@ -80,7 +80,7 @@ export const ProductCard = ({
 		<div
 			className={`bg-white p-4 rounded-lg shadow transition-all duration-200 ${
 				isSelected
-					? "ring-2 ring-teal-500 shadow-lg"
+					? "ring-2 ring-blue-500 shadow-lg"
 					: "hover:shadow-md"
 			} ${disabled ? "opacity-50 pointer-events-none" : ""}`}
 		>
@@ -101,7 +101,7 @@ export const ProductCard = ({
 					</div>
 				)}
 				{isSelected && (
-					<div className="absolute top-2 right-2 bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+					<div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
 						{selectedQty}
 					</div>
 				)}
@@ -115,7 +115,7 @@ export const ProductCard = ({
 			</p>
 
 			<div className="flex items-center justify-between mb-3">
-				<span className="text-lg font-bold text-teal-600 flex items-center gap-1">
+				<span className="text-lg font-bold text-blue-600 flex items-center gap-1">
 					<IndianRupee size={16} />
 					{product.price_per_unit}
 				</span>
@@ -151,9 +151,9 @@ export const ProductCard = ({
 								onKeyPress={handleInputKeyPress}
 								className={`w-20 h-9 text-center bg-white border-2 ${
 									isInputValid()
-										? "border-gray-300 focus:border-teal-500"
+										? "border-gray-300 focus:border-blue-500"
 										: "border-red-400"
-								} rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-teal-200 transition-colors`}
+								} rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors`}
 								title={`Max: ${remainingUnits} units`}
 								placeholder="0"
 							/>
@@ -163,7 +163,7 @@ export const ProductCard = ({
 						</div>
 						<button
 							onClick={() => onIncrement(product.id)}
-							className="w-8 h-8 rounded-full bg-teal-600 hover:bg-teal-700 text-white flex items-center justify-center transition-colors shadow-sm"
+							className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-colors shadow-sm"
 							disabled={selectedQty >= remainingUnits}
 						>
 							<Plus className="text-xs" size={16} />
@@ -179,7 +179,7 @@ export const ProductCard = ({
 			) : (
 				<button
 					onClick={() => onIncrement(product.id)}
-					className="w-full bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+					className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
 					disabled={remainingUnits <= 0}
 				>
 					<Plus className="text-sm" size={16} />

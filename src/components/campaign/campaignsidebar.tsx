@@ -52,7 +52,7 @@ export default function CampaignSidebar({
 				<div className="space-y-4">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-3">
-							<Users className="text-teal-600 h-5 w-5" />
+							<Users className="text-blue-600 h-5 w-5" />
 							<span className="text-gray-700">Donors</span>
 						</div>
 						<span className="font-bold text-gray-800">
@@ -61,7 +61,7 @@ export default function CampaignSidebar({
 					</div>
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-3">
-							<CalendarDays className="text-teal-600 h-5 w-5" />
+							<CalendarDays className="text-blue-600 h-5 w-5" />
 							<span className="text-gray-700">Days Left</span>
 						</div>
 						<span className="font-bold text-gray-800">30</span>
@@ -69,7 +69,7 @@ export default function CampaignSidebar({
 					{goal && (
 						<div className="flex items-center justify-between">
 							<div className="flex items-center gap-3">
-								<Target className="text-teal-600 h-5 w-5" />
+								<Target className="text-blue-600 h-5 w-5" />
 								<span className="text-gray-700">
 									Funds Raised
 								</span>
@@ -151,7 +151,7 @@ export default function CampaignSidebar({
 				<div className="mb-4">
 					<div className="w-full bg-gray-200 rounded-full h-2">
 						<div
-							className="bg-gradient-to-r from-teal-500 to-green-500 h-2 rounded-full transition-all duration-500"
+							className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-500"
 							style={{ width: `${progressPercentage}%` }}
 						></div>
 					</div>

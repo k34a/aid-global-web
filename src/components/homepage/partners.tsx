@@ -1,160 +1,73 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import { partners } from "@/components/homepage/data/partners";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
-import { wrap } from "@popmotion/popcorn";
-
-type Partner = {
-	name: string;
-	logo: string;
-};
-
-const sliderVariants = {
-	incoming: (direction: number) => ({
-		x: direction > 0 ? 300 : -300,
-		scale: 0.85,
-		opacity: 0,
-	}),
-	active: { x: 0, scale: 1, opacity: 1 },
-	exit: (direction: number) => ({
-		x: direction > 0 ? -300 : 300,
-		scale: 0.85,
-		opacity: 0,
-	}),
-};
-
-const sliderTransition = {
-	duration: 0.4,
-	ease: easeInOut,
-};
-
-const getCardsToShow = (width: number) => {
-	if (width < 640) return 2; // mobile
-	if (width < 900) return 3; // tablets
-	if (width < 1280) return 4; // laptops
-	return 5; // large desktops
-};
-
-const getVisibleIndices = (
-	active: number,
-	total: number,
-	cardsToShow: number,
-) => {
-	const indices = [];
-	const half = Math.floor(cardsToShow / 2);
-	for (let i = -half; i <= half; i++) {
-		if (cardsToShow % 2 === 0 && i === 0) continue;
-		indices.push(wrap(0, total, active + i));
-	}
-	if (cardsToShow % 2 === 0) indices.push(wrap(0, total, active + half));
-	return indices.slice(0, cardsToShow);
-};
 
 export default function PartnersSection() {
-	const [[page, direction], setPage] = useState<[number, number]>([0, 0]);
-	const [cardsToShow, setCardsToShow] = useState<number>(5);
-	const activeIndex = wrap(0, partners.length, page);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setCardsToShow(getCardsToShow(window.innerWidth));
-		};
-		handleResize();
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
-
-	const visibleIndices = getVisibleIndices(
-		activeIndex,
-		partners.length,
-		cardsToShow,
-	);
-
-	const swipeTo = (dir: number) => setPage([page + dir, dir]);
-
-	const dragEndHandler = (dragInfo: { offset: { x: number } }) => {
-		const swipeThreshold = 50;
-		if (dragInfo.offset.x > swipeThreshold) swipeTo(-1);
-		else if (dragInfo.offset.x < -swipeThreshold) swipeTo(1);
-	};
-
 	return (
-		<section className="bg-[#F0F8FF] py-12 px-4 sm:px-6 md:px-16">
-			<div className="max-w-6xl mx-auto text-center">
-				<h2 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-4">
-					Our Trusted Partners
-				</h2>
-				<p className="text-sm sm:text-base text-blue-800 mb-8 max-w-2xl mx-auto">
-					We collaborate with leading organizations to create lasting
-					change and expand our impact together.
-				</p>
-				<div className="relative">
-					<button
-						onClick={() => swipeTo(-1)}
-						className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full z-30 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
-					>
-						<ChevronsLeft className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-					</button>
-					<div className="flex justify-center items-center gap-6 px-8 min-h-[120px] md:min-h-[140px] lg:min-h-[160px] relative">
-						<AnimatePresence initial={false} custom={direction}>
-							{visibleIndices.map((idx) => {
-								const partner = partners[idx];
-								const isActive = idx === activeIndex;
-								return (
-									<motion.div
-										key={partner.name + "-" + activeIndex}
-										custom={direction}
-										variants={sliderVariants}
-										initial="incoming"
-										animate="active"
-										exit="exit"
-										transition={sliderTransition}
-										drag={isActive ? "x" : false}
-										dragConstraints={{ left: 0, right: 0 }}
-										dragElastic={1}
-										onDragEnd={
-											isActive
-												? (_, dragInfo) =>
-														dragEndHandler(dragInfo)
-												: undefined
-										}
-										className="inline-block w-36 sm:w-44 md:w-48 lg:w-56 flex-shrink-0 bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 hover:rotate-[1deg] border-2 border-transparent opacity-80 z-10"
-										style={{
-											pointerEvents: isActive
-												? "auto"
-												: "none",
-										}}
+		<section className="relative font-inter antialiased bg-slate-900 py-16 sm:py-24 overflow-hidden">
+			<div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+				<div className="text-center">
+					<h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">
+						Our Trusted Partners
+					</h2>
+					<p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-10 sm:mb-12">
+						We collaborate with leading organizations to create
+						lasting change and expand our impact together.
+					</p>
+
+					<div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]">
+						{[...Array(2)].map((_, index) => (
+							<ul
+								key={index}
+								className="flex items-center gap-x-4 sm:gap-x-8 animate-[scroll_20s_linear_infinite]"
+								aria-hidden={index === 1}
+							>
+								{partners.map((partner, i) => (
+									<li
+										key={`${partner.name}-${i}`}
+										className="shrink-0 min-w-[120px] sm:min-w-[150px]"
 									>
-										<div className="relative h-16 w-full flex items-center justify-center">
-											<Image
-												src={
-													partner.logo || "/logo.png"
-												}
-												alt={partner.name}
-												width={100}
-												height={50}
-												className="object-contain max-h-12 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(0,115,255,0.5)]"
-											/>
-										</div>
-										<p className="text-sm text-blue-900 font-semibold mt-2 truncate">
+										<div className="partner-glow px-3 sm:px-4 py-2 sm:py-2.5 rounded-md shadow-md transition duration-300 text-center">
 											{partner.name}
-										</p>
-									</motion.div>
-								);
-							})}
-						</AnimatePresence>
+										</div>
+									</li>
+								))}
+							</ul>
+						))}
 					</div>
-					<button
-						onClick={() => swipeTo(1)}
-						className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full z-30 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
-					>
-						<ChevronsRight className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-					</button>
 				</div>
 			</div>
+
+			<style jsx>{`
+				@keyframes scroll {
+					0% {
+						transform: translateX(0);
+					}
+					100% {
+						transform: translateX(-50%);
+					}
+				}
+
+				.partner-glow {
+					font-family: "sans-serif";
+					font-size: 1rem;
+					font-weight: 600;
+					color: white;
+					text-shadow:
+						0 0 5px rgba(255, 255, 255, 0.5),
+						0 0 10px rgba(255, 255, 255, 0.6),
+						0 0 15px rgba(255, 255, 255, 0.7);
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				@media (min-width: 640px) {
+					.partner-glow {
+						font-size: 1.25rem;
+					}
+				}
+			`}</style>
 		</section>
 	);
 }

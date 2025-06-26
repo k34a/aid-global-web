@@ -14,7 +14,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
 	selected,
 	onSelect,
 }) => (
-	<div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 mt-4 sm:mt-6 px-2 sm:px-4">
+	<div className="flex flex-wrap justify-center gap-1 sm:gap-4 md:gap-6 mt-4 sm:mt-6 px-2 sm:px-4">
 		{categories.map((cat) => {
 			const Icon = cat.icon;
 			return (

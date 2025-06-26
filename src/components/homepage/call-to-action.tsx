@@ -1,94 +1,101 @@
 "use client";
 import Image from "next/image";
+import { useRef, useState } from "react";
+import { useAnimationFrame, motion } from "framer-motion";
+import { HandHeart } from "lucide-react";
 
-const CallToAction = () => {
+// Words to cycle
+const rotatingWords = ["future", "world", "society", "tomorrow", "community"];
+
+const callToActions = [
+	{ title: "Save Life", img: "/emergencies/Heart-Disease-2.jpg" },
+	{ title: "Mission Hunger", img: "/emergencies/homeless.webp" },
+	{ title: "Mission Education", img: "/aids/shiksha.webp" },
+	{ title: "Women Empowerment", img: "/aids/sakhi.jpg" },
+];
+export function CallToActionQuote() {
+	const [index, setIndex] = useState(0);
+	const lastChange = useRef(0);
+
+	useAnimationFrame((time) => {
+		if (time - lastChange.current > 3000) {
+			setIndex((prev) => (prev + 1) % rotatingWords.length);
+			lastChange.current = time;
+		}
+	});
+
+	const word = rotatingWords[index] + ".";
+
 	return (
-		<section className="bg-white rounded-xl mx-2 sm:mx-4 md:mx-10 lg:mx-15 px-2 sm:px-4 md:px-6">
-			<div className="my-8 sm:my-12 md:my-14 lg:my-15 mx-2 sm:mx-4 md:mx-10 lg:mx-30 px-2 sm:px-4 md:px-8 lg:px-32 cursor-pointer">
-				<h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-black-900 font-mono text-center mx-2 sm:mx-4 md:mx-10 lg:mx-20">
-					Be the <span className="text-blue-600"> Hope </span> for the
-					Helpless
-				</h1>
-				<div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
-					<div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mx-2 sm:mx-4 md:mx-10 lg:mx-30 pt-6 sm:pt-8 md:pt-10">
-						<div className="relative w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 bg-white border border-transparent rounded-xl sm:rounded-2xl">
-							<Image
-								src="/emergencies/Heart-Disease-2.jpg"
-								alt="call-to-action-image"
-								fill
-								className="object-cover border border-transparent rounded-lg"
-							/>
-						</div>
-						<div className="flex flex-col items-center justify-center w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 border border-transparent rounded-xl sm:rounded-2xl bg-[#eceaea] p-4 sm:p-6">
-							<h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-3 sm:mb-4 text-center">
-								Save Life
-							</h2>
-							<button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base">
-								Donate Now
-							</button>
-						</div>
-					</div>
+		<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-indigo-900">
+			Together, we can build a better{" "}
+			<motion.span
+				key={word}
+				initial={{ opacity: 0, y: -20 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: 20 }}
+				transition={{ duration: 0.5 }}
+				className="inline-block text-sky-600"
+			>
+				{word}
+			</motion.span>
+		</h2>
+	);
+}
+export default function CallToActionSection() {
+	return (
+		<section className="sm:bg-gradient-to-br sm:from-stone-300 sm:to-blue-800 bg-gradient-to-b from-stone-300 to-blue-800 text-white px-4 py-6 sm:px-10 lg:px-20">
+			<div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
+				{/* Left Text Content */}
+				<div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
+					<p className="text-md tracking-widest mb-4 uppercase text-stone-800">
+						Transforming Lives Together
+						<span className="block mx-auto lg:mx-0 mt-1 w-16 h-[3px] bg-indigo-400 rounded-full"></span>
+					</p>
 
-					<div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mx-2 sm:mx-4 md:mx-10 lg:mx-30 pt-6 sm:pt-8 md:pt-10">
-						<div className="relative w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 bg-white border border-transparent rounded-xl sm:rounded-2xl">
-							<Image
-								src="/emergencies/homeless.webp"
-								alt="call-to-action-image"
-								fill
-								className="object-cover border border-transparent rounded-lg"
-							/>
-						</div>
-						<div className="flex flex-col items-center justify-center w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 border border-transparent rounded-xl sm:rounded-2xl bg-[#eceaea] p-4 sm:p-6">
-							<h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-3 sm:mb-4 text-center">
-								Mission Hunger
-							</h2>
-							<button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base">
-								Donate Now
-							</button>
-						</div>
-					</div>
+					<CallToActionQuote />
 
-					<div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mx-2 sm:mx-4 md:mx-10 lg:mx-30 pt-6 sm:pt-8 md:pt-10">
-						<div className="relative w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 bg-white border border-transparent rounded-xl sm:rounded-2xl">
-							<Image
-								src="/aids/shiksha.webp"
-								alt="call-to-action-image"
-								fill
-								className="object-cover border border-transparent rounded-lg"
-							/>
-						</div>
-						<div className="flex flex-col items-center justify-center w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 border border-transparent rounded-xl sm:rounded-2xl bg-[#eceaea] p-4 sm:p-6">
-							<h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-3 sm:mb-4 text-center">
-								Mission Education
-							</h2>
-							<button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base">
-								Donate Now
-							</button>
-						</div>
-					</div>
+					<p className="text-slate-600 mt-4 mb-6 text-base sm:text-lg">
+						Your support delivers food, education, healthcare, and
+						hope. Join us in lighting up lives, one act of kindness
+						at a time.
+					</p>
 
-					<div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mx-2 sm:mx-4 md:mx-10 lg:mx-30 pt-6 sm:pt-8 md:pt-10">
-						<div className="relative w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 bg-white border border-transparent rounded-xl sm:rounded-2xl">
+					<div className="flex items-center gap-4 justify-center lg:justify-start">
+						<button
+							className="flex items-center gap-2 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300
+							bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg
+							group hover:scale-105 hover:shadow-xl relative overflow-hidden"
+						>
+							<span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+
+							<span className="relative z-10 group-hover:text-blue-600">
+								Donate Now
+							</span>
+
+							<HandHeart className="w-5 h-6 text-white relative z-10 transition duration-300 group-hover:text-blue-600 group-hover:scale-110 animate-pulse" />
+						</button>
+					</div>
+				</div>
+
+				{/* Right Masonry Image Grid */}
+				<div className="w-full lg:w-1/2 columns-2 gap-3 space-y-3">
+					{callToActions.map((item, idx) => (
+						<div
+							key={idx}
+							className="overflow-hidden rounded-xl break-inside-avoid shadow-md"
+						>
 							<Image
-								src="/aids/sakhi.jpg"
-								alt="call-to-action-image"
-								fill
-								className="object-cover border border-transparent rounded-lg"
+								src={item.img}
+								alt={item.title}
+								width={400}
+								height={180 + idx * 20}
+								className="w-full h-auto object-cover rounded-lg"
 							/>
 						</div>
-						<div className="flex flex-col items-center justify-center w-full sm:w-48 md:w-56 lg:w-60 h-48 sm:h-52 md:h-56 lg:h-60 border border-transparent rounded-xl sm:rounded-2xl bg-[#eceaea] p-4 sm:p-6">
-							<h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-3 sm:mb-4 text-center">
-								Women Empowerment
-							</h2>
-							<button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base">
-								Donate Now
-							</button>
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</section>
 	);
-};
-
-export default CallToAction;
+}

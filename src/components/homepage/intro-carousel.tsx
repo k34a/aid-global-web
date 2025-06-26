@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, easeInOut } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -11,6 +11,7 @@ const images = [
 	{ src: "/intro/two.jpg", alt: "image" },
 	{ src: "/intro/four.jpg", alt: "image" },
 ];
+
 const sliderVariants = {
 	incoming: (direction: number) => ({
 		x: direction > 0 ? "100%" : "-100%",
@@ -34,10 +35,8 @@ const IntroCarousel = () => {
 	const [[page, direction], setPage] = useState<[number, number]>([0, 0]);
 	const activeIndex = wrap(0, images.length, page);
 
-	// const swipeTo = (dir: number) => setPage([page + dir, dir]);
 	const swipeTo = (dir: number) => {
-		console.log("swiping to", dir, "from page", page);
-		setPage([page + dir, dir]);
+		setPage(([prevPage]) => [prevPage + dir, dir]);
 	};
 
 	const dragEndHandler = (dragInfo: { offset: { x: number } }) => {
@@ -46,24 +45,45 @@ const IntroCarousel = () => {
 		else if (dragInfo.offset.x < -swipeThreshold) swipeTo(1);
 	};
 
+	useEffect(() => {
+		let animationFrameId: number;
+		let lastTime = performance.now();
+
+		const scrollInterval = 5000;
+
+		const animate = (currentTime: number) => {
+			if (currentTime - lastTime >= scrollInterval) {
+				swipeTo(1);
+				lastTime = currentTime;
+			}
+			animationFrameId = requestAnimationFrame(animate);
+		};
+
+		animationFrameId = requestAnimationFrame(animate);
+
+		return () => cancelAnimationFrame(animationFrameId);
+	}, []);
+
 	return (
 		<div className="w-full mx-auto p-4 sm:p-6 lg:p-8">
-			<div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-				<button
-					onClick={() => swipeTo(-1)}
-					className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
-					aria-label="Previous image"
-				>
-					<ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
-				</button>
-				<button
-					onClick={() => swipeTo(1)}
-					className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
-					aria-label="Next image"
-				>
-					<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
-				</button>
-				<div className="relative w-full aspect-[16/7] min-h-[300px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[600px] rounded-2xl overflow-hidden">
+			<div className="relative bg-white rounded-2xl shadow-lg overflow-x-auto">
+				<div className="hidden md:block">
+					<button
+						onClick={() => swipeTo(-1)}
+						className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+						aria-label="Previous image"
+					>
+						<ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
+					</button>
+					<button
+						onClick={() => swipeTo(1)}
+						className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+						aria-label="Next image"
+					>
+						<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
+					</button>
+				</div>
+				<div className="relative w-full aspect-[16/7] min-h-[300px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[600px] rounded-2xl overflow-x-auto flex">
 					<AnimatePresence initial={false} custom={direction}>
 						<motion.div
 							key={page}
@@ -90,7 +110,6 @@ const IntroCarousel = () => {
 									priority
 								/>
 								<div className="absolute inset-0 flex items-center justify-center">
-									{/* Overlay background for readability */}
 									<div className="absolute inset-0 bg-black/50 z-0" />
 									<div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
 										<h1 className="text-white text-3xl sm:text-5xl font-bold text-center mb-4">
@@ -116,8 +135,8 @@ const IntroCarousel = () => {
 													auto_allocate={true}
 													campaign_id="81263c39-4c04-460d-af9c-585937104b6f"
 													products={{
-														"3f506987-646a-4544-8653-d3a90dd1a07b": 1, // 25
-														"71246dba-94fd-4d13-8fb9-4ffc733acfbd": 2, // 10
+														"3f506987-646a-4544-8653-d3a90dd1a07b": 1,
+														"71246dba-94fd-4d13-8fb9-4ffc733acfbd": 2,
 													}}
 												/>
 											</div>

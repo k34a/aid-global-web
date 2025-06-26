@@ -15,7 +15,7 @@ import { reviews } from "@/components/homepage/data/reviews";
 const sliderVariants = {
 	incoming: (direction: number) => ({
 		x: direction > 0 ? "100%" : "-100%",
-		scale: 1.2,
+		scale: 1.1,
 		opacity: 0,
 	}),
 	active: { x: 0, scale: 1, opacity: 1 },
@@ -27,7 +27,7 @@ const sliderVariants = {
 };
 
 const sliderTransition = {
-	duration: 0.7,
+	duration: 0.6,
 	ease: easeInOut,
 };
 
@@ -53,36 +53,36 @@ const ReviewSection = () => {
 			<Star
 				key={i}
 				className={`w-4 h-4 sm:w-5 sm:h-5 ${
-					i < rating
-						? "text-yellow-400 fill-yellow-400"
-						: "text-gray-300"
+					i < rating ? "text-blue-500 fill-blue-500" : "text-gray-300"
 				}`}
 			/>
 		));
 
 	return (
-		<div className="w-full max-w-4xl mx-auto p-2 sm:p-4 md:p-6 lg:p-8">
-			<h2 className="text-base sm:text-lg font-bold flex items-center gap-2 mb-3 sm:mb-4">
-				<CircleDotDashed className="text-blue-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
+		<div className="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-white lg:mb-10 sm:mb-5 md:mb-7 rounded-lg">
+			<h2 className="text-base sm:text-lg font-bold flex items-center gap-2 mb-4 text-blue-600">
+				<CircleDotDashed className="h-5 w-5 sm:h-6 sm:w-6" />
 				Testimonials
 			</h2>
-			<div className="relative bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
+
+			<div className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
+				{/* Navigation Buttons */}
 				<button
 					onClick={() => swipeTo(-1)}
-					className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+					className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
 					aria-label="Previous testimonial"
 				>
-					<ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600" />
+					<ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
 				</button>
 				<button
 					onClick={() => swipeTo(1)}
-					className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+					className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
 					aria-label="Next testimonial"
 				>
-					<ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600" />
+					<ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
 				</button>
 
-				<div className="relative overflow-hidden min-h-[500px] sm:min-h-[550px] md:min-h-[600px] lg:min-h-[650px]">
+				<div className="relative overflow-hidden min-h-[520px] sm:min-h-[580px] md:min-h-[620px] lg:min-h-[660px] ">
 					<AnimatePresence initial={false} custom={direction}>
 						<motion.div
 							key={page}
@@ -100,33 +100,34 @@ const ReviewSection = () => {
 							}
 							className="absolute w-full h-full top-0 left-0 flex items-center justify-center"
 						>
-							<div className="w-full px-4 py-4 sm:px-8 sm:py-6 md:px-12 md:py-8 lg:px-16 lg:py-10">
-								{/* Profile Section */}
-								<div className="flex flex-col items-center justify-center mb-4 sm:mb-6">
-									<div className="relative mb-3 sm:mb-4 flex items-center justify-center">
-										<div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center shadow-lg border-2 border-blue-200">
-											<User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-blue-600" />
+							<div className="w-full px-6 py-8 sm:px-10 sm:py-10 md:px-14 md:py-12 lg:px-20 lg:py-14">
+								{/* Profile */}
+								<div className="flex flex-col items-center justify-center mb-6">
+									<div className="relative mb-4">
+										<div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center shadow-lg border-2 border-blue-200">
+											<User className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
 										</div>
 									</div>
-									<div className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-200 leading-none mb-2 sm:mb-3">
-										<Quote className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 font-extrabold text-gray-600" />
-									</div>
-									<div className="flex gap-0.5 sm:gap-1 mb-4 sm:mb-6">
+
+									<Quote className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mb-2 sm:mb-3" />
+									<div className="flex gap-1 sm:gap-1.5 mb-5">
 										{renderStars(
 											reviews[activeIndex].rating,
 										)}
 									</div>
 								</div>
-								<div className="text-center max-w-2xl sm:max-w-3xl mx-auto">
-									<p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 font-medium px-2 sm:px-0">
+
+								{/* Review Text */}
+								<div className="text-center max-w-2xl mx-auto">
+									<p className="text-gray-700 text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-medium px-2 sm:px-0">
 										{reviews[activeIndex].text}
 									</p>
 
 									<div className="border-t border-gray-200 pt-4 sm:pt-6">
-										<h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
+										<h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">
 											{reviews[activeIndex].name}
 										</h3>
-										<p className="text-gray-500 text-xs sm:text-sm md:text-base lg:text-lg font-medium">
+										<p className="text-gray-500 text-sm sm:text-base">
 											{reviews[activeIndex].role}
 										</p>
 									</div>
@@ -136,8 +137,8 @@ const ReviewSection = () => {
 					</AnimatePresence>
 				</div>
 
-				{/* Dots Indicator */}
-				<div className="flex justify-center space-x-1.5 sm:space-x-2 pb-4 sm:pb-6 px-2 sm:px-4">
+				{/* Indicator Dots */}
+				<div className="flex justify-center gap-2 sm:gap-3 pb-5 sm:pb-6">
 					{reviews.map((_, idx) => (
 						<button
 							key={idx}
