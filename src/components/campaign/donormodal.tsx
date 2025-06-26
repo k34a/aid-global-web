@@ -9,8 +9,9 @@ import {
 	ModalCloseButton,
 } from "@/components/ui/custom-modal";
 import { Button } from "@/components/ui/custom-button";
-import { Heart, Users, Crown, Gift, Loader2, Sparkles } from "lucide-react";
+import { Heart, Users, Sparkles, Loader2, IndianRupee } from "lucide-react";
 import { BackerDetailsForCampaign } from "@/lib/db/campaigns";
+import { formatTimeAgo, getInitials, getDonorTier } from "@/lib/utils/donor";
 
 interface DonorModalProps {
 	open: boolean;
@@ -49,38 +50,6 @@ export default function DonorModal({
 		}
 	}, [open]);
 
-	const formatTimeAgo = (date: Date | string) => {
-		const dateObj = typeof date === "string" ? new Date(date) : date;
-		const now = new Date();
-		const diffInHours = Math.floor(
-			(now.getTime() - dateObj.getTime()) / (1000 * 60 * 60),
-		);
-		if (diffInHours < 1) return "Just now";
-		if (diffInHours < 24) return `${diffInHours}h ago`;
-		const diffInDays = Math.floor(diffInHours / 24);
-		if (diffInDays < 7) return `${diffInDays}d ago`;
-		return dateObj.toLocaleDateString();
-	};
-
-	const getInitials = (name: string) => {
-		return name
-			.split(" ")
-			.map((word) => word[0])
-			.join("")
-			.toUpperCase()
-			.slice(0, 2);
-	};
-
-	const getDonorTier = (amount: number) => {
-		if (amount >= 10000)
-			return { tier: "platinum", icon: Crown, color: "bg-purple-500" };
-		if (amount >= 5000)
-			return { tier: "gold", icon: Gift, color: "bg-yellow-500" };
-		if (amount >= 1000)
-			return { tier: "silver", icon: Heart, color: "bg-blue-500" };
-		return { tier: "bronze", icon: Heart, color: "bg-teal-500" };
-	};
-
 	const totalDonation = donors.reduce((sum, donor) => sum + donor.amount, 0);
 
 	return (
@@ -94,9 +63,10 @@ export default function DonorModal({
 					</div>
 					<div>
 						<ModalTitle>All Supporters</ModalTitle>
-						<p className="text-sm text-slate-600 mt-1">
-							{donors.length} supporters • ₹
-							{totalDonation.toLocaleString()} raised
+						<p className="text-sm text-slate-600 mt-1 flex items-center gap-1">
+							{donors.length} supporters
+							<IndianRupee className="w-3 h-3" />
+							{totalDonation}
 						</p>
 					</div>
 				</ModalHeader>
@@ -116,23 +86,27 @@ export default function DonorModal({
 						) : (
 							donors.map((d) => {
 								const {
-									tier,
 									icon: TierIcon,
 									color,
+									badgeClass,
+									amountBadgeIcon: AmountIcon,
 								} = getDonorTier(d.amount);
+
+								const isTopDonor = d.amount >= 5000;
+
 								return (
 									<div
 										key={d.id}
 										className="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-md transition-all duration-300 hover:bg-slate-100 relative overflow-hidden text-sm"
 									>
-										{d.amount >= 5000 && (
+										{isTopDonor && (
 											<div className="absolute inset-0 bg-yellow-50 rounded-xl" />
 										)}
 										<div className="flex items-center gap-3 relative z-10">
 											<div
 												className={`w-10 h-10 ${color} rounded-full flex items-center justify-center text-white font-semibold shadow-md text-sm`}
 											>
-												{d.amount >= 5000 ? (
+												{isTopDonor ? (
 													<TierIcon className="w-5 h-5" />
 												) : (
 													getInitials(
@@ -150,9 +124,6 @@ export default function DonorModal({
 																? "Anonymous"
 																: d.name}
 														</span>
-														{d.amount >= 10000 && (
-															<Crown className="w-4 h-4 text-purple-500" />
-														)}
 													</div>
 													<span className="text-[10px] text-slate-500 bg-slate-200 px-2 py-0.5 rounded-full">
 														{formatTimeAgo(
@@ -165,20 +136,10 @@ export default function DonorModal({
 														contributed with love
 													</span>
 													<span
-														className={`font-semibold text-base px-3 py-1 rounded-full ${
-															d.amount >= 10000
-																? "bg-purple-500 text-white"
-																: d.amount >=
-																	  5000
-																	? "bg-yellow-500 text-white"
-																	: d.amount >=
-																		  1000
-																		? "bg-blue-500 text-white"
-																		: "bg-teal-100 text-teal-700"
-														}`}
+														className={`font-semibold text-base px-3 py-1 rounded-full flex items-center gap-1 ${badgeClass}`}
 													>
-														₹
-														{d.amount.toLocaleString()}
+														<AmountIcon className="w-4 h-4" />
+														{d.amount}
 													</span>
 												</div>
 											</div>
