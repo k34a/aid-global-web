@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/custom-button";
 import DonorModal from "./donormodal";
-import { Heart, Users, Sparkles } from "lucide-react";
+import { Heart, Users, Sparkles, IndianRupee } from "lucide-react";
 import { BackerDetailsForCampaign } from "@/lib/db/campaigns";
+import { formatTimeAgo, getInitials } from "@/lib/utils/donor";
 
 interface DonorListProps {
 	campaignId: string;
@@ -16,29 +17,6 @@ export default function DonorList({
 	initialDonors,
 }: DonorListProps) {
 	const [open, setOpen] = useState(false);
-
-	const formatTimeAgo = (date: Date | string) => {
-		const dateObj = typeof date === "string" ? new Date(date) : date;
-		const now = new Date();
-		const diffInHours = Math.floor(
-			(now.getTime() - dateObj.getTime()) / (1000 * 60 * 60),
-		);
-
-		if (diffInHours < 1) return "Just now";
-		if (diffInHours < 24) return `${diffInHours}h ago`;
-		const diffInDays = Math.floor(diffInHours / 24);
-		if (diffInDays < 7) return `${diffInDays}d ago`;
-		return dateObj.toLocaleDateString();
-	};
-
-	const getInitials = (name: string) => {
-		return name
-			.split(" ")
-			.map((word) => word[0])
-			.join("")
-			.toUpperCase()
-			.slice(0, 2);
-	};
 
 	return (
 		<div className="bg-white rounded-2xl border border-slate-200 shadow-lg p-6">
@@ -91,8 +69,9 @@ export default function DonorList({
 										<span className="text-sm text-slate-600">
 											donated
 										</span>
-										<span className="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full text-sm">
-											₹{d.amount.toLocaleString()}
+										<span className="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full text-sm inline-flex items-center gap-1">
+											<IndianRupee className="w-3 h-3" />
+											{d.amount}
 										</span>
 									</div>
 								</div>
