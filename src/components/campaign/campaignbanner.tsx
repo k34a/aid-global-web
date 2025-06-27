@@ -71,14 +71,14 @@ export default function CampaignBanner({
 					<div className="space-y-2">
 						<div className="flex justify-between text-xs text-gray-600 font-medium">
 							<span>Progress</span>
-							<span className="text-teal-600">
+							<span className="text-blue-600">
 								{formatProgressPercentage(collection, amount)}%
 							</span>
 						</div>
 
 						<div className="w-full bg-gray-300 rounded-full h-2">
 							<div
-								className="bg-teal-600 h-2 rounded-full transition-all duration-300"
+								className="bg-blue-600 h-2 rounded-full transition-all duration-300"
 								style={{ width: `${percent}%` }}
 							/>
 						</div>
@@ -110,14 +110,14 @@ export default function CampaignBanner({
 
 						<div className="flex flex-col gap-2">
 							<button
-								className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-semibold text-sm"
+								className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm"
 								onClick={handleScrollToProducts}
 							>
 								Start Donating
 							</button>
 
 							<button
-								className="w-full border border-teal-600 text-teal-600 py-2 px-4 rounded-lg hover:bg-teal-50 transition-colors text-sm font-semibold"
+								className="w-full border border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-blue-50 transition-colors text-sm font-semibold"
 								onClick={() => {
 									const url = window.location.href;
 									copyToClipboard(url);
