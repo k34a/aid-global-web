@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import {
 	Modal,
 	ModalContent,
@@ -19,6 +19,20 @@ interface DonorModalProps {
 	campaignId: string;
 }
 
+async function getDonors(
+	campaignId: string,
+	page: number,
+): Promise<[Array<BackerDetailsForCampaign>, boolean]> {
+	const res = await fetch(
+		`/api/campaigns/${campaignId}/donors?limit=10&offset=${page * 10}`,
+	);
+	const data = await res.json();
+	if (!Array.isArray(data.backers)) {
+		throw new Error("Invalid response format");
+	}
+	return [data.backers, data.hasMore];
+}
+
 export default function DonorModal({
 	open,
 	onOpenChange,
@@ -31,15 +45,12 @@ export default function DonorModal({
 
 	const fetchMoreDonors = useCallback(async () => {
 		setLoading(true);
-		const res = await fetch(
-			`/api/campaigns/${campaignId}/donors?limit=10&offset=${page * 10}`,
-		);
-		const data = await res.json();
-		if (data.length === 0) setHasMore(false);
-		setDonors((prev) => [...prev, ...data]);
+		const [newDonors, more] = await getDonors(campaignId, page);
+		setHasMore(more);
+		setDonors((prev) => [...prev, ...newDonors]);
 		setPage((p) => p + 1);
 		setLoading(false);
-	}, [campaignId, page]);
+	}, [campaignId]);
 
 	useEffect(() => {
 		if (open) {
@@ -65,8 +76,10 @@ export default function DonorModal({
 						<ModalTitle>All Supporters</ModalTitle>
 						<p className="text-sm text-slate-600 mt-1 flex items-center gap-1">
 							{donors.length} supporters
-							<IndianRupee className="w-3 h-3" />
-							{totalDonation}
+							<span className="flex items-center">
+								<IndianRupee className="w-3 h-3" />
+								{totalDonation}
+							</span>
 						</p>
 					</div>
 				</ModalHeader>

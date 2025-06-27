@@ -60,16 +60,21 @@ const getBackersForCampaign = async (
 		.eq("campaign_id", campaignId)
 		.neq("payment_id", null)
 		.order("created_at", { ascending: false })
-		.range(offset, offset + limit - 1);
+		.range(offset, offset + limit); // fetch one extra
 
 	if (error) {
 		console.error("Error fetching backers for campaign:", error.message);
-		return null;
+		return { backers: null, hasMore: false };
 	}
 
-	const backerDetails = data as BackerDetailsForCampaign[];
+	// Determine if there's more
+	const hasMore = data.length > limit;
 
-	return backerDetails.map((backer) => {
+	// Slice back to the requested limit
+	const slicedData = data.slice(0, limit) as BackerDetailsForCampaign[];
+
+	// Handle anonymizing
+	const backers = slicedData.map((backer) => {
 		if (backer.is_anon) {
 			return {
 				...backer,
@@ -78,6 +83,8 @@ const getBackersForCampaign = async (
 		}
 		return backer;
 	});
+
+	return { backers, hasMore };
 };
 
 interface PaginationCampaignFilters {

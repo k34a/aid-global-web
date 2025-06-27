@@ -1,6 +1,6 @@
 "use client";
 import { ShieldCheck, Receipt, Lock, Eye } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const assurances = [
 	{
