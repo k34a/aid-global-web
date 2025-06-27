@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
 	Modal,
 	ModalContent,
@@ -29,7 +29,7 @@ export default function DonorModal({
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 
-	const fetchMoreDonors = async () => {
+	const fetchMoreDonors = useCallback(async () => {
 		setLoading(true);
 		const res = await fetch(
 			`/api/campaigns/${campaignId}/donors?limit=10&offset=${page * 10}`,
@@ -39,7 +39,7 @@ export default function DonorModal({
 		setDonors((prev) => [...prev, ...data]);
 		setPage((p) => p + 1);
 		setLoading(false);
-	};
+	}, [campaignId, page]);
 
 	useEffect(() => {
 		if (open) {
@@ -48,7 +48,7 @@ export default function DonorModal({
 			setHasMore(true);
 			fetchMoreDonors();
 		}
-	}, [open]);
+	}, [open, fetchMoreDonors]);
 
 	const totalDonation = donors.reduce((sum, donor) => sum + donor.amount, 0);
 
