@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
+import { motion, AnimatePresence, easeInOut } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";

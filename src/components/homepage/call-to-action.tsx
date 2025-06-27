@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { useAnimationFrame, motion } from "framer-motion";
+import { useAnimationFrame, motion } from "motion/react";
 import { HandHeart } from "lucide-react";
 
 // Words to cycle
@@ -13,6 +13,7 @@ const callToActions = [
 	{ title: "Mission Education", img: "/aids/shiksha.webp" },
 	{ title: "Women Empowerment", img: "/aids/sakhi.jpg" },
 ];
+
 export function CallToActionQuote() {
 	const [index, setIndex] = useState(0);
 	const lastChange = useRef(0);
@@ -42,6 +43,7 @@ export function CallToActionQuote() {
 		</h2>
 	);
 }
+
 export default function CallToActionSection() {
 	return (
 		<section className="sm:bg-gradient-to-br sm:from-stone-300 sm:to-blue-800 bg-gradient-to-b from-stone-300 to-blue-800 text-white px-4 py-6 sm:px-10 lg:px-20">

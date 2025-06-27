@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { aids } from "@/components/homepage/data/aids";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const AidsSection = () => {
 	const sectionRef = useRef<HTMLDivElement>(null);
