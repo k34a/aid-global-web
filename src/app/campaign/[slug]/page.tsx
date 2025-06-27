@@ -54,7 +54,8 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 						/>
 						<DonorList
 							campaignId={campaign.id}
-							initialDonors={initialDonors || []}
+							initialDonors={initialDonors.backers ?? []}
+							hasMore={initialDonors.hasMore}
 						/>
 					</div>
 				</div>

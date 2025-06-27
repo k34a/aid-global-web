@@ -10,11 +10,13 @@ import { formatTimeAgo, getInitials } from "@/lib/utils/donor";
 interface DonorListProps {
 	campaignId: string;
 	initialDonors: BackerDetailsForCampaign[];
+	hasMore?: boolean;
 }
 
 export default function DonorList({
 	campaignId,
 	initialDonors,
+	hasMore = false,
 }: DonorListProps) {
 	const [open, setOpen] = useState(false);
 
@@ -81,7 +83,7 @@ export default function DonorList({
 				)}
 			</div>
 
-			{initialDonors.length > 0 && (
+			{initialDonors.length > 0 && hasMore && (
 				<Button
 					variant="primary"
 					className="w-full mt-6 rounded-xl py-4 font-semibold text-base"

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CircleDotDashed, ChevronsRight, ChevronsLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ArticleMeta } from "@/lib/db/articles";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
+import { motion, AnimatePresence, easeInOut } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
 
 const sliderVariants = {
