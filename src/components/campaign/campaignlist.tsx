@@ -42,7 +42,7 @@ export default async function CampaignList() {
 					))}
 				</div>
 			</div>
-			<div className="flex justify-center mt-6 block lg:hidden">
+			<div className="flex justify-center mt-6 lg:hidden">
 				<Link
 					href="/campaign"
 					className="flex items-center bg-orange-600 text-white font-semibold px-2 py-2 rounded-full shadow-lg hover:bg-orange-700 transition text-base"

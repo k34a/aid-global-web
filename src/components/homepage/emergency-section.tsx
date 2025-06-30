@@ -12,6 +12,7 @@ import {
 	ChevronsLeft,
 	ChevronsRight,
 	CircleDot,
+	IndianRupee,
 } from "lucide-react";
 
 const sliderVariants = {
@@ -154,15 +155,14 @@ const EmergencySection = () => {
 												By {item.author}
 											</span>
 										</div>
-										<div className="flex items-center justify-between mb-1">
-											<span className="text-blue-600 font-bold text-sm sm:text-base">
-												₹{item.raised.toLocaleString()}{" "}
-												Raised
+										<div className="flex items-center justify-between text-sm">
+											<span className="flex items-center gap-1">
+												<IndianRupee className="w-3 h-3" />
+												{item.raised}
 											</span>
-											<span className="text-gray-700 font-medium text-xs sm:text-sm">
-												₹
-												{item.required.toLocaleString()}{" "}
-												Required
+											<span className="flex items-center gap-1">
+												<IndianRupee className="w-3 h-3" />
+												{item.required}
 											</span>
 										</div>
 										{/* Progress Bar */}

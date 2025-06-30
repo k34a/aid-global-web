@@ -30,6 +30,7 @@ export const DonationSummary = ({
 	const [email, setEmail] = useState("");
 	const [contact, setContact] = useState("");
 	const [isAnonymous, setIsAnonymous] = useState(false);
+	const [notes, setNotes] = useState("");
 
 	const isDonationValid = () => {
 		if (isDirectDonation) {
@@ -202,6 +203,25 @@ export const DonationSummary = ({
 					/>
 					Donate Anonymously
 				</label>
+				<div>
+					<label className="block text-sm font-medium text-gray-700 mb-1">
+						Donation Message (Optional)
+					</label>
+					<textarea
+						placeholder="Share why you're making this donation (100-160 characters)"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						maxLength={160}
+						rows={3}
+						className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+					/>
+					<p className="text-xs text-gray-500 mt-1">
+						{notes.length}/160 characters{" "}
+						{notes.length > 0 &&
+							notes.length < 100 &&
+							"(minimum 100 characters)"}
+					</p>
+				</div>
 			</div>
 
 			<DonateButton
@@ -213,6 +233,7 @@ export const DonationSummary = ({
 				amount={amountInput}
 				is_anon={isAnonymous}
 				auto_allocate={autoAllocate}
+				notes={notes}
 				className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
 					isDonationValid()
 						? "bg-blue-600 hover:bg-blue-700 text-white"

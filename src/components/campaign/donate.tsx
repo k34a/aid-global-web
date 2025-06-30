@@ -26,6 +26,7 @@ interface DonateArgs {
 	amount: number;
 	is_anon: boolean;
 	auto_allocate?: boolean;
+	notes?: string;
 }
 
 async function onDonateButtonClick(args: DonateArgs) {
@@ -87,6 +88,7 @@ interface DonateButtonProps {
 	amount: number;
 	is_anon: boolean;
 	auto_allocate: boolean;
+	notes?: string;
 	className?: string;
 	text?: string;
 }
