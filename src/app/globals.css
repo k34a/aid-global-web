@@ -161,3 +161,9 @@
 	text-align: justify;
 }
 
+/* Color and Highlight Styles for Rendered Content */
+.rich-text-content mark {
+	padding: 0.1em 0.2em;
+	border-radius: 0.2em;
+}
+
