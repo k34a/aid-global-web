@@ -50,7 +50,7 @@ export default function DonorModal({
 		setDonors((prev) => [...prev, ...newDonors]);
 		setPage((p) => p + 1);
 		setLoading(false);
-	}, [campaignId]);
+	}, [campaignId, page]);
 
 	useEffect(() => {
 		if (open) {
