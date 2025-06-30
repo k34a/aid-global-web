@@ -32,8 +32,11 @@ echo "✅ Linting completed successfully"
 # Optionally uncomment if you want to run tests before committing
 # echo "🧪 Running tests..."
 # npm run test
+
 # echo "✅ Tests passed."
 
 # Run lint-staged
 echo "🎯 Running lint-staged..."
 npx lint-staged
+
+
