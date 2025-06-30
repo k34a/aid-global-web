@@ -27,18 +27,32 @@ interface CampaignDetails {
 }
 
 const getCampaignBySlug = async (slug: string) => {
-	const { data: campaign, error } = await supabaseAdmin
+	const { data: campaigns, error } = await supabaseAdmin
 		.from("campaigns")
 		.select("*, campaign_products(*)")
 		.eq("slug", slug)
-		.single();
+		.order("created_at", { ascending: false });
 
 	if (error) {
 		console.error("Error fetching campaign details:", error.message);
 		return null;
 	}
 
-	return campaign as CampaignDetails;
+	// If no campaigns found
+	if (!campaigns || campaigns.length === 0) {
+		console.error("No campaign found with slug:", slug);
+		return null;
+	}
+
+	// If multiple campaigns found, log warning and return the most recent one
+	if (campaigns.length > 1) {
+		console.warn(
+			`Multiple campaigns found with slug "${slug}". Returning the most recent one.`,
+		);
+	}
+
+	// Return the first (most recent) campaign
+	return campaigns[0] as CampaignDetails;
 };
 
 interface BackerDetailsForCampaign {
@@ -47,6 +61,8 @@ interface BackerDetailsForCampaign {
 	name: string;
 	is_anon: boolean;
 	created_at: Date;
+	email?: string;
+	contact_number?: string;
 }
 
 const getBackersForCampaign = async (
@@ -85,6 +101,38 @@ const getBackersForCampaign = async (
 	});
 
 	return { backers, hasMore };
+};
+
+// New function to get complete donor details for admin view
+const getAdminBackersForCampaign = async (
+	campaignId: string,
+	limit = 10,
+	offset = 0,
+) => {
+	const { data, error } = await supabaseAdmin
+		.from("backers")
+		.select("id, amount, is_anon, created_at, name, email, contact_number")
+		.eq("campaign_id", campaignId)
+		.neq("payment_id", null)
+		.order("created_at", { ascending: false })
+		.range(offset, offset + limit);
+
+	if (error) {
+		console.error(
+			"Error fetching admin backers for campaign:",
+			error.message,
+		);
+		return { backers: null, hasMore: false };
+	}
+
+	// Determine if there's more
+	const hasMore = data.length > limit;
+
+	// Slice back to the requested limit
+	const slicedData = data.slice(0, limit) as BackerDetailsForCampaign[];
+
+	// For admin view, we don't anonymize - show all details
+	return { backers: slicedData, hasMore };
 };
 
 interface PaginationCampaignFilters {
@@ -166,6 +214,7 @@ export {
 	getCampaigns,
 	getAllCampaignsCount,
 	getBackersForCampaign,
+	getAdminBackersForCampaign,
 };
 
 export type { CampaignDetails, CampaignProduct, BackerDetailsForCampaign };
