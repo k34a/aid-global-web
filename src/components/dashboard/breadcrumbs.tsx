@@ -48,7 +48,9 @@ const generateBreadcrumbs = (
 
 		const isLastSegment = index === pathSegments.length - 1;
 		const capitalizedLabel =
-			segment.charAt(0).toUpperCase() + segment.slice(1);
+			segment && segment.length > 0
+				? segment.charAt(0).toUpperCase() + segment.slice(1)
+				: segment;
 
 		breadcrumbs.push({
 			label: capitalizedLabel,

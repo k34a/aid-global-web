@@ -33,8 +33,8 @@ import {
 	Code,
 	Undo,
 	Redo,
-	Save,
 	FileText,
+	X,
 } from "lucide-react";
 
 interface RichTextEditorProps {
@@ -51,6 +51,14 @@ export default function RichTextEditor({
 	className = "",
 }: RichTextEditorProps) {
 	const [showToolbar, setShowToolbar] = useState(true);
+	const [showLinkDialog, setShowLinkDialog] = useState(false);
+	const [showImageDialog, setShowImageDialog] = useState(false);
+	const [showColorDialog, setShowColorDialog] = useState(false);
+	const [showHighlightDialog, setShowHighlightDialog] = useState(false);
+	const [linkUrl, setLinkUrl] = useState("");
+	const [imageUrl, setImageUrl] = useState("");
+	const [textColor, setTextColor] = useState("");
+	const [highlightColor, setHighlightColor] = useState("");
 
 	const editor = useEditor({
 		extensions: [
@@ -100,38 +108,91 @@ export default function RichTextEditor({
 	}
 
 	const addLink = () => {
-		const url = window.prompt("Enter URL");
-		if (url) {
+		if (linkUrl.trim()) {
 			editor
 				.chain()
 				.focus()
 				.extendMarkRange("link")
-				.setLink({ href: url })
+				.setLink({ href: linkUrl.trim() })
 				.run();
+			setLinkUrl("");
+			setShowLinkDialog(false);
 		}
 	};
 
 	const addImage = () => {
-		const url = window.prompt("Enter image URL");
-		if (url) {
-			editor.chain().focus().setImage({ src: url }).run();
+		if (imageUrl.trim()) {
+			editor.chain().focus().setImage({ src: imageUrl.trim() }).run();
+			setImageUrl("");
+			setShowImageDialog(false);
 		}
 	};
 
-	const setTextColor = () => {
-		const color = window.prompt("Enter color (e.g., #ff0000, red, blue)");
-		if (color) {
-			editor.chain().focus().setColor(color).run();
+	const applyTextColor = () => {
+		if (textColor.trim()) {
+			editor.chain().focus().setColor(textColor.trim()).run();
+			setTextColor("");
+			setShowColorDialog(false);
 		}
 	};
 
-	const setHighlight = () => {
-		const color = window.prompt(
-			"Enter highlight color (e.g., #ffff00, yellow)",
+	const applyHighlight = () => {
+		if (highlightColor.trim()) {
+			editor
+				.chain()
+				.focus()
+				.toggleHighlight({ color: highlightColor.trim() })
+				.run();
+			setHighlightColor("");
+			setShowHighlightDialog(false);
+		}
+	};
+
+	const Dialog = ({
+		isOpen,
+		onClose,
+		title,
+		children,
+		onSubmit,
+	}: {
+		isOpen: boolean;
+		onClose: () => void;
+		title: string;
+		children: React.ReactNode;
+		onSubmit: () => void;
+	}) => {
+		if (!isOpen) return null;
+
+		return (
+			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+				<div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+					<div className="flex items-center justify-between mb-4">
+						<h3 className="text-lg font-semibold">{title}</h3>
+						<button
+							onClick={onClose}
+							className="text-gray-500 hover:text-gray-700"
+						>
+							<X className="w-5 h-5" />
+						</button>
+					</div>
+					{children}
+					<div className="flex gap-2 mt-4">
+						<button
+							onClick={onSubmit}
+							className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+						>
+							Add
+						</button>
+						<button
+							onClick={onClose}
+							className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+						>
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
 		);
-		if (color) {
-			editor.chain().focus().toggleHighlight({ color }).run();
-		}
 	};
 
 	return (
@@ -151,14 +212,6 @@ export default function RichTextEditor({
 						className="flex items-center gap-1 px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
 					>
 						{showToolbar ? "Hide Toolbar" : "Show Toolbar"}
-					</button>
-					<button
-						type="button"
-						onClick={() => console.log("Saving content...")}
-						className="flex items-center gap-1 px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-					>
-						<Save className="w-4 h-4" />
-						Save
 					</button>
 				</div>
 			</div>
@@ -352,14 +405,14 @@ export default function RichTextEditor({
 					{/* Links and Media */}
 					<div className="flex items-center gap-1 border-r pr-2">
 						<button
-							onClick={addLink}
+							onClick={() => setShowLinkDialog(true)}
 							className={`p-2 rounded hover:bg-gray-100 ${editor.isActive("link") ? "bg-blue-100 text-blue-600" : ""}`}
 							title="Add Link"
 						>
 							<LinkIcon className="w-4 h-4" />
 						</button>
 						<button
-							onClick={addImage}
+							onClick={() => setShowImageDialog(true)}
 							className="p-2 rounded hover:bg-gray-100"
 							title="Add Image"
 						>
@@ -370,14 +423,14 @@ export default function RichTextEditor({
 					{/* Colors */}
 					<div className="flex items-center gap-1 border-r pr-2">
 						<button
-							onClick={setTextColor}
+							onClick={() => setShowColorDialog(true)}
 							className="p-2 rounded hover:bg-gray-100"
 							title="Text Color"
 						>
 							<Palette className="w-4 h-4" />
 						</button>
 						<button
-							onClick={setHighlight}
+							onClick={() => setShowHighlightDialog(true)}
 							className="p-2 rounded hover:bg-gray-100"
 							title="Highlight"
 						>
@@ -431,6 +484,71 @@ export default function RichTextEditor({
 					<div>• Undo/redo functionality</div>
 				</div>
 			</div>
+
+			{/* Dialogs */}
+			<Dialog
+				isOpen={showLinkDialog}
+				onClose={() => setShowLinkDialog(false)}
+				title="Add Link"
+				onSubmit={addLink}
+			>
+				<input
+					type="url"
+					placeholder="Enter URL (e.g., https://example.com)"
+					value={linkUrl}
+					onChange={(e) => setLinkUrl(e.target.value)}
+					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					onKeyPress={(e) => e.key === "Enter" && addLink()}
+				/>
+			</Dialog>
+
+			<Dialog
+				isOpen={showImageDialog}
+				onClose={() => setShowImageDialog(false)}
+				title="Add Image"
+				onSubmit={addImage}
+			>
+				<input
+					type="url"
+					placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+					value={imageUrl}
+					onChange={(e) => setImageUrl(e.target.value)}
+					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					onKeyPress={(e) => e.key === "Enter" && addImage()}
+				/>
+			</Dialog>
+
+			<Dialog
+				isOpen={showColorDialog}
+				onClose={() => setShowColorDialog(false)}
+				title="Text Color"
+				onSubmit={applyTextColor}
+			>
+				<input
+					type="text"
+					placeholder="Enter color (e.g., #ff0000, red, blue)"
+					value={textColor}
+					onChange={(e) => setTextColor(e.target.value)}
+					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					onKeyPress={(e) => e.key === "Enter" && applyTextColor()}
+				/>
+			</Dialog>
+
+			<Dialog
+				isOpen={showHighlightDialog}
+				onClose={() => setShowHighlightDialog(false)}
+				title="Highlight Color"
+				onSubmit={applyHighlight}
+			>
+				<input
+					type="text"
+					placeholder="Enter highlight color (e.g., #ffff00, yellow)"
+					value={highlightColor}
+					onChange={(e) => setHighlightColor(e.target.value)}
+					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					onKeyPress={(e) => e.key === "Enter" && applyHighlight()}
+				/>
+			</Dialog>
 		</div>
 	);
 }

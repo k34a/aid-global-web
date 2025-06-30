@@ -215,6 +215,18 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 		setLoading(true);
 
 		try {
+			// Validate required fields
+			if (
+				!formData.title ||
+				!formData.description ||
+				formData.amount <= 0
+			) {
+				toast.error(
+					"Please fill all required fields and ensure amount is greater than 0",
+				);
+				return;
+			}
+
 			// Upload banner image if changed
 			let bannerImageUrl = formData.banner_image;
 			if (bannerImageFile) {
