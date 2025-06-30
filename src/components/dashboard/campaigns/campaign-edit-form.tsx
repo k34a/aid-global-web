@@ -45,8 +45,8 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 	const [newProduct, setNewProduct] = useState({
 		title: "",
 		description: "",
-		price_per_unit: 0,
-		units_required: 0,
+		price_per_unit: "",
+		units_required: "",
 		image: "",
 	});
 
@@ -64,12 +64,7 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
 			...prev,
-			[name]:
-				name === "amount"
-					? value === ""
-						? 0
-						: parseFloat(value) || 0
-					: value,
+			[name]: value,
 		}));
 	};
 
@@ -87,45 +82,107 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 		}
 	};
 
-	const handleBannerImageChange = (
+	const handleNewProductNumberChange = (
+		field: keyof typeof newProduct,
+		e: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		const value = e.target.value;
+
+		// Allow empty string or valid numbers
+		if (value === "" || /^\d*\.?\d*$/.test(value)) {
+			setNewProduct((prev) => ({
+				...prev,
+				[field]: value,
+			}));
+		}
+	};
+
+	const handleProductNumberChange = (
+		productId: string,
+		field: keyof CampaignProduct,
+		e: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		const value = e.target.value;
+
+		// Allow empty string or valid numbers
+		if (value === "" || /^\d*\.?\d*$/.test(value)) {
+			updateProduct(productId, field, value);
+		}
+	};
+
+	const handleBannerImageChange = async (
 		e: React.ChangeEvent<HTMLInputElement>,
 	) => {
 		const file = e.target.files?.[0];
 		if (file) {
 			setBannerImageFile(file);
-			setFormData((prev) => ({
-				...prev,
-				banner_image: URL.createObjectURL(file),
-			}));
+
+			try {
+				// Upload image immediately
+				const imageUrl = await uploadImage(
+					file,
+					`campaigns/${campaign.slug}/banner`,
+				);
+
+				// Update form with the uploaded image URL
+				setFormData((prev) => ({
+					...prev,
+					banner_image: imageUrl,
+				}));
+
+				// Clear the file reference since it's now uploaded
+				setBannerImageFile(null);
+			} catch (error) {
+				console.error("Failed to upload banner image:", error);
+				toast.error("Failed to upload banner image");
+			}
 		}
 	};
 
-	const handleProductImageChange = (
+	const handleProductImageChange = async (
 		productId: string,
 		e: React.ChangeEvent<HTMLInputElement>,
 	) => {
 		const file = e.target.files?.[0];
 		if (file) {
-			setProductImageFiles((prev) => ({
-				...prev,
-				[productId]: file,
-			}));
-			setProducts((prev) =>
-				prev.map((product) =>
-					product.id === productId
-						? { ...product, image: URL.createObjectURL(file) }
-						: product,
-				),
-			);
+			try {
+				// Upload image immediately
+				const imageUrl = await uploadImage(
+					file,
+					`campaigns/${campaign.slug}/products/${productId}`,
+				);
+
+				// Update product with the uploaded image URL
+				setProducts((prev) =>
+					prev.map((product) =>
+						product.id === productId
+							? { ...product, image: imageUrl }
+							: product,
+					),
+				);
+
+				// Clear the file reference since it's now uploaded
+				setProductImageFiles((prev) => {
+					const newState = { ...prev };
+					delete newState[productId];
+					return newState;
+				});
+			} catch (error) {
+				console.error("Failed to upload product image:", error);
+				toast.error("Failed to upload product image");
+			}
 		}
 	};
 
 	const addProduct = () => {
+		const pricePerUnit = parseFloat(newProduct.price_per_unit) || 0;
+		const unitsRequired = parseFloat(newProduct.units_required) || 0;
+
 		if (
 			!newProduct.title ||
 			!newProduct.description ||
-			newProduct.price_per_unit <= 0 ||
-			newProduct.units_required <= 0
+			pricePerUnit <= 0 ||
+			unitsRequired <= 0
 		) {
 			toast.error("Please fill all product fields");
 			return;
@@ -136,8 +193,8 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 			campaign_id: campaign.id,
 			title: newProduct.title,
 			description: newProduct.description,
-			price_per_unit: newProduct.price_per_unit,
-			units_required: newProduct.units_required,
+			price_per_unit: pricePerUnit,
+			units_required: unitsRequired,
 			units_collected: 0,
 			image: newProduct.image,
 		};
@@ -146,8 +203,8 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 		setNewProduct({
 			title: "",
 			description: "",
-			price_per_unit: 0,
-			units_required: 0,
+			price_per_unit: "",
+			units_required: "",
 			image: "",
 		});
 	};
@@ -161,10 +218,16 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 		field: keyof CampaignProduct,
 		value: any,
 	) => {
+		// Convert string values to numbers for numeric fields
+		let processedValue = value;
+		if (field === "price_per_unit" || field === "units_required") {
+			processedValue = value === "" ? 0 : parseFloat(value) || 0;
+		}
+
 		setProducts((prev) =>
 			prev.map((product) =>
 				product.id === productId
-					? { ...product, [field]: value }
+					? { ...product, [field]: processedValue }
 					: product,
 			),
 		);
@@ -227,28 +290,30 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 				return;
 			}
 
-			// Upload banner image if changed
-			let bannerImageUrl = formData.banner_image;
-			if (bannerImageFile) {
-				bannerImageUrl = await uploadImage(
-					bannerImageFile,
-					`campaigns/${campaign.slug}/banner`,
-				);
+			// Process rich text images if any
+			let processedRichTextContent = richTextContent;
+			if (
+				richTextContent.trim() &&
+				(window as any).processRichTextImages
+			) {
+				try {
+					processedRichTextContent = await (
+						window as any
+					).processRichTextImages();
+				} catch (error) {
+					console.error("Failed to process rich text images:", error);
+					toast.error(
+						"Failed to upload some images. Please try again.",
+					);
+					return;
+				}
 			}
 
-			// Upload product images if changed
-			const updatedProducts = await Promise.all(
-				products.map(async (product) => {
-					let productImageUrl = product.image;
-					if (productImageFiles[product.id]) {
-						productImageUrl = await uploadImage(
-							productImageFiles[product.id],
-							`campaigns/${campaign.slug}/products/${product.id}`,
-						);
-					}
-					return { ...product, image: productImageUrl };
-				}),
-			);
+			// Images are already uploaded, so we can use them directly
+			const updatedProducts = products.map((product) => ({
+				...product,
+				// Product images are already uploaded URLs
+			}));
 
 			// Update campaign
 			const response = await fetch(
@@ -260,7 +325,7 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 					},
 					body: JSON.stringify({
 						...formData,
-						banner_image: bannerImageUrl,
+						// Banner image is already uploaded URL
 						products: updatedProducts,
 					}),
 				},
@@ -271,9 +336,12 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 			}
 
 			// Upload rich text content if provided
-			if (richTextContent.trim()) {
+			if (processedRichTextContent.trim()) {
 				try {
-					await uploadRichText(richTextContent, campaign.slug);
+					await uploadRichText(
+						processedRichTextContent,
+						campaign.slug,
+					);
 				} catch (error) {
 					console.error("Failed to upload rich text content:", error);
 					// Don't fail the entire request if rich text upload fails
@@ -323,7 +391,10 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 							<input
 								type="number"
 								name="amount"
-								value={formData.amount}
+								placeholder="1000"
+								value={
+									formData.amount === 0 ? "" : formData.amount
+								}
 								onChange={handleInputChange}
 								className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 								required
@@ -388,10 +459,7 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 						{formData.banner_image && (
 							<div className="relative w-full max-w-md">
 								<Image
-									src={getAdminImageUrl(
-										formData.banner_image,
-										campaign.slug,
-									)}
+									src={formData.banner_image}
 									alt="Banner preview"
 									width={400}
 									height={192}
@@ -480,11 +548,10 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 									placeholder="100"
 									value={newProduct.price_per_unit}
 									onChange={(e) =>
-										setNewProduct((prev) => ({
-											...prev,
-											price_per_unit:
-												parseFloat(e.target.value) || 0,
-										}))
+										handleNewProductNumberChange(
+											"price_per_unit",
+											e,
+										)
 									}
 									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 								/>
@@ -498,14 +565,11 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 									placeholder="50"
 									value={newProduct.units_required}
 									onChange={(e) =>
-										setNewProduct((prev) => ({
-											...prev,
-											units_required:
-												parseInt(e.target.value) || 0,
-										}))
+										handleNewProductNumberChange(
+											"units_required",
+											e,
+										)
 									}
-									onFocus={handleNumberInputFocus}
-									onBlur={handleNumberInputBlur}
 									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 								/>
 							</div>
@@ -586,14 +650,16 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 										</label>
 										<input
 											type="number"
-											value={product.price_per_unit}
+											value={
+												product.price_per_unit === 0
+													? ""
+													: product.price_per_unit
+											}
 											onChange={(e) =>
-												updateProduct(
+												handleProductNumberChange(
 													product.id,
 													"price_per_unit",
-													parseFloat(
-														e.target.value,
-													) || 0,
+													e,
 												)
 											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -605,17 +671,18 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 										</label>
 										<input
 											type="number"
-											value={product.units_required}
+											value={
+												product.units_required === 0
+													? ""
+													: product.units_required
+											}
 											onChange={(e) =>
-												updateProduct(
+												handleProductNumberChange(
 													product.id,
 													"units_required",
-													parseInt(e.target.value) ||
-														0,
+													e,
 												)
 											}
-											onFocus={handleNumberInputFocus}
-											onBlur={handleNumberInputBlur}
 											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 										/>
 									</div>
@@ -649,10 +716,7 @@ export default function CampaignEditForm({ campaign }: CampaignEditFormProps) {
 									{product.image && (
 										<div className="relative w-32 h-32">
 											<Image
-												src={getAdminImageUrl(
-													product.image,
-													campaign.slug,
-												)}
+												src={product.image}
 												alt={product.title}
 												width={128}
 												height={128}
