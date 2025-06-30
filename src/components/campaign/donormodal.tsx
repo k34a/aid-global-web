@@ -43,6 +43,7 @@ export default function DonorModal({
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 
+
 	const fetchMoreDonors = useCallback(
 		async (pageNumber: number) => {
 			setLoading(true);
@@ -54,6 +55,7 @@ export default function DonorModal({
 		},
 		[campaignId],
 	);
+
 
 	useEffect(() => {
 		if (open) {
