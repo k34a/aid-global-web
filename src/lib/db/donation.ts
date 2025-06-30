@@ -21,7 +21,8 @@ const newDonationRequestSchema = z.object({
 		.string()
 		.min(100, "Description must be at least 100 characters")
 		.max(160, "Description must be at most 160 characters")
-		.optional(),
+		.optional()
+		.or(z.literal("")),
 });
 
 type NewDonationRequest = z.infer<typeof newDonationRequestSchema>;

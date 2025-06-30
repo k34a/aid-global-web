@@ -41,7 +41,8 @@ export default function CampaignSidebar({
 	};
 
 	const achievedCount = milestones.filter(isMilestoneAchieved).length;
-	const progressPercentage = (achievedCount / milestones.length) * 100;
+	const progressPercentage =
+		milestones.length > 0 ? (achievedCount / milestones.length) * 100 : 0;
 
 	return (
 		<div className="space-y-6">

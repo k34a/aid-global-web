@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { CampaignDetails, BackerDetailsForCampaign } from "@/lib/db/campaigns";
-import { getAdminImageUrl } from "@/lib/utils/image-url";
 import {
 	Users,
 	IndianRupee,
@@ -37,19 +36,24 @@ export default function CampaignAnalytics({
 }: CampaignAnalyticsProps) {
 	const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchAnalytics = async () => {
 			try {
+				setError(null);
 				const response = await fetch(
 					`/api/admin/campaigns/${campaign.slug}/analytics`,
 				);
 				if (response.ok) {
 					const data = await response.json();
 					setAnalytics(data);
+				} else {
+					setError("Failed to fetch analytics data");
 				}
 			} catch (error) {
 				console.error("Error fetching analytics:", error);
+				setError("Failed to fetch analytics data");
 			} finally {
 				setLoading(false);
 			}
@@ -76,13 +80,35 @@ export default function CampaignAnalytics({
 	};
 
 	const calculateProgress = () => {
+		if (campaign.amount === 0) return 0;
 		return (campaign.collection / campaign.amount) * 100;
+	};
+
+	const getInitials = (name: string | null | undefined) => {
+		if (!name || name.trim() === "") return "?";
+		return name.charAt(0).toUpperCase();
 	};
 
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center py-12">
 				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="flex items-center justify-center py-12">
+				<div className="text-center">
+					<p className="text-red-600 mb-2">{error}</p>
+					<button
+						onClick={() => window.location.reload()}
+						className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+					>
+						Retry
+					</button>
+				</div>
 			</div>
 		);
 	}
@@ -225,16 +251,15 @@ export default function CampaignAnalytics({
 										<div className="flex items-center gap-4">
 											<div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
 												<span className="text-sm font-medium text-blue-600">
-													{donation.name
-														.charAt(0)
-														.toUpperCase()}
+													{getInitials(donation.name)}
 												</span>
 											</div>
 											<div>
 												<p className="font-medium text-gray-900">
 													{donation.is_anon
 														? "Anonymous"
-														: donation.name}
+														: donation.name ||
+															"Unknown"}
 												</p>
 												{!donation.is_anon &&
 													donation.email && (
@@ -295,9 +320,11 @@ export default function CampaignAnalytics({
 						<div className="space-y-4">
 							{campaign.campaign_products.map((product) => {
 								const progress =
-									(product.units_collected /
-										product.units_required) *
-									100;
+									product.units_required > 0
+										? (product.units_collected /
+												product.units_required) *
+											100
+										: 0;
 								return (
 									<div
 										key={product.id}

@@ -25,10 +25,15 @@ export const getCampaignMilestones = (goal: number = 10000): Milestone[] => [
 		id: "emergency_response",
 		title: "Emergency Response Fund",
 		description: (
-			<>Raised &#8377;{goal ? goal * 0.25 : "2,500"} for immediate aid</>
+			<>
+				Raised &#8377;{goal && goal > 0 ? goal * 0.25 : "2,500"} for
+				immediate aid
+			</>
 		),
 		condition: ({ currentAmount, goal }) =>
-			goal && currentAmount ? currentAmount / goal >= 0.25 : false,
+			goal && goal > 0 && currentAmount
+				? currentAmount / goal >= 0.25
+				: false,
 		icon: <Target className="w-4 h-4" />,
 	},
 	{
@@ -36,7 +41,9 @@ export const getCampaignMilestones = (goal: number = 10000): Milestone[] => [
 		title: "Sustained Aid Program",
 		description: `Reached 50% funding for long-term relief efforts`,
 		condition: ({ currentAmount, goal }) =>
-			goal && currentAmount ? currentAmount / goal >= 0.5 : false,
+			goal && goal > 0 && currentAmount
+				? currentAmount / goal >= 0.5
+				: false,
 		icon: <Target className="w-4 h-4" />,
 	},
 	{
@@ -44,7 +51,7 @@ export const getCampaignMilestones = (goal: number = 10000): Milestone[] => [
 		title: "Global Impact Achieved",
 		description: `Full funding secured for comprehensive aid program`,
 		condition: ({ currentAmount, goal }) =>
-			goal && currentAmount ? currentAmount >= goal : false,
+			goal && goal > 0 && currentAmount ? currentAmount >= goal : false,
 		icon: <CheckCircle className="w-4 h-4" />,
 	},
 ];
