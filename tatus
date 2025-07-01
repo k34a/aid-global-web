@@ -1,0 +1,545 @@
+[33mcommit 5abda1fc5ef277a6812487c2fd707d64cf4f0966[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32m37-create-shikshaaid-page[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/37-create-shikshaaid-page[m[33m, [m[1;32mmain[m[33m, [m[1;32mhomepage[m[33m)[m
+Merge: 77de3b4 5b3eb3c
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 14:59:09 2025 +0530
+
+    Merge pull request #36 from k34a/campaign-products-merge
+    
+    feat: add donor list modal with supporter details and donation info
+
+[33mcommit 5b3eb3cfd7f637b8cff412a6bdf0ad92eb48fa1c[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 14:57:36 2025 +0530
+
+    fix: fixed modal and other components in cmpaign pages
+
+[33mcommit 353bf3fceb6f7f9875066a6ae6576dc475deb643[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 14:03:45 2025 +0530
+
+    fix: fixed package.json and husky pre-commit hook
+
+[33mcommit 27f04c546cba38ed2a94084ad5e82facd0c7f690[m
+Merge: b970542 77de3b4
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 13:41:40 2025 +0530
+
+    fixed merge conflicts
+
+[33mcommit b9705420cee0124ac55650ccc3873cdcd97e00ec[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 13:26:04 2025 +0530
+
+    fixed indentation
+
+[33mcommit 77de3b496d6f1239241c28976f58495dd6ac4953[m
+Merge: 9453fb3 27cbb1e
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 27 13:17:18 2025 +0530
+
+    Merge pull request #30 from k34a/homepage
+    
+    fix: implemented home page
+
+[33mcommit 3da60cd6d9ad624bf2e256565ef56414a19a5a01[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Fri Jun 27 09:46:47 2025 +0530
+
+    new changes
+
+[33mcommit 8b9a4844e3b7c35a6e587486d00bd4ce62b0f32e[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Fri Jun 27 07:13:18 2025 +0530
+
+    fix: add missing fetchMoreDonors dependency in DonorModal useEffect
+
+[33mcommit 27cbb1e6ca66b252b3ce9cf66c261e27bd1fc309[m[33m ([m[1;31morigin/homepage[m[33m)[m
+Merge: 5cfd9ef 9453fb3
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 26 19:32:39 2025 +0530
+
+    Merge branch 'main' into homepage
+
+[33mcommit 5ba0ed7c024a6a824a28f932efa4e590f6184f5f[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Thu Jun 26 19:08:45 2025 +0530
+
+    refactor: centralize donor tier logic in utils
+
+[33mcommit 5cfd9effb38273fe7747f3a9f5a419ff661297bc[m
+Author: asiya-tabasum <asiyashaik7867@gmail.com>
+Date:   Thu Jun 26 19:07:19 2025 +0530
+
+    fix: redesigned homepage
+
+[33mcommit 7886573face32d6dfb132de9c63c049ac293c900[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Thu Jun 26 16:13:16 2025 +0530
+
+    feat: add donor list modal with supporter details and donation info
+
+[33mcommit 9453fb3c2b71c30c2af60f16189aeb63405f98b1[m
+Merge: c76c61c 2e15f31
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 24 13:36:33 2025 +0530
+
+    Merge pull request #35 from k34a/dev
+    
+    feat: added a function to get the list of backers for a campaign
+
+[33mcommit 2e15f31322cc87f51409b1a0ed8cde9cb5440222[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 24 13:35:49 2025 +0530
+
+    feat: added a function to get the list of backers for a campaign
+
+[33mcommit 186896fc85e477a1f9acbfc51c061b38aef45a13[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 22 15:43:33 2025 +0530
+
+    fix: install libraries pending from merge conflict resolution
+
+[33mcommit 8ed61699e803693dbc2c6d1443039aa342a80a54[m
+Merge: e19bbba c76c61c
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 22 15:41:12 2025 +0530
+
+    fix: resolved merge conflicts
+
+[33mcommit e19bbbab5a085e2bf425c6b7927b8cb443ac910b[m
+Author: asiya-tabasum <asiyashaik7867@gmail.com>
+Date:   Sat Jun 21 20:32:28 2025 +0530
+
+    fix: resolved homepage issues
+
+[33mcommit c76c61cc9191e2849a63d507d75b6e1b71efab67[m
+Merge: fa17a97 d974cf3
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 20:00:38 2025 +0530
+
+    Merge pull request #34 from k34a/campaign-products-merge
+    
+    Campaign products merge
+
+[33mcommit d974cf30760faf6ac742fe605efcaf54f9bb48b2[m
+Merge: fa17a97 416e98c
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Sat Jun 21 19:25:38 2025 +0530
+
+    Merge branch 'campaign-products'
+
+[33mcommit 416e98c7da8490abb99923097f0d92c11c1f270d[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Sat Jun 21 19:23:11 2025 +0530
+
+    feat: enable zero quantity for product donations
+
+[33mcommit fa17a973f85dc2b7e0b9855dfe39828434e7fb78[m
+Merge: 1f3462e d42def8
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 10:01:43 2025 +0530
+
+    Merge pull request #33 from k34a/dev
+    
+    Dev
+
+[33mcommit d42def8dabec850e3563aa7f3641363a970d4e25[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 10:01:59 2025 +0530
+
+    fix: merge fixes
+
+[33mcommit 5e98a2c6c386261e08659ce4946ed8abf364a890[m
+Merge: d6f64c4 1f3462e
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 09:57:54 2025 +0530
+
+    Merge branch 'main' of https://github.com/k34a/aid-global-web into dev
+
+[33mcommit d63d22a0a5baf554d996d327b7ed39905aa67f85[m[33m ([m[1;31morigin/campaign-products[m[33m)[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 09:43:54 2025 +0530
+
+    fix
+
+[33mcommit d6f64c4df278bc960ef96867e16a220806280ce9[m
+Merge: 214a7a5 d63d22a
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 09:43:47 2025 +0530
+
+    Merge pull request #29 from k34a/campaign-products
+    
+    feat(campaign): add scroll-to-products & cart UI functionality
+
+[33mcommit d22a3185621b71f561622fedce90f8fb3d820e01[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 09:36:05 2025 +0530
+
+    fix: removed duplicate config file
+
+[33mcommit 243ab4decb64c1e311b6d5419e96b492dcc8b0b4[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 21 09:27:56 2025 +0530
+
+    fix: added a few things
+
+[33mcommit a1dbb4ab24be4a2533b65a2106e397b46320190b[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Fri Jun 20 19:37:22 2025 +0530
+
+    fix: trim image filenames to avoid space-related loading issues on Vercel
+
+[33mcommit 4b2ce980b5dfd74018140788d6bbfa88bf2738e2[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Fri Jun 20 18:38:58 2025 +0530
+
+    feat: fix TypeScript errors and useEffect dependency warnings
+
+[33mcommit df2d83b7aa2b6bb9cc58d50e6b42ee6f52423382[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Thu Jun 19 19:26:40 2025 +0530
+
+    feat(campaign): add 'Start Donating' scroll and product cart functionality
+
+[33mcommit 70fd7e48fd32b047779a256465af8e8090f2623c[m
+Author: Lavanya-Alapana <alapanalavanya@gmail.com>
+Date:   Tue Jun 17 18:54:37 2025 +0530
+
+    ui changes
+
+[33mcommit 889bbb4ca45699d27681c81d6f8891ee6f7cea27[m
+Author: asiya-tabasum <asiyashaik7867@gmail.com>
+Date:   Tue Jun 17 13:38:58 2025 +0530
+
+    fix: fixed width issues in donation and reviews components
+
+[33mcommit 34d99ffcfb18838ee6a8f017cb726627376faa7b[m
+Author: asiya-tabasum <asiyashaik7867@gmail.com>
+Date:   Tue Jun 17 12:30:14 2025 +0530
+
+    fix: implemented home page
+
+[33mcommit 58a0e917705b1a8d0d6cba723e768fc611ef9ffa[m
+Author: Lavanya Alapana <alapanalavanya@gmail.com>
+Date:   Sun Jun 15 20:10:57 2025 +0530
+
+    Add campaign products layout with banner, description, and sidebar components
+
+[33mcommit 3125b8b55481843c550289333e728c0f1f0eae33[m
+Author: Lavanya Alapana <alapanalavanya@gmail.com>
+Date:   Sun Jun 15 20:00:32 2025 +0530
+
+     in progress on campaign products
+
+[33mcommit 1fa2aeb3de297186fd2fd952d1a2041c0b20f96b[m
+Author: Lavanya Alapana <alapanalavanya@gmail.com>
+Date:   Wed Jun 11 21:26:32 2025 +0530
+
+    campaign products
+
+[33mcommit 1f3462e835abecc4a12e9c10e5d28124bba6ef74[m
+Merge: b83a43f 8beb45d
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Wed Jun 11 14:21:06 2025 +0530
+
+    Merge pull request #26 from k34a/auth
+    
+    feat: added a few pages in dashboard
+
+[33mcommit 8beb45d141c16d74162117970c64a9b0bb680fd8[m[33m ([m[1;31morigin/auth[m[33m)[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Wed Jun 11 14:20:57 2025 +0530
+
+    feat: added a few pages in dashboard
+
+[33mcommit b83a43fb7a9c6be4acbf9b60ab73e3be85bd7de5[m
+Merge: e275b6b 3a20ca6
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 10 14:26:12 2025 +0530
+
+    Merge pull request #25 from k34a/auth
+    
+    Admin Panel
+
+[33mcommit 3a20ca6a1d639441d6ed220d606304ffc8f8bb4d[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 10 14:22:07 2025 +0530
+
+    feat: added admin panel authentication
+
+[33mcommit e275b6b518c1d4b6c51ae84a0b5bdb09795db428[m
+Merge: 5a3fd08 2fbcb05
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Mon Jun 9 18:38:06 2025 +0530
+
+    Merge branch 'main' of https://github.com/k34a/aid-global-web into dev
+
+[33mcommit 5a3fd08c94526e7b0ceb40a1b83d26439fe40d1b[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Mon Jun 9 18:37:04 2025 +0530
+
+    feat: added button to download receipt
+
+[33mcommit 2d22ea342e63b6bd5fb2b38eaad57141371ccf8e[m
+Author: Lavanya Alapana <alapanalavanya@gmail.com>
+Date:   Mon Jun 9 17:00:43 2025 +0530
+
+    campaign card
+
+[33mcommit 26f0cc07bf94a0da1061e11e32fa0aacbce3207c[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 8 13:49:49 2025 +0530
+
+    feat: added few files
+
+[33mcommit 105cfdcbe275f2a46e3fed4fbf0849d502dc1aaf[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 8 13:12:18 2025 +0530
+
+    added few files
+
+[33mcommit 2fbcb05708f5bbb1d65edf3cb9b90888f5710c52[m
+Merge: 9de708e 105cfdc
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 8 13:11:38 2025 +0530
+
+    Merge pull request #23 from k34a/dev
+    
+    added few files
+
+[33mcommit cf07538384a02148d9d6ebac808f7e09c7084264[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 8 13:06:38 2025 +0530
+
+    added few files
+
+[33mcommit 214a7a5d2c50193476aa1ebaac525df97efed1eb[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sun Jun 8 13:04:19 2025 +0530
+
+    added few files
+
+[33mcommit 9de708e74524506a6a8e18f9c0a10cb99ab29819[m
+Merge: 266e04e e0b8358
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:58:55 2025 +0530
+
+    Merge pull request #22 from k34a/dev
+    
+    added address
+
+[33mcommit e0b835886e7fd3841152fcd97dfd30b90529045e[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:57:43 2025 +0530
+
+    added address
+
+[33mcommit cd3642fb0ae833fc26cbdca1da089264b98b289d[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:51:54 2025 +0530
+
+    fixes
+
+[33mcommit 266e04e27e8a6b7b262efaf701af3f80a835bd06[m
+Merge: 45a8151 cd3642f
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:51:53 2025 +0530
+
+    Merge pull request #21 from k34a/dev
+    
+    fixes
+
+[33mcommit a1a899aa5c93f8a693485093c26aee00f66f0f32[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:48:56 2025 +0530
+
+    fixes
+
+[33mcommit 45a81513b603e25af61e39450b9f6c8e24578bb0[m
+Merge: 74b146d a1a899a
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:48:27 2025 +0530
+
+    Merge pull request #20 from k34a/dev
+    
+    fixes
+
+[33mcommit 74b146dbbcdf3bf3429878dbab9e37d0697dc455[m
+Merge: 470d0cc fc0224a
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:41:18 2025 +0530
+
+    Merge pull request #19 from k34a/dev
+    
+    added razorpay setup
+
+[33mcommit fc0224a59209dd09fa93460d3372a5c27730b4fe[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Sat Jun 7 19:41:15 2025 +0530
+
+    added razorpay setup
+
+[33mcommit 470d0cc6c2a11469629471ab99ae48f195e5fc52[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 6 19:52:29 2025 +0530
+
+    Rename ArticleList.tsx to articleList.tsx
+
+[33mcommit 54eb25646758d04ec9f81402e4cc16d71cd38daa[m
+Merge: b0f6190 79fe188
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 6 19:50:35 2025 +0530
+
+    Merge pull request #18 from k34a/dev
+    
+    added header, footer
+
+[33mcommit 79fe1881ed74cc770f864762cf12d0cc7b60bc35[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Fri Jun 6 19:50:11 2025 +0530
+
+    added header, footer
+
+[33mcommit b0f619018cb73379fae0925a5641b6c5f078c311[m
+Merge: fda9f53 f25eb55
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 19:24:45 2025 +0530
+
+    Merge pull request #17 from k34a/dev
+    
+    fix: make ArticlePageProps compatible with PageProps
+
+[33mcommit f25eb55122176b848dff8c8fbf8aa79b478dd91e[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 19:25:04 2025 +0530
+
+    fix: make ArticlePageProps compatible with PageProps
+
+[33mcommit fda9f5317878d5a198493d19422b91ac62981c78[m
+Merge: 76162da 3085eb2
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 17:22:10 2025 +0530
+
+    Merge pull request #16 from k34a/dev
+    
+    fixes
+
+[33mcommit 3085eb2490f16cf2218fc18c9781af822585648c[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 17:22:28 2025 +0530
+
+    fixes
+
+[33mcommit 609e427be744342160a6b84eeda5dcf60af08cda[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 17:05:23 2025 +0530
+
+    added prettier, made supabase image store as env variable
+
+[33mcommit 76162da97d743dbc4bb05b883680e75a87793d96[m
+Merge: a1ba80e 609e427
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 17:05:07 2025 +0530
+
+    Merge pull request #15 from k34a/dev
+    
+    added prettier, made supabase image store as env variable
+
+[33mcommit a1ba80eda2ac204f5c4ad7202294d820955b2e0f[m
+Merge: b329210 31662d6
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Thu Jun 5 15:51:21 2025 +0530
+
+    Merge pull request #14 from k34a/supabase-setup
+    
+    Setup Supabase Integration for Blog Articles
+
+[33mcommit 31662d62d5f17768858ba56ad077681887fc5332[m[33m ([m[1;31morigin/supabase-setup[m[33m)[m
+Author: Lavanya Alapana <alapanalavanya@gmail.com>
+Date:   Thu Jun 5 15:03:40 2025 +0530
+
+    fetch markdown content and images from Supabase
+
+[33mcommit b329210ed0a6d402926eb15d3ac8af4c60042f4d[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:51:24 2025 +0530
+
+    Update README.md
+
+[33mcommit e3a1bb69d354cb09b2308574190f87a9a0595db5[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:50:33 2025 +0530
+
+    Update README.md
+
+[33mcommit 8d84a2dac7b814f6cfa9dd1729f2ea58b49ba967[m
+Merge: b6e88b6 e686b8b
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:48:56 2025 +0530
+
+    Merge pull request #11 from k34a/dev
+    
+    added action to run checks on github actions
+
+[33mcommit e686b8b3bff34aeb08196ffd99ef6eaee87eb492[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:48:47 2025 +0530
+
+    chore: add commit linting check on commit, added docs
+
+[33mcommit 59452f2cb8c199bd82ecd21c7379aaf0307fe961[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:35:41 2025 +0530
+
+    fixes
+
+[33mcommit 12e768cb419ded6a1b618d474ad917568a402607[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:19:26 2025 +0530
+
+    removed auto trigger of github action
+
+[33mcommit 73ffd2684d44a81167dba7c8c0df3c7fe1057ac4[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:17:03 2025 +0530
+
+    added action to run checks on github actions
+
+[33mcommit b6e88b6cb19775489884dafd3b27f98c1cdb4c4f[m
+Merge: 85cf564 c8d6502
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:08:34 2025 +0530
+
+    Merge pull request #10 from k34a/dev
+    
+    ensure test coverage in pre-commit
+
+[33mcommit c8d6502ba3b46fc6326a3fa6480d416cd6af51b2[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 18:05:53 2025 +0530
+
+    ensure test coverage in pre-commit
+
+[33mcommit 85cf564b3615e53a0a84e1c3f0d42645199c28d6[m
+Merge: fdb3697 9e539a7
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 17:01:07 2025 +0530
+
+    Merge pull request #9 from k34a/dev
+    
+    added jest setup for testing, and husky for pre-commit checks
+
+[33mcommit 9e539a76ba76db73592fe9c03480e61432dd06c5[m
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue Jun 3 16:59:33 2025 +0530
+
+    added jest setup for testing, and husky for pre-commit checks
+
+[33mcommit fdb3697938851817e0dfd12f72841f2d1b401510[m
+Merge: 063f3b9 3920864
+Author: Saksham Garg <saksham2700@gmail.com>
+Date:   Tue May 27 17:05:24 2025 +0530
+
+    Merge pull request #3 from k34a/dev
+    
+    added base files for Issue #2

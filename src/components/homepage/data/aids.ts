@@ -5,7 +5,7 @@ export const aids = [
 		title: "Shiksha Aid",
 		desc: "Access to education for underpriviliged children. Partner with Aid Global Foundation to provide quality education and resources to children in need.",
 		button: "Read More",
-		link: "/shiksha-aid",
+		link: "/aids/shiksha",
 	},
 	{
 		id: 2,
@@ -13,6 +13,7 @@ export const aids = [
 		title: "Enable Aid",
 		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
 		button: "Donate Now",
+		link: "/aids/enable",
 	},
 	{
 		id: 3,
@@ -20,6 +21,7 @@ export const aids = [
 		title: "Cure Aid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
 		button: "Donate Now",
+		link: "/aids/cure",
 	},
 	{
 		id: 4,
@@ -27,6 +29,7 @@ export const aids = [
 		title: "Vision Aid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
 		button: "Donate Now",
+		link: "/aids/vision",
 	},
 	{
 		id: 5,
@@ -34,6 +37,7 @@ export const aids = [
 		title: "Ghar Aid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
 		button: "Donate Now",
+		link: "/aids/ghar",
 	},
 	{
 		id: 6,
@@ -41,5 +45,6 @@ export const aids = [
 		title: "Sakhi Aid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Donate Now",
+		link: "/aids/sakhi",
 	},
 ];

@@ -11,6 +11,7 @@ import ReviewSection from "@/components/homepage/review-section";
 import NewsSection from "@/components/homepage/news-section";
 import PartnersSection from "@/components/homepage/partners";
 import CampaignList from "@/components/campaign/campaignlist";
+import ShikshaAid from "@/components/aids/shiksha-aid/shikapage";
 
 export default async function HomePage() {
 	try {
@@ -22,10 +23,10 @@ export default async function HomePage() {
 				<CampaignList />
 				<CategoriesSection />
 				<AidsSection />
-
 				<ReviewSection />
 				<NewsSection articles={articles} />
 				<AssuranceSection />
+				<ShikshaAid />
 				<PartnersSection />
 			</main>
 		);
