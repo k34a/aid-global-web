@@ -42,4 +42,12 @@ export const aids = [
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Donate Now",
 	},
+	{
+		id: 7,
+		image: "/aids/intro.jpg",
+		title: "Hunger Aid",
+		desc: "HungerAid is that voice — a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
+		button: "Read More",
+		link: "/hunger-aid",
+	},
 ];
