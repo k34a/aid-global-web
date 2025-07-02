@@ -3,13 +3,13 @@ import Image from "next/image";
 
 function Whoweeare() {
 	return (
-		<div>
-			<section className=" text-base sm:text-lg bg-[url('/background.webp')] bg-cover bg-center h-96 w-full flex justify-between">
-				<div className="p-8 sm:p-10 lg:p-16 xl:p-24">
-					<h2 className="text-4xl font-bold text-blue-500 mb-6">
+		<div className="bg-[url('/background.webp')] bg-cover bg-center pt-6 pb-6">
+			<section className="max-w-7xl mx-20 flex flex-col lg:flex-row items-center gap-y-10 gap-10 lg:gap-x-12 px-4">
+				<div className="w-full lg:w-1/2 flex flex-col justify-center">
+					<h2 className="text-3xl sm:text-4xl font-bold text-blue-500 mb-4">
 						Who Are We
 					</h2>
-					<p>
+					<p className="text-base sm:text-lg leading-relaxed text-gray-800">
 						<strong className="font-semibold">
 							Aid Global Foundation
 						</strong>{" "}
@@ -24,12 +24,11 @@ function Whoweeare() {
 						.
 					</p>
 				</div>
-<<<<<<< HEAD
-
 				<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
 					<div className="w-full max-w-xs">
 						<Image
-							src="/whoweare/whoweare.webp"
+
+							src="/whoweare/whoweare.jpg"
 							alt="who we are"
 							width={240}
 							height={240}
@@ -37,7 +36,7 @@ function Whoweeare() {
 						/>
 					</div>
 				</div>
-=======
+
 				<Image
 					src="/who_are_we.webp"
 					alt="who we are"
@@ -45,7 +44,6 @@ function Whoweeare() {
 					height={400}
 					className=" block sm:block pr-8 w-full max-w-sm h-auto"
 				/>
->>>>>>> 5dcfa30 (fix: update about us page content)
 			</section>
 		</div>
 	);
