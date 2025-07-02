@@ -22,7 +22,6 @@ export default async function HomePage() {
 				<CampaignList />
 				<CategoriesSection />
 				<AidsSection />
-
 				<ReviewSection />
 				<NewsSection articles={articles} />
 				<AssuranceSection />
