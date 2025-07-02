@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import TeamCard from "../teamcard";
-import TeamCardDesc from "../teamcarddesc";
+import TeamCard from "@/components/who-we-are/teamcard";
+import TeamCardDesc from "@/components/who-we-are/teamcarddesc";
 import { teamembers } from "@/config/team";
 import { teamembersdata } from "@/config/teamdesc";
 

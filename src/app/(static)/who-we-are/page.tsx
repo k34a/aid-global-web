@@ -1,5 +1,4 @@
-"use client";
-import React, { useRef, useState } from "react";
+import React from "react";
 import Whoweeare from "@/components/who-we-are/whoweare";
 import Aboutus from "@/components/who-we-are/aboutus";
 import Visionmission from "@/components/who-we-are/visionmission";

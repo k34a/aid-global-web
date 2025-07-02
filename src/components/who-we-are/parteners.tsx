@@ -8,7 +8,7 @@ function Parteners() {
 				<h2 className="text-center text-4xl font-bold text-blue-800 mb-10">
 					Our Partners
 				</h2>
-				<div className="bg-amber-50 p-6 rounded-xl shadow-lg flex flex-wrap justify-center gap-6">
+				<div className=" p-6 rounded-xl shadow-lg flex flex-wrap justify-center gap-6">
 					{partners.map((partner, index) => (
 						<div
 							key={index}
