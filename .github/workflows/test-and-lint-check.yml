@@ -1,9 +1,7 @@
 name: Tests and Lint Check
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   lint-and-test:
