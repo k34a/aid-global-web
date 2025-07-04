@@ -2,10 +2,16 @@ import React from "react";
 
 function Aboutus() {
 	return (
-		<section id="aboutus" className="pl-6 mx-15 pr-4 mt-16">
-			<h2 className="text-4xl font-bold text-blue-800 mb-6">About Us</h2>
-			<div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-32">
-				<p>
+		<section
+			id="aboutus"
+			className="pl-2 pr-2 mt-8 sm:pl-6 sm:pr-4 sm:mt-16 mx-4"
+		>
+			<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">
+				About Us
+			</h2>
+
+			<div className="flex flex-col lg:flex-row justify-between gap-6 sm:gap-10 lg:gap-32">
+				<p className="text-sm sm:text-base">
 					Our grassroots work is powered by purpose and designed for
 					long-term impact. We operate directly within communities
 					through a range of focused, life-transforming initiatives:
@@ -17,7 +23,7 @@ function Aboutus() {
 				</p>
 			</div>
 
-			<ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-10 mt-6 pl-6 list-disc">
+			<ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 				<li>
 					<strong>ShikshaAid</strong> – Education for underprivileged
 					children
