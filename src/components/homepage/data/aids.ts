@@ -40,6 +40,7 @@ export const aids = [
 		image: "/aids/sakhi.jpg",
 		title: "Sakhi Aid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
-		button: "Donate Now",
+		button: "Read More",
+		link: "/sakhi-aid",
 	},
 ];
