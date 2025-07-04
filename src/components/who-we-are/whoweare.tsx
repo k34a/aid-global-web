@@ -3,13 +3,13 @@ import Image from "next/image";
 
 function Whoweeare() {
 	return (
-		<div className="bg-[url('/background.webp')] bg-cover bg-center pt-6 pb-6">
-			<section className="max-w-7xl mx-20 flex flex-col lg:flex-row items-center gap-y-10 gap-10 lg:gap-x-12 px-4">
+		<div className="bg-[url('/background.webp')] bg-cover bg-center pt-3 pb-3 sm:pt-6 sm:pb-6">
+			<section className="max-w-7xl mx-4 sm:mx-20 flex flex-col lg:flex-row items-center gap-y-8 gap-8 lg:gap-x-12 px-2 sm:px-4">
 				<div className="w-full lg:w-1/2 flex flex-col justify-center">
-					<h2 className="text-3xl sm:text-4xl font-bold text-blue-500 mb-4">
+					<h2 className="text-2xl sm:text-4xl font-bold text-blue-500 mb-4">
 						Who Are We
 					</h2>
-					<p className="text-base sm:text-lg leading-relaxed text-gray-800">
+					<p className="text-sm sm:text-lg leading-relaxed text-gray-800">
 						<strong className="font-semibold">
 							Aid Global Foundation
 						</strong>{" "}
