@@ -1,20 +1,18 @@
 "use client";
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-
 interface CampaignDescriptionProps {
-	markdown: string;
+	content: string;
 }
 
 export default function CampaignDescription({
-	markdown,
+	content,
 }: CampaignDescriptionProps) {
 	return (
 		<div className="prose prose-lg max-w-none bg-white rounded-xl shadow p-6">
-			<ReactMarkdown remarkPlugins={[remarkGfm]}>
-				{markdown}
-			</ReactMarkdown>
+			<div
+				dangerouslySetInnerHTML={{ __html: content }}
+				className="rich-text-content"
+			/>
 		</div>
 	);
 }
