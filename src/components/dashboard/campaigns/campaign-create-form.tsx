@@ -12,7 +12,6 @@ import {
 	Plus,
 	Trash2,
 	Image as ImageIcon,
-	Calendar,
 	Target,
 	FileText,
 	Link as LinkIcon,
@@ -505,7 +504,10 @@ export default function CampaignCreateForm() {
 						{formData.banner_image && (
 							<div className="relative w-full max-w-md">
 								<Image
-									src={formData.banner_image}
+									src={getAdminImageUrl(
+										formData.banner_image,
+										formData.slug,
+									)}
 									alt="Banner preview"
 									width={400}
 									height={192}
@@ -754,7 +756,10 @@ export default function CampaignCreateForm() {
 									{product.image && (
 										<div className="relative w-32 h-32">
 											<Image
-												src={product.image}
+												src={getAdminImageUrl(
+													product.image,
+													formData.slug,
+												)}
 												alt={product.title}
 												width={128}
 												height={128}
