@@ -6,18 +6,18 @@ function Corevalues() {
 		<div>
 			<section
 				id="core"
-				className="px-4 py-12 bg-[url('/background.webp')] mx-20 gap-10 bg-no-repeat bg-cover bg-center"
+				className="px-2 sm:px-4 py-6 sm:py-12 bg-[url('/background.webp')] mx-4 sm:mx-20 gap-8 sm:gap-10 bg-no-repeat bg-cover bg-center"
 			>
 				<div className="max-w-7xl mx-auto">
-					<h2 className="text-3xl sm:text-4xl font-bold text-blue-500 mb-4">
+					<h2 className="text-2xl sm:text-4xl font-bold text-blue-500 mb-4 sm:mb-6">
 						Core Values
 					</h2>
 
-					<div className="flex flex-col lg:flex-row items-center gap-y-10 lg:gap-x-12">
+					<div className="flex flex-col lg:flex-row items-center gap-y-6 sm:gap-y-10 lg:gap-x-12">
 						<div className="w-full lg:w-1/2">
-							<ul className="space-y-6 text-base sm:text-lg text-gray-800">
+							<ul className="space-y-4 sm:space-y-6 text-sm sm:text-lg text-gray-800">
 								<li>
-									<h3 className="text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-blue-600">
 										GODLIKE
 									</h3>
 									<p>
@@ -26,7 +26,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-blue-600">
 										CHILDLIKE
 									</h3>
 									<p>
@@ -36,7 +36,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-blue-600">
 										INTEGRITY
 									</h3>
 									<p>
@@ -45,7 +45,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-blue-600">
 										RESTORING THE BROKEN
 									</h3>
 									<p>
@@ -55,7 +55,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-blue-600">
 										INTENTIONAL RELATIONSHIPS
 									</h3>
 									<p>
@@ -68,7 +68,7 @@ function Corevalues() {
 						</div>
 
 						<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-							<div className="w-64 sm:w-80 md:w-96">
+							<div className="w-56 sm:w-72 md:w-96">
 								<Image
 									src="/whoweare/coreval.webp"
 									alt="core values"
