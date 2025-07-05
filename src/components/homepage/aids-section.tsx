@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { aids } from "@/components/homepage/data/aids";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 const AidsSection = () => {
 	const sectionRef = useRef<HTMLDivElement>(null);
@@ -87,7 +88,7 @@ const AidsSection = () => {
 							className="relative bg-white rounded-2xl shadow-lg flex flex-col transition-transform duration-300 ease-in-out hover:scale-95 border-2 
 								min-w-[260px] max-w-xs w-full md:min-w-[320px] md:max-w-sm lg:min-w-[350px] lg:max-w-md mx-2"
 						>
-							<div className="relative min-h-[220px] md:min-h-[260px] lg:min-h-[300px] w-full rounded-t-2xl overflow-hidden">
+							<div className="relative min-h-[220px] md:min-h-[260px] lg:min-h-[300px] w-full rounded-2xl overflow-hidden">
 								<Image
 									src={item.image}
 									alt={item.title}
@@ -102,20 +103,21 @@ const AidsSection = () => {
 									<p className="text-white text-xs md:text-base mb-3">
 										{item.desc}
 									</p>
-									{item.link ? (
-										<a
-											href={item.link}
-											className="self-start"
-										>
-											<button className="px-4 py-2 rounded-full font-semibold text-white text-sm inline-flex items-center gap-2 shadow-2xl border-2 border-white hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
-												{item.button}
-											</button>
-										</a>
-									) : (
+
+									<div className="mt-4 flex flex-wrap gap-4 items-center justify-between">
+										{/* Donate Button */}
 										<button className="px-4 py-2 rounded-full font-semibold text-white text-sm inline-flex items-center gap-2 shadow-2xl border-2 border-white hover:bg-blue-600 transition-colors duration-300 cursor-pointer self-start">
-											{item.button}
+											Donate
 										</button>
-									)}
+
+										{/* Read More Button */}
+										<Link
+											href={`/${item.link}`}
+											className="px-4 py-2 rounded-full font-semibold bg-blue-400 text-sm inline-flex items-center gap-2 border border-black  hover:bg-blue-600 hover:text-white transition-colors duration-300"
+										>
+											Read More
+										</Link>
+									</div>
 								</div>
 							</div>
 						</motion.div>
