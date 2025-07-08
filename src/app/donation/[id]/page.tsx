@@ -181,7 +181,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 									Quantity
 								</th>
 								<th className="font-semibold p-2 bg-gray-100">
-									Price (per unit)
+									Price (per unit, &#8377;)
 								</th>
 							</tr>
 						</thead>
@@ -202,8 +202,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 													? "s"
 													: ""}
 											</td>
-											<td className="p-2 flex items-center gap-1">
-												<IndianRupee className="w-3 h-3" />
+											<td className="p-2">
 												{
 													donatedProduct
 														.campaign_products

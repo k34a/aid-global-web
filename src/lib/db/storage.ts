@@ -53,3 +53,30 @@ export const fetchCampaignContent = async (
 
 	return await data.text();
 };
+
+export async function uploadFileToSupabase(
+	file: File,
+	buffer: Buffer,
+	fullPath: string,
+) {
+	const { error } = await supabaseAdmin.storage
+		.from("content")
+		.upload(fullPath, buffer, {
+			contentType: file.type,
+			cacheControl: "3600",
+			upsert: false,
+		});
+
+	if (error) {
+		throw new Error("Failed to upload file");
+	}
+
+	const { data: urlData } = supabaseAdmin.storage
+		.from("content")
+		.getPublicUrl(fullPath);
+
+	return {
+		url: urlData.publicUrl,
+		path: fullPath,
+	};
+}

@@ -1,18 +1,34 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import { JWT_TOKEN_AGE_IN_DAYS } from "@/config/data";
 
-export async function verifyAdminAuth() {
+export function getJWT(id: string, email: string, role: string) {
+	const JWT_SECRET = process.env.JWT_SECRET!;
+	const token = jwt.sign(
+		{
+			id: id,
+			email: email,
+			role: role,
+		},
+		JWT_SECRET,
+		{ expiresIn: `${JWT_TOKEN_AGE_IN_DAYS}d` },
+	);
+	return token;
+}
+
+export async function verifyAdminAuth(): Promise<boolean> {
+	"use server";
 	const cookieStore = await cookies();
 	const token = cookieStore.get("token")?.value;
 
 	if (!token) {
-		return { error: "Unauthorized", status: 401 };
+		return false;
 	}
 
 	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-		return { user: decoded };
+		const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+		return !!decoded;
 	} catch (error) {
-		return { error: "Invalid token", status: 401 };
+		return false;
 	}
 }

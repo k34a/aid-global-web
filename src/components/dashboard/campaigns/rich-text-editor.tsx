@@ -11,6 +11,7 @@ import Underline from "@tiptap/extension-underline";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
+import "./rich-text-editor.css";
 import {
 	Bold,
 	Italic,

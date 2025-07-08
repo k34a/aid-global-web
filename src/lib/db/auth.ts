@@ -1,8 +1,7 @@
 import { supabaseAdmin } from "./supabase";
 import bcrypt from "bcryptjs";
 import { z } from "zod/v4";
-import jwt from "jsonwebtoken";
-import { JWT_TOKEN_AGE_IN_DAYS } from "@/config/data";
+import { getJWT } from "@/lib/auth/admin";
 
 const createAccountRequestSchema = z.object({
 	name: z.string(),
@@ -70,20 +69,6 @@ class UnableToLoginError extends Error {
 		super(msg);
 		Object.setPrototypeOf(this, UnableToLoginError.prototype);
 	}
-}
-
-function getJWT(id: string, email: string, role: string) {
-	const JWT_SECRET = process.env.JWT_SECRET!;
-	const token = jwt.sign(
-		{
-			id: id,
-			email: email,
-			role: role,
-		},
-		JWT_SECRET,
-		{ expiresIn: `${JWT_TOKEN_AGE_IN_DAYS}d` },
-	);
-	return token;
 }
 
 async function loginAdmin(email: string, password: string): Promise<string> {
