@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { fetchCampaignContent } from "@/lib/db/fetchmarkdown";
+import { fetchCampaignContent } from "@/lib/db/storage";
 import { getCampaignBySlug, getBackersForCampaign } from "@/lib/db/campaigns";
 
 import CampaignBanner from "@/components/campaign/campaignbanner";
