@@ -66,7 +66,7 @@ export default function KeyInitiatives() {
 															(sub, j) => (
 																<li
 																	key={j}
-																	className="flex items-start gap-2 text-xs xs:text-sm text-gray-700"
+																	className="flex items-start gap-2 text-md xs:text-md text-gray-700"
 																>
 																	<ArrowBigRight
 																		className="mt-0.5 text-pink-600"

@@ -54,7 +54,7 @@ export default function VisionAidHero() {
 							alt="EnableAid Hero"
 							fill
 							priority
-							sizes="100vw"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 							className="object-cover"
 						/>
 					</div>
