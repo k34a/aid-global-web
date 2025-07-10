@@ -67,7 +67,7 @@ export default function SakhiAidVision() {
 								<h3 className="text-[#1a1a1d] font-semibold mb-1 text-sm sm:text-base">
 									{title}
 								</h3>
-								<p className="text-xs sm:text-md text-gray-800">
+								<p className="text-sm sm:text-md text-gray-800">
 									{description}
 								</p>
 							</div>
