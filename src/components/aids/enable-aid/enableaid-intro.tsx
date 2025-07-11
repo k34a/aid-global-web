@@ -50,7 +50,7 @@ export default function VisionAidHero() {
 				<div className="w-full md:w-1/2 flex justify-center relative mt-6 md:mt-0">
 					<div className="relative w-full max-w-xs sm:max-w-md md:max-w-lg aspect-[5/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
 						<Image
-							src="/enable-aid/intro.jpg"
+							src="https://website-content.aidglobal.ngo/enable-aid/intro.jpg"
 							alt="EnableAid Hero"
 							fill
 							priority

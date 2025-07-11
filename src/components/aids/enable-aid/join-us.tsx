@@ -39,7 +39,7 @@ export default function SakhiAidVision() {
 		<section className="relative">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="/enable-aid/joinus-bg.jpg"
+					src="https://website-content.aidglobal.ngo/enable-aid/joinus-bg.jpg"
 					alt="Enable aid actions"
 					fill
 					className="object-cover"
