@@ -5,7 +5,7 @@ const HungerIntro = () => {
 	return (
 		<div className="relative w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px]">
 			<Image
-				src="/hunger-aid/intro.jpg"
+				src="https://website-content.aidglobal.ngo/hunger-aid/intro.jpg"
 				alt="introImage"
 				sizes="100vw"
 				fill

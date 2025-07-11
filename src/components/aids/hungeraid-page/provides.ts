@@ -1,7 +1,7 @@
 export const cards = [
 	{
 		id: 1,
-		image: "/hunger-aid/freshmeals.avif",
+		image: "https://website-content.aidglobal.ngo/hunger-aid/freshmeals.avif",
 		title: "Fresh Cooked Meals",
 		description: "We serve hot, nutritious meals to:",
 		bullets: [
@@ -14,7 +14,7 @@ export const cards = [
 	},
 	{
 		id: 2,
-		image: "/hunger-aid/foodelders.jpg",
+		image: "https://website-content.aidglobal.ngo/hunger-aid/foodelders.jpg",
 		title: "Home-Delivered Meals for Elderly & Disabled",
 		description:
 			"Many people suffer hunger quietly behind closed doors. We deliver two hot meals every day to:",
@@ -27,7 +27,7 @@ export const cards = [
 	},
 	{
 		id: 3,
-		image: "/hunger-aid/foodschool.jpg",
+		image: "https://website-content.aidglobal.ngo/hunger-aid/foodschool.jpg",
 		title: "School Feeding for Underprivileged Children",
 		description:
 			"Children cannot grow, learn, or dream when they are hungry. We provide daily meals to:",
@@ -40,7 +40,7 @@ export const cards = [
 	},
 	{
 		id: 4,
-		image: "/hunger-aid/kits.webp",
+		image: "https://website-content.aidglobal.ngo/hunger-aid/kits.webp",
 		title: "Grocery Kits for Families in Crisis",
 		description:
 			"We distribute essential food and hygiene kits to families experiencing:",
@@ -49,11 +49,11 @@ export const cards = [
 			"Chronic illness, disability, or stigma",
 			"Floods, fire, displacement, or other emergencies",
 		],
-		footer: "Our kits are designed to support: Widowed and single women, HIV-positive children and their caregivers, Transgender persons facing social exclusion, Daily wage earners during off-season hardship. Each grocery kit provides safety, relief, and peace of mind.",
+		footer: "Our kits are designed to support: Widowed and single women, HIV-positive children and their caregivers, Transgender persons facing social exclusion, Daily wage earners during off-season hardship. Each grocery kit provides safety, relief, and peace of mind.They serve as a vital lifeline, bringing dignity and stability to those navigating life's toughest challenges.",
 	},
 	{
 		id: 5,
-		image: "/hunger-aid/kitchenprogram.jpg",
+		image: "https://website-content.aidglobal.ngo/hunger-aid/kitchenprogram.jpg",
 		title: "Community Kitchen Program",
 		description: "We operate Community Kitchens to serve:",
 		bullets: [
@@ -61,6 +61,6 @@ export const cards = [
 			"Relief food during natural disasters, heatwaves, or public crises",
 			"Daily support for families who cannot cook or afford ingredients",
 		],
-		footer: "These kitchens are hubs of compassion, nutrition, and resilience — ensuring no one in the area is left behind.",
+		footer: "These kitchens are hubs of compassion, nutrition, and resilience — ensuring no one in the area is left behind.They not only serve hot, nutritious meals but also restore dignity and hope for vulnerable communities. By addressing hunger at its root, these kitchens foster stronger, healthier, and more inclusive neighborhoods.",
 	},
 ];

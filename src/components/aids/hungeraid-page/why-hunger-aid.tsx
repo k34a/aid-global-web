@@ -28,7 +28,7 @@ export default function WhyHungerAid() {
 		<section className="relative ">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="/hunger-aid/why.jpg"
+					src="https://website-content.aidglobal.ngo/hunger-aid/why.jpg"
 					alt="Why HungerAid"
 					fill
 					priority
