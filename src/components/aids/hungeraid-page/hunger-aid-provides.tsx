@@ -32,13 +32,16 @@ export default function HungerAidProvides() {
 							<p className="text-sm sm:text-md font-serif text-gray-600 font-semibold mb-2 sm:mb-3">
 								{card.description}
 							</p>
-							<ul className="pl-4 sm:pl-5 text-sm sm:text-md font-serif space-y-1 text-gray-600 font-semibold mb-2 sm:mb-3">
+							<ul className="pl-4 sm:pl-5 text-md sm:text-md font-serif space-y-1 text-gray-600 font-semibold mb-2 sm:mb-3">
 								{card.bullets.map((point, i) => (
 									<li
 										key={i}
 										className="flex items-start gap-2"
 									>
-										<CircleDotDashed className="w-4 h-4 mt-1 text-blue-800" />
+										<CircleDotDashed
+											className="w-4 h-4 mt-1 text-blue-800"
+											strokeWidth={3.5}
+										/>
 										<span>{point}</span>
 									</li>
 								))}
@@ -52,7 +55,7 @@ export default function HungerAidProvides() {
 				{/* Custom 6th card */}
 				<div className="relative shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-orange-100 flex flex-col items-center justify-center min-h-[220px] sm:min-h-[320px] w-full max-w-xs sm:max-w-sm">
 					<Image
-						src="/hunger-aid/intro.jpg"
+						src="https://website-content.aidglobal.ngo/hunger-aid/intro.jpg"
 						alt="Your contribution creates a change"
 						fill
 						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
