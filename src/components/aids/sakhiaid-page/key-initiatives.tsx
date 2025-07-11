@@ -13,7 +13,7 @@ interface KeyInitiativesProps {
 export default function KeyInitiatives({
 	title,
 	items,
-	bgImage = "/sakhi-aid/illustration1.webp",
+	bgImage = "https://website-content.aidglobal.ngo/sakhi-aid/illustration1.webp",
 }: KeyInitiativesProps) {
 	return (
 		<section

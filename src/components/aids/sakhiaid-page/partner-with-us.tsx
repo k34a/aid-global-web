@@ -2,27 +2,27 @@ import Image from "next/image";
 import { HandHeart } from "lucide-react";
 const content = [
 	{
-		image: "/sakhi-aid/partner1.jpg",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner1.jpg",
 		desc: "Sponsor a girl's skill training",
 	},
 	{
-		image: "/sakhi-aid/partner2.webp",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner2.webp",
 		desc: "Donate pads or hygiene kits",
 	},
 	{
-		image: "/sakhi-aid/partner3.webp",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner3.webp",
 		desc: "Fund a goat or dairy setup for a woman",
 	},
 	{
-		image: "/sakhi-aid/partner4.jpg",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner4.jpg",
 		desc: "Invite SHGs to your exhibition",
 	},
 	{
-		image: "/sakhi-aid/partner5.jpg",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner5.jpg",
 		desc: "Conduct workshops at your school or office",
 	},
 	{
-		image: "/sakhi-aid/partner6.jpg",
+		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner6.jpg",
 		desc: "Volunteer your skills",
 	},
 ];
