@@ -33,7 +33,7 @@ export default function SakhiAidVision() {
 		<section className="relative">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="/sakhi-aid/vision.webp"
+					src="https://website-content.aidglobal.ngo/sakhi-aid/vision.webp"
 					alt="sakhi-aid vision"
 					fill
 					className="object-cover"
