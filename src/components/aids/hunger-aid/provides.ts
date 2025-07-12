@@ -3,7 +3,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 export const cards = [
 	{
 		id: 1,
-		image: `${STATIC_IMAGE_HOST}hunger-aid/freshmeals.avif`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hunger-aid_freshmeals.webp`,
 		title: "Fresh Cooked Meals",
 		description: "We serve hot, nutritious meals to:",
 		bullets: [
@@ -16,7 +16,7 @@ export const cards = [
 	},
 	{
 		id: 2,
-		image: `${STATIC_IMAGE_HOST}hunger-aid/foodelders.jpg`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hunger-aid_foodelders.webp`,
 		title: "Home-Delivered Meals for Elderly & Disabled",
 		description:
 			"Many people suffer hunger quietly behind closed doors. We deliver two hot meals every day to:",
@@ -29,7 +29,7 @@ export const cards = [
 	},
 	{
 		id: 3,
-		image: `${STATIC_IMAGE_HOST}hunger-aid/foodschool.jpg`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hunger-aid_foodschool.webp`,
 		title: "School Feeding for Underprivileged Children",
 		description:
 			"Children cannot grow, learn, or dream when they are hungry. We provide daily meals to:",
@@ -55,7 +55,7 @@ export const cards = [
 	},
 	{
 		id: 5,
-		image: `${STATIC_IMAGE_HOST}hunger-aid/kitchenprogram.jpg`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hunger-aid_kitchenprogram.webp`,
 		title: "Community Kitchen Program",
 		description: "We operate Community Kitchens to serve:",
 		bullets: [

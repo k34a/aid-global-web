@@ -82,7 +82,7 @@ export default function SakhiAidProvides() {
 			{/* Background Image (Bottom) */}
 			<div className="absolute bottom-0 left-0 top-0 w-full z-0 hidden lg:block">
 				<Image
-					src={`${STATIC_IMAGE_HOST}sakhi-aid/village-bg.jpg`}
+					src={`${STATIC_IMAGE_HOST}sakhi-aid/sakhi-aid_village-bg.webp`}
 					alt="Village Background"
 					width={1200}
 					height={400}

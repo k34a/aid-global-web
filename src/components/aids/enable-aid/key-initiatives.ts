@@ -22,7 +22,7 @@ export const enableAidData: EnableAidItem[] = [
 	{
 		id: 1,
 		icon: Stethoscope,
-		image: `${STATIC_IMAGE_HOST}enable-aid/onee.jpg`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enable-aid_onee.webp`,
 		title: "Early Detection & Timely Intervention",
 		tagline: "Spotting the signs. Starting support early.",
 		bullets: [
@@ -41,7 +41,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 2,
-		image: `${STATIC_IMAGE_HOST}enable-aid/two.jpg`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enable-aid_two.webp`,
 		icon: Footprints,
 		title: "Clubfoot Program – Early Steps Toward a Better Future",
 		tagline: "Correcting with compassion. Restoring mobility.",
@@ -59,7 +59,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 3,
-		image: `${STATIC_IMAGE_HOST}enable-aid/three.jpg`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enable-aid_three.webp`,
 		icon: Smile,
 		title: "Mission Smile Program",
 		tagline: "Healing smiles. Building futures.",
@@ -105,7 +105,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 5,
-		image: `${STATIC_IMAGE_HOST}enable-aid/five.jpeg`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enable-aid_five.webp`,
 		icon: Megaphone,
 		title: "Awareness, Advocacy & Inclusion",
 		tagline: "Changing minds. Creating opportunity.",
@@ -118,7 +118,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 6,
-		image: `${STATIC_IMAGE_HOST}enable-aid/six.jpg`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enable-aid_six.webp`,
 		icon: Hospital,
 		title: "EnableAid Clinics at Hospitals & Medical Colleges",
 		tagline: "One-stop care. Community-rooted impact.",
