@@ -1,5 +1,6 @@
 "use client";
 import { Gift, Heart, HandHeart } from "lucide-react";
+import Link from "next/link";
 
 export default function CallToAction() {
 	return (
@@ -44,7 +45,8 @@ export default function CallToAction() {
 			</div>
 
 			<div className="flex items-center justify-center mt-8 sm:mt-10">
-				<button
+				<Link
+					href="/donate?program=hunger-aid"
 					aria-label="Donate to HungerAid"
 					className="flex items-center gap-2 px-6 py-2 sm:px-8 sm:py-3 rounded-full text-base sm:text-lg font-semibold transition-all duration-300
           bg-gradient-to-r from-rose-600 to-rose-800 text-white shadow-lg
@@ -57,7 +59,7 @@ export default function CallToAction() {
 					</span>
 
 					<HandHeart className="w-5 h-6 text-white font-bold relative z-10 transition duration-300 group-hover:text-rose-600 group-hover:scale-110 animate-pulse" />
-				</button>
+				</Link>
 			</div>
 		</section>
 	);

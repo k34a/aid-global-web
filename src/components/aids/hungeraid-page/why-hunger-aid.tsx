@@ -8,6 +8,7 @@ import {
 	UserRoundX,
 	CloudDrizzle,
 } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export default function WhyHungerAid() {
 	const bulletPoints = [
@@ -28,7 +29,7 @@ export default function WhyHungerAid() {
 		<section className="relative ">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="https://website-content.aidglobal.ngo/hunger-aid/why.jpg"
+					src={`${STATIC_IMAGE_HOST}hunger-aid/why.jpg`}
 					alt="Why HungerAid"
 					fill
 					priority
