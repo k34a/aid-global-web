@@ -1,31 +1,35 @@
 import Image from "next/image";
 import { HandHeart } from "lucide-react";
+import Link from "next/link";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+
 const content = [
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner1.jpg",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner1.jpg`,
 		desc: "Sponsor a girl's skill training",
 	},
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner2.webp",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner2.webp`,
 		desc: "Donate pads or hygiene kits",
 	},
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner3.webp",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner3.webp`,
 		desc: "Fund a goat or dairy setup for a woman",
 	},
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner4.jpg",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner4.jpg`,
 		desc: "Invite SHGs to your exhibition",
 	},
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner5.jpg",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner5.jpg`,
 		desc: "Conduct workshops at your school or office",
 	},
 	{
-		image: "https://website-content.aidglobal.ngo/sakhi-aid/partner6.jpg",
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner6.jpg`,
 		desc: "Volunteer your skills",
 	},
 ];
+
 export default function PartnerWithUs() {
 	return (
 		<section className="bg-gradient-to-br from-rose-700 via-red-300 to-rose-400 py-12 px-2 sm:px-6">
@@ -58,7 +62,8 @@ export default function PartnerWithUs() {
 					Let&#39;s raise 10,000 Sakhis together.
 				</p>
 				<div className="flex justify-center w-full mt-10">
-					<button
+					<Link
+						href="/donate?program=sakhi-aid"
 						aria-label="Join SakhiAid Cause"
 						className="flex items-center justify-center gap-2 px-6 py-2 sm:px-8 sm:py-3 rounded-full text-base sm:text-lg font-semibold transition-all duration-300
           bg-gradient-to-r from-rose-600 to-rose-800 text-white shadow-lg
@@ -71,7 +76,7 @@ export default function PartnerWithUs() {
 						</span>
 
 						<HandHeart className="w-5 h-6 text-white font-bold relative z-10 transition duration-300 group-hover:text-rose-600 group-hover:scale-110 animate-pulse" />
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>

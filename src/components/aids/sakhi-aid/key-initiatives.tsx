@@ -1,8 +1,7 @@
-"use client";
-
 import React from "react";
 import { PackageCheck, Star } from "lucide-react";
-import { InitiativeItem } from "@/components/aids/sakhiaid-page/sakhiaid-data";
+import { InitiativeItem } from "@/components/aids/sakhi-aid/data";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 interface KeyInitiativesProps {
 	title: string;
@@ -13,7 +12,7 @@ interface KeyInitiativesProps {
 export default function KeyInitiatives({
 	title,
 	items,
-	bgImage = "https://website-content.aidglobal.ngo/sakhi-aid/illustration1.webp",
+	bgImage = `${STATIC_IMAGE_HOST}sakhi-aid/illustration1.webp`,
 }: KeyInitiativesProps) {
 	return (
 		<section

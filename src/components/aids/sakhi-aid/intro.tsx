@@ -1,4 +1,4 @@
-"use client";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "next/image";
 
 export default function SakhiAidIntro() {
@@ -36,7 +36,7 @@ export default function SakhiAidIntro() {
 			<div className="w-full lg:w-1/2 flex justify-center items-center">
 				<div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
 					<Image
-						src="https://website-content.aidglobal.ngo/sakhi-aid/intro.webp"
+						src={`${STATIC_IMAGE_HOST}sakhi-aid/intro.webp`}
 						alt="Empowered SakhiAid Girls"
 						width={600}
 						height={500}
