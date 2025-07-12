@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { HeartHandshake, ArrowBigRight } from "lucide-react";
 import { enableAidData } from "@/components/aids/enable-aid/key-initiatives";

@@ -1,3 +1,4 @@
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	Stethoscope,
 	Footprints,
@@ -21,7 +22,7 @@ export const enableAidData: EnableAidItem[] = [
 	{
 		id: 1,
 		icon: Stethoscope,
-		image: "https://website-content.aidglobal.ngo/enable-aid/onee.jpg",
+		image: `${STATIC_IMAGE_HOST}enable-aid/onee.jpg`,
 		title: "Early Detection & Timely Intervention",
 		tagline: "Spotting the signs. Starting support early.",
 		bullets: [
@@ -40,7 +41,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 2,
-		image: "https://website-content.aidglobal.ngo/enable-aid/two.jpg",
+		image: `${STATIC_IMAGE_HOST}enable-aid/two.jpg`,
 		icon: Footprints,
 		title: "Clubfoot Program – Early Steps Toward a Better Future",
 		tagline: "Correcting with compassion. Restoring mobility.",
@@ -58,7 +59,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 3,
-		image: "https://website-content.aidglobal.ngo/enable-aid/three.jpg",
+		image: `${STATIC_IMAGE_HOST}enable-aid/three.jpg`,
 		icon: Smile,
 		title: "Mission Smile Program",
 		tagline: "Healing smiles. Building futures.",
@@ -85,7 +86,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 4,
-		image: "https://website-content.aidglobal.ngo/enable-aid/four.webp",
+		image: `${STATIC_IMAGE_HOST}enable-aid/four.webp`,
 		icon: Accessibility,
 		title: "Assistive Devices & Accessibility Support",
 		tagline: "Tools for independence. Resources for dignity.",
@@ -104,7 +105,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 5,
-		image: "https://website-content.aidglobal.ngo/enable-aid/five.jpeg",
+		image: `${STATIC_IMAGE_HOST}enable-aid/five.jpeg`,
 		icon: Megaphone,
 		title: "Awareness, Advocacy & Inclusion",
 		tagline: "Changing minds. Creating opportunity.",
@@ -117,7 +118,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 6,
-		image: "https://website-content.aidglobal.ngo/enable-aid/six.jpg",
+		image: `${STATIC_IMAGE_HOST}enable-aid/six.jpg`,
 		icon: Hospital,
 		title: "EnableAid Clinics at Hospitals & Medical Colleges",
 		tagline: "One-stop care. Community-rooted impact.",

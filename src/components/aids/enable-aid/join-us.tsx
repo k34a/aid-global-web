@@ -6,40 +6,42 @@ import {
 	Megaphone,
 	HeartHandshake,
 } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+import Link from "next/link";
+
+const enableAidActions = [
+	{
+		icon: HelpingHand,
+		title: "Volunteer Your Time or Expertise",
+		description:
+			"Contribute in therapy, education, or outreach to support children with disabilities.",
+	},
+	{
+		icon: Gift,
+		title: "Sponsor a Child's Treatment or Assistive Device",
+		description:
+			"Support Clubfoot (₹12,000), Cleft Surgery (₹25,000), or provide essential assistive tools.",
+	},
+	{
+		icon: Briefcase,
+		title: "Partner Through CSR",
+		description:
+			"Join hands to launch EnableAid Clinics or fund inclusive community outreach campaigns.",
+	},
+	{
+		icon: Megaphone,
+		title: "Spread Awareness",
+		description:
+			"Advocate inclusion — every child deserves the right to grow, learn, and belong.",
+	},
+];
 
 export default function SakhiAidVision() {
-	const enableAidActions = [
-		{
-			icon: HelpingHand,
-			title: "Volunteer Your Time or Expertise",
-			description:
-				"Contribute in therapy, education, or outreach to support children with disabilities.",
-		},
-		{
-			icon: Gift,
-			title: "Sponsor a Child’s Treatment or Assistive Device",
-			description:
-				"Support Clubfoot (₹12,000), Cleft Surgery (₹25,000), or provide essential assistive tools.",
-		},
-		{
-			icon: Briefcase,
-			title: "Partner Through CSR",
-			description:
-				"Join hands to launch EnableAid Clinics or fund inclusive community outreach campaigns.",
-		},
-		{
-			icon: Megaphone,
-			title: "Spread Awareness",
-			description:
-				"Advocate inclusion — every child deserves the right to grow, learn, and belong.",
-		},
-	];
-
 	return (
 		<section className="relative">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="https://website-content.aidglobal.ngo/enable-aid/joinus-bg.jpg"
+					src={`${STATIC_IMAGE_HOST}enable-aid/joinus-bg.jpg`}
 					alt="Enable aid actions"
 					fill
 					className="object-cover"
@@ -76,10 +78,13 @@ export default function SakhiAidVision() {
 				</div>
 
 				<div className="flex justify-center items-center mt-8 sm:mt-10">
-					<button className="mt-3 sm:mt-4 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#003944] hover:bg-[#c44536] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2 text-sm sm:text-base">
+					<Link
+						className="mt-3 sm:mt-4 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#003944] hover:bg-[#c44536] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2 text-sm sm:text-base"
+						href="/donate?program=enable-aid"
+					>
 						<HeartHandshake className="w-4 h-4 sm:w-5 sm:h-5" />
 						Contribute Now
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>
