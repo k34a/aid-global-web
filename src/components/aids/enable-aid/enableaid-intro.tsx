@@ -1,6 +1,8 @@
-"use client";
 import Image from "next/image";
 import { Heart } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+import Link from "next/link";
+
 export default function VisionAidHero() {
 	return (
 		<section className="relative w-full overflow-hidden">
@@ -40,17 +42,20 @@ export default function VisionAidHero() {
 					</p>
 
 					{/* CTA */}
-					<button className="mt-3 sm:mt-4 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#003944] hover:bg-[#c44536] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2 text-sm sm:text-base">
+					<Link
+						className="w-fit mt-3 sm:mt-4 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#003944] hover:bg-[#c44536] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2 text-sm sm:text-base"
+						href="/donate?program=enable-aid"
+					>
 						<Heart className="w-4 h-4 sm:w-5 sm:h-5" />
 						Help Now
-					</button>
+					</Link>
 				</div>
 
 				{/* Image Side */}
 				<div className="w-full md:w-1/2 flex justify-center relative mt-6 md:mt-0">
 					<div className="relative w-full max-w-xs sm:max-w-md md:max-w-lg aspect-[5/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
 						<Image
-							src="https://website-content.aidglobal.ngo/enable-aid/intro.jpg"
+							src={`${STATIC_IMAGE_HOST}enable-aid/intro.jpg`}
 							alt="EnableAid Hero"
 							fill
 							priority

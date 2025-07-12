@@ -1,15 +1,14 @@
-"use client";
-
 import Image from "next/image";
 import InfoCard from "@/components/aids/enable-aid/info-card";
 import { enableAidData } from "@/components/aids/enable-aid/key-initiatives";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export default function WhatWeDo() {
 	return (
 		<section className="flex flex-col">
 			<div className="relative w-full h-[180px] xs:h-[260px] sm:h-[320px] md:h-[400px]">
 				<Image
-					src="https://website-content.aidglobal.ngo/enable-aid/background.webp"
+					src={`${STATIC_IMAGE_HOST}enable-aid/background.webp`}
 					alt="what we do image"
 					fill
 					sizes="100vw"
