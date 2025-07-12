@@ -22,10 +22,12 @@ export const ngoDetails: NGODetails = {
 	contact: {
 		address:
 			"H.no. 4453, Sathe Nagar near Manoj Kirana Store, Narpoli, Bhiwandi, Thane, Maharashtra-421305",
-		email: "info@aidglobalfoundation.org",
+		email: "info@aidglobal.ngo",
 		phone: "+91 96077-53148",
-		website: "https://aid-global-web.vercel.app",
+		website: "https://www.aidglobal.ngo",
 	},
 	twitterHandle: "@aidglobal",
 	twitterCardType: "summary_large_image",
 };
+
+export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
