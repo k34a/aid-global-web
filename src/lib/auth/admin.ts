@@ -17,7 +17,6 @@ export function getJWT(id: string, email: string, role: string) {
 }
 
 export async function verifyAdminAuth(): Promise<boolean> {
-	"use server";
 	const cookieStore = await cookies();
 	const token = cookieStore.get("token")?.value;
 

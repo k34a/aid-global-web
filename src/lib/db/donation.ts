@@ -17,12 +17,7 @@ const newDonationRequestSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	is_anon: z.boolean().default(false),
 	auto_allocate: z.boolean().default(true),
-	notes: z
-		.string()
-		.min(100, "Description must be at least 100 characters")
-		.max(160, "Description must be at most 160 characters")
-		.optional()
-		.or(z.literal("")),
+	notes: z.string().optional(),
 });
 
 type NewDonationRequest = z.infer<typeof newDonationRequestSchema>;

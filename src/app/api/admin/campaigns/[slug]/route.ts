@@ -1,41 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
+import { CampaignUpdateSchema } from "@/lib/validators/campaign";
 import { supabaseAdmin } from "@/lib/db/supabase";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
-
-// Middleware to verify admin authentication
-async function verifyAdminAuth() {
-	const cookieStore = await cookies();
-	const token = cookieStore.get("token")?.value;
-
-	if (!token) {
-		return { error: "Unauthorized", status: 401 };
-	}
-
-	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-		return { user: decoded };
-	} catch (error) {
-		return { error: "Invalid token", status: 401 };
-	}
-}
+import { verifyAdminAuth } from "@/lib/auth/admin";
+import { handleCampaignProductsUpdate } from "@/lib/handlers/updatecampaignproducts";
+import { listAllFiles } from "@/lib/storage/listallfiles";
 
 export async function PUT(
 	request: NextRequest,
 	{ params }: { params: Promise<{ slug: string }> },
 ) {
 	try {
-		// Verify admin authentication
-		const authResult = await verifyAdminAuth();
-		if (authResult.error) {
+		const isAuthenticated = await verifyAdminAuth();
+		if (!isAuthenticated) {
 			return NextResponse.json(
-				{ error: authResult.error },
-				{ status: authResult.status },
+				{ error: "Unauthorized" },
+				{ status: 401 },
 			);
 		}
 
 		const { slug } = await params;
-		const body = await request.json();
+		const json = await request.json();
+
+		const parsed = CampaignUpdateSchema.safeParse(json);
+		if (!parsed.success) {
+			return NextResponse.json(
+				{ error: parsed.error.flatten() },
+				{ status: 400 },
+			);
+		}
+
+		const body = parsed.data;
 
 		// Get the campaign first to verify it exists
 		const { data: existingCampaign, error: fetchError } =
@@ -74,62 +68,17 @@ export async function PUT(
 			);
 		}
 
-		// Handle campaign products
-		if (body.products && Array.isArray(body.products)) {
-			// Get existing products
-			const { data: existingProducts } = await supabaseAdmin
-				.from("campaign_products")
-				.select("id")
-				.eq("campaign_id", existingCampaign.id);
-
-			const existingProductIds = existingProducts?.map((p) => p.id) || [];
-			const newProducts = body.products.filter(
-				(p: any) => !p.id.startsWith("temp-"),
+		// Update campaign products
+		if (body.products) {
+			const result = await handleCampaignProductsUpdate(
+				existingCampaign.id,
+				body.products,
 			);
-			const tempProducts = body.products.filter((p: any) =>
-				p.id.startsWith("temp-"),
-			);
-
-			// Delete products that are no longer in the list
-			const productsToKeep = body.products
-				.map((p: any) => p.id)
-				.filter((id: string) => !id.startsWith("temp-"));
-			const productsToDelete = existingProductIds.filter(
-				(id) => !productsToKeep.includes(id),
-			);
-
-			if (productsToDelete.length > 0) {
-				await supabaseAdmin
-					.from("campaign_products")
-					.delete()
-					.in("id", productsToDelete);
-			}
-
-			// Update existing products
-			for (const product of newProducts) {
-				await supabaseAdmin
-					.from("campaign_products")
-					.update({
-						title: product.title,
-						description: product.description,
-						price_per_unit: product.price_per_unit,
-						units_required: product.units_required,
-						image: product.image,
-					})
-					.eq("id", product.id);
-			}
-
-			// Insert new products
-			for (const product of tempProducts) {
-				await supabaseAdmin.from("campaign_products").insert({
-					campaign_id: existingCampaign.id,
-					title: product.title,
-					description: product.description,
-					price_per_unit: product.price_per_unit,
-					units_required: product.units_required,
-					units_collected: 0,
-					image: product.image,
-				});
+			if (result.error) {
+				return NextResponse.json(
+					{ error: result.error },
+					{ status: 500 },
+				);
 			}
 		}
 
@@ -139,6 +88,69 @@ export async function PUT(
 		);
 	} catch (error) {
 		console.error("Error in campaign update API:", error);
+		return NextResponse.json(
+			{ error: "Internal server error" },
+			{ status: 500 },
+		);
+	}
+}
+
+export async function DELETE(
+	request: NextRequest,
+	{ params }: { params: Promise<{ slug: string }> },
+) {
+	try {
+		const isAuthenticated = await verifyAdminAuth();
+		if (!isAuthenticated) {
+			return NextResponse.json(
+				{ error: "Unauthorized" },
+				{ status: 401 },
+			);
+		}
+
+		const { slug } = await params;
+		const campaignPath = `campaigns/${slug}`;
+
+		// ✅ Recursively get all file paths
+		const filePaths = await listAllFiles(campaignPath);
+
+		if (filePaths.length > 0) {
+			const { error: deleteError } = await supabaseAdmin.storage
+				.from("content")
+				.remove(filePaths);
+
+			if (deleteError) {
+				console.error("Failed to delete files:", deleteError);
+				return NextResponse.json(
+					{ error: "Failed to delete storage files" },
+					{ status: 500 },
+				);
+			}
+		}
+
+		// ✅ Delete the campaign row from the DB
+		const { error: deleteCampaignError } = await supabaseAdmin
+			.from("campaigns")
+			.delete()
+			.eq("slug", slug);
+
+		if (deleteCampaignError) {
+			console.error(
+				"Failed to delete campaign from DB:",
+				deleteCampaignError,
+			);
+			return NextResponse.json(
+				{ error: "Failed to delete campaign" },
+				{ status: 500 },
+			);
+		}
+
+		return NextResponse.json(
+			{ message: "Campaign deleted successfully" },
+			{ status: 200 },
+		);
+	} catch (error) {
+		console.error("Error deleting campaign:", error);
 		return NextResponse.json(
 			{ error: "Internal server error" },
 			{ status: 500 },

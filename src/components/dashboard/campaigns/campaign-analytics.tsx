@@ -2,6 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { CampaignDetails, BackerDetailsForCampaign } from "@/lib/db/campaigns";
+interface ExtendedBackerDetails extends BackerDetailsForCampaign {
+	email?: string | null;
+	contact_number?: string | null;
+}
+
 import {
 	Users,
 	IndianRupee,
@@ -23,7 +28,7 @@ interface AnalyticsData {
 	totalDonors: number;
 	averageDonation: number;
 	conversionRate: number;
-	recentDonations: BackerDetailsForCampaign[];
+	recentDonations: ExtendedBackerDetails[];
 	donationTrends: Array<{
 		date: string;
 		amount: number;

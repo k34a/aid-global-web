@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/db/supabase";
-import { getAdminBackersForCampaign } from "@/lib/db/campaigns";
+import { getBackersForCampaign } from "@/lib/db/campaigns";
 import { verifyAdminAuth } from "@/lib/auth/admin";
 
 export async function GET(
@@ -9,11 +9,11 @@ export async function GET(
 ) {
 	try {
 		// Verify admin authentication
-		const authResult = await verifyAdminAuth();
-		if (authResult.error) {
+		const isAuthenticated = await verifyAdminAuth();
+		if (!isAuthenticated) {
 			return NextResponse.json(
-				{ error: authResult.error },
-				{ status: authResult.status },
+				{ error: "Unauthorized" },
+				{ status: 401 },
 			);
 		}
 
@@ -34,12 +34,13 @@ export async function GET(
 		}
 
 		// Get recent donations with complete donor details for admin
-		const { backers: recentDonations } = await getAdminBackersForCampaign(
+		const { backers: recentDonations } = await getBackersForCampaign(
 			campaign.id,
 			10,
 			0,
+			true,
 		);
-
+		const safeRecentDonations = recentDonations ?? [];
 		// Get donation trends (last 30 days)
 		const thirtyDaysAgo = new Date();
 		thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -81,22 +82,19 @@ export async function GET(
 			}),
 		);
 
-		// Calculate additional metrics
 		const totalDonations = campaign.collection;
 		const totalDonors = campaign.backers;
 		const averageDonation =
 			totalDonors > 0 ? totalDonations / totalDonors : 0;
 
-		// Calculate conversion rate (this would need more data in a real scenario)
-		// For now, we'll use a placeholder
-		const conversionRate = 0; // This would be calculated based on page views vs donations
+		const conversionRate = 0;
 
 		return NextResponse.json({
 			totalDonations,
 			totalDonors,
 			averageDonation,
 			conversionRate,
-			recentDonations: recentDonations || [],
+			recentDonations: safeRecentDonations || [],
 			donationTrends: processedTrends,
 		});
 	} catch (error) {

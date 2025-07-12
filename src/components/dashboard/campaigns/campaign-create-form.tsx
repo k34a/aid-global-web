@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { getAdminImageUrl } from "@/lib/utils/image-url";
 import Image from "next/image";
 import {
 	Save,
@@ -102,11 +101,7 @@ export default function CampaignCreateForm() {
 			setBannerImageFile(file);
 
 			try {
-				// Upload image immediately
-				const imageUrl = await uploadImage(
-					file,
-					`campaigns/${formData.slug || "temp"}/banner`,
-				);
+				const imageUrl = await uploadImage(file, "banner");
 
 				// Update form with the uploaded image URL
 				setFormData((prev) => ({
@@ -130,11 +125,7 @@ export default function CampaignCreateForm() {
 		const file = e.target.files?.[0];
 		if (file) {
 			try {
-				// Upload image immediately
-				const imageUrl = await uploadImage(
-					file,
-					`campaigns/${formData.slug || "temp"}/products/${productId}`,
-				);
+				const imageUrl = await uploadImage(file, "product");
 
 				// Update product with the uploaded image URL
 				setProducts((prev) =>
@@ -245,22 +236,44 @@ export default function CampaignCreateForm() {
 		}
 	};
 
-	const uploadImage = async (file: File, path: string): Promise<string> => {
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("path", path);
+	const uploadImage = async (
+		file: File,
+		type: "banner" | "product",
+	): Promise<string> => {
+		const filename = file.name;
 
-		const response = await fetch("/api/upload", {
+		const res = await fetch("/api/upload", {
 			method: "POST",
-			body: formData,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+			body: JSON.stringify({
+				slug: formData.slug || "temp",
+				filename,
+				type, // ✅ Pass type
+			}),
 		});
 
-		if (!response.ok) {
-			throw new Error("Failed to upload image");
+		if (!res.ok) {
+			throw new Error("Failed to get presigned upload URL");
 		}
 
-		const data = await response.json();
-		return data.url;
+		const { presignedUrl, publicUrl } = await res.json();
+
+		const uploadRes = await fetch(presignedUrl, {
+			method: "PUT",
+			headers: {
+				"Content-Type": file.type,
+			},
+			body: file,
+		});
+
+		if (!uploadRes.ok) {
+			throw new Error("Failed to upload image to storage");
+		}
+
+		return publicUrl;
 	};
 
 	const uploadRichText = async (
@@ -291,11 +304,13 @@ export default function CampaignCreateForm() {
 
 		try {
 			// Validate required fields
+			const parsedAmount = Number(formData.amount);
 			if (
 				!formData.title ||
 				!formData.description ||
 				!formData.slug ||
-				formData.amount === ""
+				isNaN(parsedAmount) ||
+				parsedAmount <= 0
 			) {
 				toast.error("Please fill all required fields");
 				return;
@@ -332,7 +347,6 @@ export default function CampaignCreateForm() {
 				// Product images are already uploaded URLs
 			}));
 
-			// Create campaign
 			const response = await fetch("/api/admin/campaigns", {
 				method: "POST",
 				headers: {
@@ -340,8 +354,12 @@ export default function CampaignCreateForm() {
 				},
 				body: JSON.stringify({
 					...formData,
-					// Banner image is already uploaded URL
-					products: updatedProducts,
+					amount: Number(formData.amount),
+					products: updatedProducts.map((p) => ({
+						...p,
+						price_per_unit: Number(p.price_per_unit),
+						units_required: Number(p.units_required),
+					})),
 				}),
 			});
 
@@ -352,8 +370,11 @@ export default function CampaignCreateForm() {
 
 			const result = await response.json();
 
-			// Upload rich text content if provided
-			if (processedRichTextContent.trim()) {
+			if (
+				processedRichTextContent &&
+				processedRichTextContent.trim() &&
+				processedRichTextContent.trim() !== "<p></p>" // optionally check for empty editor content
+			) {
 				try {
 					await uploadRichText(
 						processedRichTextContent,
@@ -361,7 +382,9 @@ export default function CampaignCreateForm() {
 					);
 				} catch (error) {
 					console.error("Failed to upload rich text content:", error);
-					// Don't fail the entire request if rich text upload fails
+					toast.error(
+						"Campaign created, but rich text upload failed.",
+					);
 				}
 			}
 
@@ -504,10 +527,7 @@ export default function CampaignCreateForm() {
 						{formData.banner_image && (
 							<div className="relative w-full max-w-md">
 								<Image
-									src={getAdminImageUrl(
-										formData.banner_image,
-										formData.slug,
-									)}
+									src={formData.banner_image}
 									alt="Banner preview"
 									width={400}
 									height={192}
@@ -756,10 +776,7 @@ export default function CampaignCreateForm() {
 									{product.image && (
 										<div className="relative w-32 h-32">
 											<Image
-												src={getAdminImageUrl(
-													product.image,
-													formData.slug,
-												)}
+												src={product.image}
 												alt={product.title}
 												width={128}
 												height={128}
