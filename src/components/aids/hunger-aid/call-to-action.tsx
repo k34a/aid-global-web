@@ -1,4 +1,3 @@
-"use client";
 import { Gift, Heart, HandHeart } from "lucide-react";
 import Link from "next/link";
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import {
 	School,
@@ -10,21 +8,21 @@ import {
 } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
-export default function WhyHungerAid() {
-	const bulletPoints = [
-		{ icon: School, text: "A school child too weak to concentrate" },
-		{ icon: Soup, text: "An elderly widow sharing one meal over two days" },
-		{ icon: Accessibility, text: "A disabled person unable to cook" },
-		{
-			icon: UserRoundX,
-			text: "A transgender individual denied work and support",
-		},
-		{
-			icon: CloudDrizzle,
-			text: "A family devastated by flood or illness, unsure of their next meal",
-		},
-	];
+const bulletPoints = [
+	{ icon: School, text: "A school child too weak to concentrate" },
+	{ icon: Soup, text: "An elderly widow sharing one meal over two days" },
+	{ icon: Accessibility, text: "A disabled person unable to cook" },
+	{
+		icon: UserRoundX,
+		text: "A transgender individual denied work and support",
+	},
+	{
+		icon: CloudDrizzle,
+		text: "A family devastated by flood or illness, unsure of their next meal",
+	},
+];
 
+export default function WhyHungerAid() {
 	return (
 		<section className="relative ">
 			<div className="absolute inset-0 -z-10">

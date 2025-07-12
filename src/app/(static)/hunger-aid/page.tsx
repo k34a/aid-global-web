@@ -1,9 +1,9 @@
-import HungerIntro from "@/components/aids/hungeraid-page/hunger-intro";
-import WhatIsHungerAid from "@/components/aids/hungeraid-page/what-is-hungeraid";
-import HungerStats from "@/components/aids/hungeraid-page/hunger-stats";
-import WhyHungerAid from "@/components/aids/hungeraid-page/why-hunger-aid";
-import HungerAidProvides from "@/components/aids/hungeraid-page/hunger-aid-provides";
-import CallToAction from "@/components/aids/hungeraid-page/call-to-action";
+import HungerIntro from "@/components/aids/hunger-aid/hunger-intro";
+import WhatIsHungerAid from "@/components/aids/hunger-aid/what-is-hungeraid";
+import HungerStats from "@/components/aids/hunger-aid/hunger-stats";
+import WhyHungerAid from "@/components/aids/hunger-aid/why-hunger-aid";
+import HungerAidProvides from "@/components/aids/hunger-aid/hunger-aid-provides";
+import CallToAction from "@/components/aids/hunger-aid/call-to-action";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
