@@ -2,25 +2,25 @@ export const teamembers = [
 	{
 		name: "Mr. Shivam Pathak",
 		role: "Director",
-		imageSrc: "/man.png",
+		imageSrc: "/man.webp",
 		linkedinUrl: "https://www.linkedin.com/in/ShivamPathak",
 	},
 	{
 		name: "Mrs. Pooja Pathakk",
 		role: "Director",
-		imageSrc: "/woman.png",
+		imageSrc: "/woman.webp",
 		linkedinUrl: "https://www.linkedin.com/in/PoojaPathak",
 	},
 	{
 		name: "Mr. Nilesh Pal",
 		role: "Director",
-		imageSrc: "/man.png",
+		imageSrc: "/man.webp",
 		linkedinUrl: "https://www.linkedin.com/in/NileshPathak",
 	},
 	{
 		name: "Mr. Zeel Mangukiya",
 		role: "COO",
-		imageSrc: "/man.png",
+		imageSrc: "/man.webp",
 		linkedinUrl: "https://www.linkedin.com/in/ZeelMangukiya",
 	},
 ];

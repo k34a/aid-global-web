@@ -27,8 +27,7 @@ function Whoweeare() {
 				<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
 					<div className="w-full max-w-xs">
 						<Image
-
-							src="/whoweare/whoweare.jpg"
+							src="/whoweare/whoweare.webp"
 							alt="who we are"
 							width={240}
 							height={240}
