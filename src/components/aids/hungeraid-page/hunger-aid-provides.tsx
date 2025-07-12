@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { CircleDotDashed } from "lucide-react";
 import { cards } from "@/components/aids/hungeraid-page/provides";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+import Link from "next/link";
 
 export default function HungerAidProvides() {
 	return (
@@ -55,7 +57,7 @@ export default function HungerAidProvides() {
 				{/* Custom 6th card */}
 				<div className="relative shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-orange-100 flex flex-col items-center justify-center min-h-[220px] sm:min-h-[320px] w-full max-w-xs sm:max-w-sm">
 					<Image
-						src="https://website-content.aidglobal.ngo/hunger-aid/intro.jpg"
+						src={`${STATIC_IMAGE_HOST}hunger-aid/intro.jpg`}
 						alt="Your contribution creates a change"
 						fill
 						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -71,12 +73,13 @@ export default function HungerAidProvides() {
 							creates a <br />
 							change
 						</h3>
-						<button
+						<Link
+							href="/donate?program=hunger-aid"
 							aria-label="Donate to HungerAid"
 							className="bg-orange-500 hover:bg-orange-800 shadow-lg hover:scale-105 hover:shadow-xl text-white text-base sm:text-2xl md:text-4xl font-serif font-bold py-2 px-4 sm:px-6 rounded shadow mt-6 sm:mt-10 transition-all"
 						>
 							Donate now
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>

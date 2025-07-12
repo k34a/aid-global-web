@@ -1,7 +1,9 @@
+import { STATIC_IMAGE_HOST } from "@/config/config";
+
 export const cards = [
 	{
 		id: 1,
-		image: "https://website-content.aidglobal.ngo/hunger-aid/freshmeals.avif",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/freshmeals.avif`,
 		title: "Fresh Cooked Meals",
 		description: "We serve hot, nutritious meals to:",
 		bullets: [
@@ -14,7 +16,7 @@ export const cards = [
 	},
 	{
 		id: 2,
-		image: "https://website-content.aidglobal.ngo/hunger-aid/foodelders.jpg",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/foodelders.jpg`,
 		title: "Home-Delivered Meals for Elderly & Disabled",
 		description:
 			"Many people suffer hunger quietly behind closed doors. We deliver two hot meals every day to:",
@@ -27,7 +29,7 @@ export const cards = [
 	},
 	{
 		id: 3,
-		image: "https://website-content.aidglobal.ngo/hunger-aid/foodschool.jpg",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/foodschool.jpg`,
 		title: "School Feeding for Underprivileged Children",
 		description:
 			"Children cannot grow, learn, or dream when they are hungry. We provide daily meals to:",
@@ -40,7 +42,7 @@ export const cards = [
 	},
 	{
 		id: 4,
-		image: "https://website-content.aidglobal.ngo/hunger-aid/kits.webp",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/kits.webp`,
 		title: "Grocery Kits for Families in Crisis",
 		description:
 			"We distribute essential food and hygiene kits to families experiencing:",
@@ -53,7 +55,7 @@ export const cards = [
 	},
 	{
 		id: 5,
-		image: "https://website-content.aidglobal.ngo/hunger-aid/kitchenprogram.jpg",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/kitchenprogram.jpg`,
 		title: "Community Kitchen Program",
 		description: "We operate Community Kitchens to serve:",
 		bullets: [
