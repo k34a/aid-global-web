@@ -26,17 +26,9 @@ export const fetchArticleMarkdown = async (
 export const fetchCampaignContent = async (
 	slug: string,
 ): Promise<string | null> => {
-	// Try to fetch HTML content first
-	let { data, error } = await supabaseAdmin.storage
+	const { data, error } = await supabaseAdmin.storage
 		.from("content")
-		.download(`campaigns/${slug}/description.html`);
-
-	// If HTML file doesn't exist, try to fetch markdown file (for backward compatibility)
-	if (error) {
-		({ data, error } = await supabaseAdmin.storage
-			.from("content")
-			.download(`campaigns/${slug}/description.md`));
-	}
+		.download(`campaigns/${slug}/description.md`);
 
 	if (error) {
 		console.error(
@@ -54,29 +46,7 @@ export const fetchCampaignContent = async (
 	return await data.text();
 };
 
-export async function uploadFileToSupabase(
-	file: File,
-	buffer: Buffer,
-	fullPath: string,
-) {
-	const { error } = await supabaseAdmin.storage
-		.from("content")
-		.upload(fullPath, buffer, {
-			contentType: file.type,
-			cacheControl: "3600",
-			upsert: false,
-		});
-
-	if (error) {
-		throw new Error("Failed to upload file");
-	}
-
-	const { data: urlData } = supabaseAdmin.storage
-		.from("content")
-		.getPublicUrl(fullPath);
-
-	return {
-		url: urlData.publicUrl,
-		path: fullPath,
-	};
+export function buildPublicUrl(fullPath: string): string {
+	const base = process.env.NEXT_PUBLIC_SUPABASE_IMAGE_BASE_URL!;
+	return `${base}/${fullPath.replace("campaigns/", "")}`;
 }

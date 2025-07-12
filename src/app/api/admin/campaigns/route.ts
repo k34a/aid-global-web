@@ -1,127 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/db/supabase";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
-
-// Middleware to verify admin authentication
-async function verifyAdminAuth() {
-	const cookieStore = await cookies();
-	const token = cookieStore.get("token")?.value;
-
-	if (!token) {
-		return { error: "Unauthorized", status: 401 };
-	}
-
-	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-		return { user: decoded };
-	} catch (error) {
-		return { error: "Invalid token", status: 401 };
-	}
-}
-
+import { verifyAdminAuth } from "@/lib/auth/admin";
+import { checkCampaignSlugExists } from "@/lib/db/checkcampaignslug";
+import { CampaignCreateSchema } from "@/lib/validators/campaign";
+import { createCampaign } from "@/lib/db/createcampaign";
 export async function POST(request: NextRequest) {
 	try {
-		// Verify admin authentication
-		const authResult = await verifyAdminAuth();
-		if (authResult.error) {
+		const isAuthenticated = await verifyAdminAuth();
+		if (!isAuthenticated) {
 			return NextResponse.json(
-				{ error: authResult.error },
-				{ status: authResult.status },
+				{ error: "Unauthorized" },
+				{ status: 401 },
 			);
 		}
 
-		const body = await request.json();
+		const rawBody = await request.json();
+		const parsed = CampaignCreateSchema.safeParse(rawBody);
 
-		// Validate required fields
-		if (!body.title || !body.description || !body.slug || !body.amount) {
+		if (!parsed.success) {
+			const errors = parsed.error.flatten().fieldErrors;
 			return NextResponse.json(
-				{ error: "Missing required fields" },
+				{ error: "Validation failed", errors },
 				{ status: 400 },
 			);
 		}
 
-		// Check if slug already exists
-		const { data: existingCampaigns, error: slugCheckError } =
-			await supabaseAdmin
-				.from("campaigns")
-				.select("id, title")
-				.eq("slug", body.slug);
+		const body = parsed.data;
+		const existingCampaign = await checkCampaignSlugExists(body.slug);
 
-		if (slugCheckError) {
-			console.error("Error checking slug uniqueness:", slugCheckError);
-			return NextResponse.json(
-				{ error: "Database error while checking slug availability" },
-				{ status: 500 },
-			);
-		}
-
-		if (existingCampaigns && existingCampaigns.length > 0) {
+		if (existingCampaign) {
 			return NextResponse.json(
 				{
 					error: "Campaign with this slug already exists",
-					existingCampaign: existingCampaigns[0],
+					existingCampaign,
 				},
 				{ status: 409 },
 			);
 		}
 
-		// Create campaign
-		const { data: campaign, error: createError } = await supabaseAdmin
-			.from("campaigns")
-			.insert({
-				title: body.title,
-				description: body.description,
-				slug: body.slug,
-				amount: body.amount,
-				ended_at: body.ended_at
-					? new Date(body.ended_at).toISOString()
-					: null,
-				banner_image: body.banner_image || "",
-				collection: 0,
-				backers: 0,
-				unallocated_amount: 0,
-			})
-			.select()
-			.single();
-
-		if (createError) {
-			console.error("Error creating campaign:", createError);
-			return NextResponse.json(
-				{ error: "Failed to create campaign" },
-				{ status: 500 },
-			);
-		}
-
-		// Create campaign products if provided
-		if (
-			body.products &&
-			Array.isArray(body.products) &&
-			body.products.length > 0
-		) {
-			const productsToInsert = body.products.map((product: any) => ({
-				campaign_id: campaign.id,
-				title: product.title,
-				description: product.description,
-				price_per_unit: product.price_per_unit,
-				units_required: product.units_required,
-				units_collected: 0,
-				image: product.image || "",
-			}));
-
-			const { error: productsError } = await supabaseAdmin
-				.from("campaign_products")
-				.insert(productsToInsert);
-
-			if (productsError) {
-				console.error(
-					"Error creating campaign products:",
-					productsError,
-				);
-				// Don't fail the entire request if products fail, just log it
-			}
-		}
-
+		const campaign = await createCampaign(body);
 		return NextResponse.json(
 			{
 				message: "Campaign created successfully",

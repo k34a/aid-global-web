@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { verifyAdminAuth } from "@/lib/auth/admin";
-import { uploadFileToSupabase } from "@/lib/db/storage";
+import { supabaseAdmin } from "@/lib/db/supabase";
+import { buildPublicUrl } from "@/lib/db/storage";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
 	"image/jpg",
@@ -11,20 +11,24 @@ const ACCEPTED_IMAGE_TYPES = [
 	"image/webp",
 ];
 
-const uploadSchema = z.object({
+const presignSchema = z.object({
 	slug: z.string().min(1, "Campaign slug is required"),
-	file: z
-		.custom<File>((val) => val instanceof File, {
-			message: "File is required",
-		})
-		.refine((file) => file.size <= MAX_FILE_SIZE, {
-			message: "File size must be less than 5MB",
-		})
-		.refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-			message: "Only JPEG, PNG, and WebP images are allowed",
-		}),
+	filename: z
+		.string()
+		.min(1, "Filename is required")
+		.refine(
+			(name) => {
+				const ext = name.split(".").pop()?.toLowerCase();
+				return ACCEPTED_IMAGE_TYPES.some((type) =>
+					type.includes(ext || ""),
+				);
+			},
+			{
+				message: "Only JPEG, PNG, and WebP extensions are allowed",
+			},
+		),
+	type: z.enum(["product", "banner"]),
 });
-
 export async function POST(request: NextRequest) {
 	try {
 		const isAuthenticated = await verifyAdminAuth();
@@ -35,13 +39,8 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const formData = await request.formData();
-		const raw = {
-			slug: formData.get("slug"),
-			file: formData.get("file"),
-		};
-
-		const result = uploadSchema.safeParse(raw);
+		const body = await request.json();
+		const result = presignSchema.safeParse(body);
 
 		if (!result.success) {
 			return NextResponse.json(
@@ -50,18 +49,31 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const { slug, file } = result.data;
+		const { slug, filename, type } = result.data;
 
-		// Generate unique filename
-		const fileExtension = file.name.split(".").pop();
-		const uniqueFilename = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExtension}`;
+		const fileExtension = filename.split(".").pop();
+		const prefix = type === "product" ? "product-" : "banner-";
+		const uniqueFilename = `${prefix}${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExtension}`;
 		const fullPath = `campaigns/${slug}/images/${uniqueFilename}`;
 
-		const buffer = Buffer.from(await file.arrayBuffer());
-		const resultData = await uploadFileToSupabase(file, buffer, fullPath);
-		return NextResponse.json(resultData);
+		const { data, error } = await supabaseAdmin.storage
+			.from("content")
+			.createSignedUploadUrl(fullPath);
+
+		if (error || !data?.signedUrl) {
+			return NextResponse.json(
+				{ error: "Failed to create presigned URL" },
+				{ status: 500 },
+			);
+		}
+		const publicUrl = buildPublicUrl(fullPath);
+		return NextResponse.json({
+			presignedUrl: data.signedUrl,
+			publicUrl,
+			path: fullPath,
+		});
 	} catch (error) {
-		console.error("Error in upload API:", error);
+		console.error("Error generating presigned URL:", error);
 		return NextResponse.json(
 			{ error: "Internal server error" },
 			{ status: 500 },
