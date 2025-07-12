@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import {
 	GraduationCap,
@@ -8,32 +6,34 @@ import {
 	Users,
 	HandHeart,
 } from "lucide-react";
+import Link from "next/link";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+
+const bulletPoints = [
+	{
+		icon: GraduationCap,
+		text: "Girls talk freely about periods.",
+	},
+	{
+		icon: HandCoins,
+		text: "Women earn from their skills.",
+	},
+	{
+		icon: BookOpenCheck,
+		text: "Mothers educate their daughters.",
+	},
+	{
+		icon: Users,
+		text: "Families stand with empowered women.",
+	},
+];
 
 export default function SakhiAidVision() {
-	const bulletPoints = [
-		{
-			icon: GraduationCap,
-			text: "Girls talk freely about periods.",
-		},
-		{
-			icon: HandCoins,
-			text: "Women earn from their skills.",
-		},
-		{
-			icon: BookOpenCheck,
-			text: "Mothers educate their daughters.",
-		},
-		{
-			icon: Users,
-			text: "Families stand with empowered women.",
-		},
-	];
-
 	return (
 		<section className="relative">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src="https://website-content.aidglobal.ngo/sakhi-aid/vision.webp"
+					src={`${STATIC_IMAGE_HOST}sakhi-aid/vision.webp`}
 					alt="sakhi-aid vision"
 					fill
 					className="object-cover"
@@ -75,7 +75,8 @@ export default function SakhiAidVision() {
 					every woman strong, skilled, and self-reliant.
 				</p>
 				<div className="flex justify-center w-full mt-8 sm:mt-10">
-					<button
+					<Link
+						href="/donate?program=sakhi-aid"
 						aria-label="Donate to SakhiAid"
 						className="flex items-center justify-center gap-2 px-5 py-2 sm:px-8 sm:py-3 rounded-full text-base sm:text-lg font-semibold transition-all duration-300
           bg-gradient-to-r from-rose-600 to-rose-800 text-white shadow-lg
@@ -88,7 +89,7 @@ export default function SakhiAidVision() {
 						</span>
 
 						<HandHeart className="w-5 h-6 text-white font-bold relative z-10 transition duration-300 group-hover:text-rose-600 group-hover:scale-110 animate-pulse" />
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>

@@ -1,7 +1,7 @@
-import SakhiAidIntro from "@/components/aids/sakhiaid-page/sakhiaid-intro";
-import SakhiAidProvides from "@/components/aids/sakhiaid-page/sakhiaid-provides";
-import SakhiAidAwareness from "@/components/aids/sakhiaid-page/sakhiaid-awareness";
-import KeyInitiatives from "@/components/aids/sakhiaid-page/key-initiatives";
+import SakhiAidIntro from "@/components/aids/sakhi-aid/intro";
+import SakhiAidProvides from "@/components/aids/sakhi-aid/provides";
+import SakhiAidAwareness from "@/components/aids/sakhi-aid/awareness";
+import KeyInitiatives from "@/components/aids/sakhi-aid/key-initiatives";
 import {
 	initiativesone,
 	initiativestwo,
@@ -11,9 +11,14 @@ import {
 	initiativesthree,
 	emotionalAwarenessData,
 	initiativesfour,
-} from "@/components/aids/sakhiaid-page/sakhiaid-data";
-import SakhiAidVision from "@/components/aids/sakhiaid-page/sakhiaid-vision";
-import PartnerWithUs from "@/components/aids/sakhiaid-page/partner-with-us";
+} from "@/components/aids/sakhi-aid/data";
+import SakhiAidVision from "@/components/aids/sakhi-aid/vision";
+import PartnerWithUs from "@/components/aids/sakhi-aid/partner-with-us";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Sakhi Aid",
+};
 
 export default function SakhiAidSection() {
 	return (

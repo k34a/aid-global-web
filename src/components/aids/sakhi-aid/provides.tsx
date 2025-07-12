@@ -1,6 +1,6 @@
-"use client";
 import Image from "next/image";
 import { Droplet, Users, Hammer, HeartHandshake } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export default function SakhiAidProvides() {
 	return (
@@ -41,7 +41,7 @@ export default function SakhiAidProvides() {
 				{/* Center Image */}
 				<div className="flex items-center justify-center min-w-[180px] sm:min-w-[220px] md:min-w-[250px] lg:min-w-[320px] flex-shrink-0">
 					<Image
-						src="https://website-content.aidglobal.ngo/sakhi-aid/girl.webp"
+						src={`${STATIC_IMAGE_HOST}sakhi-aid/girl.webp`}
 						alt="SakhiAid Girl"
 						width={400}
 						height={500}
@@ -82,7 +82,7 @@ export default function SakhiAidProvides() {
 			{/* Background Image (Bottom) */}
 			<div className="absolute bottom-0 left-0 top-0 w-full z-0 hidden lg:block">
 				<Image
-					src="https://website-content.aidglobal.ngo/sakhi-aid/village-bg.jpg"
+					src={`${STATIC_IMAGE_HOST}sakhi-aid/village-bg.jpg`}
 					alt="Village Background"
 					width={1200}
 					height={400}

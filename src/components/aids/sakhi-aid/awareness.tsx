@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { AwarenessContent } from "@/components/aids/sakhiaid-page/sakhiaid-data";
+import { AwarenessContent } from "@/components/aids/sakhi-aid/data";
 
 interface SakhiAidAwarenessProps {
 	content: AwarenessContent;
