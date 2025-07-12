@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
 				protocol: "https",
 				hostname: "website-content.aidglobal.ngo",
 			},
+			{
+				protocol: "https",
+				hostname: "website-content.aidglobal.ngo",
+			},
 		],
 	},
 };
