@@ -27,7 +27,7 @@ export default function WhyHungerAid() {
 		<section className="relative ">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src={`${STATIC_IMAGE_HOST}hunger-aid/why.jpg`}
+					src={`${STATIC_IMAGE_HOST}hunger-aid/hunger-aid_why.webp`}
 					alt="Why HungerAid"
 					fill
 					priority
