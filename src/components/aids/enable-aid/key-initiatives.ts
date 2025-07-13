@@ -72,8 +72,8 @@ export const enableAidData: EnableAidItem[] = [
 					"Training of local medical professionals for long-term sustainability",
 				],
 			},
-			"One surgery can be completed in just 45 minutes — changing a child's life forever.",
-			"Donation of ₹25,000 sponsors a complete cleft care cycle.",
+			"One surgery can be completed in just 45 minutes - changing a child's life forever.",
+			"Donation of Rs. 25,000 sponsors a complete cleft care cycle.",
 			{
 				text: "Support for other developmental disabilities includes:",
 				subpoints: [
@@ -112,7 +112,7 @@ export const enableAidData: EnableAidItem[] = [
 		bullets: [
 			"Regular awareness and sensitization drives in schools and communities.",
 			"Counseling for families to help them embrace disability support with hope.",
-			"Strong advocacy for inclusive education — promoting enrollment of children with disabilities in mainstream schools (not segregated special education).",
+			"Strong advocacy for inclusive education - promoting enrollment of children with disabilities in mainstream schools (not segregated special education).",
 			"Support for life-skills, vocational training, and employment readiness as children transition into adulthood.",
 		],
 	},

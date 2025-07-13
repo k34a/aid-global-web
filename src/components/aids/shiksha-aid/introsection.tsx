@@ -15,13 +15,13 @@ export default function Introsection() {
 						<strong className="text-[#004466]">
 							Aid Global Foundation
 						</strong>
-						, we believe that education is not a privilege — it is a
+						, we believe that education is not a privilege - it is a
 						basic right. Yet, for thousands of children living on
 						the streets, in slums, construction sites, and migrating
 						families, education remains out of reach.
 					</p>
 					<p>
-						These are the children we serve — migrants, dropouts,
+						These are the children we serve - migrants, dropouts,
 						street-connected youth, and vulnerable children who are
 						often forced into child labor, begging, or early
 						marriage due to extreme poverty and neglect.

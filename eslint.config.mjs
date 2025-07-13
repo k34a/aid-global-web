@@ -19,6 +19,9 @@ const eslintConfig = [
 			"@typescript-eslint/no-explicit-any": "off",
 		},
 	}),
+	{
+		ignores: [".next/**", "lint-staged.config.mjs"]
+	}
 ];
 
 export default eslintConfig;

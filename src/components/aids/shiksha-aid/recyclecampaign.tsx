@@ -26,7 +26,7 @@ export default function Campaignsection() {
 					<span className="font-semibold text-[#004466]">
 						new or pre-loved bicycle
 					</span>{" "}
-					can eliminate that barrier—and open the road to education.
+					can eliminate that barrier-and open the road to education.
 				</p>
 			</div>
 		</section>
