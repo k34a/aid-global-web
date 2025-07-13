@@ -29,3 +29,5 @@ export const ngoDetails: NGODetails = {
 	twitterHandle: "@aidglobal",
 	twitterCardType: "summary_large_image",
 };
+
+export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
