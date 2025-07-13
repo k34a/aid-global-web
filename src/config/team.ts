@@ -7,7 +7,7 @@ export const teamembers = [
 		linkedinUrl: "https://www.linkedin.com/in/ShivamPathak",
 	},
 	{
-		name: "Mrs. Pooja Pathakk",
+		name: "Mrs. Pooja Pathak",
 		role: "Director",
 		imageSrc: `${STATIC_IMAGE_HOST}whoweare/woman.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/PoojaPathak",
