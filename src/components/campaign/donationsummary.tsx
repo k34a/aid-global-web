@@ -70,7 +70,7 @@ export const DonationSummary = ({
 										{product.title}
 									</span>
 									<span className="text-xs text-gray-500">
-										× {selectedProducts[product.id]}
+										&times; {selectedProducts[product.id]}
 									</span>
 								</div>
 								<span className="text-sm font-medium text-gray-800 flex items-center gap-1">

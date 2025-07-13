@@ -251,7 +251,7 @@ export default function CampaignCreateForm() {
 			body: JSON.stringify({
 				slug: formData.slug || "temp",
 				filename,
-				type, // ✅ Pass type
+				type,
 			}),
 		});
 

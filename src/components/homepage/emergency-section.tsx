@@ -164,6 +164,16 @@ const EmergencySection = () => {
 												<IndianRupee className="w-3 h-3" />
 												{item.required}
 											</span>
+
+											<div className="flex items-center justify-between mb-1">
+												<span className="text-blue-600 font-bold text-sm sm:text-base">
+													&#8377;{item.raised} Raised
+												</span>
+												<span className="text-gray-700 font-medium text-xs sm:text-sm">
+													&#8377;
+													{item.required} Required
+												</span>
+											</div>
 										</div>
 										{/* Progress Bar */}
 										<div className="w-full bg-gray-200 rounded-full h-2 mb-2">
