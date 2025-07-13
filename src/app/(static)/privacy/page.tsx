@@ -14,11 +14,11 @@ export default function PrivacyPolicy() {
 			<p className="mb-4">
 				{ngoDetails.name} is committed to the ethical collection,
 				retention, and use of information that you provide about
-				yourself (“Personal Information”) on this site{" "}
+				yourself (&ldquo;Personal Information&rdquo;) on this site{" "}
 				<Link href="/" className="hover:underline text-sky-700">
 					{ngoDetails.contact.website}
 				</Link>{" "}
-				(“Site”).
+				(&ldquo;Site&rdquo;).
 			</p>
 
 			<h2 className="text-xl font-semibold mt-8 mb-2">
@@ -67,10 +67,10 @@ export default function PrivacyPolicy() {
 			</ul>
 
 			<p className="mb-4">
-				This data (“General Information”) is not Personal Information
-				and is used for analytics, trend analysis, and public interest
-				gauging. It may be shared at the discretion of {ngoDetails.name}
-				.
+				This data (&ldquo;General Information&rdquo;) is not Personal
+				Information and is used for analytics, trend analysis, and
+				public interest gauging. It may be shared at the discretion of{" "}
+				{ngoDetails.name}.
 			</p>
 
 			<h2 className="text-xl font-semibold mt-8 mb-2">

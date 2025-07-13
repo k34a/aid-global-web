@@ -24,7 +24,7 @@ const AboutContent = () => (
 			<span className="italic text-[#5DB996]">
 				grassroots empowerment
 			</span>{" "}
-			— with a strong focus on{" "}
+			- with a strong focus on{" "}
 			<span className="text-[#E3B505]">
 				women, children, and adolescents
 			</span>

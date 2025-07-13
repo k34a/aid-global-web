@@ -57,7 +57,7 @@ export default function CategoriesSection() {
 								href="#"
 								className="text-blue-600 font-semibold hover:underline"
 							>
-								Read More →
+								Read More &rarr;
 							</a>
 						</div>
 					)}
