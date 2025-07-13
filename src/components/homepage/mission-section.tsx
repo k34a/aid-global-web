@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	CircleDotDashed,
 	HeartHandshake,
@@ -22,7 +23,7 @@ const MissionSection = () => {
 				<div className="px-2 sm:px-4 md:px-8 lg:px-20 pt-6 sm:pt-8 md:pt-10">
 					<div className="flex flex-col md:flex-row gap-4 md:gap-0">
 						<Image
-							src="/emergencies/Heart-Disease-2.jpg"
+							src={`${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`}
 							alt="child-image"
 							width={200}
 							height={50}

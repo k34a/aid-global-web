@@ -7,7 +7,7 @@ const HungerIntro = () => {
 	return (
 		<div className="relative w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px]">
 			<Image
-				src={`${STATIC_IMAGE_HOST}hunger-aid/intro.jpg`}
+				src={`${STATIC_IMAGE_HOST}hunger-aid/intro.webp`}
 				alt="introImage"
 				sizes="100vw"
 				fill

@@ -57,7 +57,7 @@ export default function SakhiAidVision() {
 		<section className="relative">
 			<div className="absolute inset-0 -z-10">
 				<Image
-					src={`${STATIC_IMAGE_HOST}enable-aid/joinus-bg.jpg`}
+					src={`${STATIC_IMAGE_HOST}enable-aid/joinus-bg.webp`}
 					alt="Enable aid actions"
 					fill
 					className="object-cover"

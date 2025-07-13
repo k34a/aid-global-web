@@ -4,12 +4,12 @@ import { motion, AnimatePresence, easeInOut } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import { DonateButton } from "@/components/campaign/donate";
 
 const images = [
-	{ src: "/intro/one.jpg", alt: "image" },
-	{ src: "/intro/two.jpg", alt: "image" },
-	{ src: "/intro/four.jpg", alt: "image" },
+	{ src: `${STATIC_IMAGE_HOST}home-page/intro/one.webp`, alt: "image" },
+	{ src: `${STATIC_IMAGE_HOST}home-page/intro/two.webp`, alt: "image" },
 ];
 
 const sliderVariants = {
