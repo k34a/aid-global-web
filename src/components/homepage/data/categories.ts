@@ -3,11 +3,10 @@ import {
 	Baby,
 	Venus,
 	Accessibility,
-	Utensils,
 	BookOpen,
 	PawPrint,
-	TriangleAlert,
 } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export const categories = [
 	{
@@ -21,7 +20,7 @@ export const categories = [
 				raised: 10049,
 				required: 14951,
 				backers: 114,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -30,7 +29,7 @@ export const categories = [
 				raised: 49600,
 				required: 30400,
 				backers: 114,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -39,7 +38,7 @@ export const categories = [
 				raised: 1960,
 				required: 540,
 				backers: 114,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],
@@ -55,7 +54,7 @@ export const categories = [
 				raised: 8500,
 				required: 12000,
 				backers: 75,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -64,7 +63,7 @@ export const categories = [
 				raised: 15000,
 				required: 20000,
 				backers: 120,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -73,7 +72,7 @@ export const categories = [
 				raised: 7000,
 				required: 10000,
 				backers: 60,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],
@@ -89,7 +88,7 @@ export const categories = [
 				raised: 12000,
 				required: 18000,
 				backers: 90,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -98,7 +97,7 @@ export const categories = [
 				raised: 9500,
 				required: 15000,
 				backers: 80,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -107,7 +106,7 @@ export const categories = [
 				raised: 6000,
 				required: 10000,
 				backers: 50,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],
@@ -124,7 +123,7 @@ export const categories = [
 				raised: 18000,
 				required: 25000,
 				backers: 110,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -133,7 +132,7 @@ export const categories = [
 				raised: 22000,
 				required: 40000,
 				backers: 140,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -142,7 +141,7 @@ export const categories = [
 				raised: 7000,
 				required: 12000,
 				backers: 60,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],
@@ -158,7 +157,7 @@ export const categories = [
 				raised: 9000,
 				required: 15000,
 				backers: 80,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -167,7 +166,7 @@ export const categories = [
 				raised: 12000,
 				required: 20000,
 				backers: 90,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -176,7 +175,7 @@ export const categories = [
 				raised: 6000,
 				required: 10000,
 				backers: 50,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],
@@ -192,7 +191,7 @@ export const categories = [
 				raised: 11000,
 				required: 18000,
 				backers: 95,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -201,7 +200,7 @@ export const categories = [
 				raised: 8000,
 				required: 15000,
 				backers: 70,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 			{
@@ -210,7 +209,7 @@ export const categories = [
 				raised: 5000,
 				required: 9000,
 				backers: 40,
-				image: "/aids/cure.jpg",
+				image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 				tag: "Tax Benefit",
 			},
 		],

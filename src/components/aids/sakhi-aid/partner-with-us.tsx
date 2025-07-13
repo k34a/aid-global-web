@@ -5,7 +5,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 
 const content = [
 	{
-		image: `${STATIC_IMAGE_HOST}sakhi-aid/sakhi-aid_partner1.webp`,
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner1.webp`,
 		desc: "Sponsor a girl's skill training",
 	},
 	{
@@ -17,11 +17,11 @@ const content = [
 		desc: "Fund a goat or dairy setup for a woman",
 	},
 	{
-		image: `${STATIC_IMAGE_HOST}sakhi-aid/sakhi-aid_partner4.webp`,
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner4.webp`,
 		desc: "Invite SHGs to your exhibition",
 	},
 	{
-		image: `${STATIC_IMAGE_HOST}sakhi-aid/sakhi-aid_partner5.webp`,
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner5.webp`,
 		desc: "Conduct workshops at your school or office",
 	},
 	{
