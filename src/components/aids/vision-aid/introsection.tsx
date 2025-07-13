@@ -1,7 +1,7 @@
-"use client";
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
+import Link from "next/link";
 export default function VisionAidHero() {
 	return (
 		<section className="relative w-full overflow-hidden">
@@ -17,12 +17,12 @@ export default function VisionAidHero() {
 				<div className="w-full md:w-1/2 text-gray-800 space-y-6">
 					{/* Tagline */}
 					<p className="text-sm font-semibold uppercase tracking-wide text-[#6a1e55] border-l-4 pl-3 border-[#6a1e55]">
-						“Restoring Sight. Renewing Hope.”
+						&ldquo;Restoring Sight. Renewing Hope.&rdquo;
 					</p>
 
 					{/* Heading */}
 					<h1 className="text-4xl  font-extrabold leading-snug text-[#2f194d]">
-						VisionAid – A Life-Changing Initiative by{" "}
+						VisionAid - A Life-Changing Initiative by{" "}
 						<span className="text-[#5d3dc4]">
 							Aid Global Foundation
 						</span>
@@ -30,14 +30,17 @@ export default function VisionAidHero() {
 
 					{/* Sub Quote */}
 					<p className="text-lg text-[#6a1e55] font-medium italic">
-						“Clear Sight is a Clear Right.”
+						&ldquo;Clear Sight is a Clear Right.&rdquo;
 					</p>
 
 					{/* CTA */}
-					<button className="mt-4 px-8 py-3 rounded-full bg-[#6a1e55] hover:bg-[#5d3dc4] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2">
+					<Link
+						href="/donate?program=vision-aid"
+						className="w-fit mt-4 px-8 py-3 rounded-full bg-[#6a1e55] hover:bg-[#5d3dc4] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2"
+					>
 						<Eye className="w-5 h-5" />
 						Be Their Vision
-					</button>
+					</Link>
 				</div>
 
 				{/* Image Side */}

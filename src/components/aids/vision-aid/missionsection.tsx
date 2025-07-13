@@ -1,4 +1,3 @@
-"use client";
 import { Check, Goal } from "lucide-react";
 
 const missionServices = [
@@ -31,7 +30,7 @@ const missionServices = [
 		color: "#6a1e55",
 	},
 	{
-		title: "Children’s Eye Care",
+		title: "Children's Eye Care",
 		description:
 			"Eye checkups and support for children in Aid Foundation Centres.",
 		color: "#5d3dc4",

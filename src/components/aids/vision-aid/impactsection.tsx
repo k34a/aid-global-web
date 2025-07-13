@@ -1,4 +1,3 @@
-"use client";
 import { Eye, Glasses, Hospital, Megaphone } from "lucide-react";
 
 export default function ImpactSection() {

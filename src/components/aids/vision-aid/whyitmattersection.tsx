@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
@@ -26,7 +25,7 @@ export default function WhyItMattersSection() {
 						Why It Matters
 					</h2>
 					<p className="text-base text-gray-700 mb-4">
-						Restoring vision is not just about eyesight — it&rsquo;s
+						Restoring vision is not just about eyesight - it&rsquo;s
 						about{" "}
 						<strong className="text-[#6a1e55]">
 							restoring life, dignity, and independence

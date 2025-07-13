@@ -1,6 +1,4 @@
-"use client";
 import Image from "next/image";
-import { Bus, Glasses, Eye, Home } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export const visionVanSteps = [
@@ -73,8 +71,8 @@ export default function VisionVanSection() {
 					))}
 				</div>
 				<p className="text-gray-700 text-base max-w-xl mt-2">
-					Your support can put this mobile unit on the road—and bring
-					sight where hospitals don’t reach.
+					Your support can put this mobile unit on the road - and
+					bring sight where hospitals don&apos;t reach.
 				</p>
 			</div>
 		</section>
