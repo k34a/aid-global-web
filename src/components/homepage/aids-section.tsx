@@ -112,7 +112,7 @@ const AidsSection = () => {
 
 										{/* Read More Button */}
 										<Link
-											href={`/${item.link}`}
+											href={`${item.link}`}
 											className="px-4 py-2 rounded-full font-semibold bg-blue-400 text-sm inline-flex items-center gap-2 border border-black  hover:bg-blue-600 hover:text-white transition-colors duration-300"
 										>
 											Read More
