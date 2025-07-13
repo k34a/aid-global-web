@@ -159,8 +159,8 @@ const Footer: React.FC = () => {
 					<div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
 						<div className="text-center lg:text-left">
 							<p className="text-gray-400 text-sm">
-								© {currentYear} {ngoDetails.name}. All rights
-								reserved.
+								&copy; {currentYear} {ngoDetails.name}. All
+								rights reserved.
 							</p>
 						</div>
 
