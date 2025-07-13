@@ -1,10 +1,10 @@
-import HeroSection from "@/components/aids/cureaid/headersection";
-import HivSupport from "@/components/aids/cureaid/hivsupport";
-import JoinMission from "@/components/aids/cureaid/joinmission";
-import HealthcareOutreachSection from "@/components/aids/cureaid/outreach";
-import RMNCHSection from "@/components/aids/cureaid/rmnchasection";
+import HeroSection from "@/components/aids/cure-aid/headersection";
+import HivSupport from "@/components/aids/cure-aid/hivsupport";
+import JoinMission from "@/components/aids/cure-aid/joinmission";
+import HealthcareOutreachSection from "@/components/aids/cure-aid/outreach";
+import RMNCHSection from "@/components/aids/cure-aid/rmnchasection";
 
-import TbPrevention from "@/components/aids/cureaid/tbprevention";
+import TbPrevention from "@/components/aids/cure-aid/tbprevention";
 
 export default function CureAidPage() {
 	return (

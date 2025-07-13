@@ -1,5 +1,3 @@
-"use client";
-
 import {
 	Handshake,
 	Stethoscope,
@@ -7,6 +5,7 @@ import {
 	Megaphone,
 	Briefcase,
 } from "lucide-react";
+import Link from "next/link";
 
 const joinOptions = [
 	{
@@ -73,9 +72,12 @@ export default function JoinMission() {
 					))}
 				</div>
 				<div className="text-center">
-					<button className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-sm sm:text-base font-semibold transition">
+					<Link
+						href="/donate?program=cure-aid"
+						className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-sm sm:text-base font-semibold transition"
+					>
 						Donate Now
-					</button>
+					</Link>
 					<p className="mt-2 text-sm text-gray-600">
 						Your support helps us reach more lives with care and
 						dignity.

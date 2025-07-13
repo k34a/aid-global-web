@@ -1,5 +1,3 @@
-"use client";
-
 import { CheckCheck, HeartHandshake, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
@@ -15,6 +13,7 @@ const specialFocus = [
 	"Life skills and rights-based education for adolescents to promote safe practices and reduce fear.",
 	"Nutrition, hygiene, and mental health support for children living with or affected by HIV.",
 ];
+
 const HivSupport = () => {
 	return (
 		<section className="bg-gradient-to-br from-rose-50 to-rose-100 py-10 px-6 md:px-20">

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Baby, CheckCircle, ShieldCheck } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
