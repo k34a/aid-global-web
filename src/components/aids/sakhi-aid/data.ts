@@ -14,26 +14,26 @@ export interface AwarenessContent {
 }
 
 export const menstrualAwarenessData: AwarenessContent = {
-	image: `${STATIC_IMAGE_HOST}sakhi-aid/menstrual.png`,
+	image: `${STATIC_IMAGE_HOST}sakhi-aid/menstrual.webp`,
 	title: "Menstrual Health & Hygiene Awareness",
 	desc1: "In many parts of India, menstruation is not just misunderstood-it is feared and shamed. SakhiAid takes bold steps to challenge this silence and bring dignity to every girl and woman.",
 	desc2: "We believe that periods should never stop progress. Every girl deserves to attend school, dream big, and feel proud of her body.",
 };
 
 export const shgAwarenessData: AwarenessContent = {
-	image: `${STATIC_IMAGE_HOST}sakhi-aid/shg.png`,
+	image: `${STATIC_IMAGE_HOST}sakhi-aid/shg.webp`,
 	title: "Self-Help Groups (SHGs) for Economic & Social Upliftment",
 	desc1: "We organize and support Self-Help Groups of women as the building blocks of change in their communities. SHGs are more than savings groups-they are spaces of trust, learning, creativity, and leadership.",
 	desc2: "SHGs help women earn, learn, and lead together.",
 };
 export const livelihoodAwarenessData: AwarenessContent = {
-	image: `${STATIC_IMAGE_HOST}sakhi-aid/livelihood2.png`,
+	image: `${STATIC_IMAGE_HOST}sakhi-aid/livelihood2.webp`,
 	title: "Livelihood & Skill Development for Self-Reliance",
 	desc1: "SakhiAid believes that economic freedom leads to personal freedom. We offer structured training to young girls, homemakers, and survivors of abuse to help them build their future with courage and skill.",
 	desc2: "With each training, we help a woman stand on her own feet, support her children, and inspire her neighbors.",
 };
 export const emotionalAwarenessData: AwarenessContent = {
-	image: `${STATIC_IMAGE_HOST}sakhi-aid/emotional.png`,
+	image: `${STATIC_IMAGE_HOST}sakhi-aid/emotional.webp`,
 	title: "Emotional Support & Counseling",
 	desc1: "Empowerment is not complete without healing. Many of the women and girls we support have experienced Domestic abuse Early marriage Abandonment Emotional trauma",
 	desc2: "Healing the heart is the first step toward rebuilding life.",
@@ -82,9 +82,7 @@ export const initiativestwo: InitiativeItem[] = [
 		color: "text-rose-500",
 		title: "Formation & Mobilization",
 		description:
-
 			"Creating women's groups based on mutual trust and community connection.",
-
 	},
 	{
 		color: "text-blue-500",

@@ -1,7 +1,9 @@
+import { STATIC_IMAGE_HOST } from "@/config/config";
+
 export const emergencies = [
 	{
 		id: 1,
-		image: "/emergencies/Heart-Disease-1.jpg",
+		image: `${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-1.webp`,
 		title: "Urgent Help Needed for a Child with Heart Disease",
 		author: "Krishna Prasad",
 		raised: 22000,
@@ -11,7 +13,7 @@ export const emergencies = [
 	},
 	{
 		id: 2,
-		image: "/emergencies/Heart-Disease-2.jpg",
+		image: `${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`,
 		title: "Urgent Help Needed for a Child with Heart Disease",
 		author: "Anjali Verma",
 		raised: 5000,
@@ -21,7 +23,7 @@ export const emergencies = [
 	},
 	{
 		id: 3,
-		image: "/emergencies/homeless.webp",
+		image: `${STATIC_IMAGE_HOST}home-page//emergencies/homeless.webp`,
 		title: "Help This Family Recover from a Fire Disaster",
 		author: "Rohit Sharma",
 		raised: 3000,
