@@ -1,15 +1,19 @@
 import React from "react";
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 function Corevalues() {
 	return (
 		<div>
 			<section
 				id="core"
-				className="px-2 sm:px-4 py-6 sm:py-12 bg-[url('/background.webp')] mx-4 sm:mx-20 gap-8 sm:gap-10 bg-no-repeat bg-cover bg-center"
+				className="px-6 sm:px-4 py-6 sm:py-12 mx-4 sm:mx-20 gap-8 sm:gap-10 bg-no-repeat bg-cover bg-center rounded-xl"
+				style={{
+					backgroundImage: `url(${STATIC_IMAGE_HOST}whoweare/background.webp)`,
+				}}
 			>
 				<div className="max-w-7xl mx-auto">
-					<h2 className="text-2xl sm:text-4xl font-bold text-blue-500 mb-4 sm:mb-6">
+					<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">
 						Core Values
 					</h2>
 
@@ -70,7 +74,7 @@ function Corevalues() {
 						<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
 							<div className="w-56 sm:w-72 md:w-96">
 								<Image
-									src="/whoweare/coreval.webp"
+									src={`${STATIC_IMAGE_HOST}whoweare/coreval.webp`}
 									alt="core values"
 									width={400}
 									height={400}
