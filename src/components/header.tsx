@@ -30,7 +30,6 @@ const Header: React.FC = () => {
 	const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 	const closeMenu = () => setIsMenuOpen(false);
 
-
 	const showDropdown = () => {
 		if (timeout.current) clearTimeout(timeout.current);
 		setIsDropdownOpen(true);
@@ -58,13 +57,10 @@ const Header: React.FC = () => {
 								className="flex items-center space-x-3"
 							>
 								<div className="relative w-12 h-12 shrink-0">
-									<Image
+									<img
 										src={ngoDetails.logo}
 										alt={`${ngoDetails.name} Logo`}
-										fill
-										sizes="(max-width: 768px) 40px, 48px"
 										className="object-contain"
-										priority
 									/>
 								</div>
 								<div className="hidden sm:block">
