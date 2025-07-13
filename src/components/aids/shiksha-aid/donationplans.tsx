@@ -5,6 +5,7 @@ import {
 	Sparkles,
 	HeartHandshake,
 	Goal,
+	Lightbulb,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -64,8 +65,10 @@ export default function Donationsection() {
 			<div className=" rounded-2xl  p-6">
 				{/* Heading */}
 				<h3 className="text-2xl font-bold text-[#003366] flex items-center mb-4">
-					<span className="text-3xl mr-2">💡</span> Why ShikshaAid
-					Centre?
+					<span className="text-3xl mr-2">
+						<Lightbulb className="text-yellow-500" />
+					</span>{" "}
+					Why ShikshaAid Centre?
 				</h3>
 				<p className="text-[#003366] font-bold mb-6">
 					The ShikshaAid Centre is our innovative grassroots model for

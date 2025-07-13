@@ -13,26 +13,42 @@ const enableAidActions = [
 	{
 		icon: HelpingHand,
 		title: "Volunteer Your Time or Expertise",
-		description:
-			"Contribute in therapy, education, or outreach to support children with disabilities.",
+		description: (
+			<>
+				Contribute in therapy, education, or outreach to support
+				children with disabilities.
+			</>
+		),
 	},
 	{
 		icon: Gift,
 		title: "Sponsor a Child's Treatment or Assistive Device",
-		description:
-			"Support Clubfoot (₹12,000), Cleft Surgery (₹25,000), or provide essential assistive tools.",
+		description: (
+			<>
+				Support Clubfoot (&#8377;12,000), Cleft Surgery (&#8377;25,000),
+				or provide essential assistive tools.
+			</>
+		),
 	},
 	{
 		icon: Briefcase,
 		title: "Partner Through CSR",
-		description:
-			"Join hands to launch EnableAid Clinics or fund inclusive community outreach campaigns.",
+		description: (
+			<>
+				Join hands to launch EnableAid Clinics or fund inclusive
+				community outreach campaigns.
+			</>
+		),
 	},
 	{
 		icon: Megaphone,
 		title: "Spread Awareness",
-		description:
-			"Advocate inclusion — every child deserves the right to grow, learn, and belong.",
+		description: (
+			<>
+				Advocate inclusion - every child deserves the right to grow,
+				learn, and belong.
+			</>
+		),
 	},
 ];
 

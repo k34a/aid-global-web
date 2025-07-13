@@ -10,12 +10,12 @@ export default function Visionsection() {
 
 				<p className="text-lg md:text-xl text-[#003355] leading-relaxed">
 					To eliminate child illiteracy and restore dignity among the
-					most vulnerable—
+					most vulnerable-
 					<span className="font-semibold text-orange-400">
 						street-connected children, migrant youth, and school
 						dropouts
 					</span>
-					—by ensuring they receive the education they deserve.
+					-by ensuring they receive the education they deserve.
 				</p>
 			</div>
 		</section>

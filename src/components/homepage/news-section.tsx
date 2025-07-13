@@ -147,7 +147,7 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 												href={`/articles/${news.slug}`}
 												className="text-blue-600 hover:underline text-sm font-medium cursor-pointer"
 											>
-												Read More →
+												Read More &rarr;
 											</a>
 										</div>
 									</motion.div>

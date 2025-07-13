@@ -1,4 +1,4 @@
 export default {
-	"*.tsx": "prettier --write",
-	"*.ts": ["eslint --fix", "prettier --write"],
+	"*.tsx": "npx prettier --write",
+	"*.ts": ["npx eslint --fix", "npx prettier --write"],
 };
