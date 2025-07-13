@@ -1,4 +1,4 @@
-import ArticleList from "@/components/articleList";
+import ArticleList from "@/components/article-list";
 import { DonateButton } from "@/components/campaign/donate";
 import { getAllArticles, type ArticleMeta } from "@/lib/db/articles";
 import IntroCarousel from "@/components/homepage/intro-carousel";
