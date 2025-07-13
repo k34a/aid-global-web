@@ -31,7 +31,7 @@ const HivSupport = () => {
 					<span className="font-medium text-[#AD1457]">
 						HIV education, early detection, treatment access,
 					</span>{" "}
-					and community-based support—especially among vulnerable
+					and community-based support-especially among vulnerable
 					groups such as children, adolescents, and adults in
 					high-risk environments.
 				</p>

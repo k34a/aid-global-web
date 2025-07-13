@@ -49,7 +49,7 @@ export const aids = [
 		id: 7,
 		image: "/aids/intro.jpg",
 		title: "Hunger Aid",
-		desc: "HungerAid is that voice — a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
+		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
 		button: "Read More",
 		link: "/hunger-aid",
 	},

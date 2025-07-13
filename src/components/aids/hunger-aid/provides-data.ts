@@ -25,7 +25,7 @@ export const cards = [
 			"Physically or mentally disabled people",
 			"Individuals recovering from serious illness",
 		],
-		footer: "This is more than food — it's a lifeline of care.",
+		footer: "This is more than food - it's a lifeline of care.",
 	},
 	{
 		id: 3,
@@ -63,6 +63,6 @@ export const cards = [
 			"Relief food during natural disasters, heatwaves, or public crises",
 			"Daily support for families who cannot cook or afford ingredients",
 		],
-		footer: "These kitchens are hubs of compassion, nutrition, and resilience — ensuring no one in the area is left behind.They not only serve hot, nutritious meals but also restore dignity and hope for vulnerable communities. By addressing hunger at its root, these kitchens foster stronger, healthier, and more inclusive neighborhoods.",
+		footer: "These kitchens are hubs of compassion, nutrition, and resilience - ensuring no one in the area is left behind.They not only serve hot, nutritious meals but also restore dignity and hope for vulnerable communities. By addressing hunger at its root, these kitchens foster stronger, healthier, and more inclusive neighborhoods.",
 	},
 ];

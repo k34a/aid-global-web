@@ -66,7 +66,7 @@ export default function WhyHungerAid() {
 					))}
 				</ul>
 				<p className="mt-6 sm:mt-8 text-lg sm:text-2xl font-bold text-orange-900">
-					HungerAid reaches these lives where no one else does — with
+					HungerAid reaches these lives where no one else does - with
 					love and urgency.
 				</p>
 			</div>

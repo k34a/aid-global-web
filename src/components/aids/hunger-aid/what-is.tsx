@@ -5,7 +5,7 @@ export default function WhatIsHungerAid() {
 				What is Hunger Aid?
 			</h2>
 			<p className="text-base sm:text-lg md:text-xl text-slate-700 mb-3 sm:mb-4 text-center">
-				Across our nation, millions go to sleep with an empty stomach —
+				Across our nation, millions go to sleep with an empty stomach -
 				children, elders, mothers, daily workers.
 				<br />
 			</p>
@@ -15,7 +15,7 @@ export default function WhatIsHungerAid() {
 				<strong className="font-semibold text-slate-900">
 					HungerAid
 				</strong>{" "}
-				is that voice — a movement by{" "}
+				is that voice - a movement by{" "}
 				<strong className="font-semibold text-slate-900">
 					Aid Global Foundation
 				</strong>{" "}
