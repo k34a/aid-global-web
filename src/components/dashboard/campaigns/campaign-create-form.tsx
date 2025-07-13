@@ -355,6 +355,10 @@ export default function CampaignCreateForm() {
 				body: JSON.stringify({
 					...formData,
 					amount: Number(formData.amount),
+					ended_at:
+						formData.ended_at.trim() === ""
+							? null
+							: new Date(formData.ended_at).toISOString(),
 					products: updatedProducts.map((p) => ({
 						...p,
 						price_per_unit: Number(p.price_per_unit),
@@ -365,6 +369,7 @@ export default function CampaignCreateForm() {
 
 			if (!response.ok) {
 				const errorData = await response.json();
+				console.error("API Error:", errorData);
 				throw new Error(errorData.error || "Failed to create campaign");
 			}
 
@@ -373,7 +378,7 @@ export default function CampaignCreateForm() {
 			if (
 				processedRichTextContent &&
 				processedRichTextContent.trim() &&
-				processedRichTextContent.trim() !== "<p></p>" // optionally check for empty editor content
+				processedRichTextContent.trim() !== "<p></p>"
 			) {
 				try {
 					await uploadRichText(

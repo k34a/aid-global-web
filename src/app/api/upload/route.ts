@@ -67,6 +67,7 @@ export async function POST(request: NextRequest) {
 			);
 		}
 		const publicUrl = buildPublicUrl(fullPath);
+
 		return NextResponse.json({
 			presignedUrl: data.signedUrl,
 			publicUrl,
