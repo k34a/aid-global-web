@@ -9,7 +9,7 @@ export const cards = [
 		bullets: [
 			"Homeless and abandoned individuals",
 			"Daily wage laborers and low-income earners",
-			"Patients’ families at hospitals",
+			"Patients' families at hospitals",
 			"Communities affected by hardship or isolation",
 		],
 		footer: "Every meal is prepared with hygiene, delivered with compassion, and served with dignity.",
@@ -25,7 +25,7 @@ export const cards = [
 			"Physically or mentally disabled people",
 			"Individuals recovering from serious illness",
 		],
-		footer: "This is more than food — it’s a lifeline of care.",
+		footer: "This is more than food — it's a lifeline of care.",
 	},
 	{
 		id: 3,

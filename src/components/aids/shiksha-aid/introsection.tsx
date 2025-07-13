@@ -40,7 +40,7 @@ export default function Introsection() {
 							<span className="font-semibold text-[#004466]">
 								ShikshaAid
 							</span>{" "}
-							is Aid Global Foundation’s education-focused
+							is Aid Global Foundation&apos;s education-focused
 							initiative that brings learning directly to
 							underserved children in urban slums, railway
 							stations, construction zones, and migrant
