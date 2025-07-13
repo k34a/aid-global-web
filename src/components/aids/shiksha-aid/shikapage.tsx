@@ -1,12 +1,13 @@
 "use client";
 
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "next/image";
 
 export default function ShikshaAidPage() {
 	return (
 		<section className="relative w-[95%] mx-auto rounded-2xl h-[50vh] md:h-[75vh] overflow-hidden shadow-2xl">
 			<Image
-				src="/aids/shiksha.webp"
+				src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha.webp`}
 				alt="ShikshaAid Hero"
 				layout="fill"
 				objectFit="cover"

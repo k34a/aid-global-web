@@ -1,5 +1,6 @@
 import { BookOpenCheck } from "lucide-react";
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 export default function Introsection() {
 	return (
 		<section className="max-w-6xl mx-auto px-6 py-16 text-[#003366]">
@@ -49,7 +50,7 @@ export default function Introsection() {
 				</div>
 				<div className="flex items-center justify-center">
 					<Image
-						src="/shiksha.png"
+						src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha1.webp`}
 						alt="Shiksha Aid Center"
 						width={300}
 						height={500}
