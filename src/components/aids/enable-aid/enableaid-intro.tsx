@@ -23,7 +23,9 @@ export default function VisionAidHero() {
 
 					{/* Heading */}
 					<h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug text-black">
+
 						EnableAid – An Initiative by{" "}
+
 						<span className="text-[#003944]">
 							Aid Global Foundation
 						</span>

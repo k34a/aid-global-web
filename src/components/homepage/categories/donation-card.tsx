@@ -36,10 +36,10 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 				</div>
 				<div className="flex justify-between text-xs sm:text-sm mb-1">
 					<span className="font-semibold text-gray-700">
-						₹{card.raised.toLocaleString()}
+						&#8377;{card.raised}
 					</span>
 					<span className="text-gray-500">
-						₹{card.required.toLocaleString()}
+						&#8377;{card.required}
 					</span>
 				</div>
 				<div className="w-full bg-blue-100 h-2 rounded">
