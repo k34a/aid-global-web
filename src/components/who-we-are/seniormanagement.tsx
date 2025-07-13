@@ -56,7 +56,7 @@ function Seniormanagement() {
 							onClick={handleBackClick}
 							className="absolute top-3 right-3 text-white bg-blue-600 px-3 sm:px-4 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition"
 						>
-							← Back
+							&larr; Back
 						</button>
 
 						<TeamCardDesc

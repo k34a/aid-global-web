@@ -1,26 +1,27 @@
+import { STATIC_IMAGE_HOST } from "@/config/config";
 export const teamembers = [
 	{
 		name: "Mr. Shivam Pathak",
 		role: "Director",
-		imageSrc: "/man.webp",
+		imageSrc: `${STATIC_IMAGE_HOST}whoweare/man.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/ShivamPathak",
 	},
 	{
 		name: "Mrs. Pooja Pathakk",
 		role: "Director",
-		imageSrc: "/woman.webp",
+		imageSrc: `${STATIC_IMAGE_HOST}whoweare/woman.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/PoojaPathak",
 	},
 	{
 		name: "Mr. Nilesh Pal",
 		role: "Director",
-		imageSrc: "/man.webp",
+		imageSrc: `${STATIC_IMAGE_HOST}whoweare/man.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/NileshPathak",
 	},
 	{
 		name: "Mr. Zeel Mangukiya",
 		role: "COO",
-		imageSrc: "/man.webp",
+		imageSrc: `${STATIC_IMAGE_HOST}whoweare/man.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/ZeelMangukiya",
 	},
 ];

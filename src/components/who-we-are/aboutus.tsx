@@ -4,7 +4,7 @@ function Aboutus() {
 	return (
 		<section
 			id="aboutus"
-			className="pl-2 pr-2 mt-8 sm:pl-6 sm:pr-4 sm:mt-16 mx-4"
+			className="pl-2 pr-2 mt-8 sm:pl-6 sm:pr-4 sm:mt-16 mx-14"
 		>
 			<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">
 				About Us
@@ -25,25 +25,27 @@ function Aboutus() {
 
 			<ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 				<li>
-					<strong>ShikshaAid</strong> – Education for underprivileged
-					children
+					<strong>ShikshaAid</strong> &ndash;Education for
+					underprivileged children
 				</li>
 				<li>
-					<strong>VisionAid</strong> – Eye care and vision restoration
+					<strong>VisionAid</strong> &ndash; Eye care and vision
+					restoration
 				</li>
 				<li>
-					<strong>EnableAid</strong> – Empowering differently-abled
-					individuals
+					<strong>EnableAid</strong> &ndash; Empowering
+					differently-abled individuals
 				</li>
 				<li>
-					<strong>GharAid</strong> – Shelter for homeless/orphaned
-					people
+					<strong>GharAid</strong> &ndash; Shelter for
+					homeless/orphaned people
 				</li>
 				<li>
-					<strong>CureAid</strong> – Primary healthcare services
+					<strong>CureAid</strong> &ndash; Primary healthcare services
 				</li>
 				<li>
-					<strong>SakhiAid</strong> – Women’s empowerment initiatives
+					<strong>SakhiAid</strong> &ndash; Women&apos;s empowerment
+					initiatives
 				</li>
 			</ul>
 		</section>
