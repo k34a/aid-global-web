@@ -10,7 +10,7 @@ describe("Footer Component", () => {
 
 	//   it("contains the correct text", () => {
 	//     const { getByText } = render(<Footer />);
-	//     expect(getByText("© 2023 Your Company Name")).toBeInTheDocument();
+	//     expect(getByText("2023 Your Company Name")).toBeInTheDocument();
 	//   });
 
 	//   it("has a link to the privacy policy", () => {

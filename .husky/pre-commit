@@ -1,39 +1,32 @@
 #!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-echo "🔍 Running lowercase filename check for JS/TS files..."
+echo ""
+echo "🛡️  Pre-commit checks started..."
 
-# Get staged JS/TS files and avoid breaking on grep no-match
-files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|jsx|tsx)$' || true)
-
-
-if [ -z "$files" ]; then
-  echo "✅ No JS/TS/JSX/TSX files found to check for casing."
-else
-  echo "🗂️  Staged files (.js, .jsx, .ts, .tsx):"
-  echo "$files"
-  echo "🔎 Checking for uppercase letters in filenames..."
-  for file in $files; do
-    if echo "$file" | grep -q '[A-Z]'; then
-      echo "❌ Error: Uppercase letters found in '$file'. Only lowercase filenames are allowed."
-      exit 1
-    else
-      echo "✅ $file is lowercase."
-    fi
-  done
-  echo "✅ All filenames are lowercase"
-fi
+# Lowercase filename check
+node .husky/scripts/check-valid-filenames.js
 
 
-# Run lint
-echo "🚀 Running lint..."
-npm run lint
-echo "✅ Linting completed successfully"
+# Non-ASCII character check
+echo ""
+node .husky/scripts/check-non-ascii.js
 
-# Optionally uncomment if you want to run tests before committing
+# Run linter
+echo ""
+echo "🧹 Running ESLint..."
+npm run lint || exit 1
+echo "✅ Lint passed."
+
+# Optionally run tests
 # echo "🧪 Running tests..."
-# npm run test
+# npm run test || exit 1
 # echo "✅ Tests passed."
 
 # Run lint-staged
-echo "🎯 Running lint-staged..."
-npx lint-staged
+echo ""
+echo "🎯 Running lint-staged for staged files..."
+npx lint-staged || exit 1
+
+echo ""
+echo "✅ All pre-commit checks passed. Proceeding with commit."
