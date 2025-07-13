@@ -24,10 +24,12 @@ export default function WhatIsHungerAid() {
 			</p>
 			<p className="text-base sm:text-lg md:text-xl text-slate-700 text-center">
 				With just{" "}
+
 				<strong className="font-semibold text-slate-900">
 					&#8377;20
 				</strong>
 				, you can do more than feed a stomach.
+
 				<br />
 				You can restore hope.
 			</p>

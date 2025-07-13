@@ -28,6 +28,7 @@ export const aids = [
 		title: "Vision Aid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
 		button: "Donate Now",
+		link: "/vision-aid",
 	},
 	{
 		id: 5,
@@ -41,7 +42,6 @@ export const aids = [
 		image: "/aids/sakhi.jpg",
 		title: "Sakhi Aid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
-
 		button: "Read More",
 		link: "/sakhi-aid",
 	},
