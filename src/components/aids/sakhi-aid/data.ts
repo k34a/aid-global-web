@@ -16,14 +16,14 @@ export interface AwarenessContent {
 export const menstrualAwarenessData: AwarenessContent = {
 	image: `${STATIC_IMAGE_HOST}sakhi-aid/menstrual.png`,
 	title: "Menstrual Health & Hygiene Awareness",
-	desc1: "In many parts of India, menstruation is not just misunderstood—it is feared and shamed. SakhiAid takes bold steps to challenge this silence and bring dignity to every girl and woman.",
+	desc1: "In many parts of India, menstruation is not just misunderstood-it is feared and shamed. SakhiAid takes bold steps to challenge this silence and bring dignity to every girl and woman.",
 	desc2: "We believe that periods should never stop progress. Every girl deserves to attend school, dream big, and feel proud of her body.",
 };
 
 export const shgAwarenessData: AwarenessContent = {
 	image: `${STATIC_IMAGE_HOST}sakhi-aid/shg.png`,
 	title: "Self-Help Groups (SHGs) for Economic & Social Upliftment",
-	desc1: "We organize and support Self-Help Groups of women as the building blocks of change in their communities. SHGs are more than savings groups—they are spaces of trust, learning, creativity, and leadership.",
+	desc1: "We organize and support Self-Help Groups of women as the building blocks of change in their communities. SHGs are more than savings groups-they are spaces of trust, learning, creativity, and leadership.",
 	desc2: "SHGs help women earn, learn, and lead together.",
 };
 export const livelihoodAwarenessData: AwarenessContent = {
@@ -88,7 +88,7 @@ export const initiativestwo: InitiativeItem[] = [
 		color: "text-blue-500",
 		title: "Tailored Training Programs",
 		description:
-			"Based on individual interest and local need—such as stitching, cooking, organic farming, handicrafts, etc.",
+			"Based on individual interest and local need-such as stitching, cooking, organic farming, handicrafts, etc.",
 	},
 	{
 		color: "text-orange-500",

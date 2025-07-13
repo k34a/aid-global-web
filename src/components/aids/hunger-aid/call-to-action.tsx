@@ -15,7 +15,7 @@ export default function CallToAction() {
 					</div>
 					<p className="text-gray-600 text-base sm:text-lg drop-shadow-lg font-medium">
 						Dedicate a donation in memory of someone you love, or to
-						mark birthdays, anniversaries, or festivals — and turn
+						mark birthdays, anniversaries, or festivals - and turn
 						your celebration into someone&apos;s nourishment.
 					</p>
 				</div>
@@ -29,7 +29,7 @@ export default function CallToAction() {
 							className="w-6 h-6 sm:w-8 sm:h-8 text-rose-800 mt-1"
 						/>
 						<p className="text-lg sm:text-xl text-gray-600 drop-shadow-lg font-semibold italic">
-							&quot;You may not feed the whole nation — but to the
+							&quot;You may not feed the whole nation - but to the
 							one person you help today, you are everything.&quot;
 						</p>
 					</div>

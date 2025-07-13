@@ -18,7 +18,7 @@ export default function VisionAidHero() {
 				<div className="w-full md:w-1/2 text-gray-800 space-y-4 sm:space-y-6">
 					{/* Tagline */}
 					<p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-[#6a1e55] border-l-4 pl-2 sm:pl-3 border-[#6a1e55]">
-						“Enabling Abilities. Empowering Futures.”
+						&ldquo;Enabling Abilities. Empowering Futures.&rdquo;
 					</p>
 
 					{/* Heading */}
@@ -36,7 +36,7 @@ export default function VisionAidHero() {
 						treating, and empowering children with disabilities and
 						congenital challenges. From early diagnosis to lifelong
 						support, EnableAid transforms lives through inclusive
-						care — delivered free of cost and strives to build a
+						care - delivered free of cost and strives to build a
 						society where every ability is valued and every child is
 						given a chance to thrive.
 					</p>

@@ -13,8 +13,8 @@ export default function SakhiAidIntro() {
 					Led by Aid Global Foundation
 				</p>
 				<h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight">
-					“Empowering Women, <br className="hidden sm:block" />
-					Enabling Futures”
+					&ldquo;Empowering Women, <br className="hidden sm:block" />
+					Enabling Futures&rdquo;
 				</h1>
 
 				<p className="text-base sm:text-lg md:text-xl text-white/90 mb-3 sm:mb-4 leading-relaxed font-semibold">
@@ -27,7 +27,7 @@ export default function SakhiAidIntro() {
 
 				<p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed font-semibold">
 					We work in rural villages, urban slums, tribal belts, and
-					backward communities—where opportunities for women are the
+					backward communities-where opportunities for women are the
 					most limited, but where their potential is the greatest.
 				</p>
 			</div>
