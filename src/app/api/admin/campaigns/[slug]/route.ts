@@ -111,7 +111,7 @@ export async function DELETE(
 		const { slug } = await params;
 		const campaignPath = `campaigns/${slug}`;
 
-		// ✅ Recursively get all file paths
+		// [OK] Recursively get all file paths
 		const filePaths = await listAllFiles(campaignPath);
 
 		if (filePaths.length > 0) {
@@ -128,7 +128,7 @@ export async function DELETE(
 			}
 		}
 
-		// ✅ Delete the campaign row from the DB
+		// [OK] Delete the campaign row from the DB
 		const { error: deleteCampaignError } = await supabaseAdmin
 			.from("campaigns")
 			.delete()

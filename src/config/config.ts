@@ -1,6 +1,7 @@
 import type { NGODetails } from "@/config/types";
 
 export const APP_ENV = process.env.NODE_ENV;
+export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
 
 export const ngoDetails: NGODetails = {
 	name: "Aid Global Foundation",
@@ -17,14 +18,14 @@ export const ngoDetails: NGODetails = {
 		"donations",
 		"volunteer",
 	],
-	logo: "/logo.png",
+	logo: `${STATIC_IMAGE_HOST}logo.png`,
 
 	contact: {
 		address:
 			"H.no. 4453, Sathe Nagar near Manoj Kirana Store, Narpoli, Bhiwandi, Thane, Maharashtra-421305",
-		email: "info@aidglobalfoundation.org",
+		email: "info@aidglobal.ngo",
 		phone: "+91 96077-53148",
-		website: "https://aid-global-web.vercel.app",
+		website: "https://www.aidglobal.ngo",
 	},
 	twitterHandle: "@aidglobal",
 	twitterCardType: "summary_large_image",

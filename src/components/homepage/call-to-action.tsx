@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import { useRef, useState } from "react";
 import { useAnimationFrame, motion } from "motion/react";
 import { HandHeart } from "lucide-react";
@@ -8,10 +9,22 @@ import { HandHeart } from "lucide-react";
 const rotatingWords = ["future", "world", "society", "tomorrow", "community"];
 
 const callToActions = [
-	{ title: "Save Life", img: "/emergencies/Heart-Disease-2.jpg" },
-	{ title: "Mission Hunger", img: "/emergencies/homeless.webp" },
-	{ title: "Mission Education", img: "/aids/shiksha.webp" },
-	{ title: "Women Empowerment", img: "/aids/sakhi.jpg" },
+	{
+		title: "Save Life",
+		img: `${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`,
+	},
+	{
+		title: "Mission Hunger",
+		img: `${STATIC_IMAGE_HOST}home-page/emergencies/homeless.webp`,
+	},
+	{
+		title: "Mission Education",
+		img: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
+	},
+	{
+		title: "Women Empowerment",
+		img: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
+	},
 ];
 
 export function CallToActionQuote() {

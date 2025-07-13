@@ -158,7 +158,7 @@ export function AnalyticsContent({
 													(1000 * 60 * 60 * 24),
 											),
 										)
-									: "∞"}
+									: "Infinity"}
 							</p>
 						</div>
 						<div className="p-3 bg-orange-100 rounded-full">

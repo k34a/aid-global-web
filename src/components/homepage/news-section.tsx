@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 import { CircleDotDashed, ChevronsRight, ChevronsLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ArticleMeta } from "@/lib/db/articles";
@@ -128,7 +129,7 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 									>
 										<div className="relative overflow-hidden">
 											<Image
-												src="/dummyimage.jpg"
+												src={`${STATIC_IMAGE_HOST}home-page/dummyimage.webp`}
 												alt={news.title || "News image"}
 												width={280}
 												height={300}
@@ -147,7 +148,7 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 												href={`/articles/${news.slug}`}
 												className="text-blue-600 hover:underline text-sm font-medium cursor-pointer"
 											>
-												Read More →
+												Read More &rarr;
 											</a>
 										</div>
 									</motion.div>

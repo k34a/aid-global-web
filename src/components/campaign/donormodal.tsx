@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
 	Modal,
 	ModalContent,
@@ -43,21 +43,24 @@ export default function DonorModal({
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 
-	const fetchMoreDonors = useCallback(async () => {
-		setLoading(true);
-		const [newDonors, more] = await getDonors(campaignId, page);
-		setHasMore(more);
-		setDonors((prev) => [...prev, ...newDonors]);
-		setPage((p) => p + 1);
-		setLoading(false);
-	}, [campaignId]);
+	const fetchMoreDonors = useCallback(
+		async (pageNumber: number) => {
+			setLoading(true);
+			const [newDonors, more] = await getDonors(campaignId, pageNumber);
+			setHasMore(more);
+			setDonors((prev) => [...prev, ...newDonors]);
+			setPage((p) => p + 1);
+			setLoading(false);
+		},
+		[campaignId],
+	);
 
 	useEffect(() => {
 		if (open) {
 			setDonors([]);
 			setPage(0);
 			setHasMore(true);
-			fetchMoreDonors();
+			fetchMoreDonors(0);
 		}
 	}, [open, fetchMoreDonors]);
 
@@ -169,7 +172,7 @@ export default function DonorModal({
 						<Button
 							variant="primary"
 							className="w-full rounded-xl py-3 font-semibold"
-							onClick={fetchMoreDonors}
+							onClick={() => fetchMoreDonors(page + 1)}
 							disabled={loading}
 						>
 							{loading ? (

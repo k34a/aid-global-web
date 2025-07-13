@@ -23,7 +23,7 @@ export async function listAllFiles(folder: string): Promise<string[]> {
 				// It's a file
 				allFiles.push(`${folder}/${item.name}`);
 			} else {
-				// It's a folder – recurse
+				// It's a folder - recurse
 				const nested = await listAllFiles(`${folder}/${item.name}`);
 				allFiles.push(...nested);
 			}
