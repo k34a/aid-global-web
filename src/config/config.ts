@@ -1,6 +1,7 @@
 import type { NGODetails } from "@/config/types";
 
 export const APP_ENV = process.env.NODE_ENV;
+export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
 
 export const ngoDetails: NGODetails = {
 	name: "Aid Global Foundation",
@@ -17,7 +18,7 @@ export const ngoDetails: NGODetails = {
 		"donations",
 		"volunteer",
 	],
-	logo: "/logo.png",
+	logo: `${STATIC_IMAGE_HOST}logo.png`,
 
 	contact: {
 		address:
@@ -29,5 +30,3 @@ export const ngoDetails: NGODetails = {
 	twitterHandle: "@aidglobal",
 	twitterCardType: "summary_large_image",
 };
-
-export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
