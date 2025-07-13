@@ -6,18 +6,18 @@ export default function Campaignsection() {
 				<div className="inline-flex items-center gap-3 mb-6 justify-center">
 					<h2 className="flex text-3xl font-extrabold text-[#003366]">
 						<Bike className="w-20 h-20 sm:w-10 sm:h-10 text-[#007799]" />{" "}
-						Let’s reCYCLE – A Bicycle Can Change Her Future
+						Let&apos;s reCYCLE - A Bicycle Can Change Her Future
 					</h2>
 				</div>
 				<p className="text-lg text-gray-700 mb-4 max-w-3xl mx-auto leading-relaxed">
 					Launched on{" "}
 					<span className="font-semibold text-orange-400">
-						Women’s Day 2022
+						Women&apos;s Day 2022
 					</span>
 					, this campaign supports girl students in tribal and remote
 					areas who walk{" "}
 					<span className="font-semibold text-[#007799]">
-						8–10 km daily
+						8-10 km daily
 					</span>{" "}
 					to attend school.
 				</p>

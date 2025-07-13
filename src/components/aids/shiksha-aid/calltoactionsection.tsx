@@ -1,5 +1,12 @@
-import { HandCoins, Bike, Users, Handshake, Link } from "lucide-react";
-import DonateModalButton from "./donate-button";
+import {
+	HandCoins,
+	Bike,
+	Users,
+	Handshake,
+	Link as LinkIcon,
+} from "lucide-react";
+import Link from "next/link";
+
 const involvements = [
 	{
 		icon: HandCoins,
@@ -23,7 +30,7 @@ export default function CalltoActionSection() {
 		<section className="py-6 bg-[#e6faff] rounded-3xl">
 			<div className="max-w-6xl mx-auto px-6 text-center">
 				<h2 className="text-3xl font-bold mb-10 flex items-center justify-center gap-3 text-[#004466]">
-					<Link className="w-6 h-6 text-orange-500" />
+					<LinkIcon className="w-6 h-6 text-orange-500" />
 					Get Involved
 				</h2>
 				<div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6">
@@ -42,7 +49,12 @@ export default function CalltoActionSection() {
 						);
 					})}
 				</div>
-				<DonateModalButton />
+				<Link
+					href="/donate?program=shiksha-aid"
+					className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition"
+				>
+					Donate Now
+				</Link>
 			</div>
 		</section>
 	);

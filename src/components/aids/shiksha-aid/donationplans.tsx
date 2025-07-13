@@ -1,5 +1,13 @@
-import { Search, School, Brush, Sparkles, HeartHandshake } from "lucide-react";
-import DonateModalButton from "./donate-button";
+import {
+	Search,
+	School,
+	Brush,
+	Sparkles,
+	HeartHandshake,
+	Goal,
+} from "lucide-react";
+import Link from "next/link";
+
 const points = [
 	{
 		icon: Search,
@@ -27,27 +35,27 @@ const donations = [
 	{
 		title: "Educational Supplies",
 		desc: "For 5 children to get notebooks, stationery, and more.",
-		amount: "₹9,225",
+		amount: "9,225",
 	},
 	{
 		title: "Nutritious Meals",
 		desc: "Feed 50 children 3x a week with healthy food.",
-		amount: "₹12,000",
+		amount: "12,000",
 	},
 	{
 		title: "Health & Educational Tour",
 		desc: "Organize a camp and real-world exposure.",
-		amount: "₹33,000",
+		amount: "33,000",
 	},
 	{
 		title: "Teacher Honorarium",
 		desc: "Support one month of dedicated teaching.",
-		amount: "₹10,000",
+		amount: "10,000",
 	},
 	{
 		title: "Set Up a Shiksha Club",
 		desc: "Launch a full local learning hub.",
-		amount: "₹50,000",
+		amount: "50,000",
 	},
 ];
 export default function Donationsection() {
@@ -88,8 +96,10 @@ export default function Donationsection() {
 
 					<div className="flex-1 border border-orange-300 rounded-2xl shadow-md p-2 bg-white">
 						<h3 className="text-2xl font-bold text-orange-600 flex items-center mb-2">
-							<span className="text-3xl mr-2">🎯</span> Donation
-							Plans – ShikshaAid Centre
+							<span className="text-3xl mr-2">
+								<Goal className="text-red-600" />
+							</span>{" "}
+							Donation Plans - ShikshaAid Centre
 						</h3>
 						<table className="w-full text-[#003366] text-sm md:text-base">
 							<thead className="border-b border-[#004466]">
@@ -108,7 +118,7 @@ export default function Donationsection() {
 										Educational supplies for 5 children
 									</td>
 									<td className="py-1 text-right font-medium">
-										₹9,225
+										&#8377;9,225
 									</td>
 								</tr>
 								<tr className="border-b">
@@ -117,7 +127,7 @@ export default function Donationsection() {
 										week)
 									</td>
 									<td className="py-1 text-right font-medium">
-										₹12,000
+										&#8377;12,000
 									</td>
 								</tr>
 								<tr className="border-b">
@@ -125,15 +135,15 @@ export default function Donationsection() {
 										Health camp & educational tour
 									</td>
 									<td className="py-1 text-right font-medium">
-										₹33,000
+										&#8377;33,000
 									</td>
 								</tr>
 								<tr className="border-b">
 									<td className="py-1">
-										Teacher{"'"}s honorarium (monthly)
+										Teacher&apos;s honorarium (monthly)
 									</td>
 									<td className="py-2 text-right font-medium">
-										₹10,000
+										&#8377;10,000
 									</td>
 								</tr>
 								<tr>
@@ -141,7 +151,7 @@ export default function Donationsection() {
 										Set up a new Shiksha Club
 									</td>
 									<td className="py-1 text-right font-medium">
-										₹50,000
+										&#8377;50,000
 									</td>
 								</tr>
 							</tbody>
@@ -151,7 +161,12 @@ export default function Donationsection() {
 							stepping stone for a better life.
 						</p>
 						<div className="mt-2 flex items-center justify-center">
-							<DonateModalButton />
+							<Link
+								href="/donate?program=shiksha-aid"
+								className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition"
+							>
+								Donate Now
+							</Link>
 						</div>
 					</div>
 				</div>

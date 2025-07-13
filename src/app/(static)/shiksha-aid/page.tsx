@@ -4,12 +4,12 @@ import Donationsection from "@/components/aids/shiksha-aid/donationplans";
 import Introsection from "@/components/aids/shiksha-aid/introsection";
 import Pillarssection from "@/components/aids/shiksha-aid/pillarsofprogram";
 import Campaignsection from "@/components/aids/shiksha-aid/recyclecampaign";
-import ShikshaAidPage from "@/components/aids/shiksha-aid/shikapage";
+import HeroImage from "@/components/aids/shiksha-aid/hero-image";
 import Visionsection from "@/components/aids/shiksha-aid/visionsection";
 export default function ShikshaAid() {
 	return (
 		<main className="bg-[#fefefe] text-[#1a1a1d]">
-			<ShikshaAidPage />
+			<HeroImage />
 			<Introsection />
 			<Pillarssection />
 			<Donationsection />
