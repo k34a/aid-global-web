@@ -156,13 +156,11 @@ const EmergencySection = () => {
 										</div>
 										<div className="flex items-center justify-between mb-1">
 											<span className="text-blue-600 font-bold text-sm sm:text-base">
-												₹{item.raised.toLocaleString()}{" "}
-												Raised
+												&#8377;{item.raised} Raised
 											</span>
 											<span className="text-gray-700 font-medium text-xs sm:text-sm">
-												₹
-												{item.required.toLocaleString()}{" "}
-												Required
+												&#8377;
+												{item.required} Required
 											</span>
 										</div>
 										{/* Progress Bar */}
