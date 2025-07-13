@@ -43,7 +43,7 @@ export const enableAidData: EnableAidItem[] = [
 		id: 2,
 		image: `${STATIC_IMAGE_HOST}enable-aid/two.jpg`,
 		icon: Footprints,
-		title: "Clubfoot Program – Early Steps Toward a Better Future",
+		title: "Clubfoot Program - Early Steps Toward a Better Future",
 		tagline: "Correcting with compassion. Restoring mobility.",
 		bullets: [
 			{
@@ -72,7 +72,7 @@ export const enableAidData: EnableAidItem[] = [
 					"Training of local medical professionals for long-term sustainability",
 				],
 			},
-			"One surgery can be completed in just 45 minutes — changing a child’s life forever.",
+			"One surgery can be completed in just 45 minutes — changing a child's life forever.",
 			"Donation of ₹25,000 sponsors a complete cleft care cycle.",
 			{
 				text: "Support for other developmental disabilities includes:",
