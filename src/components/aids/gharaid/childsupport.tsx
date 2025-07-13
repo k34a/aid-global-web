@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Childsupport() {
 	return (
 		<div className="font-serif mx-5 sm:mx-7 md:mx-9 lg:mx-11 py-16 mt-5 sm:mt-7 md:mt-9 lg:mt-11 bg-gradient-to-b from-pink-100 to-yellow-50">
@@ -33,7 +33,7 @@ function Childsupport() {
 
 				<Image
 					className="rounded-xl shadow-lg"
-					src="/aids/children.webp"
+					src={`${STATIC_IMAGE_HOST}ghar-aid/children.webp`}
 					width={500}
 					height={400}
 					alt="child"

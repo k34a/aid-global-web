@@ -1,5 +1,5 @@
 import React from "react";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Medical() {
 	return (
 		<div className="relative font-serif bg-gradient-to-b from-blue-50 to-white py-16 px-6 sm:px-10 md:px-16 lg:px-24">
@@ -9,7 +9,12 @@ function Medical() {
 				</h2>
 			</div>
 
-			<div className="relative bg-[url('/aids/medical.webp')] bg-cover bg-center rounded-2xl shadow-xl overflow-hidden">
+			<div
+				className="relative  bg-cover bg-center rounded-2xl shadow-xl overflow-hidden"
+				style={{
+					backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/medical.webp)`,
+				}}
+			>
 				<div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
 
 				<div className="relative z-10 flex flex-col lg:flex-row gap-8 p-8 sm:p-10 md:p-12 text-blue-900">

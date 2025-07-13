@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Rescueinfo() {
 	return (
 		<div className="bg-gradient-to-b from-red-200 to-white mt-5 sm:mt-5 md:mt-7 lg:mt-9 px-4 sm:px-6 md:px-10 lg:px-24 py-16 sm:py-20 font-serif">
@@ -54,7 +54,7 @@ function Rescueinfo() {
 					<div className="flex-1 flex flex-col gap-8">
 						<div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 rounded-2xl shadow-lg overflow-hidden">
 							<Image
-								src="/aids/rescue.webp"
+								src={`${STATIC_IMAGE_HOST}ghar-aid/rescue.webp`}
 								alt="Rescue operations"
 								layout="fill"
 								objectFit="cover"
@@ -63,7 +63,7 @@ function Rescueinfo() {
 						</div>
 						<div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 rounded-2xl shadow-lg overflow-hidden">
 							<Image
-								src="/aids/medical_rescue.webp"
+								src={`${STATIC_IMAGE_HOST}ghar-aid/medical_rescue.webp`}
 								alt="Medical rescue"
 								layout="fill"
 								objectFit="cover"

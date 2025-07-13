@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Gharintro() {
 	return (
 		<div className="font-serif">
@@ -19,7 +19,7 @@ function Gharintro() {
 						<div className="w-full h-full max-w-[520px] flex">
 							<Image
 								className="rounded-xl border-4 border-blue-400 shadow-xl object-cover w-full h-full"
-								src="/aids/gharaid.webp"
+								src={`${STATIC_IMAGE_HOST}ghar-aid/gharaid.webp`}
 								width={520}
 								height={520}
 								alt="Ghar Aid"

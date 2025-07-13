@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Bhiwandi() {
 	return (
 		<div className="bg-gradient-to-b from-blue-200 to-red-50 py-20 px-6 sm:px-10 md:px-16 lg:px-24 font-serif">
@@ -19,7 +19,7 @@ function Bhiwandi() {
 				<div className="w-full lg:w-1/2 flex justify-center">
 					<div className="w-full h-full">
 						<Image
-							src="/aids/house.webp"
+							src={`${STATIC_IMAGE_HOST}ghar-aid/house.webp`}
 							alt="Shelter Home"
 							width={700}
 							height={700}
