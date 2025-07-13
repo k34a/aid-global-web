@@ -82,7 +82,7 @@ export const initiativestwo: InitiativeItem[] = [
 		color: "text-rose-500",
 		title: "Formation & Mobilization",
 		description:
-			"Creating women’s groups based on mutual trust and community connection.",
+			"Creating women's groups based on mutual trust and community connection.",
 	},
 	{
 		color: "text-blue-500",
