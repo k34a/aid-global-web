@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Bus, Glasses, Eye, Home } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export const visionVanSteps = [
 	{
@@ -26,7 +27,7 @@ export default function VisionVanSection() {
 		<section className="bg-white py-5 px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
 			<div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-md">
 				<Image
-					src="/aids/vision.jpg"
+					src={`${STATIC_IMAGE_HOST}vision-aid/vision.webp`}
 					alt="Vision Van Service"
 					fill
 					className="object-cover rounded-xl"

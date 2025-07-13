@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 const points = [
 	{ text: "A child can study again.", color: "#5d3dc4" },
@@ -14,7 +15,7 @@ export default function WhyItMattersSection() {
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
 				<div className="col-span-1 relative w-full h-[350px] rounded-xl overflow-hidden shadow-lg">
 					<Image
-						src="/aids/childwithglasses.avif"
+						src={`${STATIC_IMAGE_HOST}vision-aid/childwithglasses.webp`}
 						alt="Beneficiary smiling after receiving glasses"
 						fill
 						className="object-cover rounded-xl"

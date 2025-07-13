@@ -27,7 +27,7 @@ export const aids = [
 		title: "Vision Aid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
 		button: "Donate Now",
-		link: "aids/vision",
+		link: "/vision-aid",
 	},
 	{
 		id: 5,

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Eye } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 export default function VisionAidHero() {
 	return (
 		<section className="relative w-full overflow-hidden">
@@ -43,7 +44,7 @@ export default function VisionAidHero() {
 				<div className="w-full md:w-1/2 flex justify-center relative">
 					<div className="relative w-[500px] h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
 						<Image
-							src="/aids/vision.jpg"
+							src={`${STATIC_IMAGE_HOST}vision-aid/vision.webp`}
 							alt="VisionAid Hero"
 							fill
 							className="object-cover"
