@@ -32,11 +32,9 @@ const Footer: React.FC = () => {
 					<div className="lg:col-span-1">
 						<div className="flex items-center space-x-3 mb-6">
 							<div className="relative w-12 h-12 shrink-0">
-								<Image
+								<img
 									src={ngoDetails.logo}
 									alt={`${ngoDetails.name} Logo`}
-									sizes="(max-width: 200px) 240px, 240px"
-									fill
 									className="object-contain"
 								/>
 							</div>
