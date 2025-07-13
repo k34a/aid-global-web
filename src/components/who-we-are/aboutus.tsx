@@ -47,6 +47,10 @@ function Aboutus() {
 					<strong>SakhiAid</strong> &ndash; Women&apos;s empowerment
 					initiatives
 				</li>
+				<li>
+					<strong>HungerAid</strong> &ndash; Nutritious meals and
+					grocery support
+				</li>
 			</ul>
 		</section>
 	);
