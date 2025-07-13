@@ -1,7 +1,6 @@
-"use client";
-
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutContent = () => (
 	<>
@@ -61,9 +60,12 @@ const HeroSection = () => {
 						An initiative by Aid Global Foundation
 					</p>
 					<div className="flex justify-center md:justify-start">
-						<button className="bg-[#5DB996] hover:bg-[#118B50] text-white font-semibold px-6 py-2 rounded-md shadow-md transition duration-300">
+						<Link
+							href="/donate?program=cure-aid"
+							className="bg-[#5DB996] hover:bg-[#118B50] text-white font-semibold px-6 py-2 rounded-md shadow-md transition duration-300"
+						>
 							Contribute now
-						</button>
+						</Link>
 					</div>
 				</div>
 				<div className="z-10 flex-1 flex justify-center items-center relative w-full sm:w-[500px] h-[300px] sm:h-[400px] min-h-[300px]">

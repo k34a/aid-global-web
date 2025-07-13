@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { CircleDotDashed } from "lucide-react";
-import { cards } from "@/components/aids/hunger-aid/provides";
+import { cards } from "@/components/aids/hunger-aid/provides-data";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Link from "next/link";
 

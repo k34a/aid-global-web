@@ -1,5 +1,3 @@
-"use client";
-
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { ArrowRightSquare } from "lucide-react";
 import Image from "next/image";
