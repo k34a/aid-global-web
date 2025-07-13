@@ -1,8 +1,13 @@
 import React from "react";
-
+import { STATIC_IMAGE_HOST } from "@/config/config";
 function Yourhelp() {
 	return (
-		<div className="relative font-serif mx-4 sm:mx-6 md:mx-10 lg:mx-16 py-20 mt-8 rounded-2xl overflow-hidden bg-[url('/aids/help.webp')] bg-cover bg-center bg-no-repeat">
+		<div
+			className="relative font-serif mx-4 sm:mx-6 md:mx-10 lg:mx-16 py-20 mt-8 rounded-2xl overflow-hidden  bg-cover bg-center bg-no-repeat"
+			style={{
+				backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/help.webp)`,
+			}}
+		>
 			<div className="absolute inset-0 bg-black/60 backdrop-brightness-75"></div>
 
 			<div className="relative z-10 text-white text-center space-y-10">
@@ -36,7 +41,7 @@ function Yourhelp() {
 				</div>
 
 				<p className="text-lg sm:text-xl font-medium px-6 sm:px-16 leading-relaxed">
-					Let’s build homes of hope—starting from{" "}
+					Lets build homes of hope—starting from{" "}
 					<span className="font-semibold ">Bhiwandi</span>, reaching
 					across Maharashtra.
 					<br />
