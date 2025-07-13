@@ -14,7 +14,10 @@ export const CampaignCreateSchema = z.object({
 	description: z.string().min(1),
 	slug: z.string().min(1),
 	amount: z.number().positive(),
-	ended_at: z.string().datetime().optional().or(z.literal("")),
+	ended_at: z
+		.union([z.string().datetime(), z.literal(""), z.null()])
+		.optional(),
+
 	banner_image: z.string().optional(),
 	products: z.array(CampaignProductSchema).optional(),
 });

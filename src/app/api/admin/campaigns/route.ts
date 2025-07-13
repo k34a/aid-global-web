@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth } from "@/lib/auth/admin";
 import { checkCampaignSlugExists } from "@/lib/db/checkcampaignslug";
 import { CampaignCreateSchema } from "@/lib/validators/campaign";
-import { createCampaign } from "@/lib/db/createcampaign";
+import { supabaseAdmin } from "@/lib/db/supabase";
 export async function POST(request: NextRequest) {
 	try {
 		const isAuthenticated = await verifyAdminAuth();
@@ -37,13 +37,33 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const campaign = await createCampaign(body);
+		const { data, error } = await supabaseAdmin.rpc(
+			"create_campaign_with_products",
+			{
+				campaign_slug: body.slug,
+				title: body.title,
+				description: body.description,
+				goal_amount: body.amount,
+				image_url: body.banner_image,
+				ended_at: body.ended_at,
+				products: body.products,
+			},
+		);
+
+		if (error) {
+			console.error("RPC error:", error.message);
+			return NextResponse.json(
+				{ error: "Campaign creation failed", details: error.message },
+				{ status: 500 },
+			);
+		}
+
 		return NextResponse.json(
 			{
 				message: "Campaign created successfully",
 				campaign: {
-					id: campaign.id,
-					slug: campaign.slug,
+					id: data,
+					slug: body.slug,
 				},
 			},
 			{ status: 201 },
