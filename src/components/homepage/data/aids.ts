@@ -20,6 +20,7 @@ export const aids = [
 		title: "Cure Aid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
 		button: "Donate Now",
+		link: "/cure-aid",
 	},
 	{
 		id: 4,
