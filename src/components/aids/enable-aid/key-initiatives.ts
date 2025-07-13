@@ -43,7 +43,7 @@ export const enableAidData: EnableAidItem[] = [
 		id: 2,
 		image: `${STATIC_IMAGE_HOST}enable-aid/two.jpg`,
 		icon: Footprints,
-		title: "Clubfoot Program – Early Steps Toward a Better Future",
+		title: "Clubfoot Program - Early Steps Toward a Better Future",
 
 		tagline: "Correcting with compassion. Restoring mobility.",
 		bullets: [

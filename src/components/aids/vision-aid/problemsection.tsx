@@ -1,4 +1,3 @@
-"use client";
 import { Baby, Utensils, UserRoundX } from "lucide-react";
 
 export default function ProblemSection() {
@@ -27,7 +26,7 @@ export default function ProblemSection() {
 				<div className="bg-white border border-[#e2d9f3] rounded-xl shadow-sm p-6 hover:shadow-md transition">
 					<Baby className="w-8 h-8 text-[#6a1e55] mb-4" />
 					<h3 className="text-lg font-semibold text-[#1a1a1d] mb-2">
-						A child who can’t see the blackboard...
+						A child who can&apos;t see the blackboard...
 					</h3>
 					<p className="text-sm text-gray-700 leading-relaxed">
 						Missing out on education, confidence, and opportunity.
@@ -54,8 +53,8 @@ export default function ProblemSection() {
 			</div>
 			<div className="my-4 sm:mt-10 max-w-4xl mx-auto border-l-4 border-[#6a1e55] bg-[#faf6fb] px-6 py-5 rounded-md shadow-sm text-center">
 				<p className="text-[#6a1e55] font-medium italic text-lg">
-					All of this—because they don’t have access to basic eye
-					care.
+					All of this - because they don&apos;t have access to basic
+					eye care.
 				</p>
 			</div>
 		</section>

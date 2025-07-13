@@ -1,28 +1,28 @@
-"use client";
 import {
 	Glasses,
 	Eye,
 	HandCoins,
 	HeartHandshake,
 	Bus,
-	Link,
+	Link as LinkIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 const contributions = [
 	{
 		icon: Glasses,
 		title: "Sponsor a Vision Kit",
-		description: "₹250 provides one pair of glasses.",
+		description: "Rs. 250 provides one pair of glasses.",
 	},
 	{
 		icon: Eye,
 		title: "Support a Cataract Surgery",
-		description: "₹8,000 restores vision for one person.",
+		description: "Rs. 8,000 restores vision for one person.",
 	},
 	{
 		icon: HandCoins,
 		title: "Fund a Full Eye Camp",
-		description: "₹25,000 supports a full day of free eye care.",
+		description: "Rs. 25,000 supports a full day of free eye care.",
 	},
 	{
 		icon: Bus,
@@ -48,7 +48,7 @@ export default function JoinUsSection() {
 			</div>
 			<div className="relative z-10">
 				<h2 className="text-4xl  font-bold text-[#2f194d] mb-2">
-					Be the Light in Someone’s Darkness
+					Be the Light in Someone&apos;s Darkness
 				</h2>
 				<p className="text-xl text-[#5d3dc4] mb-4 max-w-2xl">
 					You can be a part of this life-changing journey:
@@ -76,19 +76,25 @@ export default function JoinUsSection() {
 						Connect with VisionAid Today
 					</h3>
 					<p className="text-base font-medium text-[#6a1e55] leading-relaxed">
-						Let’s bring light back into someone’s world.
+						Let&apos;s bring light back into someone&apos;s world.
 						<br />
 						Be their hope. Be their vision.
 					</p>
 				</div>
 				<div className="flex flex-wrap gap-4">
-					<button className="bg-[#5d3dc4] text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-[#6a1e55] transition-all">
+					<Link
+						href="/donate?program=vision-aid"
+						className="bg-[#5d3dc4] text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-[#6a1e55] transition-all"
+					>
 						Donate Now
-					</button>
-					<button className="bg-white border-2 border-[#5d3dc4] text-[#5d3dc4] px-6 py-3 rounded-xl font-medium hover:bg-[#f3eaff] transition-all">
-						<Link className="inline-block mr-2" />
+					</Link>
+					<Link
+						href="/contact-us"
+						className="bg-white border-2 border-[#5d3dc4] text-[#5d3dc4] px-6 py-3 rounded-xl font-medium hover:bg-[#f3eaff] transition-all"
+					>
+						<LinkIcon className="inline-block mr-2" />
 						Connect with us
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>

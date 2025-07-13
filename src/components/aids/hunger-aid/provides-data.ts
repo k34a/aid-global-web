@@ -10,7 +10,7 @@ export const cards = [
 			"Homeless and abandoned individuals",
 			"Daily wage laborers and low-income earners",
 
-			"Patients’ families at hospitals",
+			"Patients' families at hospitals",
 
 			"Communities affected by hardship or isolation",
 		],
