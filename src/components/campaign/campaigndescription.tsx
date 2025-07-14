@@ -1,18 +1,17 @@
 "use client";
 
 interface CampaignDescriptionProps {
-	content: string;
+	markdwon: string;
 }
 
 export default function CampaignDescription({
-	content,
+	markdwon,
 }: CampaignDescriptionProps) {
 	return (
 		<div className="prose prose-lg max-w-none bg-white rounded-xl shadow p-6">
-			<div
-				dangerouslySetInnerHTML={{ __html: content }}
-				className="rich-text-content"
-			/>
+			<ReactMarkdown remarkPlugins={[remarkGfm]}>
+				{markdown}
+			</ReactMarkdown>
 		</div>
 	);
 }

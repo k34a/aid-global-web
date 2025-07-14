@@ -419,16 +419,16 @@ export default function RichTextEditor({
 					Rich Text Editor Features:
 				</h4>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-gray-600">
-					<div>• Use the toolbar above to format your text</div>
+					<div>- Use the toolbar above to format your text</div>
 					<div>
-						• Headings, bold, italic, underline, strikethrough
+						- Headings, bold, italic, underline, strikethrough
 					</div>
-					<div>• Bullet and numbered lists</div>
-					<div>• Text alignment (left, center, right, justify)</div>
-					<div>• Add links and images</div>
-					<div>• Change text color and highlight text</div>
-					<div>• Blockquotes and code blocks</div>
-					<div>• Undo/redo functionality</div>
+					<div>- Bullet and numbered lists</div>
+					<div>- Text alignment (left, center, right, justify)</div>
+					<div>- Add links and images</div>
+					<div>- Change text color and highlight text</div>
+					<div>- Blockquotes and code blocks</div>
+					<div>- Undo/redo functionality</div>
 				</div>
 			</div>
 		</div>

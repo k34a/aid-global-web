@@ -1,122 +1,24 @@
-# Aid Global Web
-
-A Next.js web application for managing and displaying campaigns with rich text editing capabilities.
-
-## Features
-
-### Rich Text Editor (TipTap)
-The application now uses TipTap, a modern rich text editor, for campaign descriptions. Features include:
-
-- **WYSIWYG Editing**: What-you-see-is-what-you-get interface
-- **Rich Formatting**: Bold, italic, underline, strikethrough
-- **Headings**: H1, H2, H3 heading levels
-- **Lists**: Bullet and numbered lists
-- **Text Alignment**: Left, center, right, justify alignment
-- **Links and Images**: Add hyperlinks and images
-- **Colors**: Text color and highlight functionality
-- **Special Elements**: Blockquotes and code blocks
-- **History**: Undo/redo functionality
-- **Responsive Toolbar**: Collapsible toolbar with all formatting options
-
-### Editor Components
-- `RichTextEditor`: Main TipTap editor component with full toolbar
-- `CampaignDescription`: Component for rendering the HTML content
-
-### File Storage
-- Campaign descriptions are stored as HTML files in Supabase storage
-- Backward compatibility with existing markdown files
-- Automatic file type detection (HTML first, then markdown)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+First, run the development server:
 
-2. Set up environment variables (see `.env.example`)
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Dependencies
-
-### TipTap Editor Dependencies
-- `@tiptap/react`: React integration for TipTap
-- `@tiptap/pm`: ProseMirror integration
-- `@tiptap/starter-kit`: Basic editor features
-- `@tiptap/extension-placeholder`: Placeholder text support
-- `@tiptap/extension-link`: Link functionality
-- `@tiptap/extension-image`: Image support
-- `@tiptap/extension-text-align`: Text alignment
-- `@tiptap/extension-underline`: Underline formatting
-- `@tiptap/extension-text-style`: Text styling
-- `@tiptap/extension-color`: Color support
-- `@tiptap/extension-highlight`: Text highlighting
-
-## Usage
-
-### Using the Rich Text Editor
-```tsx
-import RichTextEditor from "@/components/dashboard/campaigns/rich-text-editor";
-
-function MyComponent() {
-  const [content, setContent] = useState('');
-
-  return (
-    <RichTextEditor
-      value={content}
-      onChange={setContent}
-      placeholder="Write your content here..."
-    />
-  );
-}
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Rendering Rich Text Content
-```tsx
-import CampaignDescription from "@/components/campaign/campaigndescription";
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-function MyComponent() {
-  return (
-    <CampaignDescription content={htmlContent} />
-  );
-}
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Migration from Markdown
-
-The application has been migrated from a markdown editor to TipTap rich text editor:
-
-1. **Backward Compatibility**: Existing markdown files are still supported
-2. **New Content**: New content is stored as HTML
-3. **Automatic Detection**: The system automatically detects file type
-4. **No Data Loss**: Existing campaigns continue to work
-
-## Styling
-
-The editor includes comprehensive CSS styling for both the editor interface and rendered content. Styles are defined in `src/app/globals.css` and include:
-
-- ProseMirror editor styles
-- Rich text content rendering styles
-- Responsive design
-- Consistent typography
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 

@@ -28,32 +28,18 @@ interface CampaignDetails {
 }
 
 const getCampaignBySlug = async (slug: string) => {
-	const { data: campaigns, error } = await supabaseAdmin
+	const { data: campaign, error } = await supabaseAdmin
 		.from("campaigns")
 		.select("*, campaign_products(*)")
 		.eq("slug", slug)
-		.order("created_at", { ascending: false });
+		.single();
 
 	if (error) {
 		console.error("Error fetching campaign details:", error.message);
 		return null;
 	}
 
-	// If no campaigns found
-	if (!campaigns || campaigns.length === 0) {
-		console.error("No campaign found with slug:", slug);
-		return null;
-	}
-
-	// If multiple campaigns found, log warning and return the most recent one
-	if (campaigns.length > 1) {
-		console.warn(
-			`Multiple campaigns found with slug "${slug}". Returning the most recent one.`,
-		);
-	}
-
-	// Return the first (most recent) campaign
-	return campaigns[0] as CampaignDetails;
+	return campaign as CampaignDetails;
 };
 
 interface BackerDetailsForCampaign {

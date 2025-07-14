@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { fetchCampaignContent } from "@/lib/db/storage";
+import { fetchCampaignMarkdown } from "@/lib/db/storage";
 import { getCampaignBySlug, getBackersForCampaign } from "@/lib/db/campaigns";
 
 import CampaignBanner from "@/components/campaign/campaignbanner";
@@ -24,8 +24,8 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 	const campaign = await getCampaignBySlug(slug);
 	if (!campaign) return notFound();
 
-	const content =
-		(await fetchCampaignContent(slug)) || "No description available.";
+	const markdown =
+		(await fetchCampaignMarkdown(slug)) || "No description available.";
 
 	const initialDonors = await getBackersForCampaign(campaign.id, 5, 0);
 
@@ -43,7 +43,7 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 
 				<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 					<div className="lg:col-span-2 space-y-8">
-						<CampaignDescription content={content} />
+						<CampaignDescription markdown={markdown} />
 					</div>
 
 					<div className="space-y-8">
