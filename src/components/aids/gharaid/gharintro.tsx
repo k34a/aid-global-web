@@ -33,7 +33,7 @@ function Gharintro() {
 								By Aid Global Foundation
 								<br />
 								<span className="italic text-sm sm:text-base md:text-lg lg:text-xl text-gray-700">
-									“Rescue. Rebuild. Restore.”
+									&quot;Rescue. Rebuild. Restore.&quot;
 								</span>
 							</h2>
 
@@ -47,11 +47,11 @@ function Gharintro() {
 								<br />
 								<br />
 								Our mission is to give a second chance to those
-								living in helpless conditions—whether abandoned
-								on the streets, suffering from mental illness,
-								disabled, elderly, or orphaned. We provide safe
-								shelter, medical care, emotional healing, and
-								the dignity they deserve.
+								living in helpless conditions {"-"}whether
+								abandoned on the streets, suffering from mental
+								illness, disabled, elderly, or orphaned. We
+								provide safe shelter, medical care, emotional
+								healing, and the dignity they deserve.
 							</p>
 						</div>
 					</div>

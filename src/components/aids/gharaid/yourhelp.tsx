@@ -41,7 +41,7 @@ function Yourhelp() {
 				</div>
 
 				<p className="text-lg sm:text-xl font-medium px-6 sm:px-16 leading-relaxed">
-					Lets build homes of hope—starting from{" "}
+					Lets build homes of hope {"-"}starting from{" "}
 					<span className="font-semibold ">Bhiwandi</span>, reaching
 					across Maharashtra.
 					<br />

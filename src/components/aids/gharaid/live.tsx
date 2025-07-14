@@ -9,7 +9,7 @@ function Live() {
 				Reintegration & Livelihood Support
 			</h2>
 			<h2 className="font-bold text-md sm:text-lg md:text-xl lg:text-2xl text-center mt-2 sm:mt-3 md:mt-4 lg-mt-5 mb-2 sm:mb-3 md:mb-4 lg-mb-5">
-				We dont stop at rescue—we rebuild lives.
+				We dont stop at rescue {"-"}we rebuild lives.
 			</h2>
 			<div className="flex flex-col lg:flex-row justify-between mx-5 sm:mx-10 gap-12 lg:gap-10">
 				<div className="flex flex-col p-6 sm:p-8 rounded-xl bg-white/90 shadow-lg text-black">
