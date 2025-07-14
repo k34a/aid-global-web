@@ -4,12 +4,7 @@ import { verifyAdminAuth } from "@/lib/auth/admin";
 import { supabaseAdmin } from "@/lib/db/supabase";
 import { buildPublicUrl } from "@/lib/db/storage";
 
-const ACCEPTED_IMAGE_TYPES = [
-	"image/jpeg",
-	"image/jpg",
-	"image/png",
-	"image/webp",
-];
+const ACCEPTED_IMAGE_TYPES = ["image/webp"];
 
 const presignSchema = z.object({
 	slug: z.string().min(1, "Campaign slug is required"),
@@ -19,15 +14,15 @@ const presignSchema = z.object({
 		.refine(
 			(name) => {
 				const ext = name.split(".").pop()?.toLowerCase();
-				return ACCEPTED_IMAGE_TYPES.some((type) =>
-					type.includes(ext || ""),
-				);
+				return ACCEPTED_IMAGE_TYPES.includes(ext || "");
 			},
 			{
-				message: "Only JPEG, PNG, and WebP extensions are allowed",
+				message: "Only .webp files are allowed",
 			},
 		),
+
 	type: z.enum(["product", "banner"]),
+	fileSize: z.number().max(200 * 1024, "File size must be less than 200 KB"),
 });
 export async function POST(request: NextRequest) {
 	try {
