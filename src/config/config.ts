@@ -20,7 +20,6 @@ export const ngoDetails: NGODetails = {
 		"volunteer",
 	],
 	logo: `${STATIC_IMAGE_HOST}logo.png`,
-
 	contact: {
 		address:
 			"H.no. 4453, Sathe Nagar near Manoj Kirana Store, Narpoli, Bhiwandi, Thane, Maharashtra-421305",
