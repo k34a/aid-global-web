@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { getAdminImageUrl } from "@/lib/utils/image-url";
 import Image from "next/image";
 import {
 	Save,
@@ -12,7 +11,6 @@ import {
 	Plus,
 	Trash2,
 	Image as ImageIcon,
-	Calendar,
 	Target,
 	FileText,
 	Link as LinkIcon,
@@ -38,7 +36,7 @@ export default function CampaignCreateForm() {
 		title: "",
 		description: "",
 		slug: "",
-		amount: 0,
+		amount: "",
 		ended_at: "",
 		banner_image: "",
 	});
@@ -48,8 +46,8 @@ export default function CampaignCreateForm() {
 	const [newProduct, setNewProduct] = useState({
 		title: "",
 		description: "",
-		price_per_unit: 0,
-		units_required: 0,
+		price_per_unit: "",
+		units_required: "",
 		image: "",
 	});
 
@@ -67,7 +65,7 @@ export default function CampaignCreateForm() {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
 			...prev,
-			[name]: name === "amount" ? parseFloat(value) || 0 : value,
+			[name]: value,
 		}));
 
 		// Auto-generate slug from title
@@ -95,45 +93,71 @@ export default function CampaignCreateForm() {
 		}
 	};
 
-	const handleBannerImageChange = (
+	const handleBannerImageChange = async (
 		e: React.ChangeEvent<HTMLInputElement>,
 	) => {
 		const file = e.target.files?.[0];
 		if (file) {
 			setBannerImageFile(file);
-			setFormData((prev) => ({
-				...prev,
-				banner_image: URL.createObjectURL(file),
-			}));
+
+			try {
+				const imageUrl = await uploadImage(file, "banner");
+
+				// Update form with the uploaded image URL
+				setFormData((prev) => ({
+					...prev,
+					banner_image: imageUrl,
+				}));
+
+				// Clear the file reference since it's now uploaded
+				setBannerImageFile(null);
+			} catch (error) {
+				console.error("Failed to upload banner image:", error);
+				toast.error("Failed to upload banner image");
+			}
 		}
 	};
 
-	const handleProductImageChange = (
+	const handleProductImageChange = async (
 		productId: string,
 		e: React.ChangeEvent<HTMLInputElement>,
 	) => {
 		const file = e.target.files?.[0];
 		if (file) {
-			setProductImageFiles((prev) => ({
-				...prev,
-				[productId]: file,
-			}));
-			setProducts((prev) =>
-				prev.map((product) =>
-					product.id === productId
-						? { ...product, image: URL.createObjectURL(file) }
-						: product,
-				),
-			);
+			try {
+				const imageUrl = await uploadImage(file, "product");
+
+				// Update product with the uploaded image URL
+				setProducts((prev) =>
+					prev.map((product) =>
+						product.id === productId
+							? { ...product, image: imageUrl }
+							: product,
+					),
+				);
+
+				// Clear the file reference since it's now uploaded
+				setProductImageFiles((prev) => {
+					const newState = { ...prev };
+					delete newState[productId];
+					return newState;
+				});
+			} catch (error) {
+				console.error("Failed to upload product image:", error);
+				toast.error("Failed to upload product image");
+			}
 		}
 	};
 
 	const addProduct = () => {
+		const pricePerUnit = parseFloat(newProduct.price_per_unit) || 0;
+		const unitsRequired = parseFloat(newProduct.units_required) || 0;
+
 		if (
 			!newProduct.title ||
 			!newProduct.description ||
-			newProduct.price_per_unit <= 0 ||
-			newProduct.units_required <= 0
+			pricePerUnit <= 0 ||
+			unitsRequired <= 0
 		) {
 			toast.error("Please fill all product fields");
 			return;
@@ -144,8 +168,8 @@ export default function CampaignCreateForm() {
 			campaign_id: "",
 			title: newProduct.title,
 			description: newProduct.description,
-			price_per_unit: newProduct.price_per_unit,
-			units_required: newProduct.units_required,
+			price_per_unit: pricePerUnit,
+			units_required: unitsRequired,
 			units_collected: 0,
 			image: newProduct.image,
 		};
@@ -154,8 +178,8 @@ export default function CampaignCreateForm() {
 		setNewProduct({
 			title: "",
 			description: "",
-			price_per_unit: 0,
-			units_required: 0,
+			price_per_unit: "",
+			units_required: "",
 			image: "",
 		});
 	};
@@ -169,31 +193,94 @@ export default function CampaignCreateForm() {
 		field: keyof CampaignProduct,
 		value: any,
 	) => {
+		// Convert string values to numbers for numeric fields
+		let processedValue = value;
+		if (field === "price_per_unit" || field === "units_required") {
+			processedValue = value === "" ? 0 : parseFloat(value) || 0;
+		}
+
 		setProducts((prev) =>
 			prev.map((product) =>
 				product.id === productId
-					? { ...product, [field]: value }
+					? { ...product, [field]: processedValue }
 					: product,
 			),
 		);
 	};
 
-	const uploadImage = async (file: File, path: string): Promise<string> => {
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("path", path);
+	const handleNewProductNumberChange = (
+		field: keyof typeof newProduct,
+		e: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		const value = e.target.value;
 
-		const response = await fetch("/api/upload", {
-			method: "POST",
-			body: formData,
-		});
+		// Allow empty string or valid numbers
+		if (value === "" || /^\d*\.?\d*$/.test(value)) {
+			setNewProduct((prev) => ({
+				...prev,
+				[field]: value,
+			}));
+		}
+	};
 
-		if (!response.ok) {
-			throw new Error("Failed to upload image");
+	const handleProductNumberChange = (
+		productId: string,
+		field: keyof CampaignProduct,
+		e: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		const value = e.target.value;
+
+		// Allow empty string or valid numbers
+		if (value === "" || /^\d*\.?\d*$/.test(value)) {
+			updateProduct(productId, field, value);
+		}
+	};
+
+	const uploadImage = async (
+		file: File,
+		type: "banner" | "product",
+	): Promise<string> => {
+		const filename = file.name;
+		if (!filename.toLowerCase().endsWith(".webp")) {
+			throw new Error("Only .webp files are allowed");
 		}
 
-		const data = await response.json();
-		return data.url;
+		if (file.size > 200 * 1024) {
+			throw new Error("Image must be less than 200 KB");
+		}
+
+		const res = await fetch("/api/upload", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+			body: JSON.stringify({
+				slug: formData.slug || "temp",
+				filename,
+				type,
+			}),
+		});
+
+		if (!res.ok) {
+			throw new Error("Failed to get presigned upload URL");
+		}
+
+		const { presignedUrl, publicUrl } = await res.json();
+
+		const uploadRes = await fetch(presignedUrl, {
+			method: "PUT",
+			headers: {
+				"Content-Type": file.type,
+			},
+			body: file,
+		});
+
+		if (!uploadRes.ok) {
+			throw new Error("Failed to upload image to storage");
+		}
+
+		return publicUrl;
 	};
 
 	const uploadRichText = async (
@@ -224,11 +311,13 @@ export default function CampaignCreateForm() {
 
 		try {
 			// Validate required fields
+			const parsedAmount = Number(formData.amount);
 			if (
 				!formData.title ||
 				!formData.description ||
 				!formData.slug ||
-				formData.amount <= 0
+				isNaN(parsedAmount) ||
+				parsedAmount <= 0
 			) {
 				toast.error("Please fill all required fields");
 				return;
@@ -240,30 +329,31 @@ export default function CampaignCreateForm() {
 				return;
 			}
 
-			// Upload banner image if provided
-			let bannerImageUrl = "";
-			if (bannerImageFile) {
-				bannerImageUrl = await uploadImage(
-					bannerImageFile,
-					`campaigns/${formData.slug}/banner`,
-				);
+			// Process rich text images if any
+			let processedRichTextContent = richTextContent;
+			if (
+				richTextContent.trim() &&
+				(window as any).processRichTextImages
+			) {
+				try {
+					processedRichTextContent = await (
+						window as any
+					).processRichTextImages();
+				} catch (error) {
+					console.error("Failed to process rich text images:", error);
+					toast.error(
+						"Failed to upload some images. Please try again.",
+					);
+					return;
+				}
 			}
 
-			// Upload product images if provided
-			const updatedProducts = await Promise.all(
-				products.map(async (product) => {
-					let productImageUrl = product.image;
-					if (productImageFiles[product.id]) {
-						productImageUrl = await uploadImage(
-							productImageFiles[product.id],
-							`campaigns/${formData.slug}/products/${product.id}`,
-						);
-					}
-					return { ...product, image: productImageUrl };
-				}),
-			);
+			// Images are already uploaded, so we can use them directly
+			const updatedProducts = products.map((product) => ({
+				...product,
+				// Product images are already uploaded URLs
+			}));
 
-			// Create campaign
 			const response = await fetch("/api/admin/campaigns", {
 				method: "POST",
 				headers: {
@@ -271,25 +361,42 @@ export default function CampaignCreateForm() {
 				},
 				body: JSON.stringify({
 					...formData,
-					banner_image: bannerImageUrl,
-					products: updatedProducts,
+					amount: Number(formData.amount),
+					ended_at:
+						formData.ended_at.trim() === ""
+							? null
+							: new Date(formData.ended_at).toISOString(),
+					products: updatedProducts.map((p) => ({
+						...p,
+						price_per_unit: Number(p.price_per_unit),
+						units_required: Number(p.units_required),
+					})),
 				}),
 			});
 
 			if (!response.ok) {
 				const errorData = await response.json();
+				console.error("API Error:", errorData);
 				throw new Error(errorData.error || "Failed to create campaign");
 			}
 
 			const result = await response.json();
 
-			// Upload rich text content if provided
-			if (richTextContent.trim()) {
+			if (
+				processedRichTextContent &&
+				processedRichTextContent.trim() &&
+				processedRichTextContent.trim() !== "<p></p>"
+			) {
 				try {
-					await uploadRichText(richTextContent, formData.slug);
+					await uploadRichText(
+						processedRichTextContent,
+						formData.slug,
+					);
 				} catch (error) {
 					console.error("Failed to upload rich text content:", error);
-					// Don't fail the entire request if rich text upload fails
+					toast.error(
+						"Campaign created, but rich text upload failed.",
+					);
 				}
 			}
 
@@ -363,12 +470,14 @@ export default function CampaignCreateForm() {
 							<input
 								type="number"
 								name="amount"
-								value={formData.amount}
+								placeholder="1000"
+								value={
+									formData.amount === "0"
+										? ""
+										: formData.amount
+								}
 								onChange={handleInputChange}
 								className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-								required
-								min="0"
-								placeholder="10000"
 							/>
 						</div>
 
@@ -430,9 +539,7 @@ export default function CampaignCreateForm() {
 						{formData.banner_image && (
 							<div className="relative w-full max-w-md">
 								<Image
-									src={getAdminImageUrl(
-										formData.banner_image,
-									)}
+									src={formData.banner_image}
 									alt="Banner preview"
 									width={400}
 									height={192}
@@ -521,11 +628,10 @@ export default function CampaignCreateForm() {
 									placeholder="100"
 									value={newProduct.price_per_unit}
 									onChange={(e) =>
-										setNewProduct((prev) => ({
-											...prev,
-											price_per_unit:
-												parseFloat(e.target.value) || 0,
-										}))
+										handleNewProductNumberChange(
+											"price_per_unit",
+											e,
+										)
 									}
 									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 								/>
@@ -539,11 +645,10 @@ export default function CampaignCreateForm() {
 									placeholder="50"
 									value={newProduct.units_required}
 									onChange={(e) =>
-										setNewProduct((prev) => ({
-											...prev,
-											units_required:
-												parseInt(e.target.value) || 0,
-										}))
+										handleNewProductNumberChange(
+											"units_required",
+											e,
+										)
 									}
 									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 								/>
@@ -627,12 +732,10 @@ export default function CampaignCreateForm() {
 											type="number"
 											value={product.price_per_unit}
 											onChange={(e) =>
-												updateProduct(
+												handleProductNumberChange(
 													product.id,
 													"price_per_unit",
-													parseFloat(
-														e.target.value,
-													) || 0,
+													e,
 												)
 											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -646,11 +749,10 @@ export default function CampaignCreateForm() {
 											type="number"
 											value={product.units_required}
 											onChange={(e) =>
-												updateProduct(
+												handleProductNumberChange(
 													product.id,
 													"units_required",
-													parseInt(e.target.value) ||
-														0,
+													e,
 												)
 											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -686,9 +788,7 @@ export default function CampaignCreateForm() {
 									{product.image && (
 										<div className="relative w-32 h-32">
 											<Image
-												src={getAdminImageUrl(
-													product.image,
-												)}
+												src={product.image}
 												alt={product.title}
 												width={128}
 												height={128}

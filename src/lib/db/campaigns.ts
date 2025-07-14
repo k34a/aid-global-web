@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "./supabase";
-
+import { baseBackerSchema, adminBackerSchema } from "@/lib/validators/backer";
+import { z } from "zod";
 interface CampaignProduct {
 	id: string;
 	campaign_id: string;
@@ -61,18 +62,32 @@ interface BackerDetailsForCampaign {
 	name: string;
 	is_anon: boolean;
 	created_at: Date;
-	email?: string;
-	contact_number?: string;
 }
+interface AdminBackerDetailsForCampaign extends BackerDetailsForCampaign {
+	email?: string | null;
+	contact_number?: string | null;
+}
+type BackerResponse = {
+	backers:
+		| BackerDetailsForCampaign[]
+		| AdminBackerDetailsForCampaign[]
+		| null;
+	hasMore: boolean;
+};
 
 const getBackersForCampaign = async (
 	campaignId: string,
 	limit = 10,
 	offset = 0,
-) => {
+	isAdmin = false,
+): Promise<BackerResponse> => {
+	const selectFields = isAdmin
+		? "id, amount, is_anon, created_at, name, email, contact_number"
+		: "id, amount, is_anon, created_at, name";
+
 	const { data, error } = await supabaseAdmin
 		.from("backers")
-		.select("id, amount, is_anon, created_at, name")
+		.select(selectFields)
 		.eq("campaign_id", campaignId)
 		.neq("payment_id", null)
 		.order("created_at", { ascending: false })
@@ -83,56 +98,26 @@ const getBackersForCampaign = async (
 		return { backers: null, hasMore: false };
 	}
 
-	// Determine if there's more
-	const hasMore = data.length > limit;
+	const schema = isAdmin ? adminBackerSchema : baseBackerSchema;
 
-	// Slice back to the requested limit
-	const slicedData = data.slice(0, limit) as BackerDetailsForCampaign[];
+	const result = z.array(schema).safeParse(data);
 
-	// Handle anonymizing
-	const backers = slicedData.map((backer) => {
-		if (backer.is_anon) {
-			return {
-				...backer,
-				name: "Anonymous",
-			};
-		}
-		return backer;
-	});
-
-	return { backers, hasMore };
-};
-
-// New function to get complete donor details for admin view
-const getAdminBackersForCampaign = async (
-	campaignId: string,
-	limit = 10,
-	offset = 0,
-) => {
-	const { data, error } = await supabaseAdmin
-		.from("backers")
-		.select("id, amount, is_anon, created_at, name, email, contact_number")
-		.eq("campaign_id", campaignId)
-		.neq("payment_id", null)
-		.order("created_at", { ascending: false })
-		.range(offset, offset + limit);
-
-	if (error) {
-		console.error(
-			"Error fetching admin backers for campaign:",
-			error.message,
-		);
+	if (!result.success) {
+		console.error("Zod validation failed:", result.error.format());
 		return { backers: null, hasMore: false };
 	}
 
-	// Determine if there's more
-	const hasMore = data.length > limit;
+	const slicedData = result.data.slice(0, limit);
+	const hasMore = result.data.length > limit;
 
-	// Slice back to the requested limit
-	const slicedData = data.slice(0, limit) as BackerDetailsForCampaign[];
+	const backers = isAdmin
+		? slicedData
+		: slicedData.map((backer) => ({
+				...backer,
+				name: backer.is_anon ? "Anonymous" : backer.name,
+			}));
 
-	// For admin view, we don't anonymize - show all details
-	return { backers: slicedData, hasMore };
+	return { backers, hasMore };
 };
 
 interface PaginationCampaignFilters {
@@ -214,7 +199,6 @@ export {
 	getCampaigns,
 	getAllCampaignsCount,
 	getBackersForCampaign,
-	getAdminBackersForCampaign,
 };
 
 export type { CampaignDetails, CampaignProduct, BackerDetailsForCampaign };

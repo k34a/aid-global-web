@@ -53,3 +53,7 @@ export const fetchCampaignContent = async (
 
 	return await data.text();
 };
+export function buildPublicUrl(fullPath: string): string {
+	const base = process.env.NEXT_PUBLIC_SUPABASE_IMAGE_BASE_URL!;
+	return `${base}/${fullPath.replace("campaigns/", "")}`;
+}

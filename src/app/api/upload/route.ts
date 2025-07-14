@@ -1,108 +1,75 @@
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { verifyAdminAuth } from "@/lib/auth/admin";
 import { supabaseAdmin } from "@/lib/db/supabase";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { buildPublicUrl } from "@/lib/db/storage";
 
-// Middleware to verify admin authentication
-async function verifyAdminAuth() {
-	const cookieStore = await cookies();
-	const token = cookieStore.get("token")?.value;
+const ACCEPTED_IMAGE_TYPES = ["image/webp"];
 
-	if (!token) {
-		return { error: "Unauthorized", status: 401 };
-	}
+const presignSchema = z.object({
+	slug: z.string().min(1, "Campaign slug is required"),
+	filename: z
+		.string()
+		.min(1, "Filename is required")
+		.refine(
+			(name) => {
+				const ext = name.split(".").pop()?.toLowerCase();
+				return ACCEPTED_IMAGE_TYPES.includes(ext || "");
+			},
+			{
+				message: "Only .webp files are allowed",
+			},
+		),
 
-	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-		return { user: decoded };
-	} catch (error) {
-		return { error: "Invalid token", status: 401 };
-	}
-}
-
+	type: z.enum(["product", "banner"]),
+	fileSize: z.number().max(200 * 1024, "File size must be less than 200 KB"),
+});
 export async function POST(request: NextRequest) {
 	try {
-		// Verify admin authentication
-		const authResult = await verifyAdminAuth();
-		if (authResult.error) {
+		const isAuthenticated = await verifyAdminAuth();
+		if (!isAuthenticated) {
 			return NextResponse.json(
-				{ error: authResult.error },
-				{ status: authResult.status },
+				{ error: "Unauthorized" },
+				{ status: 401 },
 			);
 		}
 
-		const formData = await request.formData();
-		const file = formData.get("file") as File;
-		const path = formData.get("path") as string;
+		const body = await request.json();
+		const result = presignSchema.safeParse(body);
 
-		if (!file) {
+		if (!result.success) {
 			return NextResponse.json(
-				{ error: "No file provided" },
+				{ error: result.error.format() },
 				{ status: 400 },
 			);
 		}
 
-		if (!path) {
-			return NextResponse.json(
-				{ error: "No path provided" },
-				{ status: 400 },
-			);
-		}
+		const { slug, filename, type } = result.data;
 
-		// Validate file type
-		if (!file.type.startsWith("image/")) {
-			return NextResponse.json(
-				{ error: "Only image files are allowed" },
-				{ status: 400 },
-			);
-		}
+		const fileExtension = filename.split(".").pop();
+		const prefix = type === "product" ? "product-" : "banner-";
+		const uniqueFilename = `${prefix}${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExtension}`;
+		const fullPath = `campaigns/${slug}/images/${uniqueFilename}`;
 
-		// Validate file size (max 5MB)
-		const maxSize = 5 * 1024 * 1024; // 5MB
-		if (file.size > maxSize) {
-			return NextResponse.json(
-				{ error: "File size must be less than 5MB" },
-				{ status: 400 },
-			);
-		}
-
-		// Generate unique filename
-		const fileExtension = file.name.split(".").pop();
-		const uniqueFilename = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExtension}`;
-		const fullPath = `${path}/${uniqueFilename}`;
-
-		// Convert file to buffer
-		const bytes = await file.arrayBuffer();
-		const buffer = Buffer.from(bytes);
-
-		// Upload to Supabase Storage
 		const { data, error } = await supabaseAdmin.storage
 			.from("content")
-			.upload(fullPath, buffer, {
-				contentType: file.type,
-				cacheControl: "3600",
-				upsert: false,
-			});
+			.createSignedUploadUrl(fullPath);
 
-		if (error) {
-			console.error("Error uploading file:", error);
+		if (error || !data?.signedUrl) {
 			return NextResponse.json(
-				{ error: "Failed to upload file" },
+				{ error: "Failed to create presigned URL" },
 				{ status: 500 },
 			);
 		}
-
-		// Get public URL
-		const { data: urlData } = supabaseAdmin.storage
-			.from("content")
-			.getPublicUrl(fullPath);
+		const publicUrl = buildPublicUrl(fullPath);
 
 		return NextResponse.json({
-			url: urlData.publicUrl,
+			presignedUrl: data.signedUrl,
+			publicUrl,
 			path: fullPath,
 		});
 	} catch (error) {
-		console.error("Error in upload API:", error);
+		console.error("Error generating presigned URL:", error);
 		return NextResponse.json(
 			{ error: "Internal server error" },
 			{ status: 500 },
