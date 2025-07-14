@@ -23,20 +23,13 @@ export const fetchArticleMarkdown = async (
 	return await data.text();
 };
 
-export const fetchCampaignContent = async (
+export const fetchCampaignMarkdown = async (
 	slug: string,
 ): Promise<string | null> => {
 	// Try to fetch HTML content first
-	let { data, error } = await supabaseAdmin.storage
+	const { data, error } = await supabaseAdmin.storage
 		.from("content")
-		.download(`campaigns/${slug}/description.html`);
-
-	// If HTML file doesn't exist, try to fetch markdown file (for backward compatibility)
-	if (error) {
-		({ data, error } = await supabaseAdmin.storage
-			.from("content")
-			.download(`campaigns/${slug}/description.md`));
-	}
+		.download(`campaigns/${slug}/description.md`);
 
 	if (error) {
 		console.error(

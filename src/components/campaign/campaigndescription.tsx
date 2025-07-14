@@ -1,11 +1,13 @@
 "use client";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface CampaignDescriptionProps {
-	markdwon: string;
+	markdown: string;
 }
 
 export default function CampaignDescription({
-	markdwon,
+	markdown,
 }: CampaignDescriptionProps) {
 	return (
 		<div className="prose prose-lg max-w-none bg-white rounded-xl shadow p-6">
