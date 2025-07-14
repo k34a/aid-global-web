@@ -241,6 +241,13 @@ export default function CampaignCreateForm() {
 		type: "banner" | "product",
 	): Promise<string> => {
 		const filename = file.name;
+		if (!filename.toLowerCase().endsWith(".webp")) {
+			throw new Error("Only .webp files are allowed");
+		}
+
+		if (file.size > 200 * 1024) {
+			throw new Error("Image must be less than 200 KB");
+		}
 
 		const res = await fetch("/api/upload", {
 			method: "POST",
