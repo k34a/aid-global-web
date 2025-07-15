@@ -57,7 +57,7 @@ const Header: React.FC = () => {
 								className="flex items-center space-x-3"
 							>
 								<div className="relative w-12 h-12 shrink-0">
-									<img
+									<Image
 										src={ngoDetails.logo}
 										alt={`${ngoDetails.name} Logo`}
 										className="object-contain"
