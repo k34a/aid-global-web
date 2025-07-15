@@ -6,6 +6,12 @@ import RMNCHSection from "@/components/aids/cure-aid/rmnchasection";
 
 import TbPrevention from "@/components/aids/cure-aid/tbprevention";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Cure Aid",
+};
+
 export default function CureAidPage() {
 	return (
 		<main>
