@@ -100,7 +100,7 @@ export async function handleCreateFormSubmit({
 			form.append("file", blob, "description.html");
 			form.append("path", `campaigns/${formData.slug}`);
 
-			const upload = await fetch("/api/upload", {
+			const upload = await fetch("/api/upload-html", {
 				method: "POST",
 				body: form,
 			});

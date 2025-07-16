@@ -1,7 +1,7 @@
 "use client";
 
 import { FileText } from "lucide-react";
-import RichTextEditor from "./rich-text-editor";
+import RichTextEditor from "@/components/dashboard/campaigns/rich-text-editor";
 
 interface CampaignRichTextSectionProps {
 	value: string;
