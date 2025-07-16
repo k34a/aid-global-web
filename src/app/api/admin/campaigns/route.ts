@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth } from "@/lib/auth/admin";
 import { checkCampaignSlugExists } from "@/lib/db/checkcampaignslug";
-import { CampaignCreateSchema } from "@/lib/validators/campaign";
+import { CampaignCreateSchema } from "@/lib/validations/campaign";
 import { supabaseAdmin } from "@/lib/db/supabase";
 export async function POST(request: NextRequest) {
 	try {

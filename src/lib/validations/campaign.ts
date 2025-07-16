@@ -26,7 +26,14 @@ export const CampaignUpdateSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(1),
 	amount: z.number().positive(),
-	ended_at: z.string().datetime().optional(),
+	ended_at: z
+		.union([
+			z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+			z.literal(""),
+			z.null(),
+		])
+		.optional(),
+
 	banner_image: z.string().optional(),
 	products: z
 		.array(

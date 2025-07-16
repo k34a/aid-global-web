@@ -82,7 +82,7 @@ This module provides comprehensive campaign management functionality for NGO adm
 
 ### For NGO Administrators
 
-1. **Login**: Use admin credentials (saksham2700@gmail.com / 123456)
+1. **Login**: Use your admin credentials. For local development, refer to `.env.local` or use the seed script to create a test admin account.
 2. **Navigate**: Go to `/admin/dashboard/campaigns`
 3. **Create Campaign**: Click "Create New Campaign" button
 4. **Edit Campaign**: Double-click on any campaign in the grid

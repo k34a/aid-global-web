@@ -1,4 +1,4 @@
-import CampaignCreateForm from "@/components/dashboard/campaigns/campaign-create-form";
+import CampaignCreateForm from "@/components/dashboard/campaigns/create/campaign-create-form";
 
 export default function NewCampaignPage() {
 	return (

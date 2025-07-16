@@ -1,5 +1,5 @@
 import { supabaseAdmin } from "./supabase";
-import { baseBackerSchema, adminBackerSchema } from "@/lib/validators/backer";
+import { baseBackerSchema, adminBackerSchema } from "@/lib/validations/backer";
 import { z } from "zod";
 interface CampaignProduct {
 	id: string;

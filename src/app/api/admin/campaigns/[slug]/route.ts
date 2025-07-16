@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CampaignUpdateSchema } from "@/lib/validators/campaign";
+import { CampaignUpdateSchema } from "@/lib/validations/campaign";
 import { supabaseAdmin } from "@/lib/db/supabase";
 import { verifyAdminAuth } from "@/lib/auth/admin";
 import { listAllFiles } from "@/lib/storage/listallfiles";

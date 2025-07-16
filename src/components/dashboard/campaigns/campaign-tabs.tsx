@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { CampaignDetails } from "@/lib/db/campaigns";
-import CampaignEditForm from "./campaign-edit-form";
-import CampaignAnalytics from "./campaign-analytics";
+import CampaignEditForm from "@/components/dashboard/campaigns/edit/campaign-edit-form";
+import CampaignAnalytics from "@/components/dashboard/campaigns/analytics/campaign-analytics";
 import { Edit, BarChart3, Users, Settings } from "lucide-react";
 
 interface CampaignTabsProps {

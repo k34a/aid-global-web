@@ -4,22 +4,14 @@ import { verifyAdminAuth } from "@/lib/auth/admin";
 import { supabaseAdmin } from "@/lib/db/supabase";
 import { buildPublicUrl } from "@/lib/db/storage";
 
-const ACCEPTED_IMAGE_TYPES = ["image/webp"];
-
 const presignSchema = z.object({
 	slug: z.string().min(1, "Campaign slug is required"),
 	filename: z
 		.string()
 		.min(1, "Filename is required")
-		.refine(
-			(name) => {
-				const ext = name.split(".").pop()?.toLowerCase();
-				return ACCEPTED_IMAGE_TYPES.includes(ext || "");
-			},
-			{
-				message: "Only .webp files are allowed",
-			},
-		),
+		.refine((val) => val.trim().toLowerCase().endsWith(".webp"), {
+			message: "Only .webp files are allowed",
+		}),
 
 	type: z.enum(["product", "banner"]),
 	fileSize: z.number().max(200 * 1024, "File size must be less than 200 KB"),

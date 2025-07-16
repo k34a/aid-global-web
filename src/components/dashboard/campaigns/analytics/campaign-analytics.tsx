@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { CampaignDetails, BackerDetailsForCampaign } from "@/lib/db/campaigns";
-import { AnalyticsContent } from "@/components/dashboard/campaigns/campaign-analytics-sections";
+import { AnalyticsContent } from "@/components/dashboard/campaigns/analytics/campaign-analytics-sections";
 
 interface ExtendedBackerDetails extends BackerDetailsForCampaign {
 	email?: string | null;
