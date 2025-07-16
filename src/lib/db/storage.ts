@@ -26,22 +26,27 @@ export const fetchArticleMarkdown = async (
 export const fetchCampaignMarkdown = async (
 	slug: string,
 ): Promise<string | null> => {
+	// Try to fetch HTML content first
 	const { data, error } = await supabaseAdmin.storage
 		.from("content")
 		.download(`campaigns/${slug}/description.md`);
 
 	if (error) {
 		console.error(
-			`Error fetching campaign markdown for slug "${slug}":`,
+			`Error fetching campaign content for slug "${slug}":`,
 			error.message,
 		);
 		return null;
 	}
 
 	if (!data) {
-		console.warn(`No campaign markdown file found for slug: ${slug}`);
+		console.warn(`No campaign content file found for slug: ${slug}`);
 		return null;
 	}
 
 	return await data.text();
 };
+export function buildPublicUrl(fullPath: string): string {
+	const base = process.env.NEXT_PUBLIC_SUPABASE_IMAGE_BASE_URL!;
+	return `${base}/${fullPath.replace("campaigns/", "")}`;
+}

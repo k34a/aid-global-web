@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { DonationCardType } from "@/components/homepage/categories/types";
-import { Share2 } from "lucide-react";
+import { Share2, IndianRupee } from "lucide-react";
 
 interface DonationCardProps {
 	card: DonationCardType;
@@ -41,26 +41,36 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 					<span className="text-gray-500">
 						&#8377;{card.required}
 					</span>
-				</div>
-				<div className="w-full bg-blue-100 h-2 rounded">
-					<div
-						className="bg-blue-500 h-2 rounded"
-						style={{ width: `${percent}%` }}
-					/>
-				</div>
-				<div className="text-xs text-gray-500 mt-1">
-					{card.backers} Backers
-				</div>
-				<div className="flex justify-between mt-2 sm:mt-3 gap-2">
-					<button className="flex items-center px-2 sm:px-3 py-1 border rounded text-gray-600 hover:bg-gray-100 text-xs sm:text-sm">
-						<span className="mr-1">
-							<Share2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 font-bold" />
-						</span>{" "}
-						Share
-					</button>
-					<button className="bg-blue-500 text-white px-3 sm:px-4 py-1 rounded hover:bg-pink-600 text-xs sm:text-sm">
-						Donate Now
-					</button>
+					<div className="flex items-center justify-between text-sm text-gray-600">
+						<span className="flex items-center gap-1">
+							<IndianRupee className="w-3 h-3" />
+							{card.raised}
+						</span>
+						<span className="flex items-center gap-1">
+							<IndianRupee className="w-3 h-3" />
+							{card.required}
+						</span>
+					</div>
+					<div className="w-full bg-blue-100 h-2 rounded">
+						<div
+							className="bg-blue-500 h-2 rounded"
+							style={{ width: `${percent}%` }}
+						/>
+					</div>
+					<div className="text-xs text-gray-500 mt-1">
+						{card.backers} Backers
+					</div>
+					<div className="flex justify-between mt-2 sm:mt-3 gap-2">
+						<button className="flex items-center px-2 sm:px-3 py-1 border rounded text-gray-600 hover:bg-gray-100 text-xs sm:text-sm">
+							<span className="mr-1">
+								<Share2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 font-bold" />
+							</span>{" "}
+							Share
+						</button>
+						<button className="bg-blue-500 text-white px-3 sm:px-4 py-1 rounded hover:bg-pink-600 text-xs sm:text-sm">
+							Donate Now
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
