@@ -14,11 +14,9 @@ const AboutContent = () => (
 			<span className="text-[#3B1C32] font-medium">
 				equitable, impactful healthcare
 			</span>{" "}
-
 			across India&apos;s most underserved communities. From remote
 			villages to densely populated urban slums, CureAid bridges the
 			healthcare gap through{" "}
-
 			<span className="italic text-[#5DB996]">early intervention</span>,{" "}
 			<span className="italic text-[#5DB996]">preventive care</span>, and{" "}
 			<span className="italic text-[#5DB996]">
