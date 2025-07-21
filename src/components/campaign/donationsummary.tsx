@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { IndianRupee } from "lucide-react";
 import { DonateButton } from "./donate";
@@ -30,6 +32,7 @@ export const DonationSummary = ({
 	const [email, setEmail] = useState("");
 	const [contact, setContact] = useState("");
 	const [isAnonymous, setIsAnonymous] = useState(false);
+	const [notes, setNotes] = useState("");
 
 	const isDonationValid = () => {
 		if (isDirectDonation) {
@@ -202,6 +205,22 @@ export const DonationSummary = ({
 					/>
 					Donate Anonymously
 				</label>
+				<div>
+					<label className="block text-sm font-medium text-gray-700 mb-1">
+						Donation Message (Optional)
+					</label>
+					<textarea
+						placeholder="Share why you're making this donation (100-160 characters)"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						maxLength={160}
+						rows={3}
+						className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+					/>
+					<p className="text-xs text-gray-500 mt-1">
+						{notes.length}/160 characters{" "}
+					</p>
+				</div>
 			</div>
 
 			<DonateButton
@@ -219,6 +238,7 @@ export const DonationSummary = ({
 						: "bg-gray-300 text-gray-500 cursor-not-allowed"
 				}`}
 				text={`Donate ${String.fromCharCode(8377)}${amountInput}`}
+				notes={notes}
 			/>
 		</div>
 	);

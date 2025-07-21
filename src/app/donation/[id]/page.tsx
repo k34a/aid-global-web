@@ -4,6 +4,8 @@ import { DEFAULT_CAMPAIGN } from "@/config/data";
 import numWords from "num-words";
 import Image from "next/image";
 import DownloadReceipt from "@/components/receipt/download-receipt";
+import { Metadata } from "next";
+import { IndianRupee } from "lucide-react";
 
 type PageProps = {
 	params: Promise<{ id: string }>;
@@ -110,8 +112,9 @@ export default async function DonationStatusPage({ params }: PageProps) {
 							<td className="font-semibold p-2 bg-gray-50">
 								Amount Donated
 							</td>
-							<td className="p-2 font-bold text-green-700">
-								&#8377;{donation.amount}
+							<td className="p-2 font-bold text-green-700 flex items-center gap-1">
+								<IndianRupee className="w-4 h-4" />
+								{donation.amount}
 							</td>
 						</tr>
 						<tr>
@@ -178,7 +181,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 									Quantity
 								</th>
 								<th className="font-semibold p-2 bg-gray-100">
-									Price (per unit, &#8377;)
+									Price (per unit)
 								</th>
 							</tr>
 						</thead>
@@ -199,7 +202,8 @@ export default async function DonationStatusPage({ params }: PageProps) {
 													? "s"
 													: ""}
 											</td>
-											<td className="p-2">
+											<td className="p-2 flex items-center gap-1">
+												<IndianRupee className="w-3 h-3" />
 												{
 													donatedProduct
 														.campaign_products
