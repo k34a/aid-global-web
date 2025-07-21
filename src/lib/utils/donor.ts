@@ -50,8 +50,8 @@ export const getDonorTier = (amount: number) => {
 			...base,
 			tier: "silver",
 			icon: Heart,
-			color: "bg-blue-500",
-			badgeClass: "bg-blue-500 text-white",
+			color: "bg-sky-500",
+			badgeClass: "bg-sky-500 text-white",
 		};
 
 	return {

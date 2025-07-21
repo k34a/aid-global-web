@@ -20,12 +20,12 @@ export default async function CampaignList() {
 		<div className="min-h-screen pt-6 sm:pt-8 md:pt-10 pb-2 sm:pb-3 md:pb-4 px-2 sm:px-4 md:px-6">
 			<div className="flex flex-col sm:flex-row sm:justify-between mx-2 sm:mx-4 md:mx-8 lg:mx-10 gap-2 sm:gap-0">
 				<h2 className="text-base sm:text-lg font-bold flex items-center gap-2">
-					<CircleDotDashed className="text-blue-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
+					<CircleDotDashed className="text-sky-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
 					Active Campaigns
 				</h2>
 				<Link
 					href="/campaign"
-					className="text-blue-600 font-medium text-sm sm:text-md hover-underline flex items-center gap-1"
+					className="text-sky-600 font-medium text-sm sm:text-md hover-underline flex items-center gap-1"
 				>
 					View All <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
 				</Link>

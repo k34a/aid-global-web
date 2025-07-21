@@ -18,7 +18,7 @@ function Gharintro() {
 					<div className="w-full lg:w-1/2 flex justify-center items-stretch">
 						<div className="w-full h-full max-w-[520px] flex">
 							<Image
-								className="rounded-xl border-4 border-blue-400 shadow-xl object-cover w-full h-full"
+								className="rounded-xl border-4 border-sky-400 shadow-xl object-cover w-full h-full"
 								src={`${STATIC_IMAGE_HOST}ghar-aid/gharaid.webp`}
 								width={520}
 								height={520}
@@ -29,7 +29,7 @@ function Gharintro() {
 
 					<div className="w-full lg:w-1/2 flex justify-center items-stretch">
 						<div className="bg-white/90 backdrop-blur-md shadow-xl rounded-xl p-6 sm:p-8 text-black leading-relaxed w-full max-w-[520px]">
-							<h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-blue-800">
+							<h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-sky-800">
 								By Aid Global Foundation
 								<br />
 								<span className="italic text-sm sm:text-base md:text-lg lg:text-xl text-gray-700">

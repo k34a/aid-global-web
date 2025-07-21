@@ -18,7 +18,7 @@ const joinOptions = [
 		icon: <School className="w-5 h-5 text-[#1E3A8A]" />,
 		title: "Sponsor",
 		desc: "Fund health kits for children and mothers.",
-		bg: "bg-blue-100",
+		bg: "bg-sky-100",
 	},
 	{
 		icon: <Megaphone className="w-5 h-5 text-[#A21CAF]" />,
