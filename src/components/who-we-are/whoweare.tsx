@@ -12,7 +12,7 @@ function Whoweeare() {
 		>
 			<section className="max-w-7xl mx-4 sm:mx-20 flex flex-col lg:flex-row items-center gap-y-8 gap-8 lg:gap-x-12 px-2 sm:px-4">
 				<div className="w-full lg:w-1/2 flex flex-col justify-center">
-					<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4">
+					<h2 className="text-3xl sm:text-4xl font-bold text-sky-800 mb-4">
 						Who Are We
 					</h2>
 					<p className="text-sm sm:text-lg leading-relaxed text-gray-800">
@@ -24,7 +24,7 @@ function Whoweeare() {
 						change to vulnerable communities across India and
 						beyond. We focus on providing practical, compassionate
 						solutions to life&apos;s most essential needs &ndash;{" "}
-						<span className="font-medium text-blue-700">
+						<span className="font-medium text-sky-700">
 							Education, Health, Food, and Shelter
 						</span>
 						.
