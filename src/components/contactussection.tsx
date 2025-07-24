@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { links } from "@/config/links";
@@ -10,20 +9,19 @@ import {
 	Linkedin,
 	Youtube,
 } from "@/components/icons";
-
 const iconMap: Record<string, React.ReactNode> = {
-	facebook: <Facebook className="w-5 h-5 text-white hover:text-gray-300" />,
-	twitter: <Twitter className="w-5 h-5 text-white hover:text-gray-300" />,
-	instagram: <Instagram className="w-5 h-5 text-white hover:text-gray-300" />,
-	linkedin: <Linkedin className="w-5 h-5 text-white hover:text-gray-300" />,
-	youtube: <Youtube className="w-5 h-5 text-white hover:text-gray-300" />,
+	facebook: <Facebook className="w-5 h-5 text-white hover:text-blue-400" />,
+	twitter: <Twitter className="w-5 h-5 text-white hover:text-blue-400" />,
+	instagram: <Instagram className="w-5 h-5 text-white hover:text-blue-400" />,
+	linkedin: <Linkedin className="w-5 h-5 text-white hover:text-blue-400" />,
+	youtube: <Youtube className="w-5 h-5 text-white hover:text-blue-400" />,
 };
 
 const SocialIcon: React.FC<{ name: string }> = ({ name }) => {
-	return iconMap[name] ?? <div className="w-5 h-5" />;
+	return iconMap[name] ?? <div className="w-5 h-5 " />;
 };
 
-export default function ContactUssection() {
+export default function ContactUs() {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -44,64 +42,52 @@ export default function ContactUssection() {
 	};
 
 	return (
-		<div className="min-h-screen flex flex-col items-center relative py-20 px-4 bg-white">
-			<div className="absolute top-0 left-0 w-full h-1/2 bg-[#d9f0f9] rounded-b-3xl z-0" />
-			<div className="absolute bottom-0 left-0 w-full h-1/2 bg-white z-0" />
-			<div className="relative max-w-5xl w-full rounded-2xl p-4 md:p-10 shadow-lg bg-white  z-10">
-				<h2 className="text-center text-3xl font-bold mb-1 text-gray-900">
-					Contact Us
-				</h2>
-				<p className="text-center text-sm text-gray-600 mb-10 max-w-xl mx-auto">
-					We&apos;re here to help! Reach out and let&apos;s start a
-					conversation to support the cause.
-				</p>
-
-				<div className="flex flex-col md:flex-row rounded-xl overflow-hidden bg-white  shadow-xl">
-					<div className="bg-sky-600 p-6 md:p-8 w-full md:w-1/3 text-white flex flex-col justify-between rounded-t-xl md:rounded-t-none md:rounded-l-xl relative overflow-hidden">
+		<>
+			<section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-sky-100 to-white py-24 px-6">
+				<div className="relative max-w-6xl w-full bg-white rounded-3xl shadow-2xl grid grid-cols-1 md:grid-cols-3 overflow-hidden">
+					<div className="bg-gradient-to-tr from-sky-700 via-sky-600 to-sky-500 text-white p-10 flex flex-col justify-between rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl">
 						<div>
-							<h3 className="font-semibold text-lg mb-4">
+							<h2 className="text-3xl font-extrabold mb-4 tracking-wide drop-shadow-lg">
 								Contact Information
-							</h3>
-							<p className="text-sm mb-6">
-								Feel free to reach us using the details below.
+							</h2>
+							<p className="text-sm font-light mb-10 max-w-xs leading-relaxed opacity-90">
+								Feel free to reach us using the details below
+								and let&apos;s collaborate for a cause.
 							</p>
 
-							<div className="space-y-5 text-sm">
-								<div className="flex items-start gap-3">
-									<Phone className="w-5 h-5" />
-									<a
-										href="tel:+919607753148"
-										className="hover:underline"
-									>
-										+91 96077-53148
-									</a>
-								</div>
+							<div className="space-y-6 text-base font-medium">
+								<a
+									href="tel:+919607753148"
+									className="flex items-center gap-4 hover:text-sky-200 transition"
+								>
+									<Phone className="w-6 h-6" /> +91
+									96077-53148
+								</a>
 
-								<div className="flex items-start gap-3">
-									<Mail className="w-5 h-5" />
-									<a
-										href="mailto:info@aidglobal.ngo"
-										className="hover:underline"
-									>
-										info@aidglobal.ngo
-									</a>
-								</div>
+								<a
+									href="mailto:info@aidglobal.ngo"
+									className="flex items-center gap-4 hover:text-sky-200 transition"
+								>
+									<Mail className="w-6 h-6" />{" "}
+									info@aidglobal.ngo
+								</a>
 
-								<div className="flex items-start gap-3">
-									<MapPin className="w-12 h-12" />
-									<p>
+								<div className="flex items-start gap-4">
+									<MapPin className="w-8 h-8 mt-1" />
+									<address className="not-italic leading-snug text-xs md:text-sm opacity-90">
 										H.no. 4453, Sathe Nagar near Manoj
 										Kirana Store, Narpoli, Bhiwandi, Thane,
 										Maharashtra - 421305
-									</p>
+									</address>
 								</div>
 							</div>
 						</div>
+
 						<div className="mt-8">
-							<h4 className="text-sm font-semibold mb-3">
+							<h3 className="uppercase font-semibold mb-3 tracking-wider opacity-80 text-sm">
 								Follow Us On
-							</h4>
-							<div className="flex gap-4">
+							</h3>
+							<div className="flex gap-5">
 								{links.socialLinks.map(({ name, href }) => {
 									const socialName = name.toLowerCase();
 									if (!(socialName in iconMap)) return null;
@@ -113,6 +99,7 @@ export default function ContactUssection() {
 											target="_blank"
 											rel="noopener noreferrer"
 											aria-label={name}
+											className="hover:text-sky-300 transition text-xl"
 										>
 											<SocialIcon name={socialName} />
 										</a>
@@ -120,20 +107,25 @@ export default function ContactUssection() {
 								})}
 							</div>
 						</div>
-
-						<div className="absolute hidden sm:block right-0 bottom-4 w-36 h-36 overflow-hidden -mb-12 -mr-10">
-							<div className="w-40 h-40 bg-white rounded-full opacity-30" />
-						</div>
 					</div>
 					<form
 						onSubmit={handleSubmit}
-						className="p-6 md:p-8 w-full md:w-2/3 bg-white rounded-b-xl md:rounded-b-none md:rounded-r-xl"
+						className="p-10 md:col-span-2 bg-white rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl shadow-lg flex flex-col"
 					>
-						<div className="flex flex-col md:flex-row gap-6 mb-6">
-							<div className="flex flex-col flex-1">
+						<h2 className="text-4xl font-bold mb-6 text-gray-900 tracking-wide">
+							Send Us a Message
+						</h2>
+
+						<p className="mb-8 text-gray-600 font-light max-w-xl leading-relaxed">
+							We&apos;re here to help! Reach out and start a
+							conversation to support the cause.
+						</p>
+
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+							<div className="flex flex-col">
 								<label
-									className="text-xs font-semibold mb-1"
 									htmlFor="name"
+									className="mb-2 font-semibold text-gray-700"
 								>
 									Your Name
 								</label>
@@ -144,15 +136,15 @@ export default function ContactUssection() {
 									value={formData.name}
 									onChange={handleChange}
 									placeholder="John Doe"
-									className="border-b border-gray-300 focus:border-sky-500 rounded-sm outline-none py-1 placeholder:text-gray-400"
 									required
+									className="border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 px-2 text-gray-700 placeholder-gray-400 transition rounded-sm"
 								/>
 							</div>
 
-							<div className="flex flex-col flex-1">
+							<div className="flex flex-col">
 								<label
-									className="text-xs font-semibold mb-1"
 									htmlFor="email"
+									className="mb-2 font-semibold text-gray-700"
 								>
 									Your Email
 								</label>
@@ -163,16 +155,16 @@ export default function ContactUssection() {
 									value={formData.email}
 									onChange={handleChange}
 									placeholder="you@example.com"
-									className="border-b border-gray-300 focus:border-[#005f73] rounded-sm outline-none py-1 placeholder:text-gray-400"
 									required
+									className="border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 px-2 text-gray-700 placeholder-gray-400 transition rounded-sm"
 								/>
 							</div>
 						</div>
 
-						<div className="flex flex-col mb-6">
+						<div className="mb-6">
 							<label
-								className="text-xs font-semibold mb-1"
 								htmlFor="subject"
+								className="mb-2 font-semibold text-gray-700 block"
 							>
 								Subject
 							</label>
@@ -183,15 +175,15 @@ export default function ContactUssection() {
 								value={formData.subject}
 								onChange={handleChange}
 								placeholder="I want to contribute to the cause"
-								className="border-b border-gray-300 focus:border-[#005f73] rounded-sm outline-none py-1 placeholder:text-gray-400"
 								required
+								className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 px-2 text-gray-700 placeholder-gray-400 transition rounded-sm"
 							/>
 						</div>
 
-						<div className="flex flex-col mb-8">
+						<div className="mb-10">
 							<label
-								className="text-xs font-semibold mb-1"
 								htmlFor="message"
+								className="mb-2 font-semibold text-gray-700 block"
 							>
 								Message
 							</label>
@@ -201,20 +193,21 @@ export default function ContactUssection() {
 								value={formData.message}
 								onChange={handleChange}
 								placeholder="Write your message here..."
-								className="border-b border-[#005f73] outline-none py-1 rounded-sm placeholder:text-[#005f73] resize-none h-24"
+								rows={5}
 								required
+								className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 px-2 text-gray-700 resize-none placeholder-gray-400 transition rounded-sm"
 							/>
 						</div>
 
 						<button
 							type="submit"
-							className="bg-sky-700 text-white px-6 py-2  rounded text-sm hover:bg-[#004f59] transition"
+							className="self-start px-8 py-3 bg-sky-600 hover:bg-sky-700 rounded-lg text-white font-semibold shadow-lg transition-transform transform hover:scale-[1.05]"
 						>
 							Send Message
 						</button>
 					</form>
 				</div>
-			</div>
-		</div>
+			</section>
+		</>
 	);
 }
