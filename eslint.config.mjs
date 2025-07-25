@@ -20,8 +20,8 @@ const eslintConfig = [
 		},
 	}),
 	{
-		ignores: [".next/**", "lint-staged.config.mjs"]
-	}
+		ignores: [".next/**", "lint-staged.config.mjs"],
+	},
 ];
 
 export default eslintConfig;
