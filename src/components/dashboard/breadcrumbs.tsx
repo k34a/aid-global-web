@@ -87,7 +87,7 @@ const Breadcrumb = (props: BreadCrumbProps) => {
 					{breadcrumb.isClickable ? (
 						<Link
 							href={breadcrumb.href}
-							className="text-blue-600 hover:text-blue-900 hover:underline transition-colors duration-200"
+							className="text-sky-600 hover:text-sky-900 hover:underline transition-colors duration-200"
 						>
 							{breadcrumb.label}
 						</Link>

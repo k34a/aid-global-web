@@ -23,6 +23,11 @@ export interface NavigationLink {
 	icon?: string;
 }
 
+interface NavigationLinkWithSubLinks extends Omit<NavigationLink, "href"> {
+	sublinks: { name: string; href: string }[];
+	href?: string;
+}
+
 export interface SocialLink {
 	name: string;
 	href: string;
@@ -30,7 +35,7 @@ export interface SocialLink {
 }
 
 export interface Links {
-	primaryLinks: NavigationLink[];
+	primaryLinks: Array<NavigationLinkWithSubLinks | NavigationLink>;
 	donateLink: NavigationLink;
 	secondaryLinks: NavigationLink[];
 	tertiaryLinks: NavigationLink[];

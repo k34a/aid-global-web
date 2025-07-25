@@ -23,7 +23,7 @@ export default function DonorList({
 	return (
 		<div className="bg-white rounded-2xl border border-slate-200 shadow-lg p-6">
 			<div className="flex items-center gap-3 mb-6">
-				<div className="p-2 bg-blue-500 rounded-lg shadow-md">
+				<div className="p-2 bg-sky-500 rounded-lg shadow-md">
 					<Heart className="w-5 h-5 text-white" />
 				</div>
 				<div>
@@ -71,7 +71,7 @@ export default function DonorList({
 										<span className="text-sm text-slate-600">
 											donated
 										</span>
-										<span className="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full text-sm inline-flex items-center gap-1">
+										<span className="font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full text-sm inline-flex items-center gap-1">
 											<IndianRupee className="w-3 h-3" />
 											{d.amount}
 										</span>

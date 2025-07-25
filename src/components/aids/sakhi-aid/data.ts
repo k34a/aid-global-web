@@ -47,7 +47,7 @@ export const initiativesone: InitiativeItem[] = [
 			"in schools, anganwadis, and communities about the menstrual cycle, safe practices, and breaking myths.",
 	},
 	{
-		color: "text-blue-500",
+		color: "text-sky-500",
 		title: "Sanitary Pad Distribution Drives",
 		description:
 			"to ensure every girl, especially in government schools and remote villages, has access to safe menstrual hygiene.",
@@ -85,7 +85,7 @@ export const initiativestwo: InitiativeItem[] = [
 			"Creating women's groups based on mutual trust and community connection.",
 	},
 	{
-		color: "text-blue-500",
+		color: "text-sky-500",
 		title: "Tailored Training Programs",
 		description:
 			"Based on individual interest and local need-such as stitching, cooking, organic farming, handicrafts, etc.",
@@ -136,7 +136,7 @@ export const initiativesthree: InitiativeItem[] = [
 			"Hands-on learning of beauty treatments, skincare, and grooming services for home parlours or salons.",
 	},
 	{
-		color: "text-blue-600",
+		color: "text-sky-600",
 		title: "Computer Basics & Office Management",
 		description:
 			"Training in digital skills, MS Office, and workplace readiness for admin or desk-based jobs.",
@@ -217,7 +217,7 @@ export const initiativesfour: InitiativeItem[] = [
 			"One-on-one emotional support sessions provided by trained volunteers to address distress and trauma.",
 	},
 	{
-		color: "text-blue-500",
+		color: "text-sky-500",
 		title: "Group Therapy & Sharing Circles",
 		description:
 			"Safe spaces for women to share experiences, build emotional strength, and support each other collectively.",

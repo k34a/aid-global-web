@@ -53,14 +53,14 @@ const ReviewSection = () => {
 			<Star
 				key={i}
 				className={`w-4 h-4 sm:w-5 sm:h-5 ${
-					i < rating ? "text-blue-500 fill-blue-500" : "text-gray-300"
+					i < rating ? "text-sky-500 fill-sky-500" : "text-gray-300"
 				}`}
 			/>
 		));
 
 	return (
 		<div className="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-white lg:mb-10 sm:mb-5 md:mb-7 rounded-lg">
-			<h2 className="text-base sm:text-lg font-bold flex items-center gap-2 mb-4 text-blue-600">
+			<h2 className="text-base sm:text-lg font-bold flex items-center gap-2 mb-4 text-sky-600">
 				<CircleDotDashed className="h-5 w-5 sm:h-6 sm:w-6" />
 				Testimonials
 			</h2>
@@ -69,14 +69,14 @@ const ReviewSection = () => {
 				{/* Navigation Buttons */}
 				<button
 					onClick={() => swipeTo(-1)}
-					className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
+					className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-sky-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
 					aria-label="Previous testimonial"
 				>
 					<ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
 				</button>
 				<button
 					onClick={() => swipeTo(1)}
-					className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-blue-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
+					className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-sky-200 rounded-full p-2 shadow-md transition-all hover:scale-110"
 					aria-label="Next testimonial"
 				>
 					<ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
@@ -104,12 +104,12 @@ const ReviewSection = () => {
 								{/* Profile */}
 								<div className="flex flex-col items-center justify-center mb-6">
 									<div className="relative mb-4">
-										<div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center shadow-lg border-2 border-blue-200">
-											<User className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+										<div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-sky-100 to-sky-300 flex items-center justify-center shadow-lg border-2 border-sky-200">
+											<User className="w-10 h-10 sm:w-12 sm:h-12 text-sky-600" />
 										</div>
 									</div>
 
-									<Quote className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mb-2 sm:mb-3" />
+									<Quote className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400 mb-2 sm:mb-3" />
 									<div className="flex gap-1 sm:gap-1.5 mb-5">
 										{renderStars(
 											reviews[activeIndex].rating,
@@ -145,7 +145,7 @@ const ReviewSection = () => {
 							onClick={() => skipTo(idx)}
 							className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
 								idx === activeIndex
-									? "bg-blue-500 scale-110"
+									? "bg-sky-500 scale-110"
 									: "bg-gray-300 hover:bg-gray-400"
 							}`}
 							aria-label={`Go to testimonial ${idx + 1}`}

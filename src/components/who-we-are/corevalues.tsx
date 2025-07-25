@@ -13,7 +13,7 @@ function Corevalues() {
 				}}
 			>
 				<div className="max-w-7xl mx-auto">
-					<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">
+					<h2 className="text-3xl sm:text-4xl font-bold text-sky-800 mb-4 sm:mb-6">
 						Core Values
 					</h2>
 
@@ -21,7 +21,7 @@ function Corevalues() {
 						<div className="w-full lg:w-1/2">
 							<ul className="space-y-4 sm:space-y-6 text-sm sm:text-lg text-gray-800">
 								<li>
-									<h3 className="text-base sm:text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-sky-600">
 										GODLIKE
 									</h3>
 									<p>
@@ -30,7 +30,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-base sm:text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-sky-600">
 										CHILDLIKE
 									</h3>
 									<p>
@@ -40,7 +40,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-base sm:text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-sky-600">
 										INTEGRITY
 									</h3>
 									<p>
@@ -49,7 +49,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-base sm:text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-sky-600">
 										RESTORING THE BROKEN
 									</h3>
 									<p>
@@ -59,7 +59,7 @@ function Corevalues() {
 									</p>
 								</li>
 								<li>
-									<h3 className="text-base sm:text-lg font-bold text-blue-600">
+									<h3 className="text-base sm:text-lg font-bold text-sky-600">
 										INTENTIONAL RELATIONSHIPS
 									</h3>
 									<p>

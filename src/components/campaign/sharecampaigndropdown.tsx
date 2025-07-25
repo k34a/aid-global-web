@@ -69,7 +69,7 @@ export default function ShareCampaignDropdown() {
 					<div className="grid grid-cols-2 gap-3">
 						<button
 							onClick={handleShareFacebook}
-							className="flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+							className="flex items-center justify-center gap-2 bg-sky-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-sky-700 transition-colors"
 						>
 							<Facebook className="w-4 h-4" />
 							Facebook
@@ -85,7 +85,7 @@ export default function ShareCampaignDropdown() {
 
 						<button
 							onClick={handleShareTwitter}
-							className="flex items-center justify-center gap-2 bg-blue-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+							className="flex items-center justify-center gap-2 bg-sky-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-sky-600 transition-colors"
 						>
 							<Twitter className="w-4 h-4" />
 							Twitter

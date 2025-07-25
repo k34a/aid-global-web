@@ -24,7 +24,7 @@ function Seniormanagement() {
 	return (
 		<div>
 			<section id="team" className="py-6 sm:py-12 bg-gray-50">
-				<h2 className="text-center text-3xl sm:text-4xl font-bold text-blue-800 mb-6 sm:mb-10">
+				<h2 className="text-center text-3xl sm:text-4xl font-bold text-sky-800 mb-6 sm:mb-10">
 					Senior Management
 				</h2>
 				<ul className="flex flex-wrap justify-center gap-6 sm:gap-8 px-2 sm:px-4">
@@ -54,7 +54,7 @@ function Seniormanagement() {
 					<div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 w-[90%] max-w-xl max-h-[90vh] overflow-y-auto relative animate-zoomIn border border-gray-300">
 						<button
 							onClick={handleBackClick}
-							className="absolute top-3 right-3 text-white bg-blue-600 px-3 sm:px-4 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition"
+							className="absolute top-3 right-3 text-white bg-sky-600 px-3 sm:px-4 py-1 rounded-md text-sm font-medium hover:bg-sky-700 transition"
 						>
 							&larr; Back
 						</button>

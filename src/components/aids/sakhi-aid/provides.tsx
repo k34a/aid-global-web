@@ -26,7 +26,7 @@ export default function SakhiAidProvides() {
 						</p>
 					</div>
 					<div className="flex flex-col items-center text-center max-w-[160px]">
-						<Users className="w-10 h-10 text-blue-700 fill-current mb-2" />
+						<Users className="w-10 h-10 text-sky-700 fill-current mb-2" />
 						<p
 							className="text-black font-bold drop-shadow leading-tight"
 							style={{

@@ -37,7 +37,7 @@ const Page = async (props: PageProps) => {
 					return (
 						<li key={idx}>
 							<Link
-								className="text-blue-900 hover:underline font-semibold text-xl"
+								className="text-sky-900 hover:underline font-semibold text-xl"
 								href={`/admin/dashboard/articles/${article.slug}`}
 							>
 								{article.title}

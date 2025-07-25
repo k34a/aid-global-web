@@ -28,7 +28,7 @@ export default function TeamCard({
 				href={linkedinUrl}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-blue-600 hover:underline text-sm mt-1 inline-block"
+				className="text-sky-600 hover:underline text-sm mt-1 inline-block"
 			>
 				LinkedIn
 			</a>

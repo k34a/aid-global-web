@@ -56,14 +56,12 @@ export const DirectDonationCard = ({
 	return (
 		<div
 			className={`bg-white p-6 rounded-lg shadow transition-all duration-200 ${
-				isSelected
-					? "ring-2 ring-blue-500 shadow-lg"
-					: "hover:shadow-md"
+				isSelected ? "ring-2 ring-sky-500 shadow-lg" : "hover:shadow-md"
 			}`}
 		>
 			<div className="flex items-center gap-3 mb-4">
-				<div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-					<Heart className="text-blue-600" size={24} />
+				<div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center">
+					<Heart className="text-sky-600" size={24} />
 				</div>
 				<div>
 					<h3 className="font-semibold text-gray-800">
@@ -85,7 +83,7 @@ export const DirectDonationCard = ({
 							onChange={handleInputChange}
 							onFocus={handleInputFocus}
 							onBlur={handleInputBlur}
-							className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+							className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
 							placeholder="Enter amount"
 						/>
 					</div>
@@ -99,7 +97,7 @@ export const DirectDonationCard = ({
 			) : (
 				<button
 					onClick={onToggle}
-					className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+					className="w-full bg-sky-600 hover:bg-sky-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
 				>
 					<Heart className="text-sm" size={16} />
 					Donate Any Amount

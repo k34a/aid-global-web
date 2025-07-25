@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { IndianRupee } from "lucide-react";
 import { DonateButton } from "./donate";
@@ -30,6 +32,7 @@ export const DonationSummary = ({
 	const [email, setEmail] = useState("");
 	const [contact, setContact] = useState("");
 	const [isAnonymous, setIsAnonymous] = useState(false);
+	const [notes, setNotes] = useState("");
 
 	const isDonationValid = () => {
 		if (isDirectDonation) {
@@ -47,7 +50,7 @@ export const DonationSummary = ({
 	};
 
 	return (
-		<div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-blue-500">
+		<div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-sky-500">
 			<h3 className="text-xl font-bold text-gray-800 mb-4">
 				{isDirectDonation
 					? "Direct Donation Summary"
@@ -87,7 +90,7 @@ export const DonationSummary = ({
 				<span className="font-bold text-gray-800">
 					{isDirectDonation ? "Donation Amount:" : "Total Cost:"}
 				</span>
-				<span className="font-bold text-blue-600 text-lg flex items-center gap-1">
+				<span className="font-bold text-sky-600 text-lg flex items-center gap-1">
 					<IndianRupee size={18} />
 					{totalCost}
 				</span>
@@ -110,7 +113,7 @@ export const DonationSummary = ({
 						<input
 							type="number"
 							id="amount"
-							className="border border-gray-300 px-3 py-2 rounded-lg w-32 text-right focus:ring-2 focus:ring-blue-500"
+							className="border border-gray-300 px-3 py-2 rounded-lg w-32 text-right focus:ring-2 focus:ring-sky-500"
 							min={0}
 							value={amountInput}
 							onChange={(e) =>
@@ -123,17 +126,17 @@ export const DonationSummary = ({
 
 			{/* Auto Allocate - Only show for product-based donations with extra amount */}
 			{!isDirectDonation && amountInput > totalCost && (
-				<div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200 mb-4">
+				<div className="flex items-center gap-3 p-3 bg-sky-50 rounded-lg border border-sky-200 mb-4">
 					<input
 						type="checkbox"
 						id="auto-allocate"
 						checked={autoAllocate}
 						onChange={() => setAutoAllocate(!autoAllocate)}
-						className="w-4 h-4 text-blue-600 border-gray-300 rounded"
+						className="w-4 h-4 text-sky-600 border-gray-300 rounded"
 					/>
 					<label
 						htmlFor="auto-allocate"
-						className="text-sm text-blue-800 flex items-center gap-1"
+						className="text-sm text-sky-800 flex items-center gap-1"
 					>
 						Automatically allocate extra{" "}
 						<IndianRupee size={12} className="inline" />{" "}
@@ -144,8 +147,8 @@ export const DonationSummary = ({
 
 			{/* Direct Donation Info */}
 			{isDirectDonation && (
-				<div className="p-3 bg-blue-50 rounded-lg border border-blue-200 mb-4">
-					<p className="text-sm text-blue-800">
+				<div className="p-3 bg-sky-50 rounded-lg border border-sky-200 mb-4">
+					<p className="text-sm text-sky-800">
 						Your donation will be automatically allocated to
 						products that need funding the most.
 					</p>
@@ -175,21 +178,21 @@ export const DonationSummary = ({
 				<input
 					type="text"
 					placeholder="Your Name"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 				/>
 				<input
 					type="email"
 					placeholder="Your Email"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<input
 					type="tel"
 					placeholder="Contact Number"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
 					value={contact}
 					onChange={(e) => setContact(e.target.value)}
 				/>
@@ -198,10 +201,26 @@ export const DonationSummary = ({
 						type="checkbox"
 						checked={isAnonymous}
 						onChange={() => setIsAnonymous(!isAnonymous)}
-						className="w-4 h-4 border-gray-300 text-blue-600"
+						className="w-4 h-4 border-gray-300 text-sky-600"
 					/>
 					Donate Anonymously
 				</label>
+				<div>
+					<label className="block text-sm font-medium text-gray-700 mb-1">
+						Donation Message (Optional)
+					</label>
+					<textarea
+						placeholder="Share why you're making this donation (100-160 characters)"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						maxLength={160}
+						rows={3}
+						className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
+					/>
+					<p className="text-xs text-gray-500 mt-1">
+						{notes.length}/160 characters{" "}
+					</p>
+				</div>
 			</div>
 
 			<DonateButton
@@ -215,10 +234,11 @@ export const DonationSummary = ({
 				auto_allocate={autoAllocate}
 				className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
 					isDonationValid()
-						? "bg-blue-600 hover:bg-blue-700 text-white"
+						? "bg-sky-600 hover:bg-sky-700 text-white"
 						: "bg-gray-300 text-gray-500 cursor-not-allowed"
 				}`}
 				text={`Donate ${String.fromCharCode(8377)}${amountInput}`}
+				notes={notes}
 			/>
 		</div>
 	);

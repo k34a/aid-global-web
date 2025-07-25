@@ -2,9 +2,9 @@ import React from "react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Medical() {
 	return (
-		<div className="relative font-serif bg-gradient-to-b from-blue-50 to-white py-16 px-6 sm:px-10 md:px-16 lg:px-24">
+		<div className="relative font-serif bg-gradient-to-b from-sky-50 to-white py-16 px-6 sm:px-10 md:px-16 lg:px-24">
 			<div className="max-w-7xl mx-auto text-center">
-				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-10">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-900 mb-10">
 					Medical, Mental Health & Addiction Support
 				</h2>
 			</div>
@@ -17,8 +17,8 @@ function Medical() {
 			>
 				<div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
 
-				<div className="relative z-10 flex flex-col lg:flex-row gap-8 p-8 sm:p-10 md:p-12 text-blue-900">
-					<div className="flex-1 bg-white bg-opacity-90 rounded-xl p-6 shadow-lg border border-blue-100">
+				<div className="relative z-10 flex flex-col lg:flex-row gap-8 p-8 sm:p-10 md:p-12 text-sky-900">
+					<div className="flex-1 bg-white bg-opacity-90 rounded-xl p-6 shadow-lg border border-sky-100">
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
 							We serve individuals suffering from:
 						</h3>
@@ -33,7 +33,7 @@ function Medical() {
 						</ul>
 					</div>
 
-					<div className="flex-1 bg-white bg-opacity-90 rounded-xl p-6 shadow-lg border border-blue-100">
+					<div className="flex-1 bg-white bg-opacity-90 rounded-xl p-6 shadow-lg border border-sky-100">
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
 							We provide:
 						</h3>

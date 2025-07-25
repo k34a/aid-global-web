@@ -106,14 +106,14 @@ const AidsSection = () => {
 
 									<div className="mt-4 flex flex-wrap gap-4 items-center justify-between">
 										{/* Donate Button */}
-										<button className="px-4 py-2 rounded-full font-semibold text-white text-sm inline-flex items-center gap-2 shadow-2xl border-2 border-white hover:bg-blue-600 transition-colors duration-300 cursor-pointer self-start">
+										<button className="px-4 py-2 rounded-full font-semibold text-white text-sm inline-flex items-center gap-2 shadow-2xl border-2 border-white hover:bg-sky-600 transition-colors duration-300 cursor-pointer self-start">
 											Donate
 										</button>
 
 										{/* Read More Button */}
 										<Link
 											href={`${item.link}`}
-											className="px-4 py-2 rounded-full font-semibold bg-blue-400 text-sm inline-flex items-center gap-2 border border-black  hover:bg-blue-600 hover:text-white transition-colors duration-300"
+											className="px-4 py-2 rounded-full font-semibold bg-sky-400 text-sm inline-flex items-center gap-2 border border-black  hover:bg-sky-600 hover:text-white transition-colors duration-300"
 										>
 											Read More
 										</Link>

@@ -81,20 +81,20 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 	return (
 		<section className="py-10 px-4 sm:px-6 md:px-16 bg-[#bde0ff] relative">
 			<h2 className="text-lg font-bold flex items-center gap-2">
-				<CircleDotDashed className="text-blue-600 h-6 w-6 font-bold" />
+				<CircleDotDashed className="text-sky-600 h-6 w-6 font-bold" />
 				Our Latest News
 			</h2>
 			<div className="max-w-6xl mx-auto pt-10">
 				<h2 className="text-2xl sm:text-3xl font-bold text-black-600 text-center mb-10 flex items-center justify-center gap-2">
-					Latest <span className="text-blue-600"> News</span> &{" "}
-					<span className="text-blue-600"> Events </span>
+					Latest <span className="text-sky-600"> News</span> &{" "}
+					<span className="text-sky-600"> Events </span>
 				</h2>
 				<div className="relative my-6 sm:my-8 md:my-10 mx-2 sm:mx-4 md:mx-10 lg:mx-20">
 					<button
 						onClick={() => swipeTo(-1)}
-						className="absolute -left-2 sm:-left-3 md:-left-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
+						className="absolute -left-2 sm:-left-3 md:-left-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-sky-100 transition"
 					>
-						<ChevronsLeft className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+						<ChevronsLeft className="text-sky-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
 					</button>
 					<div className="flex justify-center items-center gap-6 min-h-[340px] md:min-h-[360px] lg:min-h-[380px] relative">
 						<AnimatePresence initial={false} custom={direction}>
@@ -135,10 +135,10 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 												height={300}
 												className="transition-transform duration-500 group-hover:scale-105"
 											/>
-											<div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+											<div className="absolute inset-0 bg-sky-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
 										</div>
 										<div className="p-4">
-											<h4 className="text-lg font-semibold text-blue-900 mb-1">
+											<h4 className="text-lg font-semibold text-sky-900 mb-1">
 												{news.title}
 											</h4>
 											<p className="text-sm text-gray-700 mb-3">
@@ -146,7 +146,7 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 											</p>
 											<a
 												href={`/articles/${news.slug}`}
-												className="text-blue-600 hover:underline text-sm font-medium cursor-pointer"
+												className="text-sky-600 hover:underline text-sm font-medium cursor-pointer"
 											>
 												Read More &rarr;
 											</a>
@@ -158,9 +158,9 @@ export default function NewsSection({ articles }: NewsSectionProps) {
 					</div>
 					<button
 						onClick={() => swipeTo(1)}
-						className="absolute -right-2 sm:-right-3 md:-right-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
+						className="absolute -right-2 sm:-right-3 md:-right-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-sky-100 transition"
 					>
-						<ChevronsRight className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+						<ChevronsRight className="text-sky-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
 					</button>
 				</div>
 			</div>

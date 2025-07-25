@@ -21,13 +21,13 @@ export default function HungerStats() {
 
 					{/* Stat 2 */}
 					<div>
-						<h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-blue-600">
+						<h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sky-600">
 							67
 						</h3>
-						<p className="text-base sm:text-lg text-blue-600 font-bold mt-2">
+						<p className="text-base sm:text-lg text-sky-600 font-bold mt-2">
 							COUNTRIES
 						</p>
-						<p className="text-xs sm:text-sm text-blue-600">
+						<p className="text-xs sm:text-sm text-sky-600">
 							where these people live
 						</p>
 					</div>

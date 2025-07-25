@@ -72,7 +72,7 @@ export default function DonorModal({
 				<ModalCloseButton onClose={() => onOpenChange(false)} />
 
 				<ModalHeader className="flex items-center gap-4 bg-white">
-					<div className="p-3 bg-blue-500 rounded-xl shadow-md">
+					<div className="p-3 bg-sky-500 rounded-xl shadow-md">
 						<Users className="w-6 h-6 text-white" />
 					</div>
 					<div>

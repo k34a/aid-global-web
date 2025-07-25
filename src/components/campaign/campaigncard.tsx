@@ -18,7 +18,7 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 	return (
 		<div className="flex flex-col w-full max-w-sm mx-auto">
 			<Link href={`/campaign/${campaign.slug}`}>
-				<h2 className="text-base sm:text-lg font-bold mb-3 hover:text-blue-700 transition line-clamp-1">
+				<h2 className="text-base sm:text-lg font-bold mb-3 hover:text-sky-700 transition line-clamp-1">
 					{campaign.title}
 				</h2>
 			</Link>
@@ -57,7 +57,7 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 					</p>
 
 					<div className="flex items-center justify-between text-xs text-gray-800 mb-2">
-						<span className="flex items-center gap-1 text-blue-600 font-bold text-sm sm:text-base">
+						<span className="flex items-center gap-1 text-sky-600 font-bold text-sm sm:text-base">
 							<IndianRupee className="w-4 h-4" />
 							<strong>{campaign.collection}</strong> Raised
 						</span>
@@ -69,27 +69,15 @@ export default function CampaignCard({ campaign }: { campaign: any }) {
 
 					<div className="w-full bg-gray-200 rounded-full h-2 mb-3">
 						<div
-							className="bg-blue-600 h-2 rounded-full"
+							className="bg-sky-600 h-2 rounded-full"
 							style={{ width: `${percent}%` }}
 						></div>
 					</div>
 
 					<div className="flex gap-2 mt-auto">
-						<button
-							className="flex-1 flex items-center justify-center gap-1 border border-blue-600 text-blue-600 font-semibold py-2 rounded hover:bg-blue-50 transition text-sm cursor-pointer"
-							onClick={(e) => {
-								e.stopPropagation();
-								e.preventDefault();
-								copyToClipboard(
-									`${window.location.origin}/campaign/${campaign.slug}`,
-								);
-							}}
-						>
-							<Share2 className="w-4 h-4" /> Share
-						</button>
 						<Link
 							href={`/campaign/${campaign.slug}`}
-							className="flex-1 bg-blue-600 text-white text-center font-semibold py-2 rounded hover:bg-blue-700 transition text-sm"
+							className="flex-1 hover:bg-sky-600 border-2 border-sky-500 text-sky-500 hover:text-white text-center font-semibold py-2 rounded hover:bg-sky-700 transition text-sm"
 						>
 							Donate Now
 						</Link>

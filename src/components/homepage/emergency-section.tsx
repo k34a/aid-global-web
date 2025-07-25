@@ -82,12 +82,12 @@ const EmergencySection = () => {
 		<section className="bg-white rounded-xl p-2 sm:p-4 md:p-8 lg:p-10 xl:p-12 mx-2 sm:mx-4 md:mx-10 lg:mx-20">
 			<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
 				<h2 className="text-base sm:text-lg font-bold flex items-center gap-2">
-					<CircleDotDashed className="text-blue-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
+					<CircleDotDashed className="text-sky-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />
 					Active Campaigns
 				</h2>
 				<a
 					href="#"
-					className="text-blue-600 font-medium text-sm sm:text-md hover:underline flex items-center gap-1"
+					className="text-sky-600 font-medium text-sm sm:text-md hover:underline flex items-center gap-1"
 				>
 					View All <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
 				</a>
@@ -95,9 +95,9 @@ const EmergencySection = () => {
 			<div className="relative my-6 sm:my-10">
 				<button
 					onClick={() => swipeTo(-1)}
-					className="absolute -left-2 sm:-left-3 md:-left-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
+					className="absolute -left-2 sm:-left-3 md:-left-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-sky-100 transition"
 				>
-					<ChevronsLeft className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+					<ChevronsLeft className="text-sky-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
 				</button>
 				<div className="flex justify-center items-center gap-4 sm:gap-5 min-h-[260px] md:min-h-[320px] lg:min-h-[340px] relative">
 					<AnimatePresence initial={false} custom={direction}>
@@ -155,7 +155,7 @@ const EmergencySection = () => {
 											</span>
 										</div>
 										<div className="flex items-center justify-between mb-1">
-											<span className="text-blue-600 font-bold text-sm sm:text-base">
+											<span className="text-sky-600 font-bold text-sm sm:text-base">
 												&#8377;{item.raised} Raised
 											</span>
 											<span className="text-gray-700 font-medium text-xs sm:text-sm">
@@ -166,7 +166,7 @@ const EmergencySection = () => {
 										{/* Progress Bar */}
 										<div className="w-full bg-gray-200 rounded-full h-2 mb-2">
 											<div
-												className="bg-blue-500 h-2 rounded-full"
+												className="bg-sky-500 h-2 rounded-full"
 												style={{
 													width: `${Math.min(
 														(item.raised /
@@ -187,7 +187,7 @@ const EmergencySection = () => {
 											<button className="flex-1 bg-gray-100 text-gray-700 text-xs sm:text-sm rounded px-2 sm:px-3 py-1 font-medium border hover:bg-gray-200 cursor-pointer">
 												Share
 											</button>
-											<button className="flex-1 bg-blue-500 text-white text-xs sm:text-sm rounded px-2 sm:px-3 py-1 font-medium hover:bg-blue-700 cursor-pointer">
+											<button className="flex-1 bg-sky-500 text-white text-xs sm:text-sm rounded px-2 sm:px-3 py-1 font-medium hover:bg-sky-700 cursor-pointer">
 												Donate Now
 											</button>
 										</div>
@@ -199,9 +199,9 @@ const EmergencySection = () => {
 				</div>
 				<button
 					onClick={() => swipeTo(1)}
-					className="absolute -right-2 sm:-right-3 md:-right-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-blue-100 transition"
+					className="absolute -right-2 sm:-right-3 md:-right-5 top-1/2 z-200 -translate-y-1/2 bg-white p-1.5 sm:p-2 shadow-xl rounded-full hover:scale-110 hover:bg-sky-100 transition"
 				>
-					<ChevronsRight className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+					<ChevronsRight className="text-sky-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
 				</button>
 			</div>
 		</section>

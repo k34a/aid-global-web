@@ -23,8 +23,8 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
 					onClick={() => onSelect(cat.key)}
 					className={`flex flex-col items-center px-2 sm:px-3 md:px-4 py-2 rounded-t-lg transition ${
 						selected === cat.key
-							? "bg-blue-200 text-blue-700"
-							: "hover:bg-blue-100 text-gray-700"
+							? "bg-sky-200 text-sky-700"
+							: "hover:bg-sky-100 text-gray-700"
 					}`}
 				>
 					<span className="mb-1">

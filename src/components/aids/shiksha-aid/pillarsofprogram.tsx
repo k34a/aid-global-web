@@ -30,7 +30,7 @@ const pillars = [
 		title: "Community Counseling",
 		desc: "We help families overcome social barriers to sustain attendance.",
 		icon: Users,
-		color: "from-blue-200 to-blue-100",
+		color: "from-sky-200 to-sky-100",
 	},
 	{
 		title: "Activity-Based Learning",

@@ -26,6 +26,7 @@ interface DonateArgs {
 	amount: number;
 	is_anon: boolean;
 	auto_allocate?: boolean;
+	notes?: string;
 }
 
 async function onDonateButtonClick(args: DonateArgs) {
@@ -78,15 +79,7 @@ const RazorpayScript = () => {
 	return <Script src="https://checkout.razorpay.com/v1/checkout.js" />;
 };
 
-interface DonateButtonProps {
-	name: string;
-	email: string;
-	contact_number: string;
-	campaign_id?: string;
-	products?: Record<string, number>;
-	amount: number;
-	is_anon: boolean;
-	auto_allocate: boolean;
+interface DonateButtonProps extends DonateArgs {
 	className?: string;
 	text?: string;
 }
@@ -108,7 +101,7 @@ const DonateButton = (props: DonateButtonProps) => {
 			<RazorpayScript />
 			<button
 				onClick={() => handleClick()}
-				className={`bg-blue-500 text-white px-4 py-2 rounded ${className}`}
+				className={`bg-sky-500 text-white px-4 py-2 rounded ${className}`}
 			>
 				{processing ? "Processing..." : (text ?? "Donate")}
 			</button>
