@@ -16,6 +16,7 @@ import {
 	Center,
 } from "@mantine/core";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
@@ -34,8 +35,10 @@ export default function HeaderMegaMenu() {
 		<Box className={classes.wrapper}>
 			<header className={classes.header}>
 				<Link href="/" className={classes.logoGroup}>
-					<img
+					<Image
 						src={ngoDetails.logo}
+						width={100}
+						height={100}
 						alt="Logo"
 						className={classes.logo}
 					/>
