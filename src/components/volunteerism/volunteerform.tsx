@@ -23,6 +23,8 @@ import {
 	volunteerSchema,
 	type VolunteerData,
 } from "@/lib/db/volunteers/schema";
+import { useForm, zodResolver } from "@mantine/form";
+import { submitVolunteer } from "@/app/volunteer/action";
 
 const volunteerAreas = [
 	"Education & Teaching",
@@ -70,88 +72,48 @@ const skillOptions = [
 ];
 
 export default function VolunteerForm() {
-	const [formData, setFormData] = useState<VolunteerData>({
-		first_name: "",
-		last_name: "",
-		email: "",
-		phone: "",
-		address: "",
-		city: "",
-		state: "",
-		zipcode: "",
-		volunteer_areas: [],
-		availability: [],
-		skills: [],
-		experience: "",
-	});
-
-	const [errors, setErrors] = useState<
-		Partial<Record<keyof VolunteerData, string>>
-	>({});
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 
-	const validateField = (field: keyof VolunteerData, value: any): string => {
-		try {
-			volunteerSchema.shape[field].parse(value);
-			return "";
-		} catch (err: any) {
-			return err.errors?.[0]?.message || "Invalid";
-		}
-	};
+	const form = useForm<VolunteerData>({
+		initialValues: {
+			first_name: "",
+			last_name: "",
+			email: "",
+			phone: "",
+			address: "",
+			city: "",
+			state: "",
+			zipcode: "",
+			volunteer_areas: [],
+			availability: [],
+			skills: [],
+			experience: "",
+		},
+		validate: zodResolver(volunteerSchema),
+	});
 
-	const validateForm = (): boolean => {
-		const newErrors: typeof errors = {};
-		for (const key in formData) {
-			const field = key as keyof VolunteerData;
-			const value = formData[field];
-			const message = validateField(field, value);
-			if (message) newErrors[field] = message;
-		}
-		setErrors(newErrors);
-		return Object.keys(newErrors).length === 0;
-	};
-
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-
-		if (!validateForm()) {
-			toast.error("Please fix the errors before submitting.");
-			return;
-		}
-
+	const handleSubmit = async (values: VolunteerData) => {
 		setLoading(true);
-
 		try {
-			const response = await fetch("/api/volunteer", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
-			});
-
-			const data = await response.json();
-
-			if (response.ok) {
+			const result = await submitVolunteer(values);
+			if (result.success) {
 				setSuccess(true);
 				toast.success("Thank you for your interest in volunteering!");
-				setFormData({
-					first_name: "",
-					last_name: "",
-					email: "",
-					phone: "",
-					address: "",
-					city: "",
-					state: "",
-					zipcode: "",
-					volunteer_areas: [],
-					availability: [],
-					skills: [],
-					experience: "",
-				});
-				setErrors({});
+				form.reset();
 			} else {
+				if (result.errors) {
+					form.setErrors(
+						Object.fromEntries(
+							result.errors.map((err: any) => [
+								err.path[0],
+								err.message,
+							]),
+						),
+					);
+				}
 				toast.error(
-					data.message || "Something went wrong. Please try again.",
+					result.message || "Something went wrong. Please try again.",
 				);
 			}
 		} catch {
@@ -167,7 +129,7 @@ export default function VolunteerForm() {
 
 	return (
 		<Paper shadow="md" p="xl" radius="md">
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={form.onSubmit(handleSubmit)}>
 				<Stack gap="lg">
 					<Box>
 						<Title order={3} mb="md">
@@ -178,43 +140,13 @@ export default function VolunteerForm() {
 								label="First Name"
 								placeholder="Enter your first name"
 								required
-								value={formData.first_name}
-								onChange={(e) => {
-									const val = e.target.value;
-									setFormData({
-										...formData,
-										first_name: val,
-									});
-									setErrors({
-										...errors,
-										first_name: validateField(
-											"first_name",
-											val,
-										),
-									});
-								}}
-								error={errors.first_name}
+								{...form.getInputProps("first_name")}
 							/>
 							<TextInput
 								label="Last Name"
 								placeholder="Enter your last name"
 								required
-								value={formData.last_name}
-								onChange={(e) => {
-									const val = e.target.value;
-									setFormData({
-										...formData,
-										last_name: val,
-									});
-									setErrors({
-										...errors,
-										last_name: validateField(
-											"last_name",
-											val,
-										),
-									});
-								}}
-								error={errors.last_name}
+								{...form.getInputProps("last_name")}
 							/>
 						</Group>
 					</Box>
@@ -225,31 +157,13 @@ export default function VolunteerForm() {
 							type="email"
 							required
 							placeholder="you@example.com"
-							value={formData.email}
-							onChange={(e) => {
-								const val = e.target.value;
-								setFormData({ ...formData, email: val });
-								setErrors({
-									...errors,
-									email: validateField("email", val),
-								});
-							}}
-							error={errors.email}
+							{...form.getInputProps("email")}
 						/>
 						<TextInput
 							label="Phone Number"
 							required
 							placeholder="Enter your phone number"
-							value={formData.phone}
-							onChange={(e) => {
-								const val = e.target.value;
-								setFormData({ ...formData, phone: val });
-								setErrors({
-									...errors,
-									phone: validateField("phone", val),
-								});
-							}}
-							error={errors.phone}
+							{...form.getInputProps("phone")}
 						/>
 					</Group>
 
@@ -261,59 +175,23 @@ export default function VolunteerForm() {
 							label="Full Address"
 							required
 							placeholder="Enter your complete address"
-							value={formData.address}
-							onChange={(e) => {
-								const val = e.target.value;
-								setFormData({ ...formData, address: val });
-								setErrors({
-									...errors,
-									address: validateField("address", val),
-								});
-							}}
-							error={errors.address}
+							{...form.getInputProps("address")}
 						/>
 						<Group grow mt="md">
 							<TextInput
 								label="City"
 								required
-								value={formData.city}
-								onChange={(e) => {
-									const val = e.target.value;
-									setFormData({ ...formData, city: val });
-									setErrors({
-										...errors,
-										city: validateField("city", val),
-									});
-								}}
-								error={errors.city}
+								{...form.getInputProps("city")}
 							/>
 							<TextInput
 								label="State"
 								required
-								value={formData.state}
-								onChange={(e) => {
-									const val = e.target.value;
-									setFormData({ ...formData, state: val });
-									setErrors({
-										...errors,
-										state: validateField("state", val),
-									});
-								}}
-								error={errors.state}
+								{...form.getInputProps("state")}
 							/>
 							<TextInput
 								label="ZIP Code"
 								required
-								value={formData.zipcode}
-								onChange={(e) => {
-									const val = e.target.value;
-									setFormData({ ...formData, zipcode: val });
-									setErrors({
-										...errors,
-										zipcode: validateField("zipcode", val),
-									});
-								}}
-								error={errors.zipcode}
+								{...form.getInputProps("zipcode")}
 							/>
 						</Group>
 					</Box>
@@ -330,21 +208,7 @@ export default function VolunteerForm() {
 							searchable
 							required
 							placeholder="Select areas"
-							value={formData.volunteer_areas}
-							onChange={(value) => {
-								setFormData({
-									...formData,
-									volunteer_areas: value,
-								});
-								setErrors({
-									...errors,
-									volunteer_areas: validateField(
-										"volunteer_areas",
-										value,
-									),
-								});
-							}}
-							error={errors.volunteer_areas}
+							{...form.getInputProps("volunteer_areas")}
 						/>
 					</Box>
 
@@ -354,18 +218,7 @@ export default function VolunteerForm() {
 						searchable
 						required
 						placeholder="Select available time slots"
-						value={formData.availability}
-						onChange={(value) => {
-							setFormData({ ...formData, availability: value });
-							setErrors({
-								...errors,
-								availability: validateField(
-									"availability",
-									value,
-								),
-							});
-						}}
-						error={errors.availability}
+						{...form.getInputProps("availability")}
 					/>
 
 					<MultiSelect
@@ -373,23 +226,14 @@ export default function VolunteerForm() {
 						data={skillOptions}
 						searchable
 						placeholder="Select your skills (optional)"
-						value={formData.skills}
-						onChange={(value) =>
-							setFormData({ ...formData, skills: value })
-						}
+						{...form.getInputProps("skills")}
 					/>
 
 					<Textarea
 						label="Previous Experience"
 						placeholder="Tell us about past volunteering or relevant experience (optional)"
 						minRows={3}
-						value={formData.experience}
-						onChange={(e) =>
-							setFormData({
-								...formData,
-								experience: e.target.value,
-							})
-						}
+						{...form.getInputProps("experience")}
 					/>
 
 					<Alert icon={<AlertCircleIcon size={18} />} color="blue">
