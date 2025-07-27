@@ -8,7 +8,7 @@ const Page = () => {
 			<ul className="list-disc list-inside">
 				<li>
 					<Link
-						className="text-blue-900 hover:underline font-semibold text-xl"
+						className="text-sky-900 hover:underline font-semibold text-xl"
 						href="/admin/dashboard/articles"
 					>
 						Articles
@@ -16,7 +16,7 @@ const Page = () => {
 				</li>
 				<li>
 					<Link
-						className="text-blue-900 hover:underline font-semibold text-xl"
+						className="text-sky-900 hover:underline font-semibold text-xl"
 						href="/admin/dashboard/campaigns"
 					>
 						Campaigns
@@ -24,14 +24,14 @@ const Page = () => {
 				</li>
 				<li>
 					<Link
-						className="text-blue-900 hover:underline font-semibold text-xl"
+						className="text-sky-900 hover:underline font-semibold text-xl"
 						href="/admin/dashboard/access"
 					>
 						Users with access
 					</Link>
 				</li>
 				<li>
-					<LogoutButton className="text-blue-900 hover:underline font-semibold text-xl" />
+					<LogoutButton className="text-sky-900 hover:underline font-semibold text-xl" />
 				</li>
 			</ul>
 		</>

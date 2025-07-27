@@ -5,14 +5,14 @@ function Rescueinfo() {
 	return (
 		<div className="bg-gradient-to-b from-red-200 to-white mt-5 sm:mt-5 md:mt-7 lg:mt-9 px-4 sm:px-6 md:px-10 lg:px-24 py-16 sm:py-20 font-serif">
 			<div className="mx-auto max-w-7xl">
-				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 text-center mb-12 sm:mb-14">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-900 text-center mb-12 sm:mb-14">
 					Rescue Across Maharashtra
 				</h2>
 
 				<div className="flex flex-col lg:flex-row gap-10 sm:gap-12">
 					<div className="flex-1 space-y-8">
-						<div className="bg-white border border-blue-100 rounded-2xl shadow-md p-5 sm:p-6">
-							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-700 mb-3">
+						<div className="bg-white border border-sky-100 rounded-2xl shadow-md p-5 sm:p-6">
+							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-sky-700 mb-3">
 								GharAid teams operate across:
 							</h3>
 							<ul className="list-disc list-inside text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl space-y-1">
@@ -23,8 +23,8 @@ function Rescueinfo() {
 							</ul>
 						</div>
 
-						<div className="bg-white border border-blue-100 rounded-2xl shadow-md p-5 sm:p-6">
-							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-700 mb-3">
+						<div className="bg-white border border-sky-100 rounded-2xl shadow-md p-5 sm:p-6">
+							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-sky-700 mb-3">
 								Our rescue coverage includes:
 							</h3>
 							<p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl">
@@ -34,8 +34,8 @@ function Rescueinfo() {
 							</p>
 						</div>
 
-						<div className="bg-white border border-blue-100 rounded-2xl shadow-md p-5 sm:p-6">
-							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-700 mb-3">
+						<div className="bg-white border border-sky-100 rounded-2xl shadow-md p-5 sm:p-6">
+							<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-sky-700 mb-3">
 								We collaborate with:
 							</h3>
 							<ul className="list-disc list-inside text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl space-y-1">

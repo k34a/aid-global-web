@@ -70,14 +70,14 @@ const IntroCarousel = () => {
 				<div className="hidden md:block">
 					<button
 						onClick={() => swipeTo(-1)}
-						className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+						className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-sky-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
 						aria-label="Previous image"
 					>
 						<ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
 					</button>
 					<button
 						onClick={() => swipeTo(1)}
-						className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-blue-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
+						className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-sky-300 rounded-full p-1.5 sm:p-2 shadow-lg transition-all duration-200 hover:scale-110 cursor-pointer"
 						aria-label="Next image"
 					>
 						<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-600" />
@@ -116,7 +116,7 @@ const IntroCarousel = () => {
 											Together we{" "}
 											<br className="hidden sm:block" />{" "}
 											can make a{" "}
-											<span className="text-blue-400">
+											<span className="text-sky-400">
 												Difference
 											</span>
 										</h1>
@@ -125,7 +125,7 @@ const IntroCarousel = () => {
 											you can give.
 										</p>
 										<div className="flex gap-4 mt-2">
-											<div className="bg-white hover:bg-blue-100 text-blue-500 font-semibold px-1 py-1 rounded shadow-lg border border-blue-400 transition-all duration-200 text-base cursor-pointer">
+											<div className="bg-white hover:bg-sky-100 text-sky-500 font-semibold px-1 py-1 rounded shadow-lg border border-sky-400 transition-all duration-200 text-base cursor-pointer">
 												<DonateButton
 													name="Saksham Garg"
 													email="myemail@gmail.com"

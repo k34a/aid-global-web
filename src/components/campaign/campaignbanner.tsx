@@ -71,14 +71,14 @@ export default function CampaignBanner({
 					<div className="space-y-2">
 						<div className="flex justify-between text-xs text-gray-600 font-medium">
 							<span>Progress</span>
-							<span className="text-blue-600">
+							<span className="text-sky-600">
 								{formatProgressPercentage(collection, amount)}%
 							</span>
 						</div>
 
 						<div className="w-full bg-gray-300 rounded-full h-2">
 							<div
-								className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+								className="bg-sky-600 h-2 rounded-full transition-all duration-300"
 								style={{ width: `${percent}%` }}
 							/>
 						</div>
@@ -110,7 +110,7 @@ export default function CampaignBanner({
 
 						<div className="flex flex-col gap-2">
 							<button
-								className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm"
+								className="w-full bg-sky-600 text-white py-2 px-4 rounded-lg hover:bg-sky-700 transition-colors font-semibold text-sm"
 								onClick={handleScrollToProducts}
 							>
 								Start Donating
