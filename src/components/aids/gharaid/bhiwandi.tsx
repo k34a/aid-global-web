@@ -3,9 +3,9 @@ import Image from "next/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Bhiwandi() {
 	return (
-		<div className="bg-gradient-to-b from-blue-200 to-red-50 py-20 px-6 sm:px-10 md:px-16 lg:px-24 font-serif">
+		<div className="bg-gradient-to-b from-sky-200 to-red-50 py-20 px-6 sm:px-10 md:px-16 lg:px-24 font-serif">
 			<div className="max-w-7xl mx-auto text-center">
-				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-800 mb-6">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-800 mb-6">
 					Permanent Shelter Home In Bhiwandi
 				</h2>
 				<p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -30,7 +30,7 @@ function Bhiwandi() {
 
 				<div className="w-full lg:w-1/2 flex flex-col justify-between space-y-10">
 					<div className="bg-white rounded-xl shadow-lg p-6 border border-red-100">
-						<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-700 mb-4">
+						<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-sky-700 mb-4">
 							Separate Units For
 						</h3>
 						<ul className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 space-y-2 leading-relaxed">
@@ -44,7 +44,7 @@ function Bhiwandi() {
 					</div>
 
 					<div className="bg-white rounded-xl shadow-lg p-6 border border-red-100">
-						<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-700 mb-4">
+						<h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-sky-700 mb-4">
 							Additional Facilities
 						</h3>
 						<ul className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 space-y-2 leading-relaxed">
