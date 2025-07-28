@@ -21,8 +21,9 @@ import {
 	volunteerSchema,
 	type VolunteerData,
 } from "@/lib/db/volunteers/schema";
-import { useForm, zodResolver } from "@mantine/form";
-import { submitVolunteer } from "@/app/volunteer/action";
+import { zodResolver } from "mantine-form-zod-resolver";
+import { useForm } from "@mantine/form";
+import { submitVolunteer } from "@/app/(static)/volunteer/actions";
 
 const volunteerAreas = [
 	"Education & Teaching",
