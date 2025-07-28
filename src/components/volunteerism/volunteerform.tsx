@@ -8,15 +8,13 @@ import {
 	Button,
 	Container,
 	Title,
-	Text,
 	Paper,
 	Stack,
-	Alert,
-	Group,
 	Divider,
+	Grid,
 	Box,
+	Checkbox,
 } from "@mantine/core";
-import { AlertCircleIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import VolunteerSuccess from "@/components/volunteerism/volunteersuccess";
 import {
@@ -75,7 +73,7 @@ export default function VolunteerForm() {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 
-	const form = useForm<VolunteerData>({
+	const form = useForm<VolunteerData & { agreeToTerms: boolean }>({
 		initialValues: {
 			first_name: "",
 			last_name: "",
@@ -89,8 +87,17 @@ export default function VolunteerForm() {
 			availability: [],
 			skills: [],
 			experience: "",
+			agreeToTerms: false,
 		},
-		validate: zodResolver(volunteerSchema),
+		validate: (values) => {
+			const base = zodResolver(volunteerSchema)(values);
+			return {
+				...base,
+				agreeToTerms: values.agreeToTerms
+					? null
+					: "You must agree to the terms.",
+			};
+		},
 	});
 
 	const handleSubmit = async (values: VolunteerData) => {
@@ -128,126 +135,160 @@ export default function VolunteerForm() {
 	}
 
 	return (
-		<Paper shadow="md" p="xl" radius="md">
-			<form onSubmit={form.onSubmit(handleSubmit)}>
-				<Stack gap="lg">
-					<Box>
-						<Title order={3} mb="md">
-							Personal Information
-						</Title>
-						<Group grow>
-							<TextInput
-								label="First Name"
-								placeholder="Enter your first name"
-								required
-								{...form.getInputProps("first_name")}
-							/>
-							<TextInput
-								label="Last Name"
-								placeholder="Enter your last name"
-								required
-								{...form.getInputProps("last_name")}
-							/>
-						</Group>
-					</Box>
+		<Container size="sm" px="xs">
+			<Paper shadow="md" radius="md" p={{ base: "md", sm: "xl" }}>
+				<form onSubmit={form.onSubmit(handleSubmit)}>
+					<Stack gap="lg">
+						<Box>
+							<Title order={3} mb="md">
+								Personal Information
+							</Title>
+							<Grid>
+								<Grid.Col span={{ base: 12, sm: 6 }}>
+									<TextInput
+										label="First Name"
+										placeholder="Enter your first name"
+										required
+										{...form.getInputProps("first_name")}
+									/>
+								</Grid.Col>
+								<Grid.Col span={{ base: 12, sm: 6 }}>
+									<TextInput
+										label="Last Name"
+										placeholder="Enter your last name"
+										required
+										{...form.getInputProps("last_name")}
+									/>
+								</Grid.Col>
+							</Grid>
+						</Box>
 
-					<Group grow>
-						<TextInput
-							label="Email Address"
-							type="email"
-							required
-							placeholder="you@example.com"
-							{...form.getInputProps("email")}
-						/>
-						<TextInput
-							label="Phone Number"
-							required
-							placeholder="Enter your phone number"
-							{...form.getInputProps("phone")}
-						/>
-					</Group>
+						<Grid>
+							<Grid.Col span={{ base: 12, sm: 6 }}>
+								<TextInput
+									label="Email Address"
+									type="email"
+									required
+									placeholder="you@example.com"
+									{...form.getInputProps("email")}
+								/>
+							</Grid.Col>
+							<Grid.Col span={{ base: 12, sm: 6 }}>
+								<TextInput
+									label="Phone Number"
+									required
+									placeholder="Enter your phone number"
+									{...form.getInputProps("phone")}
+								/>
+							</Grid.Col>
+						</Grid>
 
-					<Box>
-						<Title order={3} mb="md">
-							Address Information
-						</Title>
-						<Textarea
-							label="Full Address"
-							required
-							placeholder="Enter your complete address"
-							{...form.getInputProps("address")}
-						/>
-						<Group grow mt="md">
-							<TextInput
-								label="City"
+						<Box>
+							<Title order={3} mb="md">
+								Address Information
+							</Title>
+							<Textarea
+								label="Full Address"
 								required
-								{...form.getInputProps("city")}
+								placeholder="Enter your complete address"
+								{...form.getInputProps("address")}
 							/>
-							<TextInput
-								label="State"
-								required
-								{...form.getInputProps("state")}
-							/>
-							<TextInput
-								label="ZIP Code"
-								required
-								{...form.getInputProps("zipcode")}
-							/>
-						</Group>
-					</Box>
+							<Grid mt="md">
+								<Grid.Col span={{ base: 12, sm: 4 }}>
+									<TextInput
+										label="City"
+										required
+										{...form.getInputProps("city")}
+									/>
+								</Grid.Col>
+								<Grid.Col span={{ base: 12, sm: 4 }}>
+									<TextInput
+										label="State"
+										required
+										{...form.getInputProps("state")}
+									/>
+								</Grid.Col>
+								<Grid.Col span={{ base: 12, sm: 4 }}>
+									<TextInput
+										label="ZIP Code"
+										required
+										{...form.getInputProps("zipcode")}
+									/>
+								</Grid.Col>
+							</Grid>
+						</Box>
 
-					<Divider />
+						<Divider />
 
-					<Box>
-						<Title order={3} mb="md">
-							Volunteer Preferences
-						</Title>
+						<Box>
+							<Title order={3} mb="md">
+								Volunteer Preferences
+							</Title>
+							<MultiSelect
+								label="Areas of Interest"
+								data={volunteerAreas}
+								searchable
+								required
+								placeholder="Select areas"
+								{...form.getInputProps("volunteer_areas")}
+							/>
+						</Box>
+
 						<MultiSelect
-							label="Areas of Interest"
-							data={volunteerAreas}
+							label="Availability"
+							data={availabilityOptions}
 							searchable
 							required
-							placeholder="Select areas"
-							{...form.getInputProps("volunteer_areas")}
+							placeholder="Select available time slots"
+							{...form.getInputProps("availability")}
 						/>
-					</Box>
 
-					<MultiSelect
-						label="Availability"
-						data={availabilityOptions}
-						searchable
-						required
-						placeholder="Select available time slots"
-						{...form.getInputProps("availability")}
-					/>
+						<MultiSelect
+							label="Skills & Expertise"
+							data={skillOptions}
+							searchable
+							placeholder="Select your skills (optional)"
+							{...form.getInputProps("skills")}
+						/>
 
-					<MultiSelect
-						label="Skills & Expertise"
-						data={skillOptions}
-						searchable
-						placeholder="Select your skills (optional)"
-						{...form.getInputProps("skills")}
-					/>
+						<Textarea
+							label="Previous Experience"
+							placeholder="Tell us about past volunteering or relevant experience (optional)"
+							minRows={3}
+							{...form.getInputProps("experience")}
+						/>
 
-					<Textarea
-						label="Previous Experience"
-						placeholder="Tell us about past volunteering or relevant experience (optional)"
-						minRows={3}
-						{...form.getInputProps("experience")}
-					/>
+						<Checkbox
+							label={
+								<span>
+									By submitting this form, you agree to our
+									volunteer terms. We will get in touch within
+									2-3 working days.
+								</span>
+							}
+							checked={form.values.agreeToTerms}
+							onChange={(event) =>
+								form.setFieldValue(
+									"agreeToTerms",
+									event.currentTarget.checked,
+								)
+							}
+							error={form.errors.agreeToTerms}
+							mt="md"
+						/>
 
-					<Alert icon={<AlertCircleIcon size={18} />} color="blue">
-						<Text size="sm">
-							By submitting this form, you agree to our volunteer
-							terms. We will get in touch within 2-3 working days.
-						</Text>
-					</Alert>
-
-					<Button type="submit" size="lg" fullWidth loading={loading}>
-						Submit Volunteer Application
-					</Button>
-				</Stack>
-			</form>
-		</Paper>
+						<Button
+							type="submit"
+							size="lg"
+							fullWidth
+							loading={loading}
+							disabled={!form.values.agreeToTerms}
+						>
+							Submit Volunteer Application
+						</Button>
+					</Stack>
+				</form>
+			</Paper>
+		</Container>
 	);
 }
