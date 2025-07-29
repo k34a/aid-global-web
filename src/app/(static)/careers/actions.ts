@@ -6,7 +6,7 @@ import {
 	CareerApplicationData,
 } from "@/lib/db/careers/schema";
 
-export async function submitCareerApplication(data: unknown) {
+export async function submitCareerApplication(data: CareerApplicationData) {
 	try {
 		const validatedData: CareerApplicationData =
 			careerApplicationSchema.parse(data);
@@ -67,35 +67,6 @@ export async function submitCareerApplication(data: unknown) {
 		return {
 			success: false,
 			message: "Unknown error occurred",
-		};
-	}
-}
-
-export async function updateResumeUrl(
-	applicationId: string,
-	resumeUrl: string,
-) {
-	try {
-		const { data, error } = await supabaseAdmin
-			.from("careers")
-			.update({ resume_url: resumeUrl })
-			.eq("id", applicationId)
-			.select()
-			.single();
-
-		if (error) {
-			throw new Error(`Failed to update resume URL: ${error.message}`);
-		}
-
-		return {
-			success: true,
-			message: "Resume URL updated",
-			data,
-		};
-	} catch (error) {
-		return {
-			success: false,
-			message: error instanceof Error ? error.message : "Unknown error",
 		};
 	}
 }
