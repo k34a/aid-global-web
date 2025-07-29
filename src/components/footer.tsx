@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ngoDetails } from "@/config/config";
 import NewsLetter from "@/components/newsletter";
-import { links } from "@/config/links";
+import { links, programLinks } from "@/config/links";
 import {
 	Facebook,
 	Twitter,
@@ -73,16 +73,22 @@ const Footer: React.FC = () => {
 							Quick Links
 						</h4>
 						<ul className="space-y-3">
-							{links.primaryLinks.map((link) => (
-								<li key={link.name}>
-									<Link
-										href={link.href}
-										className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
-									>
-										{link.name}
-									</Link>
-								</li>
-							))}
+							{links.primaryLinks
+								.concat(links.secondaryLinks)
+								.map((link) => {
+									if ("href" in link && link.href) {
+										return (
+											<li key={link.name}>
+												<Link
+													href={link.href}
+													className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline"
+												>
+													{link.name}
+												</Link>
+											</li>
+										);
+									}
+								})}
 						</ul>
 					</div>
 
@@ -90,7 +96,7 @@ const Footer: React.FC = () => {
 					<div>
 						<h4 className="text-lg font-semibold mb-6">Our Work</h4>
 						<ul className="space-y-3">
-							{links.secondaryLinks.map((link) => (
+							{programLinks.map((link) => (
 								<li key={link.name}>
 									<Link
 										href={link.href}

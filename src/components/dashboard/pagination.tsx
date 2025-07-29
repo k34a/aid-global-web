@@ -102,7 +102,7 @@ const PaginationInput: React.FC<PaginationInputProps> = ({
 						value={inputValue}
 						onChange={handleInputChange}
 						onKeyDown={handleKeyPress}
-						className="w-12 text-center bg-transparent border-0 border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none transition-colors text-gray-900 font-medium"
+						className="w-12 text-center bg-transparent border-0 border-b-2 border-gray-300 focus:border-sky-500 focus:outline-none transition-colors text-gray-900 font-medium"
 						min="1"
 						max={numberOfPages}
 					/>
@@ -112,7 +112,7 @@ const PaginationInput: React.FC<PaginationInputProps> = ({
 
 				<button
 					onClick={handleGoClick}
-					className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+					className="px-3 py-1 text-sm bg-sky-600 text-white rounded-md hover:bg-sky-700 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1"
 				>
 					Go
 				</button>

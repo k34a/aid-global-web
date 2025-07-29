@@ -1,53 +1,165 @@
-import React from "react";
-import { Stack, TextInput, Box } from "@mantine/core";
+import React, { useState } from "react";
+import {
+	Stack,
+	Divider,
+	TextInput,
+	Box,
+	Text,
+	Title,
+	Button,
+	Center,
+} from "@mantine/core";
+import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
+import { UploadCloud } from "lucide-react";
 
 function Otherdetails() {
+	const [fullname, setFullname] = useState("");
+	const [email, setEmail] = useState("");
+	const [contact, setContact] = useState("");
+	const [apply, setApply] = useState("");
+	const [cvFile, setCvFile] = useState<File | null>(null);
+
+	const handleDrop = (files: File[]) => {
+		if (files.length > 0) {
+			setCvFile(files[0]);
+			console.log("Uploaded file:", files[0]);
+		}
+	};
+
+	const handleSubmit = () => {
+		if (!fullname || !email || !contact || !apply || !cvFile) {
+			alert("Please fill in all fields and upload your CV.");
+			return;
+		}
+
+		const formData = {
+			fullname,
+			email,
+			contact,
+			apply,
+			cv: cvFile.name,
+		};
+
+		console.log("Form Submitted:", formData);
+		alert("Form submitted successfully!");
+
+		setFullname("");
+		setEmail("");
+		setContact("");
+		setApply("");
+		setCvFile(null);
+	};
+
 	return (
-		<Box maw={500} mx="auto" px="xl" className="font-serif mb-5">
-			<Stack>
-				<div>
-					<TextInput
-						id="email"
-						label="Email"
-						name="email"
-						placeholder="Enter email address"
-						type="email"
-						required
-						radius="md"
-						size="md"
-						withAsterisk
-						className="w-100"
-					/>
-				</div>
-				<div>
-					<TextInput
-						label="Contact"
-						id="contact"
-						name="contact"
-						placeholder="Enter contact number"
-						type="tel"
-						required
-						radius="md"
-						size="md"
-						withAsterisk
-						className="w-100"
-					/>
-				</div>
+		<Box
+			px="xl"
+			py="xl"
+			className="font-serif mb-10 bg-white shadow-xl rounded-3xl border mx-auto max-w-lg w-full border-gray-200 sm:px-8 sm:py-10"
+		>
+			<Title className="text-center  font-bold mb-1 text-blue-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+				Join Our Team
+			</Title>
+
+			<Divider
+				size="sm"
+				w={100}
+				my="md"
+				color="gray"
+				className="mx-auto mb-6"
+			/>
+
+			<Stack className="space-y-6">
+				<TextInput
+					label="Full Name"
+					placeholder="Enter your name"
+					value={fullname}
+					onChange={(e) => setFullname(e.currentTarget.value)}
+					required
+					size="md"
+					radius="md"
+					withAsterisk
+				/>
+
+				<TextInput
+					label="Email"
+					placeholder="Enter your email address"
+					type="email"
+					value={email}
+					onChange={(e) => setEmail(e.currentTarget.value)}
+					required
+					size="md"
+					radius="md"
+					withAsterisk
+				/>
+
+				<TextInput
+					label="Contact Number"
+					placeholder="Enter your contact number"
+					type="tel"
+					value={contact}
+					onChange={(e) => setContact(e.currentTarget.value)}
+					required
+					size="md"
+					radius="md"
+					withAsterisk
+				/>
+
+				<TextInput
+					label="Applying For"
+					placeholder="Enter the role you're applying for"
+					value={apply}
+					onChange={(e) => setApply(e.currentTarget.value)}
+					required
+					size="md"
+					radius="md"
+					withAsterisk
+				/>
 
 				<div>
-					<TextInput
-						label="Applying For"
-						id="apply"
-						name="apply"
-						placeholder="Enter role you're applying for"
-						type="text"
-						required
+					<Text className="font-medium text-sm mb-2 text-gray-700">
+						Upload your CV *
+					</Text>
+
+					<Dropzone
+						onDrop={handleDrop}
+						accept={[
+							MIME_TYPES.pdf,
+							MIME_TYPES.doc,
+							MIME_TYPES.docx,
+						]}
 						radius="md"
-						size="md"
-						withAsterisk
-						className="w-100"
-					/>
+						className="border-2 border-dashed border-gray-300 hover:border-blue-500 bg-gray-50 rounded-xl px-4 py-6"
+					>
+						<div className="flex flex-col items-center justify-center space-y-1">
+							<UploadCloud className="w-10 h-10 text-gray-500 mb-2" />
+							<Text className="text-gray-600 text-sm font-medium">
+								Drag & drop your CV here or click to upload
+							</Text>
+							<Text className="text-xs text-gray-500">
+								Supported formats: .pdf, .doc, .docx
+							</Text>
+						</div>
+					</Dropzone>
+
+					{cvFile && (
+						<div className="mt-4 text-sm text-green-600">
+							Selected File: <strong>{cvFile.name}</strong>
+						</div>
+					)}
 				</div>
+
+				<Center>
+					<Button
+						size="md"
+						radius="md"
+						color="blue"
+						variant="filled"
+						className="font-serif px-6 py-2 text-white shadow-lg hover:shadow-lg"
+						onClick={handleSubmit}
+					>
+						Apply Now
+					</Button>
+				</Center>
 			</Stack>
 		</Box>
 	);

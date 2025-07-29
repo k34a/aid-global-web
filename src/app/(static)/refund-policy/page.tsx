@@ -88,7 +88,7 @@ export default function RefundPolicyPage() {
 						<MailCheck size={18} /> Email:{" "}
 						<a
 							href={`mailto:${ngoDetails.contact.email}`}
-							className="text-blue-600 hover:underline"
+							className="text-sky-600 hover:underline"
 						>
 							{ngoDetails.contact.email}
 						</a>
@@ -197,7 +197,7 @@ export default function RefundPolicyPage() {
 						<MailCheck size={18} /> Email:{" "}
 						<a
 							href={`mailto:${ngoDetails.contact.email}`}
-							className="text-blue-600 hover:underline"
+							className="text-sky-600 hover:underline"
 						>
 							{ngoDetails.contact.email}
 						</a>
@@ -206,7 +206,7 @@ export default function RefundPolicyPage() {
 						<Globe size={18} /> Website:{" "}
 						<a
 							href={ngoDetails.contact.website}
-							className="text-blue-600 hover:underline"
+							className="text-sky-600 hover:underline"
 						>
 							{ngoDetails.contact.website}
 						</a>

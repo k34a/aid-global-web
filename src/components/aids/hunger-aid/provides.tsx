@@ -40,7 +40,7 @@ export default function HungerAidProvides() {
 										className="flex items-start gap-2"
 									>
 										<CircleDotDashed
-											className="w-4 h-4 mt-1 text-blue-800"
+											className="w-4 h-4 mt-1 text-sky-800"
 											strokeWidth={3.5}
 										/>
 										<span>{point}</span>

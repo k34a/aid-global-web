@@ -10,10 +10,7 @@ function OurCareers() {
 	return (
 		<Container size="md" py="xl">
 			<Stack>
-				<Name />
 				<Otherdetails />
-				<Uploadcv />
-				<Apply />
 			</Stack>
 		</Container>
 	);

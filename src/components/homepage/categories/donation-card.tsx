@@ -42,9 +42,9 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 						&#8377;{card.required}
 					</span>
 				</div>
-				<div className="w-full bg-blue-100 h-2 rounded">
+				<div className="w-full bg-sky-100 h-2 rounded">
 					<div
-						className="bg-blue-500 h-2 rounded"
+						className="bg-sky-500 h-2 rounded"
 						style={{ width: `${percent}%` }}
 					/>
 				</div>
@@ -58,7 +58,7 @@ const DonationCard: React.FC<DonationCardProps> = ({ card }) => {
 						</span>{" "}
 						Share
 					</button>
-					<button className="bg-blue-500 text-white px-3 sm:px-4 py-1 rounded hover:bg-pink-600 text-xs sm:text-sm">
+					<button className="bg-sky-500 text-white px-3 sm:px-4 py-1 rounded hover:bg-pink-600 text-xs sm:text-sm">
 						Donate Now
 					</button>
 				</div>
