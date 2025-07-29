@@ -17,24 +17,22 @@ import { z } from "zod";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
-import { DonateButton } from "@/components/donation/donate-button";
+import { DonateButton } from "@/components/campaign/donate";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { Check, X } from "lucide-react";
 
 const Donate = () => {
 	const donateParamsSchema = z.object({
-		program: z
-			.enum([
-				"shiksha-aid",
-				"enable-aid",
-				"cure-aid",
-				"sakhi-aid",
-				"vision-aid",
-				"ghar-aid",
-				"hunger-aid",
-			])
-			.optional()
-			.default("general-aid"),
+		program: z.enum([
+			"shiksha-aid",
+			"enable-aid",
+			"cure-aid",
+			"sakhi-aid",
+			"vision-aid",
+			"ghar-aid",
+			"hunger-aid",
+			"general-aid",
+		]),
 	});
 	const searchParams = useSearchParams();
 	const programRaw = searchParams.get("program");
@@ -82,7 +80,7 @@ const Donate = () => {
 	};
 
 	return (
-		<div className="min-h-screen  bg-[#fbe8e9] flex items-center justify-center ">
+		<div className="min-h-screen  bg-[#fbe8e9] flex items-center justify-center px-4 py-10 sm:py-6 ">
 			<Paper shadow="xl" radius="md" p="lg" className="w-full max-w-6xl">
 				<Grid gutter="xl">
 					{/* LEFT: Info & Image */}
@@ -109,7 +107,7 @@ const Donate = () => {
 
 					{/* RIGHT: Donation Form */}
 					<Grid.Col span={{ base: 12, md: 6 }}>
-						<Title order={1} align="center" mb="md">
+						<Title order={1} className="text-center mb-4">
 							Donate to{" "}
 							<span className="text-red-600">{program}</span>
 						</Title>
@@ -153,8 +151,12 @@ const Donate = () => {
 									{error}
 								</Notification>
 							)}
-							<label className="flex items-center gap-2 text-sm text-gray-700">
+							<label
+								htmlFor="annon"
+								className="flex items-center gap-2 text-sm text-gray-700"
+							>
 								<input
+									id="annon"
 									type="checkbox"
 									checked={isAnonymous}
 									onChange={() =>

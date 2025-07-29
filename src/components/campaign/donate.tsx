@@ -21,12 +21,12 @@ interface DonateArgs {
 	name: string;
 	email: string;
 	contact_number: string;
+	notes?: string;
 	campaign_id?: string;
 	products?: Record<string, number>;
 	amount: number;
 	is_anon: boolean;
 	auto_allocate?: boolean;
-	notes?: string;
 }
 
 async function onDonateButtonClick(args: DonateArgs) {
@@ -48,7 +48,7 @@ async function onDonateButtonClick(args: DonateArgs) {
 
 		const options = {
 			key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-			amount: args.amount * 100,
+			amount: Math.round(args.amount * 100),
 			currency: "INR",
 			name: ngoDetails.name,
 			description: ngoDetails.description,
@@ -79,7 +79,16 @@ const RazorpayScript = () => {
 	return <Script src="https://checkout.razorpay.com/v1/checkout.js" />;
 };
 
-interface DonateButtonProps extends DonateArgs {
+interface DonateButtonProps {
+	name: string;
+	email: string;
+	contact_number: string;
+	campaign_id?: string;
+	notes?: string;
+	products?: Record<string, number>;
+	amount: number;
+	is_anon: boolean;
+	auto_allocate: boolean;
 	className?: string;
 	text?: string;
 }
@@ -101,7 +110,7 @@ const DonateButton = (props: DonateButtonProps) => {
 			<RazorpayScript />
 			<button
 				onClick={() => handleClick()}
-				className={`bg-sky-500 text-white px-4 py-2 rounded ${className}`}
+				className={`bg-red-600 text-white px-4 py-2 rounded ${className ?? ""}`}
 			>
 				{processing ? "Processing..." : (text ?? "Donate")}
 			</button>

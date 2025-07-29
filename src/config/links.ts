@@ -26,6 +26,17 @@ export const links: Links = {
 			],
 		},
 		{ name: "Programs", sublinks: programLinks },
+		{
+			name: "Get Involved",
+			sublinks: [
+				{ name: "Volunteer", href: "/volunteer" },
+				{ name: "Careers", href: "/careers" },
+				{
+					name: "Corporate Partnerships",
+					href: "/corporate-partnerships",
+				},
+			],
+		},
 		{ name: "Contact", href: "/contact" },
 	],
 
@@ -35,10 +46,10 @@ export const links: Links = {
 	},
 
 	secondaryLinks: [
-		{ name: "Our Impact", href: "/impact" },
-		{ name: "Stories", href: "/stories" },
 		{ name: "Partners", href: "/partners" },
 		{ name: "Volunteer", href: "/volunteer" },
+		{ name: "Careers", href: "/careers" },
+		{ name: "Corporate Partnerships", href: "/corporate-partnerships" },
 	],
 
 	tertiaryLinks: [
