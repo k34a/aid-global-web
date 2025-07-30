@@ -4,7 +4,7 @@ import Image from "next/image";
 import { HandHeart } from "lucide-react";
 import Link from "next/link";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { Grid, Stack } from "@mantine/core";
+import { Grid, Flex } from "@mantine/core";
 
 const content = [
 	{
@@ -44,7 +44,12 @@ export default function PartnerWithUs() {
 				<Grid gutter="0">
 					{content.map((item, idx) => (
 						<Grid.Col key={idx} span={{ base: 4, sm: 3, md: 2 }}>
-							<Stack align="center" spacing="sm" p="xs">
+							<Flex
+								direction="column"
+								align="center"
+								gap="md"
+								p="xs"
+							>
 								<div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-34 md:h-30 rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src={item.image}
@@ -57,7 +62,7 @@ export default function PartnerWithUs() {
 								<p className="text-center text-sm sm:text-sm md:text-base font-bold text-slate-900 max-w-[160px] leading-snug">
 									{item.desc}
 								</p>
-							</Stack>
+							</Flex>
 						</Grid.Col>
 					))}
 				</Grid>
