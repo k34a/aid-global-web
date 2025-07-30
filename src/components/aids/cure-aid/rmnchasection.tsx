@@ -49,7 +49,7 @@ export default function RMNCHSection() {
 			{/* Section Heading */}
 
 			<Center mb={40}>
-				<Stack align="center" spacing="0">
+				<Stack align="center">
 					<Title
 						order={2}
 						c="dark"

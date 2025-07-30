@@ -2,7 +2,7 @@ import Image from "@/components/image";
 import { HandHeart } from "lucide-react";
 import Link from "next/link";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { Grid, Stack } from "@mantine/core";
+import { Grid, Flex } from "@mantine/core";
 
 const content = [
 	{
