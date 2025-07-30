@@ -36,7 +36,7 @@ export async function submitCareerApplication(data: CareerApplicationData) {
 			await supabaseAdmin.storage
 				.from("user-uploads")
 				.createSignedUploadUrl(
-					`${application.id}/${validatedData.resume.fileName}`,
+					`resumes/${application.id}/${validatedData.resume.fileName}`,
 				);
 
 		if (urlError) {
