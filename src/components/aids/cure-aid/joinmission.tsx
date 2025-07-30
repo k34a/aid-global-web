@@ -73,7 +73,7 @@ export default function JoinMission() {
 				</div>
 				<div className="text-center">
 					<Link
-						href="/donate?program=cure-aid"
+						href="/donate"
 						className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-sm sm:text-base font-semibold transition"
 					>
 						Donate Now
