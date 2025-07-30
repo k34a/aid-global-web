@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const MAX_FILE_SIZE = 10 * 1024 * 1024;
+export const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 export const allowedFileTypes = [
 	"application/pdf",
@@ -29,7 +29,7 @@ export const careerApplicationSchema = z.object({
 		fileSize: z
 			.number()
 			.positive("File size must be positive")
-			.max(MAX_FILE_SIZE, "File size must be less than 10MB"),
+			.max(MAX_FILE_SIZE, "File size must be less than 5MB"),
 		fileType: z.string().min(1, "File type is required"),
 	}),
 });

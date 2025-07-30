@@ -21,8 +21,6 @@ export async function submitCareerApplication(data: CareerApplicationData) {
 					contact: validatedData.userInfo.contact,
 					applying_for: validatedData.userInfo.applyingFor,
 					resume_file_name: validatedData.resume.fileName,
-					resume_file_size: validatedData.resume.fileSize,
-					resume_file_type: validatedData.resume.fileType,
 				},
 			])
 			.select()
@@ -36,9 +34,9 @@ export async function submitCareerApplication(data: CareerApplicationData) {
 
 		const { data: presignedUrl, error: urlError } =
 			await supabaseAdmin.storage
-				.from("content")
+				.from("user-uploads")
 				.createSignedUploadUrl(
-					`resumes/${application.id}/${validatedData.resume.fileName}`,
+					`${application.id}/${validatedData.resume.fileName}`,
 				);
 
 		if (urlError) {
@@ -53,7 +51,6 @@ export async function submitCareerApplication(data: CareerApplicationData) {
 			data: {
 				applicationId: application.id,
 				presignedUrl: presignedUrl.signedUrl,
-				path: presignedUrl.path,
 			},
 		};
 	} catch (error) {
