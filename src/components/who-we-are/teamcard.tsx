@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { Card, Text, Button, Group } from "@mantine/core";
+import Linkedin from "@/components/icons/linkedin";
 
 type TeamCardProps = {
 	name: string;
@@ -14,24 +18,48 @@ export default function TeamCard({
 	linkedinUrl,
 }: TeamCardProps) {
 	return (
-		<li className="text-center border p-4 rounded-lg bg-amber-100 w-[90%] max-w-xs mx-auto sm:w-60">
-			<Image
-				src={imageSrc}
-				alt={`${name} profile`}
-				width={180}
-				height={180}
-				className="mx-auto rounded-full"
-			/>
-			<h3 className="mt-3 font-semibold">{name}</h3>
-			<p className="text-indigo-600">{role}</p>
-			<a
+		<Card
+			shadow="sm"
+			padding="lg"
+			radius="md"
+			withBorder
+			className="w-[90%] max-w-xs mx-auto sm:w-60"
+		>
+			<Card.Section>
+				<div className="flex justify-center pt-4">
+					<Image
+						src={imageSrc}
+						alt={`${name} profile`}
+						width={120}
+						height={120}
+						className="rounded-full"
+					/>
+				</div>
+			</Card.Section>
+
+			<Group justify="center" mt="md" mb="xs">
+				<Text fw={600} size="lg" ta="center">
+					{name}
+				</Text>
+			</Group>
+
+			<Text ta="center" c="indigo" size="sm" mb="sm">
+				{role}
+			</Text>
+
+			<Button
+				component="a"
 				href={linkedinUrl}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-sky-600 hover:underline text-sm mt-1 inline-block"
+				variant="filled"
+				color="blue"
+				fullWidth
+				radius="md"
+				mt="md"
 			>
 				LinkedIn
-			</a>
-		</li>
+			</Button>
+		</Card>
 	);
 }

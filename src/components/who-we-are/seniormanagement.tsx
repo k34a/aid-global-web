@@ -4,7 +4,8 @@ import TeamCard from "@/components/who-we-are/teamcard";
 import TeamCardDesc from "@/components/who-we-are/teamcarddesc";
 import { teamembers } from "@/config/team";
 import { teamembersdata } from "@/config/teamdesc";
-
+import { CloseButton } from "@mantine/core";
+import { X } from "lucide-react";
 function Seniormanagement() {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -23,7 +24,7 @@ function Seniormanagement() {
 
 	return (
 		<div>
-			<section id="team" className="py-6 sm:py-12 bg-gray-50">
+			<section id="team" className="py-6 sm:py-12 bg-gray-100">
 				<h2 className="text-center text-3xl sm:text-4xl font-bold text-sky-800 mb-6 sm:mb-10">
 					Senior Management
 				</h2>
@@ -48,22 +49,27 @@ function Seniormanagement() {
 					))}
 				</ul>
 			</section>
-
 			{selectedIndex !== null && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
-					<div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 w-[90%] max-w-xl max-h-[90vh] overflow-y-auto relative animate-zoomIn border border-gray-300">
-						<button
-							onClick={handleBackClick}
-							className="absolute top-3 right-3 text-white bg-sky-600 px-3 sm:px-4 py-1 rounded-md text-sm font-medium hover:bg-sky-700 transition"
-						>
-							&larr; Back
-						</button>
+					<div className="relative w-[90%] max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-300 animate-zoomIn">
+						<div className="absolute top-4 right-4 z-10">
+							<CloseButton
+								onClick={handleBackClick}
+								aria-label="Close"
+								title="Close"
+								size="lg"
+								variant="light"
+								icon={<X size={18} color="red" />}
+							/>
+						</div>
 
-						<TeamCardDesc
-							name={teamembersdata[selectedIndex].name}
-							role={teamembersdata[selectedIndex].role}
-							desc={teamembersdata[selectedIndex].desc}
-						/>
+						<div className="mt-4 sm:mt-6">
+							<TeamCardDesc
+								name={teamembersdata[selectedIndex].name}
+								role={teamembersdata[selectedIndex].role}
+								desc={teamembersdata[selectedIndex].desc}
+							/>
+						</div>
 					</div>
 				</div>
 			)}
