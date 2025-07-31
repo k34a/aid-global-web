@@ -6,7 +6,7 @@ function Aboutus() {
 			id="aboutus"
 			className="pl-2 pr-2 mt-8 sm:pl-6 sm:pr-4 sm:mt-16 mx-4 lg:mx-14"
 		>
-			<h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">
+			<h2 className="text-3xl sm:text-4xl font-bold text-sky-800 mb-4 sm:mb-6">
 				About Us
 			</h2>
 

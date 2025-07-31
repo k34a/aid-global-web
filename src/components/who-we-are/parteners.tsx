@@ -6,7 +6,7 @@ function Parteners() {
 	return (
 		<div>
 			<section id="partners" className="px-3 py-6 sm:px-6 sm:py-12">
-				<h2 className="text-center text-3xl sm:text-4xl font-bold text-blue-800 mb-6 sm:mb-10">
+				<h2 className="text-center text-3xl sm:text-4xl font-bold text-sky-800 mb-6 sm:mb-10">
 					Our Partners
 				</h2>
 

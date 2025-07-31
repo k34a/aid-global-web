@@ -13,7 +13,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 				<li key={article.id}>
 					<Link
 						href={`/articles/${article.slug}`}
-						className="text-blue-600 hover:underline"
+						className="text-sky-600 hover:underline"
 					>
 						{article.title}
 					</Link>
