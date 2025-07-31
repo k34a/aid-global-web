@@ -2,7 +2,6 @@ import type { NGODetails } from "@/config/types";
 
 export const APP_ENV = process.env.NODE_ENV;
 export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
-
 export const ngoDetails: NGODetails = {
 	name: "Aid Global Foundation",
 	tagline: "Aid with heart. Impact with purpose",
@@ -19,7 +18,6 @@ export const ngoDetails: NGODetails = {
 		"volunteer",
 	],
 	logo: `${STATIC_IMAGE_HOST}logo.png`,
-
 	contact: {
 		address:
 			"H.no. 4453, Sathe Nagar near Manoj Kirana Store, Narpoli, Bhiwandi, Thane, Maharashtra-421305",
