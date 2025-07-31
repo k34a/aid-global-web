@@ -1,14 +1,13 @@
-"use client";
 import React from "react";
 import { Container, Stack } from "@mantine/core";
 
-import Otherdetails from "@/components/ourcareers/otherdetails";
+import CareerApplicationForm from "@/components/career/application-form";
 
 function OurCareers() {
 	return (
 		<Container size="md" py="xl">
 			<Stack>
-				<Otherdetails />
+				<CareerApplicationForm />
 			</Stack>
 		</Container>
 	);
