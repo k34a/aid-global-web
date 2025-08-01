@@ -38,6 +38,8 @@ const Footer: React.FC = () => {
 									height={100}
 									alt={`${ngoDetails.name} Logo`}
 									className="object-contain"
+									width={300}
+									height={300}
 								/>
 							</div>
 							<div>
