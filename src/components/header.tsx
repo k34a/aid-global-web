@@ -38,6 +38,8 @@ export default function HeaderMegaMenu() {
 						src={ngoDetails.logo}
 						alt="Logo"
 						className={classes.logo}
+						width={300}
+						height={300}
 					/>
 					<div className={classes.logoTextGroup}>
 						<h1 className={classes.title}>{ngoDetails.name}</h1>
