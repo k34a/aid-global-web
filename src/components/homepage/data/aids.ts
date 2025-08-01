@@ -6,7 +6,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
 		title: "Shiksha Aid",
 		desc: "Access to education for underpriviliged children. Partner with Aid Global Foundation to provide quality education and resources to children in need.",
-		button: "Read More",
+		donate: "/donate?program=shiksha-aid",
 		link: "/shiksha-aid",
 	},
 	{
@@ -14,7 +14,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/enable.webp`,
 		title: "Enable Aid",
 		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
-		button: "Read More",
+		donateLink: "/donate?program=enable-aid",
 		link: "/enable-aid",
 	},
 	{
@@ -22,7 +22,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 		title: "Cure Aid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
-		button: "Read More",
+		donateLink: "/donate?program=cure-aid",
 		link: "/cure-aid",
 	},
 	{
@@ -30,7 +30,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
 		title: "Vision Aid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
-		button: "Read More",
+		donateLink: "/donate?program=vision-aid",
 		link: "/vision-aid",
 	},
 	{
@@ -38,7 +38,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar.webp`,
 		title: "Ghar Aid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
-		button: "Read More",
+		donateLink: "/donate?program=ghar-aid",
 		link: "/ghar-aid",
 	},
 	{
@@ -46,7 +46,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
 		title: "Sakhi Aid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
-		button: "Read More",
+		donateLink: "/donate?program=sakhi-aid",
 		link: "/sakhi-aid",
 	},
 	{
@@ -54,7 +54,7 @@ export const aids = [
 		image: `${STATIC_IMAGE_HOST}home-page/aids/intro.webp`,
 		title: "Hunger Aid",
 		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
-		button: "Read More",
+		donateLink: "/donate?program=hunger-aid",
 		link: "/hunger-aid",
 	},
 ];

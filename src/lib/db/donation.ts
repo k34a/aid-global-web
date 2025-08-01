@@ -57,14 +57,18 @@ async function createDonationIntent(
 		);
 	}
 
-	const requestedProducts = new Set(Object.keys(donationProducts));
-	const productsDataSet = new Set(
-		(productsData ?? {}).map((p) => p.id as string),
+	const requestedProductKeys = Object.keys(donationProducts);
+	const existingProductKeys = new Set(
+		(productsData ?? []).map((p) => p.id as string),
 	);
 
-	if (requestedProducts.difference(productsDataSet).size > 0) {
+	const invalidProducts = requestedProductKeys.filter(
+		(id) => !existingProductKeys.has(id),
+	);
+
+	if (invalidProducts.length > 0) {
 		throw new UnableToRecordDonationIntentError(
-			"Some products in the request do not exist in the campaign.",
+			`Some products in the request do not exist in the campaign: ${invalidProducts.join(", ")}`,
 		);
 	}
 

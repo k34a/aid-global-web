@@ -34,6 +34,8 @@ const Footer: React.FC = () => {
 							<div className="relative w-12 h-12 shrink-0">
 								<Image
 									src={ngoDetails.logo}
+									width={100}
+									height={100}
 									alt={`${ngoDetails.name} Logo`}
 									className="object-contain"
 									width={300}
