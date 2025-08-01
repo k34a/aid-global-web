@@ -172,6 +172,25 @@ interface ReceiptDetails {
 	}>;
 }
 
+async function doesBackerExist(id: string) {
+	const { data, error } = await supabaseAdmin
+		.from("backers")
+		.select("id")
+		.eq("id", id)
+		.maybeSingle();
+
+	if (error) {
+		console.error("Error fetching donation details:", error.message);
+		return false;
+	}
+
+	if (!data) {
+		return false;
+	}
+
+	return true;
+}
+
 async function getBackerDetailsById(id: string) {
 	const {
 		data: donation,
@@ -225,6 +244,7 @@ async function capturePayment(orderId: string, paymentId: string) {
 }
 
 export {
+	doesBackerExist,
 	newDonationRequestSchema,
 	createDonationIntent,
 	UnableToRecordDonationIntentError,
@@ -232,3 +252,5 @@ export {
 	getBackerDetailsById,
 	capturePayment,
 };
+
+export type { ReceiptDetails };
