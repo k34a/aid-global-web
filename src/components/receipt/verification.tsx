@@ -32,7 +32,7 @@ export default function VerifyPinModal({
 
 	useEffect(() => {
 		form.setFieldError("pin", error);
-	}, [error]);
+	}, [error, form]);
 
 	const handleSubmit = (values: { pin: string }) => {
 		onSuccess(values.pin);
