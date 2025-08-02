@@ -33,21 +33,23 @@ const MissionSection = () => {
 							sustainable change worldwide.
 						</p>
 					</div>
-					<div className="flex flex-col sm:flex-row justify-between mt-6 sm:mt-8 md:mt-10 text-center text-black font-semibold gap-4 sm:gap-0">
-						<div className="flex flex-col items-center">
-							<HeartHandshake className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold text-center" />
+
+					{/* Stats Section: Keep Horizontal on All Screens */}
+					<div className="flex flex-row justify-between flex-wrap gap-y-6 mt-8 text-black font-semibold text-center">
+						<div className="flex flex-col items-center flex-1 min-w-[100px]">
+							<HeartHandshake className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
 							<span className="text-sm sm:text-base">
 								Join Our team
 							</span>
 							<span className="text-sm sm:text-base">120+</span>
 						</div>
-						<div className="flex flex-col items-center">
+						<div className="flex flex-col items-center flex-1 min-w-[100px]">
 							<HandCoins className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
 							<span className="text-sm sm:text-base">
 								Donate Now
 							</span>
 						</div>
-						<div className="flex flex-col items-center">
+						<div className="flex flex-col items-center flex-1 min-w-[100px]">
 							<PiggyBank className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
 							<span className="text-sm sm:text-base">
 								Total Fund Raised
