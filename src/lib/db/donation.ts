@@ -5,10 +5,7 @@ import { z } from "zod/v4";
 import { razorpay } from "@/lib/razorpay";
 import { PostgrestError } from "@supabase/supabase-js";
 
-const newDonationRequestSchema = z.object({
-	campaign_id: z.string().default(DEFAULT_CAMPAIGN),
-	products: z.record(z.string(), z.number()).optional(),
-	amount: z.number().min(1, "Amount must be greater than 0"),
+const userInfoSchema = z.object({
 	email: z.email("Invalid email address"),
 	contact_number: z
 		.string()
@@ -16,8 +13,14 @@ const newDonationRequestSchema = z.object({
 		.regex(/^\d{10}$/, "Must be exactly 10 digits"),
 	name: z.string().min(1, "Name is required"),
 	is_anon: z.boolean().default(false),
-	auto_allocate: z.boolean().default(true),
 	notes: z.string().optional(),
+});
+
+const newDonationRequestSchema = userInfoSchema.extend({
+	campaign_id: z.string().default(DEFAULT_CAMPAIGN),
+	products: z.record(z.string(), z.number()).optional(),
+	amount: z.number().min(1, "Amount must be greater than 0"),
+	auto_allocate: z.boolean().default(true),
 });
 
 type NewDonationRequest = z.infer<typeof newDonationRequestSchema>;
@@ -253,4 +256,4 @@ export {
 	capturePayment,
 };
 
-export type { ReceiptDetails };
+export type { ReceiptDetails, NewDonationRequest };

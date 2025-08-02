@@ -11,7 +11,7 @@ import ReceiptFooter from "./foot";
 import TaxNote from "./tax-note";
 import DonationInfo from "./donation-info";
 import VerifyPinModal from "./verification";
-import { getDonationDetails } from "@/app/donation/action";
+import { getDonationDetails } from "@/app/receipt/donation/action";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 

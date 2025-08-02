@@ -4,6 +4,7 @@ import React from "react";
 import Script from "next/script";
 import { ngoDetails } from "@/config/config";
 import toast from "react-hot-toast";
+import { createDonationOrder } from "@/app/api/server/create-order/actions";
 
 interface RazorpayInstance {
 	open(): void;
@@ -31,18 +32,10 @@ interface DonateArgs {
 
 async function onDonateButtonClick(args: DonateArgs) {
 	try {
-		const response = await fetch("/api/create-order", {
-			method: "POST",
-			body: JSON.stringify(args),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8",
-			},
-		});
+		const response = await createDonationOrder(args);
 
-		const data = await response.json();
-
-		if (!response.ok) {
-			toast.error(data.message ?? "Failed to create donation.");
+		if (!response.success) {
+			toast.error(response.message ?? "Failed to create donation.");
 			return;
 		}
 
@@ -52,9 +45,9 @@ async function onDonateButtonClick(args: DonateArgs) {
 			currency: "INR",
 			name: ngoDetails.name,
 			description: ngoDetails.description,
-			logo: `${ngoDetails.contact.website}${ngoDetails.logo}`,
-			order_id: data.order_id,
-			callback_url: `${ngoDetails.contact.website}/donation/${data.donation_intent_id}`,
+			logo: ngoDetails.logo,
+			order_id: response.order_id,
+			callback_url: `${ngoDetails.contact.website}/receipt/donation/${response.donation_intent_id}`,
 			prefill: {
 				name: args.name,
 				email: args.email,
