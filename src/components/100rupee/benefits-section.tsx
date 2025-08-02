@@ -5,7 +5,7 @@ import {
 	Calendar,
 	Badge,
 	Target,
-	Heart,
+	BadgeCheck,
 	IndianRupee,
 } from "lucide-react";
 
@@ -57,11 +57,11 @@ const whoCanJoin = [
 
 export default function BenefitsSection() {
 	return (
-		<section className="py-20 bg-gray-50">
+		<section className="py-8 bg-gray-50">
 			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-				{/* Section Header */}
 				<div className="text-center mb-16">
-					<h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+					<h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 inline-flex items-center justify-center gap-2">
+						<BadgeCheck className="w-7 h-7 text-[#1e40af]" />
 						Member Benefits
 					</h2>
 					<p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -69,7 +69,6 @@ export default function BenefitsSection() {
 						visible. Your kindness is honored.
 					</p>
 				</div>
-
 				{/* Benefits Grid */}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
 					{memberBenefits.map((benefit, index) => (
@@ -146,12 +145,15 @@ export default function BenefitsSection() {
 					<div className="text-center">
 						<div className="bg-gradient-to-r from-blue-100 to-green-100 rounded-2xl p-8 border border-blue-200 max-w-3xl mx-auto">
 							<p className="text-xl font-bold text-gray-900 mb-3">
-								If you can afford Rs. 100 a month - you can
-								afford to be someone&apos;s blessing.
-							</p>
-							<p className="text-gray-700 text-lg">
-								Big change doesn&apos;t need big money. It needs
-								big hearts like yours.
+								If you can afford{" "}
+								<span className="inline-flex items-baseline gap-1 align-baseline">
+									<span className="inline-flex items-baseline gap-1">
+										<IndianRupee className="w-4 h-4 text-gray-900 relative top-[1px]" />
+										100
+									</span>
+								</span>{" "}
+								a month - you can afford to be someone&apos;s
+								blessing.
 							</p>
 						</div>
 					</div>

@@ -186,23 +186,20 @@ export default function RecurringDonationForm() {
 	return (
 		<section id="recurring-donation-form" className="py-20 bg-white">
 			<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-				{/* Section Header */}
 				<div className="text-center mb-12">
 					<h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
 						Ready to Make an Impact?
 					</h2>
 					<p className="text-lg text-gray-600 max-w-2xl mx-auto">
 						Join the{" "}
-						<span className="inline-flex items-center gap-1">
-							<IndianRupee className="w-5 h-5" />
+						<span className="inline-flex items-baseline gap-1">
+							<IndianRupee className="w-4 h-4 relative top-[1px] text-gray-600" />
 							100 Club
 						</span>{" "}
 						today and become part of a nationwide giving movement
 						that transforms lives, one month at a time.
 					</p>
 				</div>
-
-				{/* Recurring Donation Form */}
 				<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-200">
 					<form
 						onSubmit={form.onSubmit(handleRecurringDonation)}
