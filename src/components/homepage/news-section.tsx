@@ -15,7 +15,7 @@ type Props = {
 function chunkArray<T>(arr: T[], size: number): (T | null)[][] {
 	const result: (T | null)[][] = [];
 	for (let i = 0; i < arr.length; i += size) {
-		const chunk = arr.slice(i, i + size);
+		const chunk: (T | null)[] = arr.slice(i, i + size);
 		while (chunk.length < size) chunk.push(null);
 		result.push(chunk);
 	}
@@ -42,9 +42,7 @@ export default function NewsSection({ articles }: Props) {
 				<Carousel
 					slideSize="100%"
 					slideGap="md"
-					align="start"
 					withControls
-					loop={false}
 					classNames={{
 						control:
 							"bg-white hover:bg-sky-100 text-sky-600 shadow-lg z-10",
@@ -104,9 +102,7 @@ export default function NewsSection({ articles }: Props) {
 				<Carousel
 					slideSize="100%"
 					slideGap="sm"
-					align="start"
 					withControls
-					loop={false}
 					classNames={{
 						control:
 							"bg-white hover:bg-sky-100 text-sky-600 shadow-lg z-10",
