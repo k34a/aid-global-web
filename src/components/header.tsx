@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
+import Image from "next/image";
 import {
 	Drawer,
 	Burger,
@@ -34,7 +35,7 @@ export default function HeaderMegaMenu() {
 		<Box className={classes.wrapper}>
 			<header className={classes.header}>
 				<Link href="/" className={classes.logoGroup}>
-					<img
+					<Image
 						src={ngoDetails.logo}
 						alt="Logo"
 						className={classes.logo}
