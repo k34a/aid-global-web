@@ -7,7 +7,7 @@ import Supporting from "@/components/recurring-donation/supporting";
 import Gamification from "@/components/recurring-donation/gamification";
 import Project from "@/components/recurring-donation/project";
 import Transactions from "@/components/recurring-donation/transactions";
-import Account from "@/components/recurring-donation/Account";
+import Account from "@/components/recurring-donation/account";
 import Payments from "@/components/recurring-donation/payments";
 function Onerupeefaq() {
 	return (
