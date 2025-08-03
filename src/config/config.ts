@@ -17,6 +17,7 @@ export const ngoDetails: NGODetails = {
 		"donations",
 		"volunteer",
 	],
+	registrationNumber: "E-0014172(THN)",
 	logo: `${STATIC_IMAGE_HOST}logo.png`,
 	contact: {
 		address:
