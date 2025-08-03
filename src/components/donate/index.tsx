@@ -188,40 +188,9 @@ const RazorpayScript = () => {
 	return <Script src="https://checkout.razorpay.com/v1/checkout.js" />;
 };
 
-interface DonateButtonProps extends DonateArgs {
-	className?: string;
-	text?: string;
-}
-
-const DonateButton = (props: DonateButtonProps) => {
-	// We need to add proper error handling in this component
-	const { text, className, ...donateArgs } = props;
-
-	const [processing, setProcessing] = React.useState(false);
-
-	const handleClick = async () => {
-		setProcessing(true);
-		await onDonateButtonClick(donateArgs);
-		setProcessing(false);
-	};
-
-	return (
-		<>
-			<RazorpayScript />
-			<button
-				onClick={() => handleClick()}
-				className={`bg-sky-500 text-white px-4 py-2 rounded ${className}`}
-			>
-				{processing ? "Processing..." : (text ?? "Donate")}
-			</button>
-		</>
-	);
-};
-
 export {
 	RazorpayScript,
 	onDonateButtonClick,
 	onCampaignDonateButtonClick,
 	onSubscriptionButtonClick,
-	DonateButton,
 };
