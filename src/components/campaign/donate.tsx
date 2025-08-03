@@ -1,3 +1,4 @@
+// campaigns/donate.tsx
 "use client";
 
 import React from "react";
@@ -17,7 +18,7 @@ declare global {
 	}
 }
 
-interface DonateArgs {
+export interface DonateArgs {
 	name: string;
 	email: string;
 	contact_number: string;
@@ -29,7 +30,17 @@ interface DonateArgs {
 	auto_allocate?: boolean;
 }
 
-async function onDonateButtonClick(args: DonateArgs) {
+export interface DonateButtonProps extends DonateArgs {
+	className?: string;
+	text?: string;
+	onBeforePay?: () => boolean | Promise<boolean>;
+}
+
+export const RazorpayScript = () => (
+	<Script src="https://checkout.razorpay.com/v1/checkout.js" />
+);
+
+export async function onDonateButtonClick(args: DonateArgs) {
 	try {
 		const response = await fetch("/api/create-order", {
 			method: "POST",
@@ -75,31 +86,20 @@ async function onDonateButtonClick(args: DonateArgs) {
 	}
 }
 
-const RazorpayScript = () => {
-	return <Script src="https://checkout.razorpay.com/v1/checkout.js" />;
-};
-
-interface DonateButtonProps {
-	name: string;
-	email: string;
-	contact_number: string;
-	campaign_id?: string;
-	notes?: string;
-	products?: Record<string, number>;
-	amount: number;
-	is_anon: boolean;
-	auto_allocate: boolean;
-	className?: string;
-	text?: string;
-}
-
-const DonateButton = (props: DonateButtonProps) => {
-	// We need to add proper error handling in this component
-	const { text, className, ...donateArgs } = props;
-
+export const DonateButton = ({
+	text,
+	className,
+	onBeforePay,
+	...donateArgs
+}: DonateButtonProps) => {
 	const [processing, setProcessing] = React.useState(false);
 
 	const handleClick = async () => {
+		if (onBeforePay) {
+			const result = await onBeforePay();
+			if (!result) return;
+		}
+
 		setProcessing(true);
 		await onDonateButtonClick(donateArgs);
 		setProcessing(false);
@@ -109,13 +109,11 @@ const DonateButton = (props: DonateButtonProps) => {
 		<>
 			<RazorpayScript />
 			<button
-				onClick={() => handleClick()}
-				className={`bg-red-600 text-white px-4 py-2 rounded ${className ?? ""}`}
+				onClick={handleClick}
+				className={`bg-[#2563eb] text-white px-4 py-2 rounded ${className ?? ""}`}
 			>
 				{processing ? "Processing..." : (text ?? "Donate")}
 			</button>
 		</>
 	);
 };
-
-export { RazorpayScript, onDonateButtonClick, DonateButton };

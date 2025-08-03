@@ -3,9 +3,8 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {faqs} from "@/config/faq"
-import { ngoDetails } from "@/config/config";
+import { DonationDetails } from "@/config/donation";
 
-const { email } = ngoDetails.contact;
 
 const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -41,7 +40,7 @@ const FaqSection = () => {
 
       <p className="mt-8 text-center text-black text-md">
         In case you have more queries, please write to us at{" "}
-        <span className="text-red-600 font-medium">{email}</span>
+        <span className="text-[#2563eb] font-medium">{DonationDetails.email}</span>
       </p>
     </div>
   );

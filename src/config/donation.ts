@@ -1,15 +1,21 @@
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
-export const bankDetails = {
-	accountName: "ABC Foundation",
-	accountNumber: "1234567890",
-	ifsc: "ABCD0123456",
-	bankName: "State Bank of Example",
-};
+export const DonationDetails = {
+	accountName: "Aid Global Foundation",
 
-export const upiDetails = {
-	upiId: "abc@okaxis",
-	name: "ABC Foundation",
-};
+	accountNumber: "925020029188000",
 
-export const qrImagePath = `${STATIC_IMAGE_HOST}donation/qr.webp`;
+	upiID: "aidglobalfounda973306.rzp@icici",
+
+	bankName: "Axis Bank Ltd",
+
+	branchAddress: "Anjur phata bhiwandi Branch",
+
+	codeIFSC: "UTIB0003387",
+
+	codeMICR: "400211288",
+
+	qrSrc: `${STATIC_IMAGE_HOST}donation/qr.webp`,
+
+	email: "donate@aidglobal.ngo",
+};

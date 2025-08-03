@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { IndianRupee, Banknote, QrCode, Contact } from "lucide-react";
-import { bankDetails, upiDetails, qrImagePath } from "@/config/donation";
+import { DonationDetails } from "@/config/donation";
 
 export default function DonatePage() {
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-indigo-50 to-white py-10  flex items-center justify-center">
 			<div className="w-full max-w-5xl bg-white shadow-2xl rounded-2xl p-8">
-				<h1 className="text-4xl font-bold text-red-700 text-center mb-8">
+				<h1 className="text-4xl font-bold text-[#2563eb] text-center mb-8">
 					Support Our Cause
 				</h1>
 
@@ -27,25 +27,37 @@ export default function DonatePage() {
 									<span className="font-medium">
 										Account Name:
 									</span>{" "}
-									{bankDetails.accountName}
+									{DonationDetails.accountName}
 								</p>
 								<p>
 									<span className="font-medium">
 										Account Number:
 									</span>{" "}
-									{bankDetails.accountNumber}
+									{DonationDetails.accountNumber}
 								</p>
 								<p>
 									<span className="font-medium">
 										IFSC Code:
 									</span>{" "}
-									{bankDetails.ifsc}
+									{DonationDetails.codeIFSC}
+								</p>
+								<p>
+									<span className="font-medium">
+										MICR Code:
+									</span>{" "}
+									{DonationDetails.codeMICR}
 								</p>
 								<p>
 									<span className="font-medium">
 										Bank Name:
 									</span>{" "}
-									{bankDetails.bankName}
+									{DonationDetails.bankName}
+								</p>
+								<p>
+									<span className="font-medium">
+										Brnach Address:
+									</span>{" "}
+									{DonationDetails.branchAddress}
 								</p>
 							</div>
 						</div>
@@ -56,14 +68,12 @@ export default function DonatePage() {
 								<Contact size={22} />
 								UPI Details
 							</h2>
-							<div className="text-md text-emerald-900 space-y-1">
+							<div className="text-md text-emerald-900 space-y-1 whitespace-normal">
 								<p>
 									<span className="text-md">UPI ID:</span>{" "}
-									{upiDetails.upiId}
-								</p>
-								<p>
-									<span className="text-md">Name:</span>{" "}
-									{upiDetails.name}
+									<span className="break-all">
+										{DonationDetails.upiID}
+									</span>
 								</p>
 							</div>
 						</div>
@@ -76,7 +86,7 @@ export default function DonatePage() {
 							Scan QR to Donate
 						</h2>
 						<Image
-							src={qrImagePath}
+							src={DonationDetails.qrSrc}
 							alt="Donate QR Code"
 							width={220}
 							height={220}
@@ -88,6 +98,8 @@ export default function DonatePage() {
 
 				{/* Footer Note */}
 				<p className="text-lg text-gray-500 text-center mt-10">
+					You can make donations via Bank Transfer (NEFT / RTGS /
+					IMPS) using the above details. <br />
 					Every contribution counts. Thank you for your support!
 				</p>
 			</div>
