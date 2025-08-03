@@ -15,7 +15,10 @@ const legalDocuments = [
 	{
 		title: "12A Certificate",
 		description: (
-			<>Confirms the NGO's income is exempt from tax under Section 12A.</>
+			<>
+				Confirms the NGO&apos;s income is exempt from tax under Section
+				12A.
+			</>
 		),
 		link: "https://drive.google.com/file/d/13HZrUXAVxsIIi79QG-seipG-WxUCVXhe/view?usp=sharing",
 	},
