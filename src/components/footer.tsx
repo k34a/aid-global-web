@@ -49,6 +49,15 @@ const Footer: React.FC = () => {
 						<p className="text-gray-300 mb-6 leading-relaxed">
 							{ngoDetails.description}
 						</p>
+						<p className="text-sm text-gray-400 mb-6">
+							<strong>Registration No:</strong>{" "}
+							<Link
+								href="/who-we-are#legal-docs"
+								className="hover:underline"
+							>
+								{ngoDetails.registrationNumber}
+							</Link>
+						</p>
 
 						{/* Social Links */}
 						<div className="flex space-x-4">
