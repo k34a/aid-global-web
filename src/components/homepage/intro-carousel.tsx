@@ -5,7 +5,7 @@ import { wrap } from "@popmotion/popcorn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { DonateButton } from "@/components/campaign/donate";
+import { DonateButton } from "@/components/donate";
 
 const images = [
 	{ src: `${STATIC_IMAGE_HOST}home-page/intro/one.webp`, alt: "image" },

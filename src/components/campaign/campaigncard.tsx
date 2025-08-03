@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Users, Share2, IndianRupee } from "lucide-react";
-import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
+import { Users, IndianRupee } from "lucide-react";
 import { calculateProgressPercentage } from "@/lib/client-utils/progress";
 import { getImageUrl } from "./utils";
 

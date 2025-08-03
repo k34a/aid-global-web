@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { IndianRupee } from "lucide-react";
-import { DonateButton } from "./donate";
+import { DonateButton } from "@/components/donate";
 import { CampaignProduct } from "@/lib/db/campaigns";
 
 interface DonationSummaryProps {

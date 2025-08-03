@@ -1,138 +1,22 @@
-import { DEFAULT_CAMPAIGN } from "@/config/data";
 import { supabaseAdmin } from "./supabase";
 
-import { z } from "zod/v4";
-import { razorpay } from "@/lib/razorpay";
 import { PostgrestError } from "@supabase/supabase-js";
 
-const userInfoSchema = z.object({
-	email: z.email("Invalid email address"),
-	contact_number: z
-		.string()
-		.length(10)
-		.regex(/^\d{10}$/, "Must be exactly 10 digits"),
-	name: z.string().min(1, "Name is required"),
-	is_anon: z.boolean().default(false),
-	notes: z.string().optional(),
-});
-
-const newDonationRequestSchema = userInfoSchema.extend({
-	campaign_id: z.string().default(DEFAULT_CAMPAIGN),
-	products: z.record(z.string(), z.number()).optional(),
-	amount: z.number().min(1, "Amount must be greater than 0"),
-	auto_allocate: z.boolean().default(true),
-});
-
-type NewDonationRequest = z.infer<typeof newDonationRequestSchema>;
-
-interface Donation extends Omit<NewDonationRequest, "products"> {
+interface Donation {
 	id: string;
+	email: string;
+	contact_number: string;
+	name: string;
+	pan?: string;
+	address?: string;
+	notes?: string;
+	campaign_id: string;
+	amount: number;
+	auto_allocate: boolean;
 	created_at: Date;
 	order_id?: string;
 	payment_id?: string;
 	status?: "Pending" | "Completed";
-}
-
-class UnableToRecordDonationIntentError extends Error {
-	constructor(msg: string) {
-		super(msg);
-		Object.setPrototypeOf(
-			this,
-			UnableToRecordDonationIntentError.prototype,
-		);
-	}
-}
-
-async function createDonationIntent(
-	request: NewDonationRequest,
-): Promise<string> {
-	const donationProducts = request.products ?? {};
-
-	const { data: productsData, error: productsError } = await supabaseAdmin
-		.from("campaign_products")
-		.select("id, price_per_unit, units_required, units_collected")
-		.eq("campaign_id", request.campaign_id);
-
-	if (productsError) {
-		console.error("Error fetching products:", productsError.message);
-		throw new UnableToRecordDonationIntentError(
-			"Failed to fetch product details",
-		);
-	}
-
-	const requestedProducts = new Set(Object.keys(donationProducts));
-	const productsDataSet = new Set(
-		(productsData ?? {}).map((p) => p.id as string),
-	);
-
-	if (requestedProducts.difference(productsDataSet).size > 0) {
-		throw new UnableToRecordDonationIntentError(
-			"Some products in the request do not exist in the campaign.",
-		);
-	}
-
-	// Sort in descending order by price_per_unit
-	productsData.sort((a, b) => b.price_per_unit - a.price_per_unit);
-
-	let unallocated_funds = request.amount;
-	Object.entries(request.products ?? {}).forEach(([productId, quantity]) => {
-		const product = productsData.find((p) => p.id === productId);
-		if (!product) {
-			throw new UnableToRecordDonationIntentError(
-				`Product with ID ${productId} not found.`,
-			);
-		}
-		unallocated_funds -= product.price_per_unit * quantity;
-	});
-
-	if (request.auto_allocate) {
-		productsData.forEach((product) => {
-			if (unallocated_funds <= 0) {
-				return;
-			}
-			const quantity = Math.min(
-				Math.floor(unallocated_funds / product.price_per_unit), // max quantity user can afford from unallocated funds
-				product.units_required - product.units_collected, // required quantity to reach product target
-			);
-			donationProducts[product.id] =
-				(donationProducts[product.id] ?? 0) + quantity;
-			unallocated_funds -= quantity * product.price_per_unit;
-		});
-	}
-
-	if (unallocated_funds < 0) {
-		throw new UnableToRecordDonationIntentError(
-			"Total cost of products exceeds the donation amount. Please adjust your donation amount.",
-		);
-	}
-
-	const { data: backer_id, error } = await supabaseAdmin.rpc(
-		"record_donation_intent",
-		{
-			donation_data: {
-				campaign_id: request.campaign_id,
-				amount: request.amount,
-				email: request.email,
-				contact_number: request.contact_number,
-				name: request.name,
-				is_anon: request.is_anon,
-				auto_allocate: request.auto_allocate,
-				notes: request.notes,
-				unallocated_amount: unallocated_funds,
-				status: "Pending",
-			},
-			products: donationProducts,
-		},
-	);
-
-	if (error) {
-		console.error("Error creating a new donation intent:", error.message);
-		throw new UnableToRecordDonationIntentError(
-			"Failed to create your donation intent. Please try again later.",
-		);
-	}
-
-	return backer_id as string;
 }
 
 async function getBackerById(id: string): Promise<Donation | null> {
@@ -148,6 +32,56 @@ async function getBackerById(id: string): Promise<Donation | null> {
 	}
 
 	return data as Donation;
+}
+
+interface SubscriptioDetails {
+	id: string;
+	name: string;
+	email: string;
+	phone: string;
+	address?: string;
+	pan?: string;
+	razorpay_subscription_id: string;
+	status: string;
+	start_date: Date;
+	end_date?: Date;
+	subscription_plans: {
+		name: string;
+	};
+	charges: Array<{
+		amount: number;
+		created_at: Date;
+	}>;
+}
+
+async function getSubscriptionDetailsById(
+	id: string,
+): Promise<SubscriptioDetails | null> {
+	const { data, error } = await supabaseAdmin
+		.from("subscriptions")
+		.select("*, subscription_plans(name)")
+		.eq("id", id)
+		.single();
+
+	if (error) {
+		console.error("Error fetching backer by ID:", error.message);
+		return null;
+	}
+
+	const { data: charges, error: chargesError } = await supabaseAdmin
+		.from("subscription_charges")
+		.select("amount, created_at")
+		.eq("subscription_id", data.id);
+
+	if (chargesError) {
+		console.error(
+			"Error fetching charges for subscription ID:",
+			data.id as string,
+		);
+		return null;
+	}
+
+	return { ...data, charges } as SubscriptioDetails;
 }
 
 interface ReceiptDetails {
@@ -194,6 +128,25 @@ async function doesBackerExist(id: string) {
 	return true;
 }
 
+async function doesSubscriptionExist(id: string) {
+	const { data, error } = await supabaseAdmin
+		.from("subscriptions")
+		.select("id")
+		.eq("id", id)
+		.maybeSingle();
+
+	if (error) {
+		console.error("Error fetching subscription details:", error.message);
+		return false;
+	}
+
+	if (!data) {
+		return false;
+	}
+
+	return true;
+}
+
 async function getBackerDetailsById(id: string) {
 	const {
 		data: donation,
@@ -215,45 +168,12 @@ async function getBackerDetailsById(id: string) {
 	return donation;
 }
 
-class UnableToMarkPaidError extends Error {
-	constructor(msg: string) {
-		super(msg);
-		Object.setPrototypeOf(
-			this,
-			UnableToRecordDonationIntentError.prototype,
-		);
-	}
-}
-
-async function capturePayment(orderId: string, paymentId: string) {
-	const order = await razorpay.orders.fetch(orderId);
-	const id = order.receipt;
-	if (!id) {
-		console.error("Order does not have a valid receipt ID:", order);
-		throw new UnableToMarkPaidError("Invalid order ID");
-	}
-	const { error } = await supabaseAdmin.rpc("collect_donation_payment", {
-		p_backer_id: id,
-		p_order_id: orderId,
-		p_payment_id: paymentId,
-	});
-
-	if (error) {
-		console.error("Error updating backer payment details:", error.message);
-		throw new UnableToMarkPaidError(
-			"Failed to update backer payment details",
-		);
-	}
-}
-
 export {
 	doesBackerExist,
-	newDonationRequestSchema,
-	createDonationIntent,
-	UnableToRecordDonationIntentError,
 	getBackerById,
 	getBackerDetailsById,
-	capturePayment,
+	getSubscriptionDetailsById,
+	doesSubscriptionExist,
 };
 
-export type { ReceiptDetails, NewDonationRequest };
+export type { ReceiptDetails, SubscriptioDetails };
