@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { questionqa } from "@/config/faqquestions";
 function Questions() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,34 +10,7 @@ function Questions() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "What is 1RupeeProject?",
-			answer: `1RupeeProject, India's first micro-giving movement.
-
-In simple terms, we are a Rs1-a-day giving platform. Buy a digital coin pack once, and every day the system moves Rs1 from that pack to the project(s) you have chosen - no forms, no fuss. Over weeks and months, those tiny, automatic contributions build classrooms, lay water pipelines, fund art programmes - proof that pocket change can spark giant change. Setup takes under a minute on any phone or laptop.`,
-		},
-		{
-			question: "How does it work, exactly?",
-			answer: `Buy a coin pack with UPI, card, or net-banking (coins land in your wallet instantly).
-Daily magic: We auto-transfer Rs1 per project every single day until you:
-- top up more coins,
-- switch projects, or
-- hit pause.
-Pick up to 11 projects you love - education, health, environment, the arts, animal welfare, and more.
-You will get regular project updates and impact reports, so you always know where your rupee went.`,
-		},
-		{
-			question: "Who can contribute?",
-			answer: `Anyone aged 18+ living in India with a digital payment method - whether you are a student with a prepaid wallet or a professional armed with a credit card. All you need is Rs1 and the will to help.`,
-		},
-		{
-			question: "Why only Rs1 per project per day?",
-			answer: `Two simple reasons:
-- Accessibility: Almost everyone can spare a rupee, so nobody's left out.
-- Habit-forming impact: When thousands of contributors give tiny amounts every day, projects enjoy steady cash flow instead of sporadic lump sums. Consistency beats size.`,
-		},
-	];
+	const questions = questionqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

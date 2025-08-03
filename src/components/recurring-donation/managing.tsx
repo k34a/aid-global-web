@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { managingqa } from "@/config/faqquestions";
 function Managing() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,31 +10,7 @@ function Managing() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "How do I activate auto-contribution?",
-			answer: `You can activate auto-contribution in two ways:
-
-Project Category: The system automatically contributes 1 coin daily to any active project within the selected category.
-Specific Project: Users can enable and add auto-contribution for up to 11 specific projects at a time.
-Thats it; we handle the daily transfers.`,
-		},
-		{
-			question: "Can I change my selected project category?",
-			answer: `Totally. Swap categories, add or drop projects, reshuffle priorities - changes take effect the very next day.`,
-		},
-		{
-			question:
-				"Can I add or remove individual projects from auto-contribution?",
-			answer: `Yes! You can add, remove, or replace projects at any time.
-
-The system allows up to 11 active auto-contributions (combination of project categories and specific projects)..`,
-		},
-		{
-			question: 'What about "Yearly Ongoing Funding" projects?',
-			answer: `These never expire. Your daily coin flows indefinitely until you decide to remove them from auto-contribute. Perfect for long-term causes.`,
-		},
-	];
+	const questions = managingqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

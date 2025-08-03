@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { gamificationqa } from "@/config/faqquestions";
 function Gamification() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,18 +10,7 @@ function Gamification() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "How does the referral system work?",
-			answer: `Share your unique code; each signup you inspire earns you badges and, soon, reward points. More changemakers = more kudos for you..`,
-		},
-		{
-			question: "What rewards can I earn?",
-			answer: `You earn badges and Karma points for reaching milestones. You earn points for each action like referring someone, contributing to projects and creating projects. Referral and contribution based rewards are being developed.
-
-A full points-and-perks Karma Store is brewing - stay tuned.`,
-		},
-	];
+	const questions = gamificationqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

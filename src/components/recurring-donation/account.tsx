@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { accountqa } from "@/config/faqquestions";
+
 function Account() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,25 +11,7 @@ function Account() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "Who can use 1RupeeProject?",
-			answer: `There are four types of users:
-
-Contributors (Coin Rebels) - Individuals who buy coins and contribute daily to support projects.
-Project Owners - Creators, including NGOs, individuals, and social impact organizations, who submit their initiatives for funding.
-Corporate Partners - Companies that collaborate on large-scale impact projects, contribute funds, or empanel their entire staff to contribute & volunteer through 1RupeeProject.
-Admins - Platform moderators who review, verify, and approve projects.`,
-		},
-		{
-			question: "Can project owners see contributor details?",
-			answer: `Only your username - never personal contact info.`,
-		},
-		{
-			question: "How is my data protected?",
-			answer: `Military-grade encryption, no data-selling, and you control what's public. We have got your back.`,
-		},
-	];
+	const questions = accountqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

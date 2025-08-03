@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { payemtqa } from "@/config/faqquestions";
 function Payments() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,20 +10,7 @@ function Payments() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "Can I get a refund on unused coins?",
-			answer: `Coins cannot be refunded, but they will always end up helping a project via your chosen category, so no rupee ever sits idle forever.`,
-		},
-		{
-			question: "Can I transfer my coins to another user?",
-			answer: `No - coins stay tied to your wallet.`,
-		},
-		{
-			question: "What if my coin purchase fails?",
-			answer: `Ping us your transaction ID and we will sort it fast - missing coins will be credited ASAP.`,
-		},
-	];
+	const questions = payemtqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

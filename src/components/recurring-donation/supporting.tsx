@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { supportqa } from "@/config/faqquestions";
 function Supporting() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,17 +10,7 @@ function Supporting() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "How many projects can I support simultaneously?",
-			answer: `Minimum: 1 (your mandatory daily contribution).
-Maximum: 11 (any mix of categories + specific projects).`,
-		},
-		{
-			question: "Can I back multiple categories?",
-			answer: `Yes. Each category you add counts toward the 11-slot cap just like an individual project.`,
-		},
-	];
+	const questions = supportqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

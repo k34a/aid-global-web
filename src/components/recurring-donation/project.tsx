@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { projectqa } from "@/config/faqquestions";
 function Project() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,38 +10,7 @@ function Project() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "How are projects vetted and verified?",
-			answer: `Every submission jumps through three hoops:
-
-Document check (registrations, audits, bank proofs).
-Impact audit (field calls with beneficiaries).
-Ongoing milestones (spend receipts before each payout).
-Only the best clear all stages - it's trust or bust.`,
-		},
-		{
-			question: "Can I submit my own project?",
-			answer: `Yes! NGOs, startups, even individual changemakers can apply via Submit a Project. The same strict vetting applies to everyone.`,
-		},
-		{
-			question: "What happens after submission?",
-			answer: `Admin review (we may ask clarifying questions).
-Approval & go-live.
-Funding via one of three models:
-Ongoing: coins flow daily.
-Goal-based: funds release once the target is hit.
-Term-based: funds release at campaign end.`,
-		},
-		{
-			question: "How do projects receive funding?",
-			answer: `Projects can be funded in three ways:
-
-Yearly / Ongoing Funding - No set goal, projects keep receiving funds.
-Goal-Based Funding - A target amount is set.
-Term-Based Funding - Contributions are accepted for a specific period.`,
-		},
-	];
+	const questions = projectqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { transactionqa } from "@/config/faqquestions";
 function Transactions() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -9,35 +10,7 @@ function Transactions() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
-	const questions = [
-		{
-			question: "Where is my money kept before it reaches a project?",
-			answer: `All coins sit in a secure, non-interest-bearing trustee wallet - ring-fenced from company operations - until transferred to the project or released at goal/term completion.`,
-		},
-		{
-			question: "Do I receive any tax benefit for contributing?",
-			answer: `Not at the moment. We are exploring Section 80G partnerships, but today your Rs1 is purely for impact, not deductions.`,
-		},
-		{
-			question: "Which payment methods can I use to buy coins?",
-			answer: `UPI, major credit/debit cards, and net-banking (final list confirmed at launch). Every transaction is SSL-encrypted and PCI-DSS compliant.`,
-		},
-		{
-			question: "Are there extra charges?",
-			answer: `Yes, standard payment gateway transaction fees and government taxes apply when you contribute.
-
-For every Rs1 you give:
-
-90 paise goes directly to the project.
-10 paise helps sustain the platform by covering operational costs.
-Full breakdown shown before you pay.`,
-		},
-		{
-			question: "When does a project actually get the money?",
-			answer: `Ongoing model: instantly, coin by coin.
-Goal/term model: in one lump-sum after the goal or term completes.`,
-		},
-	];
+	const questions = transactionqa;
 
 	return (
 		<div className="ml-4 mt-6 sm:ml-8 sm:mt-8 md:ml-12 md:mt-10 lg:ml-20 lg:mt-12 xl:ml-32 xl:mt-12 mr-4 sm:mr-5 md:mr-6 lg:mr-7 xl:mr-8">
