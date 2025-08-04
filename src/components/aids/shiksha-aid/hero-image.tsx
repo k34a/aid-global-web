@@ -1,5 +1,5 @@
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import Image from "next/image";
+import Image from "@/components/image";
 
 export default function HeroImage() {
 	return (
@@ -7,8 +7,8 @@ export default function HeroImage() {
 			<Image
 				src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha.webp`}
 				alt="ShikshaAid Hero"
-				layout="fill"
-				objectFit="cover"
+				fill
+				style={{ objectFit: "cover" }}
 				className="brightness-50 scale-105 transition-transform duration-700 hover:scale-100"
 				priority
 			/>

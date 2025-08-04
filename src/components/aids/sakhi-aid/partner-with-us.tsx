@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { HandHeart } from "lucide-react";
 import Link from "next/link";
 import { STATIC_IMAGE_HOST } from "@/config/config";

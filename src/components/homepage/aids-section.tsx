@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import { useEffect, useRef, useState } from "react";
 import { aids } from "@/components/homepage/data/aids";
 import { motion } from "motion/react";

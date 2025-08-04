@@ -3,7 +3,7 @@
 import React from "react";
 import { MapPin, Mail, Phone, Heart } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/image";
 import { ngoDetails } from "@/config/config";
 import NewsLetter from "@/components/newsletter";
 import { links, programLinks } from "@/config/links";
