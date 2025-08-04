@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { DonationCardType } from "@/components/homepage/categories/types";
 import { Share2 } from "lucide-react";
 
