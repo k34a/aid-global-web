@@ -2,16 +2,16 @@
 
 import { Paper } from "@mantine/core";
 import { useState } from "react";
-import DownloadReceipt from "@/components/receipt/download-receipt";
+import DownloadReceipt from "@/components/receipt/common/download-receipt";
 import { ReceiptDetails } from "@/lib/db/donation";
-import ReceiptHeader from "./head";
-import ReceiptThankYou from "./thank-you";
+import ReceiptHeader from "@/components/receipt/common/head";
+import ReceiptThankYou from "@/components/receipt/common/thank-you";
 import DonorInfo from "./donor-info";
-import ReceiptFooter from "./foot";
-import TaxNote from "./tax-note";
+import ReceiptFooter from "@/components/receipt/common/foot";
+import TaxNote from "@/components/receipt/common/tax-note";
 import DonationInfo from "./donation-info";
-import VerifyPinModal from "./verification";
-import { getDonationDetails } from "@/app/donation/action";
+import VerifyPinModal from "@/components/receipt/common/verification";
+import { getDonationDetails } from "@/app/receipt/donation/action";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 
@@ -37,7 +37,7 @@ export default function DonationReceipt({ id }: Props) {
 		}
 
 		if ("error" in res) {
-			setError("Invalid PIN. Please try again.");
+			setError(res.error);
 			setLoading(false);
 			return;
 		}

@@ -25,7 +25,9 @@ begin
     auto_allocate,
     notes,
     unallocated_amount,
-    status
+    status,
+    pan_number,
+    address
   )
   values (
     (donation_data->>'campaign_id')::uuid,
@@ -37,7 +39,9 @@ begin
     (donation_data->>'auto_allocate')::boolean,
     donation_data->>'notes',
     (donation_data->>'unallocated_amount')::numeric,
-    donation_data->>'status'
+    donation_data->>'status',
+    nullif(donation_data->>'pan_number', ''),
+    nullif(donation_data->>'address', '')
   )
   returning id into new_backer_id;
 
