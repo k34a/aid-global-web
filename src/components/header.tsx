@@ -20,6 +20,7 @@ import { ChevronDown } from "lucide-react";
 import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
 import classes from "./header.module.css";
+import Image from "./image";
 
 export default function HeaderMegaMenu() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -34,7 +35,7 @@ export default function HeaderMegaMenu() {
 		<Box className={classes.wrapper}>
 			<header className={classes.header}>
 				<Link href="/" className={classes.logoGroup}>
-					<img
+					<Image
 						src={ngoDetails.logo}
 						alt="Logo"
 						className={classes.logo}

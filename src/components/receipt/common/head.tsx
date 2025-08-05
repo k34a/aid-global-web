@@ -1,7 +1,7 @@
 "use client";
 
 import { ngoDetails } from "@/config/config";
-import Image from "next/image";
+import Image from "@/components/image";
 
 const ReceiptHeader = () => {
 	return (

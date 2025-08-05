@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import InfoCard from "@/components/aids/enable-aid/info-card";
 import { enableAidData } from "@/components/aids/enable-aid/key-initiatives";
 import { STATIC_IMAGE_HOST } from "@/config/config";
