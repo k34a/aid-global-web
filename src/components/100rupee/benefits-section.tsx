@@ -8,6 +8,8 @@ import {
 	BadgeCheck,
 	IndianRupee,
 } from "lucide-react";
+import { STATIC_IMAGE_HOST } from "@/config/config";
+import Image from "@/components/image";
 
 const memberBenefits = [
 	{
@@ -107,6 +109,27 @@ export default function BenefitsSection() {
 							everyone has a place in our community of
 							changemakers.
 						</p>
+					</div>
+
+					{/* Community Image */}
+					<div className="relative mb-12 rounded-2xl overflow-hidden shadow-lg">
+						<Image
+							src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
+							alt="Diverse community of people working together"
+							width={800}
+							height={400}
+							className="w-full h-[300px] object-cover"
+						/>
+						<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+						<div className="absolute bottom-6 left-6 right-6 text-white">
+							<p className="text-xl font-semibold">
+								Join our diverse community
+							</p>
+							<p className="text-sm opacity-90">
+								Students, professionals, homemakers, seniors -
+								join hands for impact
+							</p>
+						</div>
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">

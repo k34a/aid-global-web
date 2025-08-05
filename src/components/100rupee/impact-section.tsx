@@ -14,6 +14,8 @@ import {
 	Target,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import Image from "@/components/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 const aidPrograms = [
 	{
@@ -24,6 +26,7 @@ const aidPrograms = [
 		color: "text-blue-600",
 		bgColor: "bg-blue-50",
 		borderColor: "border-blue-200",
+		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
 	},
 	{
 		icon: Utensils,
@@ -33,6 +36,7 @@ const aidPrograms = [
 		color: "text-orange-600",
 		bgColor: "bg-orange-50",
 		borderColor: "border-orange-200",
+		image: `${STATIC_IMAGE_HOST}hunger-aid/intro.webp`,
 	},
 	{
 		icon: Heart,
@@ -42,6 +46,7 @@ const aidPrograms = [
 		color: "text-purple-600",
 		bgColor: "bg-purple-50",
 		borderColor: "border-purple-200",
+		image: `${STATIC_IMAGE_HOST}enable-aid/intro.webp`,
 	},
 	{
 		icon: Sparkles,
@@ -51,6 +56,7 @@ const aidPrograms = [
 		color: "text-green-600",
 		bgColor: "bg-green-50",
 		borderColor: "border-green-200",
+		image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 	},
 	{
 		icon: Eye,
@@ -60,6 +66,7 @@ const aidPrograms = [
 		color: "text-indigo-600",
 		bgColor: "bg-indigo-50",
 		borderColor: "border-indigo-200",
+		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
 	},
 	{
 		icon: Home,
@@ -69,6 +76,7 @@ const aidPrograms = [
 		color: "text-red-600",
 		bgColor: "bg-red-50",
 		borderColor: "border-red-200",
+		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar.webp`,
 	},
 	{
 		icon: Users,
@@ -78,6 +86,7 @@ const aidPrograms = [
 		color: "text-pink-600",
 		bgColor: "bg-pink-50",
 		borderColor: "border-pink-200",
+		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
 	},
 ];
 
@@ -194,25 +203,35 @@ export default function ImpactSection() {
 						{aidPrograms.map((program, index) => (
 							<div
 								key={index}
-								className={`${program.bgColor} ${program.borderColor} border-2 rounded-xl p-6 min-w-[350px] max-w-[350px] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer`}
+								className={`${program.bgColor} ${program.borderColor} border-2 rounded-xl p-6 min-w-[350px] max-w-[350px] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer overflow-hidden`}
 								onClick={() => scrollToIndex(index)}
 							>
-								<div className="flex items-start space-x-4">
+								{/* Program Image */}
+								<div className="relative mb-4 rounded-lg overflow-hidden h-32">
+									<Image
+										src={program.image}
+										alt={`${program.title} program`}
+										width={350}
+										height={128}
+										className="w-full h-full object-cover"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
 									<div
-										className={`${program.color} p-3 rounded-lg bg-white shadow-sm`}
+										className={`absolute top-3 right-3 ${program.color} p-2 rounded-lg bg-white/90 shadow-sm`}
 									>
-										<program.icon className="w-6 h-6" />
+										<program.icon className="w-5 h-5" />
 									</div>
-									<div className="flex-1">
-										<h3
-											className={`${program.color} font-bold text-lg mb-2`}
-										>
-											{program.title}
-										</h3>
-										<p className="text-gray-700 text-sm leading-relaxed">
-											{program.description}
-										</p>
-									</div>
+								</div>
+
+								<div className="space-y-3">
+									<h3
+										className={`${program.color} font-bold text-lg mb-2`}
+									>
+										{program.title}
+									</h3>
+									<p className="text-gray-700 text-sm leading-relaxed">
+										{program.description}
+									</p>
 								</div>
 							</div>
 						))}

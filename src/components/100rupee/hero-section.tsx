@@ -1,6 +1,8 @@
 "use client";
 
 import { Heart, Users, TrendingUp, Star, IndianRupee } from "lucide-react";
+import Image from "@/components/image";
+import { STATIC_IMAGE_HOST } from "@/config/config";
 
 export default function HeroSection() {
 	const scrollToSubscriptionForm = () => {
@@ -53,6 +55,25 @@ export default function HeroSection() {
 								the power of collective action
 							</span>
 						</p>
+					</div>
+
+					<div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+						<Image
+							src={`${STATIC_IMAGE_HOST}home-page/aids/intro.webp`}
+							alt="Community members coming together"
+							width={1200}
+							height={500}
+							className="w-full h-[300px] sm:h-[400px] object-cover"
+						/>
+						<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+						<div className="absolute bottom-6 left-6 right-6 text-white text-center">
+							<p className="text-xl sm:text-2xl font-semibold">
+								Together we can make a difference
+							</p>
+							<p className="text-sm sm:text-base opacity-90">
+								Every contribution matters
+							</p>
+						</div>
 					</div>
 
 					{/* Value Proposition */}

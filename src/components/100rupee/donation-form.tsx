@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useForm } from "@mantine/form";
 import { TextInput, Button, Textarea, Alert, Text } from "@mantine/core";
 import { IndianRupee, Check, Heart, Info, Shield } from "lucide-react";
-import { ngoDetails } from "@/config/config";
+import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import toast from "react-hot-toast";
 import { onSubscriptionButtonClick, RazorpayScript } from "@/components/donate";
+import Image from "@/components/image";
 
 interface SubscriptionFormData {
 	name: string;
@@ -103,6 +104,27 @@ export default function RecurringDonationForm() {
 						that transforms lives, one month at a time.
 					</p>
 				</div>
+
+				{/* Trust and Impact Image */}
+				<div className="relative mb-8 rounded-2xl overflow-hidden shadow-lg">
+					<Image
+						src={`${STATIC_IMAGE_HOST}home-page/aids/intro.webp`}
+						alt="People making a difference together"
+						width={800}
+						height={300}
+						className="w-full h-[250px] object-cover"
+					/>
+					<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+					<div className="absolute bottom-6 left-6 right-6 text-white">
+						<p className="text-xl font-semibold">
+							Your contribution creates real change
+						</p>
+						<p className="text-sm opacity-90">
+							Join thousands of members making a difference
+						</p>
+					</div>
+				</div>
+
 				<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-200">
 					<form
 						onSubmit={form.onSubmit(handleRecurringDonation)}
@@ -266,6 +288,72 @@ export default function RecurringDonationForm() {
 								{ngoDetails.contact.email} to receive your
 								donation receipt.
 							</p>
+						</div>
+					</div>
+				</div>
+
+				{/* Success Stories Preview */}
+				<div className="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 border border-green-200">
+					<div className="text-center mb-8">
+						<h3 className="text-2xl font-bold text-gray-900 mb-4">
+							Success Stories from Our Members
+						</h3>
+						<p className="text-gray-600">
+							See how your monthly contribution makes a real
+							difference
+						</p>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
+							<div className="relative h-32">
+								<Image
+									src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
+									alt="Education impact"
+									width={300}
+									height={128}
+									className="w-full h-full object-cover"
+								/>
+							</div>
+							<div className="p-4">
+								<p className="text-sm text-gray-600">
+									&quot;100 children received school supplies
+									this month&quot;
+								</p>
+							</div>
+						</div>
+						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
+							<div className="relative h-32">
+								<Image
+									src={`${STATIC_IMAGE_HOST}hunger-aid/intro.webp`}
+									alt="Hunger relief impact"
+									width={300}
+									height={128}
+									className="w-full h-full object-cover"
+								/>
+							</div>
+							<div className="p-4">
+								<p className="text-sm text-gray-600">
+									&quot;500 meals served to families in
+									need&quot;
+								</p>
+							</div>
+						</div>
+						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
+							<div className="relative h-32">
+								<Image
+									src={`${STATIC_IMAGE_HOST}home-page/aids/cure.webp`}
+									alt="Healthcare impact"
+									width={300}
+									height={128}
+									className="w-full h-full object-cover"
+								/>
+							</div>
+							<div className="p-4">
+								<p className="text-sm text-gray-600">
+									&quot;50 medical checkups completed this
+									week&quot;
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
