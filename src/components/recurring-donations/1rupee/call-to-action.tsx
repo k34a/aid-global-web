@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { DonationDetails } from "@/config/donation";
 
 const CallToAction = () => {
 	return (
@@ -42,11 +41,6 @@ const CallToAction = () => {
 				</p>
 				<p className="text-sm md:text-base font-semibold text-gray-700 text-center">
 					Contribute &#8377;1/day (&#8377;30/month)
-					<br />
-					<span className="text-sm font-medium">
-						UPI ID:{" "}
-						<span className="italic">{DonationDetails.upiID}</span>
-					</span>
 					<br />
 					Be a &#8377;1 Warrior and help someone every single day.
 				</p>
