@@ -1,5 +1,5 @@
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 
 const AboutContent = () => (

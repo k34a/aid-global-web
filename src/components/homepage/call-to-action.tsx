@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { useRef, useState } from "react";
 import { useAnimationFrame, motion } from "motion/react";

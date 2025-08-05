@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { Eye } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Link from "next/link";
