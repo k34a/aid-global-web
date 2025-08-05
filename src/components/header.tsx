@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
-import Image from "next/image";
 import {
 	Drawer,
 	Burger,

@@ -1,8 +1,9 @@
 "use client";
 
-import NextImage, { type ImageProps } from "next/image";
+import NextImage, { ImageLoaderProps, type ImageProps } from "next/image";
 
-const customImageLoader = ({ src }: { src: string }) => src;
+const customImageLoader = ({ src, width }: ImageLoaderProps) =>
+	`${src}?width=${width}`;
 
 const Image = (props: ImageProps) => {
 	return <NextImage loader={customImageLoader} {...props} />;
