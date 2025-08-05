@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Target, Gift, Lightbulb, BarChart3 } from "lucide-react";
 import { useForm } from "@mantine/form";
-import { TextInput, Button, Select, Textarea } from "@mantine/core";
+import { TextInput, Button, Select, Textarea, Checkbox } from "@mantine/core";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import "@mantine/dates/styles.css";
 import { onSubscriptionButtonClick, RazorpayScript } from "@/components/donate";
@@ -18,6 +18,7 @@ export default function Register() {
 			countryCode: "+91",
 			pan: "",
 			address: "",
+			isAnon: false,
 		},
 		validate: {
 			name: (value) =>
@@ -55,7 +56,7 @@ export default function Register() {
 					address: form.values.address || undefined,
 					notes: "",
 				},
-				is_anon: false,
+				is_anon: form.values.isAnon,
 				subscription_details: {
 					plan_id: "29c7e0b7-7edf-4db5-95e2-977793672cee",
 				},
@@ -268,6 +269,20 @@ export default function Register() {
 								}}
 								classNames={{
 									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+								}}
+							/>
+						</div>
+
+						{/* Donate Anonymously Checkbox */}
+						<div className="md:col-span-2 text-md">
+							<Checkbox
+								label="Donate Anonymously"
+								{...form.getInputProps("isAnon", {
+									type: "checkbox",
+								})}
+								styles={{
+									label: { color: "#4B5563" },
+									input: { borderColor: "#D1D5DB" },
 								}}
 							/>
 						</div>
