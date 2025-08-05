@@ -90,10 +90,11 @@ export async function POST(request: NextRequest) {
 					await subManager.onCharged(
 						paymentEntity.amount,
 						paymentEntity.id,
+						paymentEntity.current_start,
 					);
 					break;
 				case "subscription.completed":
-					await subManager.onCompleted();
+					await subManager.onCompleted(subEntity.end_at);
 					break;
 				case "subscription.pending":
 					await subManager.onPending();
@@ -108,7 +109,7 @@ export async function POST(request: NextRequest) {
 					await subManager.onResumed();
 					break;
 				case "subscription.cancelled":
-					await subManager.onCancelled();
+					await subManager.onCancelled(subEntity.end_at);
 					break;
 			}
 		}

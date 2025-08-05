@@ -15,6 +15,7 @@ import { redirect } from "next/navigation";
 import VerifyPinModal from "@/components/receipt/common/verification";
 import { getSubscriptionDetails } from "@/app/receipt/subscription/action";
 import type { SubscriptioDetails } from "@/lib/db/donation";
+import ManageSubscription from "./mange";
 
 type Props = {
 	id: string;
@@ -27,12 +28,14 @@ export default function SubscriptionReceipt({ id }: Props) {
 	const [loading, setLoading] = useState(false);
 	const [modalOpen, setModalOpen] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+	const [pin, setPin] = useState("");
 
-	const handleVerify = async (pin: string) => {
+	const handleVerify = async (filledPin: string) => {
 		setLoading(true);
 		setError(null);
+		setPin(filledPin);
 
-		const res = await getSubscriptionDetails(id, pin);
+		const res = await getSubscriptionDetails(id, filledPin);
 
 		if (!res) {
 			toast.error("Subscription not found!");
@@ -84,6 +87,21 @@ export default function SubscriptionReceipt({ id }: Props) {
 				<TaxNote />
 				<DownloadReceipt />
 				<ReceiptFooter id={subscription.id} />
+				<ManageSubscription
+					razorpay_subscription_id={
+						subscription.razorpay_subscription_id
+					}
+					pin={pin}
+					current_status={subscription.status}
+					userInfo={{
+						name: subscription.name,
+						email: subscription.email,
+						pan_number: subscription.pan,
+						address: subscription.address,
+						contact_number: subscription.phone,
+						notes: "",
+					}}
+				/>
 			</Paper>
 		</main>
 	);
