@@ -1,3 +1,5 @@
+import { STATIC_IMAGE_HOST } from "./config";
+
 export const bankDetails = {
 	account: {
 		name: "Aid Global Foundation",
@@ -19,5 +21,9 @@ export const bankDetails = {
 	notes: {
 		cheque: "You may deposit the cheque at any Axis Bank branch or send it to our office address below:",
 		bank: "You can make donations via Bank Transfer (NEFT / RTGS / IMPS) using these details.",
+	},
+	upi: {
+		qr: `${STATIC_IMAGE_HOST}donation/qr.webp`,
+		id: "aidglobalfounda973306.rzp@icici",
 	},
 };

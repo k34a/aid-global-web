@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import HeroSection from "@/components/100rupee/hero-section";
-import BenefitsSection from "@/components/100rupee/benefits-section";
-import ImpactSection from "@/components/100rupee/impact-section";
-import SubscriptionForm from "@/components/100rupee/donation-form";
+import HeroSection from "@/components/recurring-donations/100rupee/hero-section";
+import BenefitsSection from "@/components/recurring-donations/100rupee/benefits-section";
+import ImpactSection from "@/components/recurring-donations/100rupee/impact-section";
+import SubscriptionForm from "@/components/recurring-donations/100rupee/donation-form";
 
 export const metadata: Metadata = {
 	title: "The 100 Club - Big Hearts. Bigger Impact.",

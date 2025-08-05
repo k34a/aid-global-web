@@ -1,7 +1,7 @@
-import IntroCarousel from "@/components/recurring-donations/intro-carousel";
-import Intro from "@/components/recurring-donations/intro";
-import CallToAction from "@/components/recurring-donations/call-to-action";
-import Register from "@/components/recurring-donations/register";
+import IntroCarousel from "@/components/recurring-donations/1rupee/intro-carousel";
+import Intro from "@/components/recurring-donations/1rupee/intro";
+import CallToAction from "@/components/recurring-donations/1rupee/call-to-action";
+import Register from "@/components/recurring-donations/1rupee/register";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
