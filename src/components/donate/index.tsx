@@ -15,7 +15,7 @@ import { otherDonationDetailsSchema } from "@/lib/db/donation/other-donation";
 import { campaignDetailsSchema } from "@/lib/db/donation/campaign-donation";
 import { subscriptionDetailsSchema } from "@/lib/db/donation/subscription-donation";
 
-const callbackBaseUrl =
+export const callbackBaseUrl =
 	process.env.NODE_ENV === "production"
 		? ngoDetails.contact.website
 		: "http://localhost:3000";
