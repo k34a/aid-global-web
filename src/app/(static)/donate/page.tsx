@@ -10,12 +10,11 @@ import {
 	Text,
 	NumberInput,
 	Checkbox,
-	Stack,
 } from "@mantine/core";
 import { Heart, Shield, Info, IndianRupee } from "lucide-react";
-import { ngoDetails } from "@/config/config";
 import toast from "react-hot-toast";
 import { onDonateButtonClick, RazorpayScript } from "@/components/donate";
+import OtherDonationModes from "@/components/donate/other-donation-modes";
 
 interface DonationFormData {
 	name: string;
@@ -26,12 +25,14 @@ interface DonationFormData {
 	address?: string;
 	notes?: string;
 	is_anonymous: boolean;
+	tax_exemption: boolean;
 }
 
 export default function DonatePage() {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const form = useForm<DonationFormData>({
+		mode: "uncontrolled",
 		initialValues: {
 			name: "",
 			email: "",
@@ -41,6 +42,7 @@ export default function DonatePage() {
 			address: "",
 			notes: "",
 			is_anonymous: false,
+			tax_exemption: false,
 		},
 		validate: {
 			name: (value) =>
@@ -53,15 +55,15 @@ export default function DonatePage() {
 					: "Phone number must be exactly 10 digits",
 			amount: (value) =>
 				value < 1 ? "Amount must be at least 1 rupee" : null,
-			pan_number: (value) => {
-				if (!value) return null; // Optional field
-				return /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(value)
+			pan_number: (value, values) => {
+				if (!values.tax_exemption) return null;
+				return /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(value!)
 					? null
 					: "Invalid PAN number format";
 			},
-			address: (value) => {
-				if (!value) return null; // Optional field
-				return value.length < 10
+			address: (value, values) => {
+				if (!values.tax_exemption) return null;
+				return value!.length < 10
 					? "Please provide your complete address"
 					: null;
 			},
@@ -111,9 +113,7 @@ export default function DonatePage() {
 					</h1>
 					<p className="text-xl text-gray-600 max-w-3xl mx-auto">
 						Your donation helps us provide food, education,
-						healthcare, and hope to those who need it most. Every
-						contribution, no matter how small, creates a lasting
-						impact.
+						healthcare, and hope to those who need it most.
 					</p>
 				</div>
 
@@ -128,6 +128,8 @@ export default function DonatePage() {
 								placeholder="Enter your full name"
 								required
 								{...form.getInputProps("name")}
+								key={form.key("name")}
+								error={form.errors.name}
 								styles={{
 									input: {
 										borderRadius: "0.75rem",
@@ -140,6 +142,8 @@ export default function DonatePage() {
 								placeholder="your.email@example.com"
 								required
 								{...form.getInputProps("email")}
+								key={form.key("email")}
+								error={form.errors.email}
 								styles={{
 									input: {
 										borderRadius: "0.75rem",
@@ -155,6 +159,8 @@ export default function DonatePage() {
 								placeholder="10-digit mobile number"
 								required
 								{...form.getInputProps("contact_number")}
+								key={form.key("contact_number")}
+								error={form.errors.contact_number}
 								styles={{
 									input: {
 										borderRadius: "0.75rem",
@@ -162,12 +168,15 @@ export default function DonatePage() {
 									},
 								}}
 							/>
+
 							<NumberInput
 								label="Donation Amount"
 								placeholder="Enter amount"
 								required
 								min={1}
 								{...form.getInputProps("amount")}
+								key={form.key("amount")}
+								error={form.errors.amount}
 								styles={{
 									input: {
 										borderRadius: "0.75rem",
@@ -177,11 +186,14 @@ export default function DonatePage() {
 							/>
 						</div>
 
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<TextInput
-								label="PAN Number (Optional - for tax exemption)"
-								placeholder="ABCDE1234F"
-								{...form.getInputProps("pan_number")}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+							<Textarea
+								label="Additional Notes (Optional)"
+								placeholder="Any special instructions or messages"
+								minRows={2}
+								{...form.getInputProps("notes")}
+								key={form.key("notes")}
+								error={form.errors.notes}
 								styles={{
 									input: {
 										borderRadius: "0.75rem",
@@ -194,6 +206,8 @@ export default function DonatePage() {
 								{...form.getInputProps("is_anonymous", {
 									type: "checkbox",
 								})}
+								key={form.key("is_anonymous")}
+								error={form.errors.is_anonymous}
 								styles={{
 									root: {
 										marginTop: "1.5rem",
@@ -202,31 +216,48 @@ export default function DonatePage() {
 							/>
 						</div>
 
-						<Textarea
-							label="Complete Address (Optional - for tax exemption)"
-							placeholder="Enter your complete address"
-							minRows={3}
-							{...form.getInputProps("address")}
-							styles={{
-								input: {
-									borderRadius: "0.75rem",
-									border: "1px solid #d1d5db",
-								},
-							}}
+						<Checkbox
+							label="I want tax exemption for this donation"
+							{...form.getInputProps("tax_exemption", {
+								type: "checkbox",
+							})}
+							key={form.key("tax_exemption")}
+							error={form.errors.tax_exemption}
 						/>
 
-						<Textarea
-							label="Additional Notes (Optional)"
-							placeholder="Any special instructions or messages"
-							minRows={2}
-							{...form.getInputProps("notes")}
-							styles={{
-								input: {
-									borderRadius: "0.75rem",
-									border: "1px solid #d1d5db",
-								},
-							}}
-						/>
+						{form.values.tax_exemption && (
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+								<TextInput
+									label="PAN Number"
+									placeholder="ABCDE1234F"
+									required
+									{...form.getInputProps("pan_number")}
+									key={form.key("pan_number")}
+									error={form.errors.pan_number}
+									styles={{
+										input: {
+											borderRadius: "0.75rem",
+											border: "1px solid #d1d5db",
+										},
+									}}
+								/>
+								<Textarea
+									label="Complete Address"
+									placeholder="Enter your complete address"
+									minRows={3}
+									required
+									{...form.getInputProps("address")}
+									key={form.key("address")}
+									error={form.errors.address}
+									styles={{
+										input: {
+											borderRadius: "0.75rem",
+											border: "1px solid #d1d5db",
+										},
+									}}
+								/>
+							</div>
+						)}
 
 						<Alert
 							icon={<Shield size={16} />}
@@ -269,82 +300,48 @@ export default function DonatePage() {
 							</Button>
 						</div>
 					</form>
+					<Alert
+						icon={<Info size={16} />}
+						color="gray"
+						className="rounded-lg mt-6 text-center"
+					>
+						<Text size="sm">
+							<strong>Note:</strong> After completing your
+							donation, you&apos;ll be redirected to a unique
+							receipt page. You can download it immediately or
+							access it anytime later via its shareable link.
+						</Text>
+					</Alert>
 				</div>
+			</div>
+			<OtherDonationModes />
 
-				<div className="mt-12 bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-					<h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-						Alternative Payment Methods
-					</h3>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-						<div className="text-center">
-							<h4 className="font-semibold text-gray-900 mb-4">
-								UPI Payment
-							</h4>
-							<div className="bg-gray-100 rounded-lg p-4">
-								<p className="font-mono text-lg font-bold text-gray-800">
-									aidglobalfoundation@upi
-								</p>
-							</div>
-						</div>
-						<div className="text-center">
-							<h4 className="font-semibold text-gray-900 mb-4">
-								Bank Transfer
-							</h4>
-							<div className="bg-gray-100 rounded-lg p-4 text-sm">
-								<p>
-									<strong>Account Name:</strong> Aid Global
-									Foundation
-								</p>
-								<p>
-									<strong>Account Number:</strong> [Account
-									Number]
-								</p>
-								<p>
-									<strong>IFSC Code:</strong> [IFSC Code]
-								</p>
-								<p>
-									<strong>Bank:</strong> [Bank Name]
-								</p>
-							</div>
-						</div>
-					</div>
-					<div className="mt-6 text-center">
-						<p className="text-sm text-gray-500">
-							<strong>Contact:</strong> +91-96077-53148 |{" "}
-							{ngoDetails.contact.email}
-						</p>
-						<p className="text-xs text-orange-600 mt-2">
-							<strong>Note:</strong> For donations via UPI, QR
-							code, or bank transfer, please email us at{" "}
-							{ngoDetails.contact.email} to receive your donation
-							receipt.
-						</p>
-					</div>
-				</div>
-
-				{/* Impact Section */}
-				<div className="mt-12 text-center">
-					<h3 className="text-2xl font-bold text-gray-900 mb-6">
-						Your Impact
-					</h3>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="text-3xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-1">
+			{/* Impact Section */}
+			<div className="max-w-6xl mx-auto py-16 text-center px-4">
+				<h3 className="text-2xl font-bold text-gray-900 mb-10">
+					Your Impact
+				</h3>
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						<div className="text-3xl font-bold text-blue-600 flex items-center justify-center gap-1 mb-2">
 							<IndianRupee className="w-5 h-5" />
 							100
 						</div>
 						<p className="text-gray-600">
 							Provides a nutritious meal to a child
 						</p>
-
-						<div className="text-3xl font-bold text-green-600 mb-2 flex items-center justify-center gap-1">
+					</div>
+					<div>
+						<div className="text-3xl font-bold text-green-600 flex items-center justify-center gap-1 mb-2">
 							<IndianRupee className="w-5 h-5" />
 							500
 						</div>
 						<p className="text-gray-600">
-							Supports a child&rsquo;s education for a week
+							Supports a child&apos;s education for a week
 						</p>
-
-						<div className="text-3xl font-bold text-purple-600 mb-2 flex items-center justify-center gap-1">
+					</div>
+					<div>
+						<div className="text-3xl font-bold text-purple-600 flex items-center justify-center gap-1 mb-2">
 							<IndianRupee className="w-5 h-5" />
 							1000
 						</div>
