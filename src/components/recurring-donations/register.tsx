@@ -4,10 +4,10 @@ import React from "react";
 import Image from "next/image";
 import { Target, Gift, Lightbulb, BarChart3 } from "lucide-react";
 import { useForm } from "@mantine/form";
-import { TextInput, Button, Select } from "@mantine/core";
+import { TextInput, Button, Select, Textarea } from "@mantine/core";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { DateInput } from "@mantine/dates";
-import "@mantine/dates/styles.css"; // Required for styling
+import "@mantine/dates/styles.css";
+import { onSubscriptionButtonClick, RazorpayScript } from "@/components/donate";
 
 export default function Register() {
 	const form = useForm({
@@ -15,8 +15,9 @@ export default function Register() {
 			name: "",
 			email: "",
 			mobile: "",
-			dob: null,
 			countryCode: "+91",
+			pan: "",
+			address: "",
 		},
 		validate: {
 			name: (value) =>
@@ -29,8 +30,40 @@ export default function Register() {
 				/^\d{10}$/.test(value)
 					? null
 					: "Enter valid 10-digit mobile number",
+			pan: (value) =>
+				value && !/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(value.toUpperCase())
+					? "Invalid PAN format"
+					: null,
 		},
 	});
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		console.log("in handle submit");
+		if (!form.isValid()) {
+			console.log("form validation failed");
+			return;
+		}
+		console.log("Calling onSubscriptionButtonClick");
+		try {
+			await onSubscriptionButtonClick({
+				userInfo: {
+					name: form.values.name,
+					email: form.values.email,
+					contact_number: form.values.mobile,
+					pan_number: form.values.pan || undefined,
+					address: form.values.address || undefined,
+					notes: "",
+				},
+				is_anon: false,
+				subscription_details: {
+					plan_id: "29c7e0b7-7edf-4db5-95e2-977793672cee",
+				},
+			});
+		} catch (error) {
+			console.error("Subscription failed:", error);
+		}
+	};
 
 	const features = [
 		{
@@ -61,6 +94,7 @@ export default function Register() {
 
 	return (
 		<section className="py-16 px-6 lg:px-26 bg-gray-100">
+			<RazorpayScript />
 			<div className="container mx-auto max-w-7xl">
 				{/* Header */}
 				<div className="text-center mb-16">
@@ -107,7 +141,6 @@ export default function Register() {
 						</h3>
 					</div>
 
-					{/* Image */}
 					<div className="w-full flex justify-center">
 						<Image
 							src={`${STATIC_IMAGE_HOST}donation/rewards.webp`}
@@ -120,17 +153,19 @@ export default function Register() {
 					</div>
 				</div>
 
-				{/* Registration Form */}
 				<div className="bg-[#FFD700] rounded-2xl p-8 shadow-md">
-					<form className="grid sm:grid-cols-1 md:grid-cols-4 gap-6 items-end">
+					<form
+						onSubmit={handleSubmit}
+						className="grid sm:grid-cols-1 md:grid-cols-2 gap-6"
+					>
 						{/* Name */}
 						<div>
 							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
-								Name
+								Full Name *
 							</label>
 							<TextInput
 								withAsterisk
-								placeholder="Name"
+								placeholder="Enter your full name"
 								{...form.getInputProps("name")}
 								classNames={{
 									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
@@ -141,12 +176,12 @@ export default function Register() {
 						{/* Email */}
 						<div>
 							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
-								Email
+								Email Address *
 							</label>
 							<TextInput
 								withAsterisk
 								type="email"
-								placeholder="Email"
+								placeholder="your.email@example.com"
 								{...form.getInputProps("email")}
 								classNames={{
 									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
@@ -154,60 +189,124 @@ export default function Register() {
 							/>
 						</div>
 
-						{/* Mobile with Country Code */}
-						{/* Mobile with Country Code */}
+						{/* Phone Number */}
 						<div>
 							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
-								Mobile No.
+								Phone Number *
 							</label>
-							<div className="flex flex-col md:flex-row gap-2">
+							<div className="flex gap-2">
 								<Select
 									data={[
 										{ value: "+91", label: "IN +91" },
 										{ value: "+1", label: "US +1" },
 										{ value: "+44", label: "GB +44" },
-										{ value: "+61", label: "AU +61" },
 									]}
 									{...form.getInputProps("countryCode")}
-									className="md:w-28 w-full"
+									className="w-28"
 									classNames={{
-										input: "rounded-lg md:rounded-l-lg px-3 py-3 sm:px-1 sm:py-1 border-0",
+										input: "rounded-lg px-3 py-3 border-0",
 									}}
 								/>
 								<TextInput
 									type="tel"
-									placeholder="9876543210"
+									placeholder="10-digit mobile number"
 									{...form.getInputProps("mobile")}
 									className="flex-1"
 									classNames={{
-										input: "rounded-lg md:rounded-r-lg px-4 py-3 border-0 focus:ring-2 focus:ring-blue-500",
+										input: "rounded-lg px-4 py-3 border-0 focus:ring-2 focus:ring-blue-500",
 									}}
 								/>
 							</div>
 						</div>
-						{/* Date of Birth */}
+
+						{/* PAN Number */}
 						<div>
 							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
-								Date of Birth
+								PAN Number (Optional - for tax exemption)
 							</label>
-							<DateInput
-								placeholder="Select date"
-								valueFormat="DD/MM/YYYY"
-								maxDate={new Date()}
-								{...form.getInputProps("dob")}
+							<TextInput
+								placeholder="ABCDE1234F"
+								{...form.getInputProps("pan")}
 								classNames={{
-									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500 w-full",
+									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
 								}}
 							/>
 						</div>
 
+						{/* Address */}
+						<div className="md:col-span-2">
+							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
+								Complete Address (Optional - for tax exemption)
+							</label>
+							<Textarea
+								autosize
+								minRows={2}
+								maxRows={4}
+								placeholder="Enter your complete address"
+								{...form.getInputProps("address")}
+								classNames={{
+									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+								}}
+							/>
+						</div>
+
+						{/* Notes */}
+						<div className="md:col-span-2">
+							<label className="block text-[#B8860B] text-sm font-medium mb-2 uppercase">
+								Notes (Optional)
+							</label>
+							<Textarea
+								autosize
+								minRows={2}
+								maxRows={4}
+								placeholder="Add any specific instructions or comments"
+								onChange={(e) => {
+									form.setFieldValue(
+										"notes",
+										e.currentTarget.value,
+									);
+								}}
+								classNames={{
+									input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+								}}
+							/>
+						</div>
+
+						{/* Info blocks */}
+						<div className="md:col-span-2 space-y-4 mt-2 text-sm text-gray-700">
+							<div className="p-4 bg-green-50 rounded-md border-l-4 border-green-600">
+								<strong className="text-green-800">
+									Tax Exemption:
+								</strong>{" "}
+								Provide your PAN number and complete address to
+								receive tax exemption benefits under Section 80G
+								of the Income Tax Act.
+							</div>
+							<div className="p-4 bg-blue-50 rounded-md border-l-4 border-blue-600">
+								<strong className="text-blue-800">
+									Recurring Payment Setup:
+								</strong>{" "}
+								{
+									"This will set up a weekly recurring donation of \u20B97. Your payment method will be saved for automatic weekly charges. You can cancel anytime by contacting us."
+								}
+							</div>
+							<div className="p-4 bg-green-50 rounded-md border-l-4 border-green-600">
+								<strong className="text-green-800">
+									What happens next:
+								</strong>{" "}
+								{
+									"After payment confirmation, your recurring donation will be activated. You'll be charged \u20B97 weekly and receive email confirmations for each payment. You can manage your recurring donations through your account."
+								}
+							</div>
+						</div>
+
 						{/* Submit */}
-						<div className="md:col-span-4 flex justify-center">
+						<div className="md:col-span-2 flex justify-center mt-4">
 							<Button
 								type="submit"
-								className="bg-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide"
+								className="bg-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide rounded-lg"
 							>
-								Register
+								{"Join The \u20B9 1 Club \u2013 \u20B9 1/day"}
 							</Button>
 						</div>
 					</form>
