@@ -8,6 +8,7 @@ import ReviewSection from "@/components/homepage/review-section";
 import NewsSection from "@/components/homepage/news-section";
 import PartnersSection from "@/components/homepage/partners";
 import CampaignList from "@/components/campaign/campaignlist";
+import OneHundredClubs from "@/components/homepage/one-hundred-clubs";
 
 export default async function HomePage() {
 	try {
@@ -16,6 +17,7 @@ export default async function HomePage() {
 			<main className="p-0 overflow-hidden">
 				<CalltoActionSection />
 				<MissionSection />
+				<OneHundredClubs />
 				<CampaignList />
 				<CategoriesSection />
 				<AidsSection />
