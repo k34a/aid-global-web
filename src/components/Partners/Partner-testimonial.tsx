@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Carousel } from "@mantine/carousel";
-import { Image, Text, Stack, Paper, Center } from "@mantine/core";
+import Image from "@/components/image";
 import "@mantine/carousel/styles.css";
 import AutoPlay from "embla-carousel-autoplay";
 import { useMediaQuery } from "@mantine/hooks";
@@ -30,12 +30,11 @@ export default function PartnerSay({ testimonial }: TestimonialList) {
 			<div className="flex flex-col sm:flex-row items-center w-fit">
 				<div className="pt-1 sm:pt-5 w-fit sm:place-self-start ">
 					<Image
-						h={100}
-						w={100}
+						height={100}
+						width={100}
 						src={item.image}
 						alt={`${item.name} portrait`}
-						className="rounded-full"
-						fit="cover"
+						className="rounded-full "
 					/>
 				</div>
 
@@ -51,11 +50,11 @@ export default function PartnerSay({ testimonial }: TestimonialList) {
 					<p className="text-sm text-zinc-500">{item.title}</p>
 
 					<Image
-						h={50}
-						w={100}
+						height={50}
+						width={100}
 						src={item.logo}
 						alt={`${item.name}'s company logo`}
-						className="w-fit"
+						className="w-20 "
 					/>
 				</div>
 			</div>

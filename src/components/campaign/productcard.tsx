@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { ShoppingCart, Plus, Minus, IndianRupee } from "lucide-react";
 import { getImageUrl } from "./utils";
 import { CampaignProduct } from "@/lib/db/campaigns";
@@ -146,7 +146,7 @@ export const ProductCard = ({
 								value={inputValue}
 								onChange={handleInputChange}
 								onBlur={handleInputBlur}
-								onKeyPress={handleInputKeyPress}
+								onKeyDown={handleInputKeyPress}
 								className={`w-20 h-9 text-center bg-white border-2 ${
 									isInputValid()
 										? "border-gray-300 focus:border-sky-500"

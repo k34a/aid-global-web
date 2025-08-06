@@ -1,5 +1,6 @@
+import { PaymentManager } from "@/lib/db/donation/payment-manager";
+import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
 import { NextRequest, NextResponse } from "next/server";
-import { capturePayment } from "@/lib/db/donation";
 import razorpay from "razorpay";
 
 export async function POST(request: NextRequest) {
@@ -22,26 +23,95 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const event = body.event;
-		const paymentEntity = body.payload.payment.entity;
-		const { id: paymentId, order_id: orderId } = paymentEntity;
+		const event = body.event as string;
+		console.log("Received razropay event: ", event);
 
-		if (!paymentId || !orderId) {
-			console.error(
-				"Missing required fields in payment entity:",
-				paymentEntity,
-			);
-			return NextResponse.json(
-				{
-					error: "Missing required fields in payment entity",
-					success: false,
-				},
-				{ status: 400 },
-			);
+		if (event.startsWith("payment")) {
+			const paymentEntity = body.payload.payment.entity;
+			const { id: paymentId, order_id: orderId } = paymentEntity;
+
+			if (!paymentId || !orderId) {
+				console.error(
+					"Missing required fields in payment entity:",
+					paymentEntity,
+				);
+				return NextResponse.json(
+					{
+						error: "Missing required fields in payment entity",
+						success: false,
+					},
+					{ status: 400 },
+				);
+			}
+
+			const paymentManager = new PaymentManager(orderId, paymentId);
+
+			switch (event) {
+				case "payment.authorized":
+					await paymentManager.authorizePayment();
+					break;
+				case "payment.captured":
+					await paymentManager.capturePayment();
+					break;
+				case "payment.failed":
+					await paymentManager.failedPayment();
+			}
 		}
 
-		if (event === "payment.captured") {
-			await capturePayment(orderId, paymentId);
+		if (event.startsWith("subscription")) {
+			const subEntity = body.payload.subscription.entity;
+			const { id: subId } = subEntity;
+
+			if (!subId) {
+				console.error(
+					"Missing required fields in payment entity:",
+					subEntity,
+				);
+				return NextResponse.json(
+					{
+						error: "Missing required fields in payment entity",
+						success: false,
+					},
+					{ status: 400 },
+				);
+			}
+
+			const subManager = new SubscriptionManager(subId);
+
+			switch (event) {
+				case "subscription.authenticated":
+					await subManager.onAuthenticated();
+					break;
+				case "subscription.activated":
+					await subManager.onActivated();
+					break;
+				case "subscription.charged":
+					const paymentEntity = body.payload.payment.entity;
+					await subManager.onCharged(
+						paymentEntity.amount,
+						paymentEntity.id,
+						paymentEntity.current_start,
+					);
+					break;
+				case "subscription.completed":
+					await subManager.onCompleted(subEntity.end_at);
+					break;
+				case "subscription.pending":
+					await subManager.onPending();
+					break;
+				case "subscription.halted":
+					await subManager.onHalted();
+					break;
+				case "subscription.paused":
+					await subManager.onPaused();
+					break;
+				case "subscription.resumed":
+					await subManager.onResumed();
+					break;
+				case "subscription.cancelled":
+					await subManager.onCancelled(subEntity.end_at);
+					break;
+			}
 		}
 
 		return NextResponse.json(

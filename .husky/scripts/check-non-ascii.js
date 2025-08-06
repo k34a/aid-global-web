@@ -26,6 +26,7 @@ function checkFile(file) {
 	lines.forEach((line, i) => {
 		[...line].forEach((char, j) => {
 			if (char.charCodeAt(0) > 127) {
+				console.log("");
 				console.log(
 					`${file}:${i + 1}:${j + 1} ❌ Non-ASCII character found: (${char})`,
 				);

@@ -1,5 +1,5 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "@/components/structure/footer";
+import Header from "@/components/structure/header";
 import { ngoDetails } from "@/config/config";
 
 export const metadata = {

@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "@/components/image";
 import React from "react";
 
 interface CorpPartner {
