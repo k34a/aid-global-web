@@ -3,7 +3,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 function Yourhelp() {
 	return (
 		<div
-			className="relative font-serif mx-4 sm:mx-6 md:mx-10 lg:mx-16 py-20 mt-8 rounded-2xl overflow-hidden  bg-cover bg-center bg-no-repeat"
+			className="relative font-serif mx-4 sm:mx-6 md:mx-10 lg:mx-16 py-20 my-8 rounded-2xl overflow-hidden  bg-cover bg-center bg-no-repeat"
 			style={{
 				backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/help.webp)`,
 			}}
