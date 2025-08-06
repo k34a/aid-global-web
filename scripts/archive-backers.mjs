@@ -40,8 +40,9 @@ async function archiveBackers() {
 		.in("status", ["Pending", "Failed"]);
 
 	if (error) {
-		await sendTelegramNotification(`Archival process failed. Please check logs.`);
 		console.log(error);
+		await sendTelegramNotification(`Archival process failed. Please check logs.`);
+		console.log("Notified admins")
 		throw error;
 	}
 
