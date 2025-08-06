@@ -13,6 +13,9 @@ node .husky/scripts/check-non-ascii.js
 echo ""
 node .husky/scripts/check-no-img-or-next-image.js
 
+echo ""
+npx knip --no-exit-code
+
 # Run linter
 echo ""
 echo "🧹 Running ESLint..."
