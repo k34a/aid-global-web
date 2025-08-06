@@ -90,4 +90,8 @@ async function archiveBackers() {
 	console.log("Sent notification to the admins.")
 }
 
-archiveBackers();
+try {
+	archiveBackers();
+} catch(error) {
+	console.log("Error: ", error)
+}
