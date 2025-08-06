@@ -10,6 +10,20 @@ const supabase = createClient(
 	process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID;
+
+async function sendTelegramNotification(message) {
+	await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			chat_id: TELEGRAM_CHANNEL_ID,
+			text: message,
+		}),
+	});
+}
+
 async function archiveBackers() {
 	const threeDaysAgo = new Date(
 		Date.now() - 3 * 24 * 60 * 60 * 1000,
@@ -26,12 +40,15 @@ async function archiveBackers() {
 		.in("status", ["Pending", "Failed"]);
 
 	if (error) {
+		await sendTelegramNotification(`Archival process failed. Please check logs.`);
 		console.log(error);
 		throw error;
 	}
 
 	if (!data || data.length === 0) {
 		console.log("Nothing to archive! Ending task.");
+		await sendTelegramNotification(`Archived 0 records`);
+		console.log("Sent notification to the admins.")
 		return;
 	}
 
@@ -66,6 +83,8 @@ async function archiveBackers() {
 		.in("status", ["Pending", "Failed"]);
 
 	console.log(`Successfully archived ${data.length} records. Ending task...`)
+	await sendTelegramNotification(`Archived ${data.length} records`);
+	console.log("Sent notification to the admins.")
 }
 
 archiveBackers();
