@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Rescueinfo() {
 	return (
@@ -56,8 +56,8 @@ function Rescueinfo() {
 							<Image
 								src={`${STATIC_IMAGE_HOST}ghar-aid/rescue.webp`}
 								alt="Rescue operations"
-								layout="fill"
-								objectFit="cover"
+								fill
+								style={{ objectFit: "cover" }}
 								className="rounded-2xl"
 							/>
 						</div>
@@ -65,8 +65,8 @@ function Rescueinfo() {
 							<Image
 								src={`${STATIC_IMAGE_HOST}ghar-aid/medical_rescue.webp`}
 								alt="Medical rescue"
-								layout="fill"
-								objectFit="cover"
+								fill
+								style={{ objectFit: "cover" }}
 								className="rounded-2xl"
 							/>
 						</div>

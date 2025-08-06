@@ -1,5 +1,5 @@
 import { BookOpenCheck } from "lucide-react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 export default function Introsection() {
 	return (

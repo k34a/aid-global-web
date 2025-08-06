@@ -1,10 +1,14 @@
 "use client";
 
+
 import React from "react";
 import { Carousel } from "@mantine/carousel";
-import Image from "next/image";
+
 import { ArrowRight, CircleDotDashed } from "lucide-react";
 import { motion } from "framer-motion";
+
+import Image from "@/components/image";
+
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { ArticleMeta } from "@/lib/db/articles";
 import "@mantine/carousel/styles.css";

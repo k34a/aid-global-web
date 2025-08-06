@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Childsupport() {
 	return (

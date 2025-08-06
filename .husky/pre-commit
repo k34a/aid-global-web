@@ -9,6 +9,13 @@ node .husky/scripts/check-valid-filenames.js
 echo ""
 node .husky/scripts/check-non-ascii.js
 
+# Check against direct usage of <img> and next/image
+echo ""
+node .husky/scripts/check-no-img-or-next-image.js
+
+echo ""
+npx knip --no-exit-code
+
 # Run linter
 echo ""
 echo "🧹 Running ESLint..."

@@ -1,8 +1,10 @@
+
 "use client";
 
-import Image from "next/image";
+
 import { Card, Text, Button, Group } from "@mantine/core";
 import Linkedin from "@/components/icons/linkedin";
+import Image from "@/components/image";
 
 type TeamCardProps = {
 	name: string;

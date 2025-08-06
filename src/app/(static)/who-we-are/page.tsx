@@ -5,6 +5,8 @@ import Visionmission from "@/components/who-we-are/visionmission";
 import Corevalues from "@/components/who-we-are/corevalues";
 import Seniormanagement from "@/components/who-we-are/seniormanagement";
 import Parteners from "@/components/who-we-are/parteners";
+import LegalDocuments from "@/components/legal/grid";
+
 function WhoWeAre() {
 	return (
 		<div>
@@ -14,6 +16,7 @@ function WhoWeAre() {
 			<Corevalues />
 			<Seniormanagement />
 			<Parteners />
+			<LegalDocuments />
 		</div>
 	);
 }

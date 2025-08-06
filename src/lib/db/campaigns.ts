@@ -1,3 +1,4 @@
+import { DEFAULT_CAMPAIGN } from "@/config/data";
 import { supabaseAdmin } from "./supabase";
 
 interface CampaignProduct {
@@ -31,6 +32,7 @@ const getCampaignBySlug = async (slug: string) => {
 		.from("campaigns")
 		.select("*, campaign_products(*)")
 		.eq("slug", slug)
+		.neq("id", DEFAULT_CAMPAIGN)
 		.single();
 
 	if (error) {
@@ -57,6 +59,7 @@ const getBackersForCampaign = async (
 	const { data, error } = await supabaseAdmin
 		.from("backers")
 		.select("id, amount, is_anon, created_at, name")
+		.neq("campaign_id", DEFAULT_CAMPAIGN)
 		.eq("campaign_id", campaignId)
 		.neq("payment_id", null)
 		.order("created_at", { ascending: false })
@@ -112,6 +115,7 @@ async function getPaginatedCampaigns(
 	const { data, error } = await supabaseAdmin
 		.from("campaigns")
 		.select("*")
+		.neq("id", DEFAULT_CAMPAIGN)
 		.order("created_at", { ascending: false })
 		.range(offset, offset + limit);
 	if (error) {
@@ -126,6 +130,7 @@ async function getAllCampaigns(): Promise<Campaigns[]> {
 	const { data, error } = await supabaseAdmin
 		.from("campaigns")
 		.select("*")
+		.neq("id", DEFAULT_CAMPAIGN)
 		.order("created_at", { ascending: false });
 	if (error) {
 		console.error("Error fetching articles:", error);

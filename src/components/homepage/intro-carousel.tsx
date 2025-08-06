@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, easeInOut } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { DonateButton } from "@/components/campaign/donate";
+import Link from "next/link";
 
 const images = [
 	{ src: `${STATIC_IMAGE_HOST}home-page/intro/one.webp`, alt: "image" },
@@ -126,19 +126,9 @@ const IntroCarousel = () => {
 										</p>
 										<div className="flex gap-4 mt-2">
 											<div className="bg-white hover:bg-sky-100 text-sky-500 font-semibold px-1 py-1 rounded shadow-lg border border-sky-400 transition-all duration-200 text-base cursor-pointer">
-												<DonateButton
-													name="Saksham Garg"
-													email="myemail@gmail.com"
-													is_anon={false}
-													amount={60}
-													contact_number="9999999999"
-													auto_allocate={true}
-													campaign_id="81263c39-4c04-460d-af9c-585937104b6f"
-													products={{
-														"3f506987-646a-4544-8653-d3a90dd1a07b": 1,
-														"71246dba-94fd-4d13-8fb9-4ffc733acfbd": 2,
-													}}
-												/>
+												<Link href="/donate">
+													Donate
+												</Link>
 											</div>
 										</div>
 									</div>

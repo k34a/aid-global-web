@@ -11,6 +11,7 @@ export interface NGODetails {
 	description: string;
 	keywords: string[];
 	logo: string;
+	registrationNumber: string;
 	contact: ContactInfo;
 	//twitter metadata
 	twitterHandle: string;

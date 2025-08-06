@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, easeInOut } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
-import Image from "next/image";
+import Image from "@/components/image";
 import { emergencies } from "@/components/homepage/data/emergencies";
 import {
 	CircleDotDashed,

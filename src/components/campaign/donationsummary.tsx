@@ -2,8 +2,12 @@
 
 import React, { useState } from "react";
 import { IndianRupee } from "lucide-react";
-import { DonateButton } from "./donate";
+import {
+	onCampaignDonateButtonClick,
+	RazorpayScript,
+} from "@/components/donate";
 import { CampaignProduct } from "@/lib/db/campaigns";
+import { Button } from "@mantine/core";
 
 interface DonationSummaryProps {
 	products: CampaignProduct[];
@@ -51,6 +55,7 @@ export const DonationSummary = ({
 
 	return (
 		<div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-sky-500">
+			<RazorpayScript />
 			<h3 className="text-xl font-bold text-gray-800 mb-4">
 				{isDirectDonation
 					? "Direct Donation Summary"
@@ -223,23 +228,32 @@ export const DonationSummary = ({
 				</div>
 			</div>
 
-			<DonateButton
-				name={name}
-				email={email}
-				contact_number={contact}
-				campaign_id={campaignId}
-				products={selectedProducts}
-				amount={amountInput}
-				is_anon={isAnonymous}
-				auto_allocate={autoAllocate}
+			<Button
+				onClick={() => {
+					onCampaignDonateButtonClick({
+						userInfo: {
+							name,
+							email,
+							contact_number: contact,
+							notes,
+						},
+						is_anon: isAnonymous,
+						campaign_details: {
+							campaign_id: campaignId,
+							products: selectedProducts,
+							auto_allocate: autoAllocate,
+							amount: amountInput,
+						},
+					});
+				}}
 				className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
 					isDonationValid()
 						? "bg-sky-600 hover:bg-sky-700 text-white"
 						: "bg-gray-300 text-gray-500 cursor-not-allowed"
 				}`}
-				text={`Donate ${String.fromCharCode(8377)}${amountInput}`}
-				notes={notes}
-			/>
+			>
+				Donate &#8377;{amountInput}
+			</Button>
 		</div>
 	);
 };

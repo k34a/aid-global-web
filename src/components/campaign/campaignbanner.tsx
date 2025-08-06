@@ -1,7 +1,7 @@
 "use client";
 
 import ShareCampaignDropdown from "@/components/campaign/sharecampaigndropdown";
-import Image from "next/image";
+import Image from "@/components/image";
 import { IndianRupee } from "lucide-react";
 import {
 	calculateProgressPercentage,

@@ -1,6 +1,8 @@
 "use client";
 
-import { Image } from "@mantine/core";
+
+import Image from "@/components/image";
+
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	CircleDotDashed,

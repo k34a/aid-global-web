@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { CircleDotDashed } from "lucide-react";
 import { cards } from "@/components/aids/hunger-aid/provides-data";
 import { STATIC_IMAGE_HOST } from "@/config/config";

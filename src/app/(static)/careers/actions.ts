@@ -6,7 +6,19 @@ import {
 	CareerApplicationData,
 } from "@/lib/db/careers/schema";
 
-export async function submitCareerApplication(data: CareerApplicationData) {
+interface SuccessResponse {
+	success: true;
+	presignedUrl: string;
+}
+
+interface ErrorResponse {
+	success: false;
+	message: string;
+}
+
+export async function submitCareerApplication(
+	data: CareerApplicationData,
+): Promise<SuccessResponse | ErrorResponse> {
 	try {
 		const validatedData: CareerApplicationData =
 			careerApplicationSchema.parse(data);
@@ -47,23 +59,17 @@ export async function submitCareerApplication(data: CareerApplicationData) {
 
 		return {
 			success: true,
-			message: "Application submitted successfully",
-			data: {
-				applicationId: application.id,
-				presignedUrl: presignedUrl.signedUrl,
-			},
+			presignedUrl: presignedUrl.signedUrl,
 		};
 	} catch (error) {
+		let errorMessage = "Unknown error occurred";
 		if (error instanceof Error) {
-			return {
-				success: false,
-				message: error.message,
-			};
+			errorMessage = error.message;
 		}
 
 		return {
 			success: false,
-			message: "Unknown error occurred",
+			message: errorMessage,
 		};
 	}
 }
