@@ -4,8 +4,9 @@ import TeamCard from "@/components/who-we-are/teamcard";
 import TeamCardDesc from "@/components/who-we-are/teamcarddesc";
 import { teamembers } from "@/config/team";
 import { teamembersdata } from "@/config/teamdesc";
-import { CloseButton } from "@mantine/core";
+import { CloseButton, Modal } from "@mantine/core";
 import { X } from "lucide-react";
+// import { CloseButton, Modal } from "@mantine/core";
 function Seniormanagement() {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -49,30 +50,45 @@ function Seniormanagement() {
 					))}
 				</ul>
 			</section>
-			{selectedIndex !== null && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
-					<div className="relative w-[90%] max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-300 animate-zoomIn">
-						<div className="absolute top-4 right-4 z-10">
-							<CloseButton
-								onClick={handleBackClick}
-								aria-label="Close"
-								title="Close"
-								size="lg"
-								variant="light"
-								icon={<X size={18} color="red" />}
-							/>
-						</div>
+			<Modal
+				opened={selectedIndex !== null}
+				onClose={handleBackClick}
+				withCloseButton={false}
+				centered
+				size="xl"
+				overlayProps={{
+					backgroundOpacity: 0.6,
+					blur: 4,
+				}}
+				classNames={{
+					content:
+						"w-[90%] max-w-xl bg-white rounded-2xl border border-gray-300 shadow-2xl",
+					body: "max-h-[80vh] p-6 sm:p-8 overflow-y-auto",
+				}}
+			>
+				<div className="relative">
+					<div className="absolute top-4 right-4 z-10">
+						<CloseButton
+							onClick={handleBackClick}
+							aria-label="Close"
+							title="Close"
+							size="lg"
+							variant="light"
+							icon={<X size={18} color="red" />}
+						/>
+					</div>
 
-						<div className="mt-4 sm:mt-6">
+					<div className="mt-4 sm:mt-6">
+						{selectedIndex !== null && (
 							<TeamCardDesc
 								name={teamembersdata[selectedIndex].name}
 								role={teamembersdata[selectedIndex].role}
 								desc={teamembersdata[selectedIndex].desc}
 							/>
-						</div>
+						)}
 					</div>
 				</div>
-			)}
+			</Modal>
 		</div>
 	);
 }

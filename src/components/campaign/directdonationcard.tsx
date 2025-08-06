@@ -59,22 +59,36 @@ export const DirectDonationCard = ({
 				isSelected ? "ring-2 ring-sky-500 shadow-lg" : "hover:shadow-md"
 			}`}
 		>
-			<div className="flex items-center gap-3 mb-4">
-				<div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center">
-					<Heart className="text-sky-600" size={24} />
+			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+				{/* Left: Icon + Text */}
+				<div className="flex items-center gap-3">
+					<div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center">
+						<Heart className="text-sky-600" size={24} />
+					</div>
+					<div>
+						<h3 className="font-semibold text-gray-800">
+							Direct Donation
+						</h3>
+						<p className="text-sm text-gray-600">
+							Let us allocate your donation to the most needed
+							items
+						</p>
+					</div>
 				</div>
-				<div>
-					<h3 className="font-semibold text-gray-800">
-						Direct Donation
-					</h3>
-					<p className="text-sm text-gray-600">
-						Let us allocate your donation to the most needed items
-					</p>
-				</div>
-			</div>
 
-			{isSelected ? (
-				<div className="space-y-3">
+				{/* Right: Button */}
+				{!isSelected && (
+					<button
+						onClick={onToggle}
+						className="bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 text-sm"
+					>
+						<Heart size={16} className="mt-[1px]" />
+						<span className="leading-none">Donate Any Amount</span>
+					</button>
+				)}
+			</div>
+			{isSelected && (
+				<div className="mt-4 space-y-3">
 					<div className="flex items-center gap-2">
 						<IndianRupee className="text-gray-600" size={16} />
 						<input
@@ -94,14 +108,6 @@ export const DirectDonationCard = ({
 						Cancel
 					</button>
 				</div>
-			) : (
-				<button
-					onClick={onToggle}
-					className="w-full bg-sky-600 hover:bg-sky-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
-				>
-					<Heart className="text-sm" size={16} />
-					Donate Any Amount
-				</button>
 			)}
 		</div>
 	);
