@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import Header from "@/components/header";
+import Header from "@/components/structure/header";
 import { render } from "@testing-library/react";
 
 describe("Header Component", () => {
