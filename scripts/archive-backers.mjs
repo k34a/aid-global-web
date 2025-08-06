@@ -14,7 +14,7 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID;
 
 async function sendTelegramNotification(message) {
-	await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+	const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
@@ -22,7 +22,9 @@ async function sendTelegramNotification(message) {
 			text: message,
 		}),
 	});
+	console.log("Status: ", res.status)
 }
+
 
 async function archiveBackers() {
 	const threeDaysAgo = new Date(
