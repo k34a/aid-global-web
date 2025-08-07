@@ -15,6 +15,7 @@ import { Heart, Shield, Info, IndianRupee } from "lucide-react";
 import toast from "react-hot-toast";
 import { onDonateButtonClick, RazorpayScript } from "@/components/donate";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
+import OneHundredClubs from "@/components/donate/one-hundred-clubs";
 
 interface DonationFormData {
 	name: string;
@@ -351,6 +352,7 @@ export default function DonatePage() {
 					</div>
 				</div>
 			</div>
+			<OneHundredClubs />
 		</main>
 	);
 }
