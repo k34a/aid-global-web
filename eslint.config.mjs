@@ -17,18 +17,18 @@ const eslintConfig = [
 			"no-unused-vars": "off",
 			"@typescript-eslint/no-unused-vars": "off",
 			"@typescript-eslint/no-explicit-any": "off",
-			'@typescript-eslint/no-deprecated': 'error',
+			"@typescript-eslint/no-deprecated": "error",
 		},
 	}),
 	{
 		ignores: [".next/**", "lint-staged.config.mjs"],
 		languageOptions: {
 			parserOptions: {
-			  projectService: true,
-			  tsconfigRootDir: import.meta.dirname,
+				projectService: true,
+				tsconfigRootDir: import.meta.dirname,
 			},
 		},
-	}
+	},
 ];
 
 export default eslintConfig;
