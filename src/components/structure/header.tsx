@@ -20,7 +20,7 @@ import { ChevronDown } from "lucide-react";
 import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
 import classes from "./header.module.css";
-import Image from "./image";
+import Image from "@/components/image";
 
 export default function HeaderMegaMenu() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =

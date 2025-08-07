@@ -30,9 +30,10 @@ export default function VerifyPinModal({
 		},
 	});
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		form.setFieldError("pin", error);
-	}, [error, form]);
+	}, [error]);
 
 	const handleSubmit = (values: { pin: string }) => {
 		onSuccess(values.pin);

@@ -5,7 +5,7 @@ import { MapPin, Mail, Phone, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "@/components/image";
 import { ngoDetails } from "@/config/config";
-import NewsLetter from "@/components/newsletter";
+import NewsLetter from "@/components/structure/newsletter";
 import { links, programLinks } from "@/config/links";
 import {
 	Facebook,
