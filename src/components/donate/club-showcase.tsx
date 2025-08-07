@@ -15,6 +15,7 @@ import { Heart, Users, Target, Shield, Clock, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
+import { ArrowRight } from "lucide-react";
 
 interface ClubShowcaseProps {
 	frequency: "monthly" | "daily";
@@ -79,7 +80,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 								<Image
 									src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
 									alt="Children studying together"
-									width={1200} // any large value; overridden by style
+									width={1200}
 									height={256}
 									style={{
 										width: "100%",
@@ -241,51 +242,45 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 					</Card>
 				</Grid.Col>
 			</Grid>
-
-			{/* CTA Button */}
-			<Center mb="xl">
+			{/* CTA Section */}
+			<Stack align="center" gap="xl">
 				<Button
 					size="xl"
+					color="orange"
+					rightSection={<ArrowRight size={20} />}
 					style={{
-						backgroundColor: "#2563eb",
 						fontSize: "1.125rem",
 						fontWeight: 600,
 						borderRadius: "12px",
 						padding: "16px 32px",
 					}}
-					onClick={() => router.push(`/${amount}rupee`)}
+					onClick={() => router.push(`${amount}rupee`)}
 				>
-					Join The {"\u20B9"}
-					{amount} Club Today
+					Join with {"\u20B9"}
+					{amount}/{amount === 100 ? "month" : "day"}
 				</Button>
-			</Center>
 
-			{/* Trust Indicators */}
-			<Flex
-				wrap="wrap"
-				justify="center"
-				gap="xl"
-				style={{ fontSize: "0.875rem", color: "#6b7280" }}
-			>
-				<Group gap="xs">
-					<Shield size={16} color="#16a34a" />
-					<Text size="sm" c="dimmed">
-						Tax benefits under 80G
-					</Text>
-				</Group>
-				<Group gap="xs">
-					<Clock size={16} color="#2563eb" />
-					<Text size="sm" c="dimmed">
-						Cancel anytime
-					</Text>
-				</Group>
-				<Group gap="xs">
-					<Check size={16} color="#9333ea" />
-					<Text size="sm" c="dimmed">
-						Secure donations
-					</Text>
-				</Group>
-			</Flex>
+				<Flex wrap="wrap" justify="center" gap="xl">
+					<Group gap="xs">
+						<Shield size={16} color="#16a34a" />
+						<Text size="sm" c="dimmed">
+							Tax benefits under 80G
+						</Text>
+					</Group>
+					<Group gap="xs">
+						<Clock size={16} color="#2563eb" />
+						<Text size="sm" c="dimmed">
+							Cancel anytime
+						</Text>
+					</Group>
+					<Group gap="xs">
+						<Check size={16} color="#9333ea" />
+						<Text size="sm" c="dimmed">
+							Secure donations
+						</Text>
+					</Group>
+				</Flex>
+			</Stack>
 		</div>
 	);
 }
