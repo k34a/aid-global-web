@@ -5,7 +5,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 function Intro() {
 	return (
 		<div>
-			<h1 className="font-bold text-3xl md:text-3xl lg:text-5xl text-center text-blue-900 mb-12">
+			<h1 className="font-bold text-3xl md:text-3xl lg:text-5xl text-center text-blue-900 py-12">
 				Our Locations
 			</h1>
 

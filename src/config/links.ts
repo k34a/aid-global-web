@@ -45,7 +45,19 @@ export const links: Links = {
 				},
 			],
 		},
-		{ name: "Contact", href: "/contact" },
+		{
+			name: "Contact Us",
+			sublinks: [
+				{
+					name: "Contact",
+					href: "/contact",
+				},
+				{
+					name: "Our Clinics",
+					href: "/our-clinics",
+				},
+			],
+		},
 	],
 
 	donateLink: {
