@@ -555,6 +555,7 @@ export default function DonatePage() {
 						</Text>
 					</Alert>
 				</Paper>
+				<OtherDonationModes />
 
 				{/* Impact Section */}
 				<Box mt={{ base: "xl", sm: 60 }}>
