@@ -45,7 +45,19 @@ export const links: Links = {
 				},
 			],
 		},
-		{ name: "Contact", href: "/contact" },
+		{
+			name: "Contact Us",
+			sublinks: [
+				{
+					name: "Contact",
+					href: "/contact",
+				},
+				{
+					name: "Our Clinics",
+					href: "/our-clinics",
+				},
+			],
+		},
 	],
 
 	donateLink: {
@@ -58,6 +70,22 @@ export const links: Links = {
 		{ name: "Volunteer", href: "/volunteer" },
 		{ name: "Careers", href: "/careers" },
 		{ name: "Corporate Partnerships", href: "/corporate-partnerships" },
+		{
+			name: "Donate Rs.1/day",
+			href: "/1rupee",
+		},
+		{
+			name: "Donate Rs.100/month",
+			href: "/100rupee",
+		},
+		{
+			name: "Contact",
+			href: "/contact",
+		},
+		{
+			name: "Our Clinics",
+			href: "/our-clinics",
+		},
 	],
 
 	tertiaryLinks: [
