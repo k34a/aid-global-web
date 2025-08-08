@@ -201,35 +201,11 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 			</Stack>
 
 			{/* Statistics */}
-			<Grid gutter="xl" mb="xl">
-				<Grid.Col span={6}>
+			<Grid gutter="xl" mb="xl" justify="center">
+				<Grid.Col span={{ base: 12, sm: 6, md: 4 }}>
 					<Card
 						padding="xl"
-						style={{
-							backgroundColor: "#eff6ff",
-							border: "1px solid #bfdbfe",
-							textAlign: "center",
-						}}
-					>
-						<Stack align="center" gap="xs">
-							<Text size="2rem" fw={700} c="blue">
-								{isMonthly ? "50L+" : "10L+"}
-							</Text>
-							<Text size="sm" c="dimmed">
-								Total Raised
-							</Text>
-						</Stack>
-					</Card>
-				</Grid.Col>
-
-				<Grid.Col span={6}>
-					<Card
-						padding="xl"
-						style={{
-							backgroundColor: "#f0fdf4",
-							border: "1px solid #bbf7d0",
-							textAlign: "center",
-						}}
+						className="bg-green-50 border border-green-200 text-center"
 					>
 						<Stack align="center" gap="xs">
 							<Text size="2rem" fw={700} c="green">
@@ -242,6 +218,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 					</Card>
 				</Grid.Col>
 			</Grid>
+
 			{/* CTA Section */}
 			<Stack align="center" gap="xl">
 				<Button

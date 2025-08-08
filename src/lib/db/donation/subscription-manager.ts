@@ -3,6 +3,7 @@ import { razorpay } from "@/lib/razorpay";
 import { Subscription } from "./subscription-donation";
 import { z } from "zod/v4";
 import { DonationError, userInfoSchema } from "./donation";
+import { sendTelegramMessage } from "@/lib/telegram";
 
 const SubscriptionStatus = {
 	Pending: "Pending",
@@ -19,6 +20,51 @@ export class SubscriptionManager {
 
 	constructor(razorpay_subscription_id: string) {
 		this.razorpay_subscription_id = razorpay_subscription_id;
+	}
+
+	private async notifySubscriptionStatusChange() {
+		const { data, error } = await supabaseAdmin
+			.from("subscriptions")
+			.select("id, status, name, subscription_plans(name)")
+			.eq("razorpay_subscription_id", this.razorpay_subscription_id)
+			.maybeSingle();
+
+		if (error) {
+			console.error("Error fetching subscription:", error);
+			return;
+		}
+
+		if (!data) {
+			console.warn(
+				"No subscription found for Razorpay ID:",
+				this.razorpay_subscription_id,
+			);
+			return;
+		}
+
+		const { status, name, id, subscription_plans } = data;
+
+		const customMessages: Record<string, string> = {
+			Active: `A donor has successfully activated their subscription.`,
+			Complete: `A donor's subscription has ended. You may want to reach out and ask if they'd like to renew.`,
+			Cancelled: `A donor has cancelled their subscription. Consider reaching out to understand why.`,
+			Paused: `A donor's subscription has been paused. You may want to follow up.`,
+		};
+
+		if (!(status in customMessages)) {
+			return;
+		}
+
+		try {
+			const message = `${customMessages[status]}<br/><br/>
+			<b>Donor Name:</b> ${name} (${id})<br/>
+			<b>Subscription:</b> ${(subscription_plans as any).name}<br/>
+			<b>Status</b>: ${status}<br/>`;
+
+			await sendTelegramMessage(message);
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	private async getUserSubscriptionStatus() {
@@ -84,6 +130,7 @@ export class SubscriptionManager {
 
 	public async onActivated() {
 		await this.updateStatus(SubscriptionStatus.Active);
+		await this.notifySubscriptionStatusChange();
 	}
 
 	public async onCharged(
@@ -124,6 +171,7 @@ export class SubscriptionManager {
 			console.error("Error updating payment details:", error.message);
 			throw new Error(`Failed to mark payment as Completed`);
 		}
+		await this.notifySubscriptionStatusChange();
 	}
 
 	public async onPending() {
@@ -151,10 +199,12 @@ export class SubscriptionManager {
 			console.error("Error updating payment details:", error.message);
 			throw new Error(`Failed to mark payment as Cancelled`);
 		}
+		await this.notifySubscriptionStatusChange();
 	}
 
 	public async onPaused() {
 		await this.updateStatus(SubscriptionStatus.Paused);
+		await this.notifySubscriptionStatusChange();
 	}
 
 	public async onResumed() {
