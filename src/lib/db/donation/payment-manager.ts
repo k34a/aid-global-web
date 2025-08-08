@@ -1,5 +1,6 @@
 import { razorpay } from "@/lib/razorpay";
 import { supabaseAdmin } from "@/lib/db/supabase";
+import { sendTelegramMessage } from "@/lib/telegram";
 
 export class PaymentManager {
 	private order_id: string;
@@ -44,6 +45,38 @@ export class PaymentManager {
 		}
 	}
 
+	private async notifyDonationSuccessful(donationIntentId: string) {
+		const { data, error } = await supabaseAdmin
+			.from("backers")
+			.select("id, name, email, amount")
+			.eq("id", donationIntentId)
+			.maybeSingle();
+
+		if (error) {
+			console.error(error);
+			return;
+		}
+		if (!data) {
+			console.log(
+				`Data not found for donation intent ID: ${donationIntentId}`,
+			);
+			return;
+		}
+
+		try {
+			const message =
+				`<b>Someone just made a donation</b>\n\n` +
+				`<b>Name:</b> ${data.name}\n` +
+				`<b>Email:</b> ${data.email}\n` +
+				`<b>Amount:</b> Rs. ${data.amount.toFixed(2)}\n` +
+				`<b>Donation ID:</b> ${data.id}`;
+			await sendTelegramMessage(message);
+		} catch (error) {
+			console.error(error);
+			return;
+		}
+	}
+
 	public async authorizePayment() {
 		await this.updateStatus(["Pending", "Failed"], "Authorized");
 	}
@@ -70,5 +103,7 @@ export class PaymentManager {
 			);
 			throw new Error("Failed to update backer payment details");
 		}
+
+		await this.notifyDonationSuccessful(id);
 	}
 }
