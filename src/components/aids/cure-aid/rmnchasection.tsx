@@ -1,6 +1,7 @@
 import Image from "@/components/image";
 import { Baby, CheckCircle, ShieldCheck } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
+import { Title, Text, Stack, Center } from "@mantine/core";
 
 const rmhchData = [
 	{
@@ -44,35 +45,59 @@ const rmhchData = [
 
 export default function RMNCHSection() {
 	return (
-		<section className="px-6 md:px-20 py-16 bg-[#F0FAF7]">
+		<section className="px-3 md:px-12 py-10 bg-[#F0FAF7]">
 			{/* Section Heading */}
-			<div className="text-center mb-14">
-				<h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1D] underline-offset-8">
-					Maternal, Child & Nutrition Care (RMNCH+A)
-				</h2>
-				<p className="mt-3 text-[1rem] md:text-lg text-[#E3B505] italic">
-					Building Stronger Foundations for Families
-				</p>
-				<p className="text-[1rem] md:text-base text-[#555] mt-1">
-					A unified approach supporting mothers, children, and
-					adolescents across the continuum of care.
-				</p>
-			</div>
 
-			{/* Cards */}
+			<Center mb={40}>
+				<Stack align="center">
+					<Title
+						order={2}
+						c="dark"
+						ta="center"
+						style={{
+							textDecorationThickness: "2px",
+							textUnderlineOffset: "8px",
+							fontWeight: 700,
+							fontSize: "2rem",
+						}}
+						fz={{ base: 32, md: 40 }}
+					>
+						Maternal, Child & Nutrition Care (RMNCH+A)
+					</Title>
+
+					<Text
+						mt={0}
+						c="#E3B505"
+						fz={{ base: "1rem", md: "1.125rem" }}
+						fs="italic"
+						ta="center"
+					>
+						Building Stronger Foundations for Families
+					</Text>
+					<Text
+						mt={1}
+						c="#555"
+						fz={{ base: "1rem", md: "1rem" }}
+						ta="center"
+					>
+						A unified approach supporting mothers, children, and
+						adolescents across the continuum of care.
+					</Text>
+				</Stack>
+			</Center>
 			<div className="space-y-10">
 				{rmhchData.map((card, index) => (
 					<div
 						key={index}
-						className={`flex flex-col md:flex-row ${
-							index % 2 === 1 ? "md:flex-row-reverse" : ""
+						className={`flex flex-col lg:flex-row ${
+							index % 2 === 1 ? "lg:flex-row-reverse" : ""
 						} items-stretch bg-white rounded-3xl shadow-md overflow-hidden`}
 					>
 						<div
-							className={`flex-1 p-6 md:p-8 flex flex-col justify-center min-h-[350px] ${
+							className={`flex-1 p-6 md:p-8 flex flex-col  justify-center min-h-[350px] ${
 								index % 2 === 0
-									? "md:border-r-2 border-dashed md:pr-10 md:mr-6 border-red-300"
-									: "md:border-l-2 border-dashed md:pl-10 md:ml-6 border-purple-300"
+									? "lg:border-r-2 border-dashed md:pr-10 md:mr-6 border-red-300"
+									: "lg:border-l-2 border-dashed md:pl-10 md:ml-6 border-purple-300"
 							}`}
 						>
 							<div className="flex items-center gap-3 mb-4">
@@ -83,7 +108,6 @@ export default function RMNCHSection() {
 									{card.title}
 								</h3>
 							</div>
-
 							<ul className="list-none space-y-3 text-[#333] text-[1rem] leading-relaxed">
 								{card.description.map((item, i) => (
 									<li key={i} className="flex flex-col gap-1">
@@ -113,7 +137,7 @@ export default function RMNCHSection() {
 								))}
 							</ul>
 						</div>
-						<div className="relative w-full h-[250px] sm:h-[400px] my-auto sm:w-1/2 flex-shrink-0">
+						<div className="relative w-full h-[300px] lg:h-[350px] my-auto lg:w-1/2 flex-shrink-0">
 							<Image
 								src={`${STATIC_IMAGE_HOST}${card.image}`}
 								alt={card.title}

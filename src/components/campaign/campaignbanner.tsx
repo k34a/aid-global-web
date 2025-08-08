@@ -58,7 +58,7 @@ export default function CampaignBanner({
 
 				<div className="lg:w-1/3 p-5 lg:p-6 flex flex-col gap-5 bg-gray-50 border-l border-gray-200">
 					<div>
-						<h2 className="text-lg font-semibold text-gray-800">
+						<h2 className="text-lg font-semibold text-sky-600">
 							{title}
 						</h2>
 						{description && (

@@ -50,7 +50,7 @@ export default function CalltoActionSection() {
 					})}
 				</div>
 				<Link
-					href="/donate?program=shiksha-aid"
+					href="/donate"
 					className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition"
 				>
 					Donate Now

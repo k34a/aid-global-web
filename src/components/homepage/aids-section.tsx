@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { aids } from "@/components/homepage/data/aids";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { ArrowRight, Heart } from "lucide-react";
 
 const AidsSection = () => {
 	const sectionRef = useRef<HTMLDivElement>(null);
@@ -100,22 +101,29 @@ const AidsSection = () => {
 									<h1 className="text-white text-lg md:text-xl font-bold mb-2">
 										{item.title}
 									</h1>
-									<p className="text-white text-xs md:text-base mb-3">
+									<p className="text-gray-300 text-xs md:text-base mb-3">
 										{item.desc}
 									</p>
 
-									<div className="mt-4 flex flex-wrap gap-4 items-center justify-between">
+									<div className="mt-4 flex flex-wrap gap-2 items-center justify-between">
 										{/* Donate Button */}
-										<button className="px-4 py-2 rounded-full font-semibold text-white text-sm inline-flex items-center gap-2 shadow-2xl border-2 border-white hover:bg-sky-600 transition-colors duration-300 cursor-pointer self-start">
+										<Link
+											href="/donate"
+											className="px-2 py-2 rounded-full text-sm inline-flex items-center gap-2 border border-white text-white font-bold hover:bg-sky-600/60 hover:text-black transition-colors duration-300"
+										>
+											<Heart className="w-4 h-4" />
 											Donate
-										</button>
+										</Link>
 
 										{/* Read More Button */}
 										<Link
-											href={`${item.link}`}
-											className="px-4 py-2 rounded-full font-semibold bg-sky-400 text-sm inline-flex items-center gap-2 border border-black  hover:bg-sky-600 hover:text-white transition-colors duration-300"
+											href={item.link}
+											className="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-sky-400 font-bold backdrop-blur-md px-2 py-2 text-sm  text-black shadow-sm transition-all duration-300 hover:bg-white/40 hover:text-white"
 										>
-											Read More
+											<span className="transition-all duration-300 group-hover:tracking-wider">
+												Read More
+											</span>
+											<ArrowRight className="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" />
 										</Link>
 									</div>
 								</div>
