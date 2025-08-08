@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { CircleDotDashed, ChevronsRight, ChevronsLeft } from "lucide-react";
 import { useState, useEffect } from "react";

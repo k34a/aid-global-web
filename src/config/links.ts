@@ -35,6 +35,14 @@ export const links: Links = {
 					name: "Corporate Partnerships",
 					href: "/corporate-partnerships",
 				},
+				{
+					name: "Donate Rs.1/day",
+					href: "/1rupee",
+				},
+				{
+					name: "Donate Rs.100/month",
+					href: "/100rupee",
+				},
 			],
 		},
 		{ name: "Contact", href: "/contact" },
