@@ -1,14 +1,13 @@
-import { getAllArticles, type ArticleMeta } from "@/lib/db/articles";
 import MissionSection from "@/components/homepage/mission-section";
 import AidsSection from "@/components/homepage/aids-section";
 import CalltoActionSection from "@/components/homepage/call-to-action";
 import AssuranceSection from "@/components/homepage/assurance-section";
 import ReviewSection from "@/components/homepage/review-section";
 import PartnersSection from "@/components/homepage/partners";
+import OneHundredClubs from "@/components/donate/one-hundred-clubs";
 
 export default async function HomePage() {
 	try {
-		const articles: ArticleMeta[] = await getAllArticles(3);
 		return (
 			<main className="p-0 overflow-hidden">
 				<CalltoActionSection />
@@ -17,6 +16,7 @@ export default async function HomePage() {
 				<ReviewSection />
 				<AssuranceSection />
 				<PartnersSection />
+				<OneHundredClubs />
 			</main>
 		);
 	} catch (error) {
