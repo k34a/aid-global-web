@@ -3,6 +3,8 @@ import { tmpdir } from "os";
 import { join } from "path";
 import fs from "fs/promises";
 import dotenv from "dotenv";
+import TelegramBot from "node-telegram-bot-api";
+
 dotenv.config();
 
 const supabase = createClient(
@@ -10,22 +12,15 @@ const supabase = createClient(
 	process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID;
+const bot = new TelegramBot(process.env.TELEGRAM_API_TOKEN, { polling: false });
 
-async function sendTelegramNotification(message) {
-	const res = await fetch(
-		`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-		{
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				chat_id: TELEGRAM_CHANNEL_ID,
-				text: message,
-			}),
-		},
-	);
-	console.log("Status: ", res.status);
+async function sendTelegramMessage(text) {
+    try {
+        await bot.sendMessage(process.env.TELEGRAM_CHANNEL, text, { parse_mode: "HTML" });
+		console.log("Sent message on telegram")
+    } catch (err) {
+        console.error("Failed to send Telegram message:", err);
+    }
 }
 
 async function archiveBackers() {
@@ -45,7 +40,7 @@ async function archiveBackers() {
 
 	if (error) {
 		console.log(error);
-		await sendTelegramNotification(
+		await sendTelegramMessage(
 			`Archival process failed. Please check logs.`,
 		);
 		console.log("Notified admins");
@@ -54,8 +49,7 @@ async function archiveBackers() {
 
 	if (!data || data.length === 0) {
 		console.log("Nothing to archive! Ending task.");
-		await sendTelegramNotification(`Archived 0 records`);
-		console.log("Sent notification to the admins.");
+		await sendTelegramMessage(`Archived 0 records`);
 		return;
 	}
 
@@ -90,12 +84,7 @@ async function archiveBackers() {
 		.in("status", ["Pending", "Failed"]);
 
 	console.log(`Successfully archived ${data.length} records. Ending task...`);
-	await sendTelegramNotification(`Archived ${data.length} records`);
-	console.log("Sent notification to the admins.");
+	await sendTelegramMessage(`Archived ${data.length} unsuccessful backers records.`);
 }
 
-try {
-	archiveBackers();
-} catch (error) {
-	console.log("Error: ", error);
-}
+archiveBackers().catch(console.error);
