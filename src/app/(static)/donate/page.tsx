@@ -11,11 +11,145 @@ import {
 } from "@mantine/core";
 import { IndianRupee, Users, GraduationCap, Stethoscope } from "lucide-react";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
-import FAQ from "@/components/faq";
-import { donationFaqs } from "@/config/faqs";
-import DonateForm from "@/components/donate/form";
+import toast from "react-hot-toast";
+import FaqSection from "@/components/donate/faq-section";
+import { z } from "zod";
+import { useSearchParams } from "next/navigation";
+
+interface DonationFormData {
+	name: string;
+	email: string;
+	contact_number: string;
+	amount: number;
+	pan_number?: string;
+	address?: string;
+	notes?: string;
+	is_anonymous: boolean;
+	tax_exemption: boolean;
+}
+
+const PRESET_AMOUNTS = [100, 500, 1000, 2000, 5000];
 
 export default function DonatePage() {
+	const donateParamsSchema = z.object({
+		program: z.enum([
+			"shiksha-aid",
+			"enable-aid",
+			"cure-aid",
+			"sakhi-aid",
+			"vision-aid",
+			"ghar-aid",
+			"hunger-aid",
+		]),
+	});
+	const searchParams = useSearchParams();
+	const programRaw = searchParams.get("program");
+
+	const parsed = donateParamsSchema.safeParse({ program: programRaw });
+	const program = parsed.success ? parsed.data.program : "";
+	const [customProgram, setCustomProgram] = useState<string>(program || "");
+
+	const [isLoading, setIsLoading] = useState(false);
+	const [selectedAmount, setSelectedAmount] = useState<number | "custom">(
+		500,
+	);
+	const [customAmount, setCustomAmount] = useState<number | undefined>(
+		undefined,
+	);
+
+	const form = useForm<DonationFormData>({
+		mode: "uncontrolled",
+		initialValues: {
+			name: "",
+			email: "",
+			contact_number: "",
+			amount: 500,
+			pan_number: "",
+			address: "",
+			notes: program || "",
+			is_anonymous: false,
+			tax_exemption: false,
+		},
+		validate: {
+			name: (value) =>
+				value.length < 2 ? "Name must be at least 2 characters" : null,
+			email: (value) =>
+				/^\S+@\S+$/.test(value) ? null : "Invalid email",
+			contact_number: (value) =>
+				/^\d{10}$/.test(value)
+					? null
+					: "Phone number must be exactly 10 digits",
+			amount: (value) =>
+				value < 1 ? "Amount must be at least 1 rupee" : null,
+			pan_number: (value, values) => {
+				if (!values.tax_exemption) return null;
+				return /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(value!)
+					? null
+					: "Invalid PAN number format";
+			},
+			address: (value, values) => {
+				if (!values.tax_exemption) return null;
+				return value!.length < 10
+					? "Please provide your complete address"
+					: null;
+			},
+		},
+	});
+
+	const handleAmountSelect = (amount: number | "custom") => {
+		setSelectedAmount(amount);
+		if (amount !== "custom") {
+			form.setFieldValue("amount", amount as number);
+			setCustomAmount(undefined);
+		} else {
+			if (customAmount) {
+				form.setFieldValue("amount", customAmount);
+			}
+		}
+	};
+
+	const handleCustomAmountChange = (value: number | string) => {
+		const numValue = typeof value === "string" ? parseFloat(value) : value;
+		setCustomAmount(numValue);
+		if (!isNaN(numValue) && numValue > 0) {
+			form.setFieldValue("amount", numValue);
+		}
+	};
+
+	const handleDonation = async (values: DonationFormData) => {
+		setIsLoading(true);
+		try {
+			await onDonateButtonClick({
+				userInfo: {
+					name: values.name,
+					email: values.email,
+					contact_number: values.contact_number,
+					pan_number: values.pan_number || undefined,
+					address: values.address || undefined,
+					notes: values.notes || undefined,
+				},
+				is_anon: values.is_anonymous,
+				donation_details: {
+					amount: values.amount,
+				},
+			});
+
+			toast.success(
+				"Thank you for your donation! You will receive a receipt shortly.",
+			);
+		} catch (error) {
+			console.error("Donation error:", error);
+			toast.error(
+				error instanceof Error
+					? error.message
+					: "Failed to process donation. Please try again.",
+			);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+
 	return (
 		<Box
 			style={{
@@ -155,7 +289,11 @@ export default function DonatePage() {
 					</SimpleGrid>
 				</Box>
 			</Container>
+
 			<FAQ items={donationFaqs} />
+
+			<FaqSection />
+
 		</Box>
 	);
 }
