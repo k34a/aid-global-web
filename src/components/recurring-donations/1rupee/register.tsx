@@ -1,6 +1,7 @@
 import RegistrationHeader from "./registration-header";
 import RegistrationInfo from "./registration-info";
 import SubscriptionForm from "../form";
+import Link from "next/link";
 
 export default function Register() {
 	return (
@@ -11,10 +12,17 @@ export default function Register() {
 					<SubscriptionForm
 						plan_id="29c7e0b7-7edf-4db5-95e2-977793672cee"
 						footer={<RegistrationInfo />}
-						submitButton={
-							"Join The \u20B9 1 Club \u2013 \u20B9 1/day"
-						}
+						submitButton={"Join The Rs. 1 Club - Rs. 1/day"}
 					/>
+
+					<div className="mt-6 text-center">
+						<Link
+							href="/recurring-donation/faq"
+							className="text-blue-600 text-lg md:text-xl font-semibold hover:underline hover:text-blue-800 transition"
+						>
+							Any queries ?
+						</Link>
+					</div>
 				</div>
 			</div>
 		</section>
