@@ -3,6 +3,7 @@ import { IndianRupee, Check, Info, Shield } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
 import SubscriptionForm from "@/components/recurring-donations/form";
+import Link from "next/link";
 
 export default function RecurringDonationForm() {
 	return (
@@ -168,6 +169,14 @@ export default function RecurringDonationForm() {
 									&quot;50 medical checkups completed this
 									week&quot;
 								</p>
+							</div>
+							<div className="mt-6 text-center">
+								<Link
+									href="/recurring-donation/faq"
+									className="text-blue-600 text-lg md:text-xl font-semibold hover:underline hover:text-blue-800 transition"
+								>
+									Any queries &rarr;
+								</Link>
 							</div>
 						</div>
 					</div>
