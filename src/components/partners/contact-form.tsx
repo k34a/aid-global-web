@@ -1,78 +1,63 @@
 "use client";
 
+import { TextInput, Textarea, Button, Grid, Stack, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import Link from "next/link";
+import { submitCorporatePartnership } from "./actions";
+import { zodResolver } from "mantine-form-zod-resolver";
+import { corporateFormSchema } from "./schema";
 
-export default function ContactForm() {
-	const [status, setStatus] = useState<
-		"idle" | "submitting" | "success" | "error"
-	>("idle");
-	const [errorMessage, setErrorMessage] = useState<string>("");
+export default function CorporatePartnershipForm() {
+	const [loading, setLoading] = useState(false);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const form = useForm({
+		mode: "uncontrolled",
 		initialValues: {
 			name: "",
 			email: "",
-			number: "",
+			organization: "",
+			website: "",
 			subject: "",
 			message: "",
-			location: "",
 		},
 
-		validate: {
-			name: (value) =>
-				value.trim().length < 2 ? "Name is too short" : null,
-			email: (value) =>
-				/^\S+@\S+$/.test(value) ? null : "Invalid email",
-			number: (value) =>
-				value.length < 10 ? "Enter a valid phone number" : null,
-			location: (value) => (!value ? "Location is required" : null),
-			subject: (value) => (!value ? "Subject is required" : null),
-			message: (value) => (!value ? "Message is required" : null),
-		},
+		validate: zodResolver(corporateFormSchema),
 	});
 
 	const handleSubmit = async (values: typeof form.values) => {
-		setStatus("submitting");
+		setLoading(true);
 		try {
-			const response = await fetch("/api/contact", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(values),
-			});
-
-			if (!response.ok) {
-				throw new Error("Failed to submit the form. Please try again.");
+			const error = await submitCorporatePartnership(values);
+			if (error) {
+				toast.error(error);
+			} else {
+				toast.success("Form submitted successfully!");
+				setIsSubmitted(true);
 			}
-
-			setStatus("success");
-			form.reset();
 		} catch (error) {
-			setStatus("error");
-			setErrorMessage((error as Error).message);
+			toast.error((error as Error).message || "Something went wrong.");
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	return (
 		<section className="w-full py-10 bg-white">
-			<form
-				onSubmit={form.onSubmit(handleSubmit)}
-				className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20"
-			>
+			<div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
 				<div className="flex flex-col lg:flex-row gap-12">
-					{/* Left Column */}
+					{/* Left Column - Info/Intro */}
 					<div className="lg:w-1/2">
 						<h1 className="text-3xl font-semibold mb-4">
 							Write To Us
 						</h1>
 						<p className="text-zinc-600 mb-4 border-b pb-4">
-							If you have any queries, visit our FAQs section or
-							just send us a message and someone from our team
-							will reach out to you. For volunteering and
-							internship opportunities, please{" "}
+							If you&apos;re a company or organization interested
+							in partnering with us, please fill out the form and
+							we&apos;ll get back to you shortly. For volunteering
+							and internship opportunities, please{" "}
 							<Link
 								href="/volunteer"
 								className="text-blue-500 hover:underline"
@@ -103,71 +88,99 @@ export default function ContactForm() {
 						</div>
 					</div>
 
-					{/* Right Column - Form */}
-					<div className="lg:w-1/2 space-y-4">
-						<div className="flex flex-col md:flex-row gap-4">
-							<input
-								placeholder="Name*"
-								className="flex-1 p-3 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-								{...form.getInputProps("name")}
-							/>
-							<input
-								placeholder="Email*"
-								type="email"
-								className="flex-1 p-3 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-								{...form.getInputProps("email")}
-							/>
-						</div>
+					<div className="lg:w-1/2">
+						{isSubmitted ? (
+							<div className="bg-green-50 border border-green-300 text-green-700 p-6 rounded-md shadow-sm">
+								<h2 className="text-2xl font-semibold mb-2">
+									Thank you for reaching out!
+								</h2>
+								<p>
+									Your corporate partnership inquiry has been
+									submitted successfully. We&apos;ll get back
+									to you shortly.
+								</p>
+							</div>
+						) : (
+							<form onSubmit={form.onSubmit(handleSubmit)}>
+								<Stack gap="lg">
+									<Grid gutter="md">
+										<Grid.Col span={{ base: 12, md: 6 }}>
+											<TextInput
+												label="Full Name"
+												placeholder="John Doe"
+												withAsterisk
+												required
+												{...form.getInputProps("name")}
+											/>
+										</Grid.Col>
+										<Grid.Col span={{ base: 12, md: 6 }}>
+											<TextInput
+												label="Email"
+												type="email"
+												placeholder="john@company.com"
+												withAsterisk
+												required
+												{...form.getInputProps("email")}
+											/>
+										</Grid.Col>
+									</Grid>
 
-						<div className="flex flex-col md:flex-row gap-4">
-							<input
-								placeholder="Phone Number*"
-								type="tel"
-								className="flex-1 p-3 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-								{...form.getInputProps("number")}
-							/>
-							<input
-								placeholder="Location*"
-								className="flex-1 p-3 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-								{...form.getInputProps("location")}
-							/>
-						</div>
-						<input
-							placeholder="Subject*"
-							className="flex-1 p-3 w-full border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-							{...form.getInputProps("subject")}
-						/>
-						<textarea
-							rows={6}
-							placeholder="Message*"
-							className="w-full p-3 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
-							{...form.getInputProps("message")}
-						/>
+									<Grid gutter="md">
+										<Grid.Col span={{ base: 12, md: 6 }}>
+											<TextInput
+												label="Organization Name"
+												placeholder="Company Inc."
+												withAsterisk
+												required
+												{...form.getInputProps(
+													"organization",
+												)}
+											/>
+										</Grid.Col>
+										<Grid.Col span={{ base: 12, md: 6 }}>
+											<TextInput
+												label="Organization Website"
+												placeholder="https://example.com"
+												{...form.getInputProps(
+													"website",
+												)}
+											/>
+										</Grid.Col>
+									</Grid>
 
-						{/* Validation Errors */}
-						{status === "error" && (
-							<p className="text-red-500 text-sm">
-								{errorMessage}
-							</p>
+									<TextInput
+										label="Subject"
+										placeholder="Partnership Inquiry"
+										withAsterisk
+										required
+										{...form.getInputProps("subject")}
+									/>
+
+									<Textarea
+										label="Message"
+										placeholder="Tell us more about your proposal or inquiry..."
+										withAsterisk
+										minRows={6}
+										autosize
+										required
+										{...form.getInputProps("message")}
+									/>
+
+									<Group justify="flex-end">
+										<Button
+											type="submit"
+											loading={loading}
+											className="bg-blue-500 hover:bg-blue-600 transition rounded-full"
+										>
+											Submit
+										</Button>
+									</Group>
+								</Stack>
+							</form>
 						)}
-						{status === "success" && (
-							<p className="text-green-600 text-sm">
-								Your message has been sent successfully.
-							</p>
-						)}
-
-						<button
-							type="submit"
-							disabled={status === "submitting"}
-							className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition disabled:opacity-50"
-						>
-							{status === "submitting"
-								? "Submitting..."
-								: "Submit"}
-						</button>
 					</div>
 				</div>
-			</form>
+			</div>
 		</section>
 	);
 }
