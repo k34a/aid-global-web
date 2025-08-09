@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { questionqa100 } from "@/config/faqquestions";
 
-function Coins() {
+function Question100() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
 	const toggleItem = (index: number) => {
@@ -86,4 +86,4 @@ function Coins() {
 	);
 }
 
-export default Coins;
+export default Question100;
