@@ -1,5 +1,3 @@
-// pages/404.tsx
-
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
 import { Button, Container, Group, Stack, Text, Title } from "@mantine/core";
