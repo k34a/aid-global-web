@@ -170,14 +170,6 @@ export default function RecurringDonationForm() {
 									week&quot;
 								</p>
 							</div>
-							<div className="mt-6 text-center">
-								<Link
-									href="/recurring-donations/faq"
-									className="text-blue-600 text-lg md:text-xl font-semibold hover:underline hover:text-blue-800 transition"
-								>
-									Any queries &rarr;
-								</Link>
-							</div>
 						</div>
 					</div>
 				</div>

@@ -2,6 +2,7 @@ import IntroCarousel from "@/components/recurring-donations/1rupee/intro-carouse
 import Intro from "@/components/recurring-donations/1rupee/intro";
 import CallToAction from "@/components/recurring-donations/1rupee/call-to-action";
 import Register from "@/components/recurring-donations/1rupee/register";
+import Onerupeefaq from "@/components/recurring-donations/1rupee/faq";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function OneRupeeDonation() {
 
 			<CallToAction />
 			<Register />
+			<Onerupeefaq />
 		</main>
 	);
 }

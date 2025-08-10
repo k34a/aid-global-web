@@ -14,15 +14,6 @@ export default function Register() {
 						footer={<RegistrationInfo />}
 						submitButton={"Join The Rs. 1 Club - Rs. 1/day"}
 					/>
-
-					<div className="mt-6 text-center">
-						<Link
-							href="/recurring-donations/faq"
-							className="text-blue-600 text-lg md:text-xl font-semibold hover:underline hover:text-blue-800 transition"
-						>
-							Any queries ?
-						</Link>
-					</div>
 				</div>
 			</div>
 		</section>

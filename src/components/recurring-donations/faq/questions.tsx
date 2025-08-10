@@ -83,6 +83,17 @@ function Questions() {
 					</li>
 				))}
 			</ul>
+			<div className="flex items-center justify-center mt-6 mb-10">
+				<span className="text-gray-700 mr-3 text-base sm:text-lg">
+					My question is not here.
+				</span>
+				<a
+					href="/contact"
+					className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+				>
+					CONTACT US
+				</a>
+			</div>
 		</div>
 	);
 }
