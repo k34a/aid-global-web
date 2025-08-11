@@ -1,81 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
 import { listCampaigns } from "@/lib/db/campaigns";
-
-const ALLOWED_SORT_BY = new Set([
-	"created_at",
-	"amount",
-	"collection",
-	"backers",
-	"title",
-]);
+import { QuerySchema } from "./schema";
 
 export async function GET(req: NextRequest) {
 	try {
 		const { searchParams } = new URL(req.url);
 
-		const page = parseInt(searchParams.get("page") || "1", 10);
-		const pageSize = parseInt(searchParams.get("pageSize") || "12", 10);
-		const search = searchParams.get("search") || undefined;
-		const activeOnlyParam = searchParams.get("activeOnly");
-		const activeOnly =
-			activeOnlyParam === null
-				? true
-				: ["1", "true", "yes"].includes(activeOnlyParam.toLowerCase());
+		const rawParams = Object.fromEntries(searchParams.entries());
 
-		const sortByParam = searchParams.get("sortBy") || undefined;
-		const sortBy =
-			sortByParam && ALLOWED_SORT_BY.has(sortByParam)
-				? (sortByParam as any)
-				: ("created_at" as const);
+		const parsed = QuerySchema.safeParse(rawParams);
+		if (!parsed.success) {
+			return NextResponse.json(
+				{
+					error: "Invalid query parameters",
+					issues: parsed.error.issues.map((issue) => ({
+						path: issue.path.join("."),
+						message: issue.message,
+					})),
+				},
+				{ status: 400 },
+			);
+		}
 
-		const sortOrderParam = (
-			searchParams.get("sortOrder") || "desc"
-		).toLowerCase();
-		const sortOrder =
-			sortOrderParam === "asc" ? ("asc" as const) : ("desc" as const);
-
-		const num = (key: string) => {
-			const v = searchParams.get(key);
-			if (v === null) return undefined;
-			const n = Number(v);
-			return Number.isFinite(n) ? n : undefined;
-		};
-
-		const params = {
-			page,
-			pageSize,
-			search,
-			activeOnly,
-			minAmount: num("minAmount"),
-			maxAmount: num("maxAmount"),
-			minCollection: num("minCollection"),
-			maxCollection: num("maxCollection"),
-			minBackers: num("minBackers"),
-			maxBackers: num("maxBackers"),
-			sortBy,
-			sortOrder,
-		} as const;
+		const params = parsed.data;
 
 		const { items, total } = await listCampaigns(params);
 
 		const totalPages = Math.max(
 			1,
-			Math.ceil(total / Math.max(1, pageSize)),
+			Math.ceil(total / Math.max(1, params.pageSize)),
 		);
 
 		return NextResponse.json({
 			items,
 			total,
-			page,
-			pageSize,
+			page: params.page,
+			pageSize: params.pageSize,
 			totalPages,
-			hasNextPage: page < totalPages,
-			hasPrevPage: page > 1,
-			sortBy,
-			sortOrder,
+			hasNextPage: params.page < totalPages,
+			hasPrevPage: params.page > 1,
+			sortBy: params.sortBy,
+			sortOrder: params.sortOrder,
 			filters: {
-				search: search ?? null,
-				activeOnly,
+				search: params.search ?? null,
+				activeOnly: params.activeOnly,
 				minAmount: params.minAmount ?? null,
 				maxAmount: params.maxAmount ?? null,
 				minCollection: params.minCollection ?? null,
