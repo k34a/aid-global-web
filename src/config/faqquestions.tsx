@@ -85,14 +85,10 @@ export const questionqa: FAQItem[] = [
 		answer: (
 			<>
 				Visit{" "}
-				<Link
-					href={ngoDetails.url}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<Link href="/contact" target="_blank" rel="noopener noreferrer">
 					{ngoDetails.url}
 				</Link>{" "}
-				to sign up or learn more. For help, email{" "}
+				to learn more. For help, email{" "}
 				<Link href={`mailto:${ngoDetails.email}`}>
 					{ngoDetails.email}
 				</Link>{" "}
@@ -198,14 +194,10 @@ export const questionqa100: FAQItem[] = [
 		answer: (
 			<>
 				Visit{" "}
-				<Link
-					href={ngoDetails.url}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<Link href="/contact" target="_blank" rel="noopener noreferrer">
 					{ngoDetails.url}
 				</Link>{" "}
-				to sign up or learn more. For help, email{" "}
+				to learn more. For help, email{" "}
 				<Link href={`mailto:${ngoDetails.email}`}>
 					{ngoDetails.email}
 				</Link>{" "}

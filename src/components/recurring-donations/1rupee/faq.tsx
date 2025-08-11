@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "@/components/recurring-donations/faq/head";
 import Faq from "@/components/recurring-donations/faq/faq";
-import { questionqa } from "@/config/faqquestions.tsx"; // now faqquestions.tsx, but import stays the same
+import { questionqa } from "@/config/faqquestions.tsx";
 
 function Onerupeefaq() {
 	return (
