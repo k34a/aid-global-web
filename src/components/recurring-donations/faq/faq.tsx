@@ -31,18 +31,6 @@ function Faq({
 				Frequently Asked Questions
 			</h2>
 
-			<h2 className="text-blue-400 font-medium text-base sm:text-xl md:text-xl lg:text-2xl mt-5">
-				{subtitle}
-			</h2>
-
-			<p className="font-medium text-base sm:text-base md:text-md lg:text-lg mt-3 opacity-50 leading-relaxed">
-				{description}
-			</p>
-
-			<h2 className="text-blue-400 font-medium text-base sm:text-xl md:text-xl lg:text-2xl mt-5">
-				{faqTitle}
-			</h2>
-
 			<Accordion className="ml-1 sm:ml-2 md:ml-3 lg:ml-4 mt-3 mr-4 sm:mr-5 md:mr-5 lg:mr-6">
 				{faqItems.map((item, index) => (
 					<Accordion.Item key={index} value={item.question}>
