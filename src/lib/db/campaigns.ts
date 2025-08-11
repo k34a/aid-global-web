@@ -117,7 +117,7 @@ async function getPaginatedCampaigns(
 		.select("*")
 		.neq("id", DEFAULT_CAMPAIGN)
 		.order("created_at", { ascending: false })
-		.range(offset, offset + limit);
+		.range(offset, offset + limit - 1);
 	if (error) {
 		console.error("Error fetching articles:", error);
 		return [];
@@ -164,6 +164,80 @@ async function getAllCampaignsCount(): Promise<number> {
 	}
 
 	return (data as unknown as number) || 0;
+}
+
+interface ListCampaignsParams {
+	page: number;
+	pageSize: number;
+	search?: string;
+	activeOnly: boolean;
+	minAmount?: number;
+	maxAmount?: number;
+	minCollection?: number;
+	maxCollection?: number;
+	minBackers?: number;
+	maxBackers?: number;
+	sortBy: "created_at" | "amount" | "collection" | "backers" | "title";
+	sortOrder: "asc" | "desc";
+}
+
+export async function listCampaigns(params: ListCampaignsParams) {
+	const {
+		page,
+		pageSize,
+		search,
+		activeOnly,
+		minAmount,
+		maxAmount,
+		minCollection,
+		maxCollection,
+		minBackers,
+		maxBackers,
+		sortBy,
+		sortOrder,
+	} = params;
+
+	let query = supabaseAdmin
+		.from("campaigns")
+		.select("*", { count: "exact" })
+		.neq("id", DEFAULT_CAMPAIGN);
+
+	if (search) {
+		query = query.ilike("title", `%${search}%`);
+	}
+
+	if (activeOnly) {
+		query = query.or(
+			`ended_at.is.null,ended_at.gt.${new Date().toISOString()}`,
+		);
+	}
+
+	if (minAmount !== undefined) query = query.gte("amount", minAmount);
+	if (maxAmount !== undefined) query = query.lte("amount", maxAmount);
+	if (minCollection !== undefined)
+		query = query.gte("collection", minCollection);
+	if (maxCollection !== undefined)
+		query = query.lte("collection", maxCollection);
+	if (minBackers !== undefined) query = query.gte("backers", minBackers);
+	if (maxBackers !== undefined) query = query.lte("backers", maxBackers);
+
+	query = query.order(sortBy, { ascending: sortOrder === "asc" });
+
+	const from = (page - 1) * pageSize;
+	const to = from + pageSize - 1;
+	query = query.range(from, to);
+
+	const { data, error, count } = await query;
+
+	if (error) {
+		console.error("Error fetching campaigns:", error);
+		return { items: [], total: 0 };
+	}
+
+	return {
+		items: data || [],
+		total: count || 0,
+	};
 }
 
 export {
