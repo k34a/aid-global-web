@@ -1,6 +1,7 @@
 "use client";
 import { Accordion } from "@mantine/core";
 import React from "react";
+import Link from "next/link";
 import { ngoDetails } from "@/config/config";
 
 interface FaqItem {
@@ -14,7 +15,6 @@ interface FaqProps {
 	description: string;
 	faqTitle: string;
 	faqItems: FaqItem[];
-	contactUrl: string;
 	showContactCard?: boolean;
 }
 
@@ -23,7 +23,6 @@ function Faq({
 	description,
 	faqTitle,
 	faqItems,
-	contactUrl,
 	showContactCard = false,
 }: FaqProps) {
 	return (
@@ -54,31 +53,31 @@ function Faq({
 							{item.type === "contact" ? (
 								<>
 									Visit{" "}
-									<a
-										href={contactUrl}
+									<Link
+										href="/contact"
+										className="text-blue-500 underline"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-blue-500 underline"
 									>
-										{contactUrl.replace("https://", "")}
-									</a>{" "}
+										Contact Us
+									</Link>{" "}
 									to sign up or learn more.
 									<br />
 									Email:{" "}
-									<a
+									<Link
 										href={`mailto:${ngoDetails.contact.email}`}
 										className="text-blue-500 underline"
 									>
 										{ngoDetails.contact.email}
-									</a>
+									</Link>
 									<br />
 									Phone:{" "}
-									<a
+									<Link
 										href={`tel:${ngoDetails.contact.phone}`}
 										className="text-blue-500 underline"
 									>
 										{ngoDetails.contact.phone}
-									</a>
+									</Link>
 								</>
 							) : (
 								item.answer
@@ -98,21 +97,21 @@ function Faq({
 					</p>
 					<p className="mb-2">
 						Email:{" "}
-						<a
+						<Link
 							href={`mailto:${ngoDetails.contact.email}`}
 							className="text-blue-500 underline"
 						>
 							{ngoDetails.contact.email}
-						</a>
+						</Link>
 					</p>
 					<p>
 						Phone:{" "}
-						<a
+						<Link
 							href={`tel:${ngoDetails.contact.phone}`}
 							className="text-blue-500 underline"
 						>
 							{ngoDetails.contact.phone}
-						</a>
+						</Link>
 					</p>
 				</div>
 			)}
@@ -121,12 +120,12 @@ function Faq({
 				<span className="text-gray-700 mr-3 text-base sm:text-lg">
 					My question is not here.
 				</span>
-				<a
+				<Link
 					href="/contact"
 					className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
 				>
 					CONTACT US
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

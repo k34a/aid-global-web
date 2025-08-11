@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "@/components/recurring-donations/faq/head";
-import { questionqa100 } from "@/config/faqquestions";
+import { questionqa100 } from "@/config/faqquestions.tsx";
 import Faq from "@/components/recurring-donations/faq/faq";
 function Hundredrupeefaq() {
 	return (
