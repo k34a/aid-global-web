@@ -1,6 +1,7 @@
+import Image from "@/components/image";
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
-import { ngoDetails } from "@/config/config";
+import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	Button,
 	Container,
@@ -23,9 +24,11 @@ export default function Custom404() {
 					<Stack gap="xl">
 						{/* SVG Illustration */}
 						<div className="w-full max-w-sm mx-auto">
-							<img
-								src="/receipt-not-found.svg"
+							<Image
+								src={`${STATIC_IMAGE_HOST}receipt-not-found.svg`}
 								alt="Receipt Not Found"
+								height={400}
+								width={400}
 								className="w-full h-auto"
 							/>
 						</div>
