@@ -33,6 +33,9 @@ import {
 import { onDonateButtonClick, RazorpayScript } from "@/components/donate";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
 import toast from "react-hot-toast";
+import FaqSection from "@/components/donate/faq-section";
+import { z } from "zod";
+import { useSearchParams } from "next/navigation";
 
 interface DonationFormData {
 	name: string;
@@ -49,6 +52,24 @@ interface DonationFormData {
 const PRESET_AMOUNTS = [100, 500, 1000, 2000, 5000];
 
 export default function DonatePage() {
+	const donateParamsSchema = z.object({
+		program: z.enum([
+			"shiksha-aid",
+			"enable-aid",
+			"cure-aid",
+			"sakhi-aid",
+			"vision-aid",
+			"ghar-aid",
+			"hunger-aid",
+		]),
+	});
+	const searchParams = useSearchParams();
+	const programRaw = searchParams.get("program");
+
+	const parsed = donateParamsSchema.safeParse({ program: programRaw });
+	const program = parsed.success ? parsed.data.program : "";
+	const [customProgram, setCustomProgram] = useState<string>(program || "");
+
 	const [isLoading, setIsLoading] = useState(false);
 	const [selectedAmount, setSelectedAmount] = useState<number | "custom">(
 		500,
@@ -66,7 +87,7 @@ export default function DonatePage() {
 			amount: 500,
 			pan_number: "",
 			address: "",
-			notes: "",
+			notes: program || "",
 			is_anonymous: false,
 			tax_exemption: false,
 		},
@@ -656,6 +677,7 @@ export default function DonatePage() {
 					</SimpleGrid>
 				</Box>
 			</Container>
+			<FaqSection />
 		</Box>
 	);
 }
