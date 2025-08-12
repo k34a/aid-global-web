@@ -3,7 +3,9 @@ import HeroSection from "@/components/recurring-donations/100rupee/hero-section"
 import BenefitsSection from "@/components/recurring-donations/100rupee/benefits-section";
 import ImpactSection from "@/components/recurring-donations/100rupee/impact-section";
 import SubscriptionForm from "@/components/recurring-donations/100rupee/donation-form";
-import Hundredrupeefaq from "@/components/recurring-donations/100rupee/faq";
+import FAQ from "@/components/faq";
+import { hundredRupeeFaqs } from "@/config/faqs";
+
 export const metadata: Metadata = {
 	title: "The 100 Club - Big Hearts. Bigger Impact.",
 	description:
@@ -17,7 +19,7 @@ export default function HundredRupeeClub() {
 			<ImpactSection />
 			<BenefitsSection />
 			<SubscriptionForm />
-			<Hundredrupeefaq />
+			<FAQ items={hundredRupeeFaqs} />
 		</main>
 	);
 }

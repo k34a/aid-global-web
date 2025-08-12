@@ -1,13 +1,7 @@
-import { ReactNode } from "react";
 import Link from "next/link";
-import { ngoDetails } from "@/config/config";
-interface FAQItem {
-	question: string;
-	answer: ReactNode;
-	type?: string;
-}
+import type { FaqItem } from "@/components/faq";
 
-export const questionqa: FAQItem[] = [
+export const oneRupeeFaqs: FaqItem[] = [
 	{
 		question: "What is the Rs.1 Warrior movement?",
 		answer: (
@@ -34,15 +28,27 @@ export const questionqa: FAQItem[] = [
 			<>
 				Your contribution supports seven core programs of Aid Global
 				Foundation:
-				<ul>
-					<li>ShikshaAid - Education support and supplies</li>
-					<li>HungerAid - Meals and ration kits</li>
-					<li>EnableAid - Help for persons with disabilities</li>
-					<li>CureAid - Medical aid and health access</li>
-					<li>VisionAid - Eye care and treatments</li>
-					<li>GharAid - Shelter, clothing, and hygiene kits</li>
+				<ul className="list-disc list-inside">
 					<li>
-						SakhiAid - Women&apos;s dignity and empowerment
+						<b>ShikshaAid</b> - Education support and supplies
+					</li>
+					<li>
+						<b>HungerAid</b> - Meals and ration kits
+					</li>
+					<li>
+						<b>EnableAid</b> - Help for persons with disabilities
+					</li>
+					<li>
+						<b>CureAid</b> - Medical aid and health access
+					</li>
+					<li>
+						<b>VisionAid</b> - Eye care and treatments
+					</li>
+					<li>
+						<b>GharAid</b> - Shelter, clothing, and hygiene kits
+					</li>
+					<li>
+						<b>SakhiAid</b> - Women&apos;s dignity and empowerment
 						initiatives
 					</li>
 				</ul>
@@ -50,12 +56,21 @@ export const questionqa: FAQItem[] = [
 		),
 	},
 	{
-		question: "Can I set this up as a recurring donation?",
+		question: "Why do I see Rs. 7 when trying to subscribe?",
 		answer: (
 			<>
-				Absolutely. Choose a recurring plan like Rs.1/day or Rs.7/week,
-				and your contribution becomes an ongoing commitment to change.
-				It&apos;s automatic, impactful, and effortless.
+				We process all our donations via{" "}
+				<Link
+					href="https://www.razorpay.com"
+					target="_blank"
+					rel="noreferrer noopener"
+					className="text-sky-700 hover:text-sky-600 hover:underline"
+				>
+					Razorpay
+				</Link>{" "}
+				for ensuring safety and security of our donors. Razorpay only
+				supports billing on a weekly basis - so you donate an equivalent
+				Rs. 7 every week.
 			</>
 		),
 	},
@@ -84,24 +99,20 @@ export const questionqa: FAQItem[] = [
 		question: "How can I get more info or support?",
 		answer: (
 			<>
-				Visit{" "}
-				<Link href="/contact" target="_blank" rel="noopener noreferrer">
-					{ngoDetails.url}
-				</Link>{" "}
-				to learn more. For help, email{" "}
-				<Link href={`mailto:${ngoDetails.email}`}>
-					{ngoDetails.email}
-				</Link>{" "}
-				or call{" "}
-				<Link href={`tel:${ngoDetails.phone}`}>{ngoDetails.phone}</Link>
-				.
+				In case you need more info on this program, feel free to reach
+				out to us
+				<Link
+					href="/contact"
+					className="py-1 px-2 border-sky-400 border-2 rounded-sm ml-2 hover:bg-sky-400"
+				>
+					Contact us
+				</Link>
 			</>
 		),
-		type: "contact",
 	},
 ];
 
-export const questionqa100: FAQItem[] = [
+export const hundredRupeeFaqs: FaqItem[] = [
 	{
 		question: "What is Rs.100 Club?",
 		answer: (
@@ -193,19 +204,15 @@ export const questionqa100: FAQItem[] = [
 		question: "How can I get more info or support?",
 		answer: (
 			<>
-				Visit{" "}
-				<Link href="/contact" target="_blank" rel="noopener noreferrer">
-					{ngoDetails.url}
-				</Link>{" "}
-				to learn more. For help, email{" "}
-				<Link href={`mailto:${ngoDetails.email}`}>
-					{ngoDetails.email}
-				</Link>{" "}
-				or call{" "}
-				<Link href={`tel:${ngoDetails.phone}`}>{ngoDetails.phone}</Link>
-				.
+				In case you need more info on this program, feel free to reach
+				out to us
+				<Link
+					href="/contact"
+					className="py-1 px-2 border-sky-400 border-2 rounded-sm ml-2 hover:bg-sky-400"
+				>
+					Contact us
+				</Link>
 			</>
 		),
-		type: "contact",
 	},
 ];

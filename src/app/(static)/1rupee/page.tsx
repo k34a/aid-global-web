@@ -2,8 +2,9 @@ import IntroCarousel from "@/components/recurring-donations/1rupee/intro-carouse
 import Intro from "@/components/recurring-donations/1rupee/intro";
 import CallToAction from "@/components/recurring-donations/1rupee/call-to-action";
 import Register from "@/components/recurring-donations/1rupee/register";
-import Onerupeefaq from "@/components/recurring-donations/1rupee/faq";
 import type { Metadata } from "next";
+import FAQ from "@/components/faq";
+import { oneRupeeFaqs } from "@/config/faqs";
 
 export const metadata: Metadata = {
 	title: "One Rupee Donation",
@@ -14,10 +15,9 @@ export default function OneRupeeDonation() {
 		<main>
 			<IntroCarousel />
 			<Intro />
-
 			<CallToAction />
 			<Register />
-			<Onerupeefaq />
+			<FAQ items={oneRupeeFaqs} />
 		</main>
 	);
 }
