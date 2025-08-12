@@ -1,7 +1,6 @@
 import RegistrationHeader from "./registration-header";
 import RegistrationInfo from "./registration-info";
-import SubscriptionForm from "../form";
-import Link from "next/link";
+import SubscriptionForm from "@/components/recurring-donations/form";
 
 export default function Register() {
 	return (

@@ -3,7 +3,6 @@ import { IndianRupee, Check, Info, Shield } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
 import SubscriptionForm from "@/components/recurring-donations/form";
-import Link from "next/link";
 
 export default function RecurringDonationForm() {
 	return (
