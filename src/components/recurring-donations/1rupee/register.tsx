@@ -1,6 +1,6 @@
 import RegistrationHeader from "./registration-header";
 import RegistrationInfo from "./registration-info";
-import SubscriptionForm from "../form";
+import SubscriptionForm from "@/components/recurring-donations/form";
 
 export default function Register() {
 	return (
@@ -11,9 +11,7 @@ export default function Register() {
 					<SubscriptionForm
 						plan_id="29c7e0b7-7edf-4db5-95e2-977793672cee"
 						footer={<RegistrationInfo />}
-						submitButton={
-							"Join The \u20B9 1 Club \u2013 \u20B9 1/day"
-						}
+						submitButton={"Join The Rs. 1 Club - Rs. 1/day"}
 					/>
 				</div>
 			</div>
