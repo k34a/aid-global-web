@@ -5,8 +5,10 @@ export default async function SubscriberCounter() {
 		"29c7e0b7-7edf-4db5-95e2-977793672cee",
 	);
 
-	// Convert number to array of digits for display
-	const digits = res.toString().padStart(3, "0").split("");
+	const digits =
+		typeof res === "number" && !isNaN(res)
+			? res.toString().padStart(3, "0").split("")
+			: "100".split("");
 
 	return (
 		<section className="py-16 px-4 bg-gray-100">
@@ -34,9 +36,9 @@ export default async function SubscriberCounter() {
 
 				{/* Description */}
 				<p className="text-xl md:text-2xl lg:text-2xl font-bold text-blue-500 leading-relaxed font-sans">
-					Thousands of changemakers are already on board. Every
-					transaction will spark a wave of hope, turning generosity
-					into unstoppable global impact.
+					Changemakers are already on board. Every transaction will
+					spark a wave of hope, turning generosity into unstoppable
+					global impact.
 				</p>
 			</div>
 		</section>
