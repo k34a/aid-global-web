@@ -8,6 +8,7 @@ import { NotepadText } from "lucide-react";
 import { LockKeyhole } from "lucide-react";
 import { partners } from "@/config/partners";
 import CorporatePartners from "./corporate-partners";
+import ContactForm from "./contact-form";
 const bannerTop = `${STATIC_IMAGE_HOST}partners/banner-top.webp`;
 const bannerMiddle = `${STATIC_IMAGE_HOST}partners/banner-middle.webp`;
 const bannerBottom = `${STATIC_IMAGE_HOST}partners/banner-bottom.webp`;
@@ -275,6 +276,8 @@ function Partners() {
 				alt="bottom-banner"
 				className="w-full object-cover"
 			/>
+
+			<ContactForm />
 
 			<div className="flex flex-col sm:flex-row justify-center gap-6 py-10 px-4 text-sm text-zinc-600">
 				<div className="flex gap-2 items-start">

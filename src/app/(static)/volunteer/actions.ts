@@ -4,10 +4,54 @@ import { volunteerSchema } from "@/lib/db/volunteers/schema";
 import { createVolunteer } from "@/lib/db/volunteers/server";
 import { z } from "zod";
 
-export async function submitVolunteer(data: unknown) {
+import { escape } from "html-escaper";
+import { VolunteerData } from "@/lib/db/volunteers/schema";
+import { sendTelegramMessage } from "@/lib/telegram";
+
+async function notifyAdminsVolunteer(data: VolunteerData) {
+	try {
+		const {
+			first_name,
+			last_name,
+			email,
+			phone,
+			address,
+			city,
+			state,
+			zipcode,
+			volunteer_areas,
+			availability,
+			skills,
+			experience,
+		} = data;
+
+		const telegramText = `
+<b>New Volunteer Application Received</b>
+<b>Name:</b> ${escape(first_name)} ${escape(last_name)}
+<b>Email:</b> ${escape(email)}
+<b>Phone:</b> ${escape(phone)}
+<b>Location:</b> ${escape(address)}, ${escape(city)}, ${escape(state)} - ${escape(zipcode)}
+<b>Areas of Interest:</b> ${escape(volunteer_areas.join(", "))}
+<b>Availability:</b> ${escape(availability.join(", "))}
+<b>Skills:</b> ${escape(skills?.join(", ") || "N/A")}
+<b>Experience:</b> ${escape(experience || "N/A")}
+		`.trim();
+
+		await sendTelegramMessage(telegramText);
+	} catch (error) {
+		console.error(
+			"Failed to notify admin of volunteer application:",
+			error,
+		);
+	}
+}
+
+export async function submitVolunteer(data: z.infer<typeof volunteerSchema>) {
 	try {
 		const validatedData = volunteerSchema.parse(data);
 		const volunteer = await createVolunteer(validatedData);
+
+		await notifyAdminsVolunteer(validatedData);
 
 		return {
 			success: true,
