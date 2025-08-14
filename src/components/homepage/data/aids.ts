@@ -4,7 +4,7 @@ export const aids = [
 	{
 		id: 1,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
-		title: "Shiksha Aid",
+		title: "ShikshaAid",
 		desc: "Access to education for underpriviliged children. Partner with Aid Global Foundation to provide quality education and resources to children in need.",
 		button: "Read More",
 		link: "/shiksha-aid",
@@ -12,7 +12,7 @@ export const aids = [
 	{
 		id: 2,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/enable.webp`,
-		title: "Enable Aid",
+		title: "EnableAid",
 		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
 		button: "Read More",
 		link: "/enable-aid",
@@ -20,7 +20,7 @@ export const aids = [
 	{
 		id: 3,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
-		title: "Cure Aid",
+		title: "CureAid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
 		button: "Read More",
 		link: "/cure-aid",
@@ -28,7 +28,7 @@ export const aids = [
 	{
 		id: 4,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
-		title: "Vision Aid",
+		title: "VisionAid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
 		button: "Read More",
 		link: "/vision-aid",
@@ -36,7 +36,7 @@ export const aids = [
 	{
 		id: 5,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar.webp`,
-		title: "Ghar Aid",
+		title: "GharAid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
 		button: "Read More",
 		link: "/ghar-aid",
@@ -44,7 +44,7 @@ export const aids = [
 	{
 		id: 6,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
-		title: "Sakhi Aid",
+		title: "SakhiAid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Read More",
 		link: "/sakhi-aid",
@@ -52,7 +52,7 @@ export const aids = [
 	{
 		id: 7,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/intro.webp`,
-		title: "Hunger Aid",
+		title: "HungerAid",
 		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
 		button: "Read More",
 		link: "/hunger-aid",

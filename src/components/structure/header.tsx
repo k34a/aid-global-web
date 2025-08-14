@@ -102,13 +102,16 @@ export default function HeaderMegaMenu() {
 						Donate
 					</Link>
 				</Group>
-
-				<Burger
-					opened={drawerOpened}
-					onClick={toggleDrawer}
-					hiddenFrom="lg"
-					size="sm"
-				/>
+				<Group hiddenFrom="lg" gap="md">
+					<Link href="/" className={classes.linkButton}>
+						Home
+					</Link>
+					<Burger
+						opened={drawerOpened}
+						onClick={toggleDrawer}
+						size="sm"
+					/>
+				</Group>
 			</header>
 
 			<Drawer
