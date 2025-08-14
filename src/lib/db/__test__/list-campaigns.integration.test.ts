@@ -189,6 +189,388 @@ describe("listCampaigns using a fake Supabase client", () => {
 		}));
 	});
 
+	test("activeOnly=false includes expired campaigns and preserves sorting", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: false,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.total).toBe(5);
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"d2",
+			"d1",
+			"b1",
+			"a1",
+			"c1",
+		]);
+	});
+
+	test("search is case-insensitive and matches substrings", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 10,
+			search: "ABC",
+			activeOnly: true,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.total).toBe(2);
+		expect(res.items.map((i: any) => i.id)).toEqual(["d2", "d1"]);
+	});
+
+	// One filter at a time
+	test("filter: minAmount only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			minAmount: 18,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d2", "b1", "a1"]);
+	});
+
+	test("filter: maxAmount only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			maxAmount: 15,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d1"]);
+	});
+
+	test("filter: minCollection only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			minCollection: 6,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d2", "a1"]);
+	});
+
+	test("filter: maxCollection only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			maxCollection: 5,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d1", "b1"]);
+	});
+
+	test("filter: minBackers only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			minBackers: 5,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d2", "a1"]);
+	});
+
+	test("filter: maxBackers only", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			maxBackers: 3,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["d1", "b1"]);
+	});
+
+	test("filter: boundary amount where min==max", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			minAmount: 20,
+			maxAmount: 20,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual(["b1"]);
+	});
+
+	// Sorting by various fields
+	test("sort: amount asc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "amount",
+			sortOrder: "asc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"d1",
+			"d2",
+			"b1",
+			"a1",
+		]);
+	});
+
+	test("sort: amount desc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "amount",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"a1",
+			"b1",
+			"d2",
+			"d1",
+		]);
+	});
+
+	test("sort: collection asc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "collection",
+			sortOrder: "asc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"b1",
+			"d1",
+			"d2",
+			"a1",
+		]);
+	});
+
+	test("sort: collection desc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "collection",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"a1",
+			"d2",
+			"b1",
+			"d1",
+		]);
+	});
+
+	test("sort: backers asc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "backers",
+			sortOrder: "asc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"b1",
+			"d1",
+			"d2",
+			"a1",
+		]);
+	});
+
+	test("sort: backers desc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "backers",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"a1",
+			"d2",
+			"d1",
+			"b1",
+		]);
+	});
+
+	test("sort: title asc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "title",
+			sortOrder: "asc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"d2",
+			"a1",
+			"d1",
+			"b1",
+		]);
+	});
+
+	test("sort: title desc", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 50,
+			activeOnly: true,
+			sortBy: "title",
+			sortOrder: "desc",
+		});
+		expect(res.items.map((i: any) => i.id)).toEqual([
+			"b1",
+			"d1",
+			"a1",
+			"d2",
+		]);
+	});
+
+	test("activeOnly boundary: ended_at exactly now is not active", async () => {
+		const nowIso = new Date().toISOString();
+		const boundaryDataset = [
+			{
+				id: "x_eq",
+				title: "Equal Now",
+				amount: 1,
+				collection: 1,
+				backers: 1,
+				created_at: nowIso,
+				ended_at: nowIso,
+			},
+			{
+				id: "x_gt",
+				title: "Future",
+				amount: 1,
+				collection: 1,
+				backers: 1,
+				created_at: nowIso,
+				ended_at: new Date(Date.now() + 1000).toISOString(),
+			},
+			{
+				id: "x_null",
+				title: "No End",
+				amount: 1,
+				collection: 1,
+				backers: 1,
+				created_at: nowIso,
+				ended_at: null,
+			},
+		];
+
+		const fromMock = (supabaseAdmin as any).from as jest.Mock;
+		fromMock.mockImplementationOnce(() => ({
+			select: () => new FakeQuery(boundaryDataset),
+		}));
+
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 10,
+			activeOnly: true,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.items.map((i: any) => i.id)).toEqual(
+			expect.arrayContaining(["x_gt", "x_null"]),
+		);
+		expect(res.items.map((i: any) => i.id)).not.toContain("x_eq");
+	});
+
+	test("error from backend yields empty items and total 0", async () => {
+		const fromMock = (supabaseAdmin as any).from as jest.Mock;
+		fromMock.mockImplementationOnce(() => ({
+			select: () => {
+				const failingQuery: any = {};
+				failingQuery.neq = () => failingQuery;
+				failingQuery.ilike = () => failingQuery;
+				failingQuery.or = () => failingQuery;
+				failingQuery.gte = () => failingQuery;
+				failingQuery.lte = () => failingQuery;
+				failingQuery.order = () => failingQuery;
+				failingQuery.range = () => ({
+					then: (resolve: any) =>
+						resolve({
+							data: null,
+							error: { message: "boom" },
+							count: 0,
+						}),
+				});
+				return failingQuery;
+			},
+		}));
+
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 10,
+			activeOnly: true,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.total).toBe(0);
+		expect(res.items).toEqual([]);
+	});
+
+	test("DEFAULT_CAMPAIGN is always excluded", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 100,
+			activeOnly: false,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+		expect(
+			res.items.find((i: any) => i.id === DEFAULT_CAMPAIGN),
+		).toBeUndefined();
+	});
+
+	test("hybrid filters: contradictory constraints yield zero results", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 10,
+			activeOnly: true,
+			search: "abc",
+			minBackers: 100,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.total).toBe(0);
+		expect(res.items).toEqual([]);
+	});
+
+	test("hybrid filters: combined constraints yield expected subset", async () => {
+		const res = await listCampaigns({
+			page: 1,
+			pageSize: 10,
+			activeOnly: true,
+			search: "a",
+			minAmount: 15,
+			maxAmount: 20,
+			minBackers: 5,
+			maxBackers: 10,
+			minCollection: 6,
+			maxCollection: 6,
+			sortBy: "created_at",
+			sortOrder: "desc",
+		});
+
+		expect(res.total).toBe(1);
+		expect(res.items.map((i: any) => i.id)).toEqual(["d2"]);
+	});
+
 	test("defaults: activeOnly + created_at desc + full page range", async () => {
 		const res = await listCampaigns({
 			page: 1,
