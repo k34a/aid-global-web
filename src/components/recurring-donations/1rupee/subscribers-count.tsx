@@ -1,14 +1,27 @@
 import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
 
-export default async function SubscriberCounter() {
-	const res = await getNumberOfSubscribers(
-		"29c7e0b7-7edf-4db5-95e2-977793672cee",
-	);
+type SubscriberCounterProps = {
+	subscriptionId: string;
+	subscriptionName: React.ReactNode;
+};
+
+export default async function SubscriberCounter({
+	subscriptionId,
+	subscriptionName,
+}: SubscriberCounterProps) {
+	let res: number | null = null;
+
+	try {
+		res = await getNumberOfSubscribers(subscriptionId);
+	} catch (err) {
+		console.error("Failed to fetch subscriber count:", err);
+		res = null;
+	}
 
 	const digits =
 		typeof res === "number" && !isNaN(res)
 			? res.toString().padStart(3, "0").split("")
-			: "100".split("");
+			: "005".split("");
 
 	return (
 		<section className="py-16 px-4 bg-gray-100">
@@ -17,7 +30,7 @@ export default async function SubscriberCounter() {
 				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2563eb] mb-12 font-serif">
 					Become a part of the
 					<br />
-					&#8377;1 movement
+					&#8377;{subscriptionName} movement
 				</h2>
 
 				{/* Number Cards */}
