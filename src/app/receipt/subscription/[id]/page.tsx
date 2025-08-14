@@ -2,6 +2,7 @@ import { doesSubscriptionExist } from "@/lib/db/donation";
 import SubscriptionReceipt from "@/components/receipt/subscription";
 import { notFound } from "next/navigation";
 import { z } from "zod/v4";
+import ShareModal from "@/components/receipt/subscription/sharemodal";
 
 type PageProps = {
 	params: Promise<{ id: string }>;
@@ -18,5 +19,10 @@ export default async function DonationStatusPage({ params }: PageProps) {
 		notFound();
 	}
 
-	return <SubscriptionReceipt id={(await params).id} />;
+	return (
+		<>
+			<SubscriptionReceipt id={(await params).id} />
+			<ShareModal />
+		</>
+	);
 }
