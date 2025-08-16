@@ -51,7 +51,7 @@ export default function Introsection() {
 				<div className="flex items-center justify-center">
 					<Image
 						src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha1.webp`}
-						alt="Shiksha Aid Center"
+						alt="ShikshaAid Center"
 						width={300}
 						height={500}
 						className="w-[350px] h-[400px] object-cover rounded-tr-[6rem] rounded-bl-[6rem] rounded-tl-sm rounded-br-sm shadow-lg transition-transform duration-300 hover:scale-105"

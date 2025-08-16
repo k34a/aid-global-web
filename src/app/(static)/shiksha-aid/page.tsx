@@ -10,7 +10,7 @@ import Visionsection from "@/components/aids/shiksha-aid/visionsection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Shiksha Aid",
+	title: "ShikshaAid",
 };
 
 export default function ShikshaAid() {

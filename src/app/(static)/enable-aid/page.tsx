@@ -5,7 +5,7 @@ import JoinUsSection from "@/components/aids/enable-aid/join-us";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Enable Aid",
+	title: "EnableAid",
 };
 
 export default function EnableAidPage() {
