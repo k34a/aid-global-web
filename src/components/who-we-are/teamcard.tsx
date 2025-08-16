@@ -14,16 +14,21 @@ export default function TeamCard({
 	linkedinUrl,
 }: TeamCardProps) {
 	return (
-		<li className="text-center border p-4 rounded-lg bg-amber-100 w-[90%] max-w-xs mx-auto sm:w-60">
-			<Image
-				src={imageSrc}
-				alt={`${name} profile`}
-				width={180}
-				height={180}
-				className="mx-auto rounded-full"
-			/>
+		<li className="text-center border p-4 rounded-lg bg-amber-100 w-[90%] max-w-xs mx-auto sm:w-60 flex flex-col items-center">
+			{/* Fixed-size image wrapper */}
+			<div className="w-40 h-40 mx-auto rounded-full overflow-hidden">
+				<Image
+					src={imageSrc}
+					alt={`${name} profile`}
+					width={160}
+					height={160}
+					className="w-full h-full object-cover"
+				/>
+			</div>
+
 			<h3 className="mt-3 font-semibold">{name}</h3>
 			<p className="text-indigo-600">{role}</p>
+
 			<a
 				href={linkedinUrl}
 				target="_blank"

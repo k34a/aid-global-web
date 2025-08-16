@@ -11,6 +11,14 @@ export const aids = [
 	},
 	{
 		id: 2,
+		image: `${STATIC_IMAGE_HOST}home-page/aids/intro.webp`,
+		title: "HungerAid",
+		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
+		button: "Read More",
+		link: "/hunger-aid",
+	},
+	{
+		id: 3,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/enable.webp`,
 		title: "EnableAid",
 		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
@@ -18,7 +26,7 @@ export const aids = [
 		link: "/enable-aid",
 	},
 	{
-		id: 3,
+		id: 4,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
 		title: "CureAid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
@@ -26,7 +34,7 @@ export const aids = [
 		link: "/cure-aid",
 	},
 	{
-		id: 4,
+		id: 5,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
 		title: "VisionAid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
@@ -34,7 +42,7 @@ export const aids = [
 		link: "/vision-aid",
 	},
 	{
-		id: 5,
+		id: 6,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar.webp`,
 		title: "GharAid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
@@ -42,19 +50,11 @@ export const aids = [
 		link: "/ghar-aid",
 	},
 	{
-		id: 6,
+		id: 7,
 		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
 		title: "SakhiAid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Read More",
 		link: "/sakhi-aid",
-	},
-	{
-		id: 7,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/intro.webp`,
-		title: "HungerAid",
-		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
-		button: "Read More",
-		link: "/hunger-aid",
 	},
 ];

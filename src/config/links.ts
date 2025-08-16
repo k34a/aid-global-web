@@ -1,13 +1,13 @@
 import type { Links, NavigationLink } from "@/config/types";
 
 export const programLinks: NavigationLink[] = [
-	{ name: "CureAid", href: "/cure-aid" },
-	{ name: "EnableAid", href: "/enable-aid" },
-	{ name: "GharAid", href: "/ghar-aid" },
-	{ name: "HungerAid", href: "/hunger-aid" },
-	{ name: "SakhiAid", href: "/sakhi-aid" },
 	{ name: "ShikshaAid", href: "/shiksha-aid" },
+	{ name: "HungerAid", href: "/hunger-aid" },
+	{ name: "EnableAid", href: "/enable-aid" },
+	{ name: "CureAid", href: "/cure-aid" },
 	{ name: "VisionAid", href: "/vision-aid" },
+	{ name: "GharAid", href: "/ghar-aid" },
+	{ name: "SakhiAid", href: "/sakhi-aid" },
 ];
 
 export const links: Links = {
