@@ -4,7 +4,7 @@ import { partners } from "@/components/homepage/data/partners";
 
 export default function PartnersSection() {
 	return (
-		<section className="relative font-inter antialiased bg-slate-900 py-16 sm:py-24 overflow-hidden">
+		<section className="relative font-inter antialiased bg-slate-900 py-16 sm:py-10 overflow-hidden">
 			<div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
 				<div className="text-center">
 					<h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">
