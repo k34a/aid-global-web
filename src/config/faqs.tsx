@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { FaqItem } from "@/components/faq";
+import { ngoDetails } from "./config";
 
 export const donationFaqs: FaqItem[] = [
 	{
@@ -82,9 +83,9 @@ export const donationFaqs: FaqItem[] = [
 		question: "Need Help or Have Questions?",
 		answer: (
 			<>
-				We&apos;re here to help! Phone: +91-02269719935 / +91-9373469754
-				| Email: donate@aidglobal.ngo. Available Monday-Friday, 10:00
-				AM-6:00 PM IST.
+				We&apos;re here to help! Phone: {ngoDetails.contact.phone}|
+				Email: {ngoDetails.contact.email}. Available Monday-Friday,
+				10:00 AM-6:00 PM IST.
 			</>
 		),
 	},
