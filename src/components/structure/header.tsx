@@ -21,6 +21,7 @@ import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
 import classes from "./header.module.css";
 import Image from "@/components/image";
+import { Heart } from "lucide-react";
 
 export default function HeaderMegaMenu() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -99,16 +100,24 @@ export default function HeaderMegaMenu() {
 						href={links.donateLink.href}
 						className={classes.donateButton}
 					>
-						Donate
+						<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+						<span>DONATE</span>
 					</Link>
 				</Group>
-
-				<Burger
-					opened={drawerOpened}
-					onClick={toggleDrawer}
-					hiddenFrom="lg"
-					size="sm"
-				/>
+				<Group hiddenFrom="lg" gap="md">
+					<Link
+						href={links.donateLink.href}
+						className={classes.donateButton}
+					>
+						<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+						<span>DONATE</span>
+					</Link>
+					<Burger
+						opened={drawerOpened}
+						onClick={toggleDrawer}
+						size="sm"
+					/>
+				</Group>
 			</header>
 
 			<Drawer

@@ -2,7 +2,7 @@ export default function WhatIsHungerAid() {
 	return (
 		<section className="max-w-3xl mx-auto px-2 sm:px-4 py-8 sm:py-12 md:py-16 text-slate-900">
 			<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-center">
-				What is Hunger Aid?
+				What is HungerAid?
 			</h2>
 			<p className="text-base sm:text-lg md:text-xl text-slate-700 mb-3 sm:mb-4 text-center">
 				Across our nation, millions go to sleep with an empty stomach -

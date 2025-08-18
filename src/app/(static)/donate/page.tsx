@@ -33,6 +33,8 @@ import {
 import { onDonateButtonClick, RazorpayScript } from "@/components/donate";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
 import toast from "react-hot-toast";
+import FAQ from "@/components/faq";
+import { donationFaqs } from "@/config/faqs";
 
 interface DonationFormData {
 	name: string;
@@ -656,6 +658,7 @@ export default function DonatePage() {
 					</SimpleGrid>
 				</Box>
 			</Container>
+			<FAQ items={donationFaqs} />
 		</Box>
 	);
 }

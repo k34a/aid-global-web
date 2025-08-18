@@ -57,7 +57,7 @@ const MissionSection = () => {
 								Total Fund Raised
 							</span>
 							<span className="text-sm sm:text-base">
-								10 Lakhs+
+								1 Lakh+
 							</span>
 						</div>
 					</div>
