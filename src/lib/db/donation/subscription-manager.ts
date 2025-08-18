@@ -310,3 +310,30 @@ export class SubscriptionManager {
 		}
 	}
 }
+
+export async function getNumberOfSubscribers(plan_id: string) {
+	const { count, error } = await supabaseAdmin
+		.from("subscriptions")
+		.select("*", { count: "exact", head: true })
+		.in("status", [
+			SubscriptionStatus.Pending,
+			SubscriptionStatus.Authenticated,
+			SubscriptionStatus.Active,
+			SubscriptionStatus.Complete,
+			SubscriptionStatus.Paused,
+		])
+		.eq("plan_id", plan_id);
+
+	if (error) {
+		console.error(error);
+		throw new Error(
+			"Unable to find the count of active users for this subscription",
+		);
+	}
+
+	if (!count) {
+		return 5;
+	}
+
+	return 5 + count;
+}

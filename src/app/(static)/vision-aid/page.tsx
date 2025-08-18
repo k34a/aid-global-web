@@ -6,7 +6,7 @@ import ProblemSection from "@/components/aids/vision-aid/problemsection";
 import VisionVanSection from "@/components/aids/vision-aid/visionvansection";
 import WhyItMattersSection from "@/components/aids/vision-aid/whyitmattersection";
 
-export default function ShikshaAid() {
+export default function VisionAid() {
 	return (
 		<main className="bg-[#fefefe] text-[#1a1a1d]">
 			<HeroSection />
