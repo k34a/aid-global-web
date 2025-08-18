@@ -190,9 +190,10 @@ export default function HeaderMegaMenu() {
 						<Link
 							href={links.donateLink.href}
 							onClick={closeDrawer}
-							className="w-[60vw] border-4 p-2 text-center bg-blue-500 text-white rounded-4xl text-xl "
+							className="px-5 border-2 p-2 text-center border-blue-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
 						>
-							Donate
+							<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+							<span>Donate</span>
 						</Link>
 						<div className="flex flex-col gap-4">
 							<div className="flex items-center gap-3">
