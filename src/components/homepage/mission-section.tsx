@@ -13,7 +13,7 @@ const MissionSection = () => {
 	return (
 		<section className="w-full my-10">
 			<div className="flex w-full flex-col items-center">
-				<h2 className="text-center w-full text-blue-600 text-3xl sm:text-4xl font-bold py-8">
+				<h2 className="text-center w-full text-blue-600 text-2xl px-2 sm:px-0 sm:text-4xl font-bold py-8">
 					Helping Each Other Can Make The World Better
 				</h2>
 				<div className="px-[20vw] my-10 ">

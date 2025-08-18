@@ -7,70 +7,69 @@ const assurances = [
 		icon: ShieldCheck,
 		title: "Empowered by You",
 		text: "Your support fuels every initiative we undertake.",
-		color: "from-blue-100 to-blue-100",
+		color: "from-blue-100 to-blue-300",
 	},
 	{
 		icon: Receipt,
 		title: "80G Certified",
 		text: "Donations are tax-exempt under Section 80G.",
-		color: "from-blue-100 to-cyan-100",
+		color: "from-blue-300 to-blue-100",
 	},
 	{
 		icon: Lock,
 		title: "Secure Giving",
 		text: "We ensure bank-grade security for every transaction.",
-		color: "from-cyan-100 to-blue-100",
+		color: "from-blue-100 to-blue-300",
 	},
 	{
 		icon: Eye,
 		title: "Transparent Impact",
 		text: "You receive photo updates on how your donation helped.",
-		color: "from-blue-100 to-blue-100",
+		color: "from-blue-300 to-blue-100",
 	},
 ];
 
 const AssuranceSection = () => {
 	return (
-		<section className="py-16 bg-white relative overflow-hidden">
-			{/* Background decorative gradient */}
-			<div className="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40 -z-10 animate-pulse"></div>
-			<div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-200 rounded-full blur-2xl opacity-30 -z-10 animate-pulse"></div>
-
-			<div className="flex flex-col items-center mx-auto px-4">
-				<h2 className="text-center w-fit text-3xl sm:text-4xl font-bold text-black mb-16 relative border-b-4 border-b-blue-300 pb-3">
+		<>
+			<section className="w-full py-16 px-5 sm:px-0">
+				<h2 className="text-center w-fit text-3xl sm:text-4xl font-bold text-black mb-16 relative border-b-4 border-b-blue-300 pb-3 mx-auto">
 					<span className="inline-block relative">
-						Your <span className="text-blue-500 ">Assurance</span>,
+						Your <span className="text-blue-500">Assurance</span>,
 						Our Priority
 					</span>
 				</h2>
 
-				<div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-10 sm:px-50">
-					{assurances.map((item, idx) => {
+				<div className="flex w-full flex-wrap justify-center gap-6">
+					{assurances.map((item, index) => {
 						const Icon = item.icon;
 						return (
 							<motion.div
-								key={idx}
+								key={index}
 								initial={{ opacity: 0, y: 50 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: idx * 0.2 }}
+								transition={{
+									duration: 0.6,
+									delay: index * 0.2,
+								}}
 								viewport={{ once: true }}
-								className={`group p-6 border border-white/30 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 text-center bg-white/20 backdrop-blur-lg bg-gradient-to-br ${item.color}`}
+								className={`flex flex-col items-center text-center rounded-2xl shadow-lg bg-gradient-to-br ${item.color} p-6 w-72`}
 							>
-								<div className="w-14 h-14 mx-auto mb-4 bg-white border-2 border-black rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-									<Icon className="w-6 h-6 text-black group-hover:text-blue-600 transition duration-300" />
+								<div className="p-2 rounded-full bg-white shadow-md mb-4 border-2">
+									<Icon className="w-8 h-8 text-blue-500" />
 								</div>
-								<h3 className="text-lg font-bold text-black mb-2">
+								<h3 className="text-lg font-semibold text-gray-800 mb-2">
 									{item.title}
 								</h3>
-								<p className="text-sm font-semibold text-gray-800 leading-snug">
+								<p className="text-gray-600 text-sm">
 									{item.text}
 								</p>
 							</motion.div>
 						);
 					})}
 				</div>
-			</div>
-		</section>
+			</section>
+		</>
 	);
 };
 

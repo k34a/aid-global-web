@@ -1,21 +1,17 @@
 "use client";
 
 import {
-	Button,
-	Card,
-	Text,
-	Title,
-	Group,
-	Stack,
-	Center,
-	Flex,
-	Grid,
-} from "@mantine/core";
-import { Heart, Users, Target, Shield, Clock, Check } from "lucide-react";
+	Heart,
+	Users,
+	Target,
+	Shield,
+	Clock,
+	Check,
+	ArrowRight,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
-import { ArrowRight } from "lucide-react";
 
 interface ClubShowcaseProps {
 	frequency: "monthly" | "daily";
@@ -25,239 +21,172 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 	const router = useRouter();
 	const isMonthly = frequency === "monthly";
 	const amount = isMonthly ? 100 : 1;
-	const period = isMonthly ? "monthly" : "daily";
+	const period = isMonthly ? "month" : "day";
 	const costPerDay = isMonthly ? "\u20B9 3.33/day" : "\u20B9 1/day";
 
 	return (
-		<div style={{ backgroundColor: "white" }}>
+		<div className="bg-white py-2">
 			{/* Header */}
-			<Stack align="center" gap="md" mb="xl">
-				<Group gap="xs">
+			<div className="flex flex-col items-center gap-4 mb-8">
+				<div className="flex items-center gap-2">
 					<Heart size={20} color="#ef4444" />
-					<Text size="sm" fw={500} c="dimmed">
+					<p className="text-sm font-medium text-gray-500">
 						Join The Movement
-					</Text>
-				</Group>
+					</p>
+				</div>
 
-				<Title order={1} size="3rem" ta="center" c="dark" mb="md">
+				<h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 my-2 sm:my-4">
 					The{" "}
-					<Text component="span" c="blue" inherit>
+					<span className="text-blue-600">
 						{"\u20B9"}
 						{amount}
-					</Text>{" "}
+					</span>{" "}
 					Club
-				</Title>
+				</h1>
 
-				<Text size="lg" c="dimmed" ta="center" maw={600}>
+				<p className="text-lg text-center text-gray-500 max-w-xl">
 					Big hearts, bigger impact. Join thousands of everyday heroes
-					who donate just{" "}
-					<Text component="span" fw={600} c="blue">
+					who donate just
+					<span className="font-semibold text-blue-600">
+						{" "}
 						{"\u20B9"}
-						{amount} {period}
-					</Text>{" "}
+						{amount} per {period}
+					</span>{" "}
 					to create sustainable change.
-				</Text>
-			</Stack>
+				</p>
+			</div>
 
 			{/* Why Join Section */}
-			<Stack gap="xl" mb="xl">
-				<Title order={2} size="2rem" ta="center" c="dark">
+			<div className="flex flex-col gap-8 mb-8">
+				<h2 className="text-3xl text-center text-gray-900 font-bold">
 					Why Join The {"\u20B9"}
 					{amount} Club?
-				</Title>
+				</h2>
 
-				<Grid gutter="xl" align="center">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 					{/* Image Section */}
-					<Grid.Col span={{ base: 12, lg: 6 }}>
-						<div style={{ position: "relative" }}>
-							<div
-								style={{
-									backgroundColor: "#f1f5f9",
-									borderRadius: "8px",
-									overflow: "hidden",
-								}}
-							>
-								<Image
-									src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
-									alt="Children studying together"
-									width={1200}
-									height={256}
-									style={{
-										width: "100%",
-										height: "256px",
-										objectFit: "cover",
-									}}
-								/>
-							</div>
-
-							{/* Amount Badge on Image */}
-							<Card
-								shadow="lg"
-								padding="md"
-								style={{
-									position: "absolute",
-									bottom: "-10px",
-									right: "-10px",
-									minWidth: "auto",
-								}}
-							>
-								<Stack align="center" gap={4}>
-									<Text size="xl" fw={700} c="blue">
-										{"\u20B9"}
-										{amount}
-									</Text>
-									<Text size="xs" c="dimmed">
-										per {period.slice(0, -2)}
-									</Text>
-								</Stack>
-							</Card>
+					<div className="relative">
+						<div className="bg-slate-100 rounded-lg overflow-hidden">
+							<Image
+								src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
+								alt="Children studying together"
+								width={1200}
+								height={256}
+								className="w-full h-64 object-cover"
+							/>
 						</div>
-					</Grid.Col>
+
+						{/* Amount Badge */}
+						<div className="absolute bottom-[-10px] right-[-10px] bg-white p-4 rounded-lg shadow-lg">
+							<div className="flex flex-col items-center gap-1 ">
+								<p className="text-xl font-bold text-blue-600">
+									{"\u20B9"}
+									{amount}
+								</p>
+								<p className="text-xs text-gray-500">
+									per {period}
+								</p>
+							</div>
+						</div>
+					</div>
 
 					{/* Content Section */}
-					<Grid.Col span={{ base: 12, lg: 6 }}>
-						<Stack gap="md">
-							<Text c="dimmed" mb="md">
-								For less than the cost of{" "}
-								{isMonthly ? "a daily coffee" : "a small snack"}
-								, you can become part of a movement that
-								transforms lives. Your {"\u20B9"}
-								{amount} {period} contribution creates ripples
-								of positive change across communities.
-							</Text>
+					<div className="flex flex-col gap-4 text-center sm:text-left">
+						<p className="text-gray-500">
+							For less than the cost of{" "}
+							{isMonthly ? "a daily coffee" : "a small snack"},
+							you can become part of a movement that transforms
+							lives. Your {"\u20B9"}
+							{amount} {period} contribution creates ripples of
+							positive change across communities.
+						</p>
 
-							{/* Three Pillars */}
-							<Grid gutter="md" mb="md">
-								<Grid.Col span={4}>
-									<Stack align="center" gap="xs">
-										<Center
-											w={48}
-											h={48}
-											style={{
-												backgroundColor: "#dbeafe",
-												borderRadius: "50%",
-											}}
-										>
-											<Heart size={24} color="#2563eb" />
-										</Center>
-										<Text fw={600} size="sm" ta="center">
-											Small Amount
-										</Text>
-										<Text size="xs" c="dimmed" ta="center">
-											Just {costPerDay}
-										</Text>
-									</Stack>
-								</Grid.Col>
+						{/* Three Pillars */}
+						<div className="flex gap-7 sm:justify-around justify-center">
+							<div className="flex flex-col items-center text-center  gap-3">
+								<div className="w-12 h-12  bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+									<Heart size={24} color="#2563eb" />
+								</div>
+								<p className="font-semibold text-sm">
+									Small Amount
+								</p>
+								<p className="text-xs text-gray-500">
+									Just {costPerDay}
+								</p>
+							</div>
 
-								<Grid.Col span={4}>
-									<Stack align="center" gap="xs">
-										<Center
-											w={48}
-											h={48}
-											style={{
-												backgroundColor: "#dcfce7",
-												borderRadius: "50%",
-											}}
-										>
-											<Target size={24} color="#16a34a" />
-										</Center>
-										<Text fw={600} size="sm" ta="center">
-											Big Impact
-										</Text>
-										<Text size="xs" c="dimmed" ta="center">
-											{isMonthly
-												? "10,000+ lives changed"
-												: "1,000+ meals provided"}
-										</Text>
-									</Stack>
-								</Grid.Col>
+							<div className="flex flex-col items-center text-center  gap-3">
+								<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+									<Target size={24} color="#16a34a" />
+								</div>
+								<p className="font-semibold text-sm">
+									Big Impact
+								</p>
+								<p className="text-xs text-gray-500">
+									{isMonthly
+										? "10,000+ lives changed"
+										: "1,000+ meals provided"}
+								</p>
+							</div>
 
-								<Grid.Col span={4}>
-									<Stack align="center" gap="xs">
-										<Center
-											w={48}
-											h={48}
-											style={{
-												backgroundColor: "#f3e8ff",
-												borderRadius: "50%",
-											}}
-										>
-											<Users size={24} color="#9333ea" />
-										</Center>
-										<Text fw={600} size="sm" ta="center">
-											Community
-										</Text>
-										<Text size="xs" c="dimmed" ta="center">
-											{isMonthly
-												? "1,000+ members"
-												: "500+ daily heroes"}
-										</Text>
-									</Stack>
-								</Grid.Col>
-							</Grid>
-						</Stack>
-					</Grid.Col>
-				</Grid>
-			</Stack>
+							<div className="flex flex-col items-center text-center gap-3">
+								<div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+									<Users size={24} color="#9333ea" />
+								</div>
+								<p className="font-semibold text-sm">
+									Community
+								</p>
+								<p className="text-xs text-gray-500">
+									{isMonthly
+										? "1,000+ members"
+										: "500+ daily heroes"}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			{/* Statistics */}
-			<Grid gutter="xl" mb="xl" justify="center">
-				<Grid.Col span={{ base: 12, sm: 6, md: 4 }}>
-					<Card
-						padding="xl"
-						className="bg-green-50 border border-green-200 text-center"
-					>
-						<Stack align="center" gap="xs">
-							<Text size="2rem" fw={700} c="green">
-								{isMonthly ? "5,000+" : "2,000+"}
-							</Text>
-							<Text size="sm" c="dimmed">
-								Active Members
-							</Text>
-						</Stack>
-					</Card>
-				</Grid.Col>
-			</Grid>
+			<div className="flex items-center gap-8 mb-8 justify-center">
+				<div className="w-52 bg-green-50 border border-green-200 text-center p-8 rounded-lg">
+					<p className="text-2xl font-bold text-green-600">
+						{isMonthly ? "5,000+" : "2,000+"}
+					</p>
+					<p className="text-sm text-gray-500">Active Members</p>
+				</div>
+			</div>
 
 			{/* CTA Section */}
-			<Stack align="center" gap="xl">
-				<Button
-					size="xl"
-					color="orange"
-					rightSection={<ArrowRight size={20} />}
-					style={{
-						fontSize: "1.125rem",
-						fontWeight: 600,
-						borderRadius: "12px",
-						padding: "16px 32px",
-					}}
+			<div className="flex flex-col items-center gap-8">
+				<button
 					onClick={() => router.push(`${amount}rupee`)}
+					className="bg-orange-500 text-white text-lg font-semibold rounded-xl px-8 py-4 flex items-center gap-2 hover:bg-orange-600"
 				>
 					Join with {"\u20B9"}
 					{amount}/{amount === 100 ? "month" : "day"}
-				</Button>
+					<ArrowRight size={20} />
+				</button>
 
-				<Flex wrap="wrap" justify="center" gap="xl">
-					<Group gap="xs">
+				<div className="flex flex-wrap justify-center gap-8">
+					<div className="flex items-center gap-2">
 						<Shield size={16} color="#16a34a" />
-						<Text size="sm" c="dimmed">
+						<p className="text-sm text-gray-500">
 							Tax benefits under 80G
-						</Text>
-					</Group>
-					<Group gap="xs">
+						</p>
+					</div>
+					<div className="flex items-center gap-2">
 						<Clock size={16} color="#2563eb" />
-						<Text size="sm" c="dimmed">
-							Cancel anytime
-						</Text>
-					</Group>
-					<Group gap="xs">
+						<p className="text-sm text-gray-500">Cancel anytime</p>
+					</div>
+					<div className="flex items-center gap-2">
 						<Check size={16} color="#9333ea" />
-						<Text size="sm" c="dimmed">
+						<p className="text-sm text-gray-500">
 							Secure donations
-						</Text>
-					</Group>
-				</Flex>
-			</Stack>
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

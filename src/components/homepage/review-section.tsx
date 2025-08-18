@@ -35,7 +35,7 @@ const ReviewSection = () => {
 			</div>
 
 			<div
-				className="overflow-hidden border border-slate-200"
+				className=" border border-slate-200"
 				style={{
 					background:
 						"linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
@@ -44,7 +44,7 @@ const ReviewSection = () => {
 				<Carousel
 					withIndicators
 					height={500}
-					className="sm:h-[550px] md:h-[600px]"
+					className=" sm:h-[550px] md:h-[600px]"
 					slideSize="100%"
 					emblaOptions={{
 						align: "center",
@@ -71,7 +71,7 @@ const ReviewSection = () => {
 							transition: "all 250ms ease",
 							backgroundColor: "#cbd5e1",
 							border: "none",
-							"&[data-active]": {
+							"&[dataActive]": {
 								backgroundColor: "#3b82f6",
 								transform: "scale(1.4)",
 								boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
@@ -84,13 +84,9 @@ const ReviewSection = () => {
 						control: {
 							border: "none",
 							backgroundColor: "#bfdbfe",
-							width: 40,
-							height: 40,
-							"&:not([data-inactive])": {
-								"&:hover": {
-									transform: "scale(1.1)",
-								},
-							},
+							width: 30,
+							height: 30,
+							transform: "translate(0, 10)",
 						},
 						controls: {
 							padding: "0 10px",
@@ -99,7 +95,7 @@ const ReviewSection = () => {
 				>
 					{reviews.map((review, index) => (
 						<Carousel.Slide key={index}>
-							<div className="px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-5 sm:py-8 md:py-10 h-full flex items-center justify-center">
+							<div className="h-full flex items-center justify-center">
 								<div className="flex flex-col items-center gap-5 sm:gap-6 md:gap-8 max-w-2xl mx-auto">
 									{/* User Profile */}
 									<div className="flex flex-col items-center gap-3 sm:gap-4">
