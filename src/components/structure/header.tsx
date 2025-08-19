@@ -16,7 +16,14 @@ import {
 	Center,
 } from "@mantine/core";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Mail, Phone } from "lucide-react";
+import {
+	Facebook,
+	Twitter,
+	Instagram,
+	Linkedin,
+	Youtube,
+} from "@/components/icons";
 import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
 import classes from "./header.module.css";
@@ -179,15 +186,68 @@ export default function HeaderMegaMenu() {
 
 					<Divider my="sm" />
 
-					<Group grow px="md" pb="xl">
+					<div className="gap-6 py-2 px-10 mx-3  flex flex-col items-center">
 						<Link
 							href={links.donateLink.href}
 							onClick={closeDrawer}
-							className={classes.donateButton}
+							className="px-5 border-2 p-2 text-center border-blue-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
 						>
-							Donate
+							<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+							<span>Donate</span>
 						</Link>
-					</Group>
+						<div className="flex flex-col gap-4">
+							<div className="flex items-center gap-3">
+								<Phone className="" />
+								<a
+									className=" font-semibold"
+									href="tel:+919607753148"
+								>
+									+91 96077-53148
+								</a>
+							</div>
+							<div className="flex items-center gap-3">
+								<Mail className="" />
+								<a
+									className=" font-semibold"
+									href="mailto:info@aidglobal.ngo"
+								>
+									info@aidglobal.ngo
+								</a>
+							</div>
+						</div>
+
+						<div className="flex gap-6">
+							<div className="flex items-center gap-3">
+								<a href="https://facebook.com/aidglobal">
+									<Facebook className="text-blue-600" />
+								</a>
+							</div>
+
+							<div className="flex items-center gap-3">
+								<a href="https://twitter.com/aidglobal">
+									<Twitter className="text-blue-500" />
+								</a>
+							</div>
+
+							<div className="flex items-center gap-3">
+								<a href="https://instagram.com/aidglobal">
+									<Instagram className="text-pink-700" />
+								</a>
+							</div>
+
+							<div className="flex items-center gap-3">
+								<a href="https://linkedin.com/company/aidglobal">
+									<Linkedin className="text-blue-800" />
+								</a>
+							</div>
+
+							<div className="flex items-center gap-3">
+								<a className="https://youtube.com/@aidglobal">
+									<Youtube className="text-red-500" />
+								</a>
+							</div>
+						</div>
+					</div>
 				</ScrollArea>
 			</Drawer>
 		</Box>
