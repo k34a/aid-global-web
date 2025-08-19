@@ -107,7 +107,7 @@ export default function HeaderMegaMenu() {
 						href={links.donateLink.href}
 						className={classes.donateButton}
 					>
-						<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+						<Heart className="w-4 h-4 text-sky-500 fill-sky-500" />
 						<span>DONATE</span>
 					</Link>
 				</Group>
@@ -116,7 +116,7 @@ export default function HeaderMegaMenu() {
 						href={links.donateLink.href}
 						className={classes.donateButton}
 					>
-						<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+						<Heart className="w-4 h-4 text-sky-500 fill-sky-500" />
 						<span>DONATE</span>
 					</Link>
 					<Burger
@@ -190,9 +190,9 @@ export default function HeaderMegaMenu() {
 						<Link
 							href={links.donateLink.href}
 							onClick={closeDrawer}
-							className="px-5 border-2 p-2 text-center border-blue-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
+							className="px-5 border-2 p-2 text-center border-sky-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
 						>
-							<Heart className="w-4 h-4 text-blue-500 fill-blue-500" />
+							<Heart className="w-4 h-4 text-sky-500 fill-sky-500" />
 							<span>Donate</span>
 						</Link>
 						<div className="flex flex-col gap-4">

@@ -38,7 +38,7 @@ export default function OneHundredClubs() {
 						5,000+ Active Members
 					</span>
 
-					<h1 className="text-4xl sm:text-5xl font-bold text-gray-900">
+					<h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900">
 						Choose Your Impact Level
 					</h1>
 
@@ -57,7 +57,7 @@ export default function OneHundredClubs() {
 								onClick={() => setSelectedFrequency("monthly")}
 								className={`flex-1 py-2 text-center ${
 									selectedFrequency === "monthly"
-										? "bg-blue-500 text-white"
+										? "bg-sky-500 text-white"
 										: "bg-gray-100 text-gray-700"
 								}`}
 							>
@@ -67,7 +67,7 @@ export default function OneHundredClubs() {
 								onClick={() => setSelectedFrequency("daily")}
 								className={`flex-1 py-2 text-center ${
 									selectedFrequency === "daily"
-										? "bg-blue-500 text-white"
+										? "bg-sky-500 text-white"
 										: "bg-gray-100 text-gray-700"
 								}`}
 							>

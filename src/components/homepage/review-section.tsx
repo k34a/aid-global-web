@@ -24,11 +24,11 @@ const ReviewSection = () => {
 			<div className="text-center mb-8 md:mb-12">
 				<h2 className="text-center w-full text-3xl sm:text-4xl font-bold py-5">
 					<span className="inline-block relative">
-						What Our <span className="text-blue-500 ">Backers</span>{" "}
+						What Our <span className="text-sky-500 ">Backers</span>{" "}
 						Say
 					</span>
 				</h2>
-				<p className="text-blue-500 text-md sm:text-lg max-w-2xl mx-auto px-4 sm:px-0">
+				<p className="text-sky-500 text-md sm:text-lg max-w-2xl mx-auto px-4 sm:px-0">
 					Don{"'"}t just take our word for it - hear from our
 					satisfied patrons
 				</p>
@@ -110,7 +110,7 @@ const ReviewSection = () => {
 										>
 											<User
 												size={28}
-												className="text-blue-600 sm:w-8 sm:h-8 md:w-9 md:h-9"
+												className="text-sky-600 sm:w-8 sm:h-8 md:w-9 md:h-9"
 											/>
 										</div>
 
@@ -118,7 +118,7 @@ const ReviewSection = () => {
 											<h3 className="text-gray-900 text-lg sm:text-xl font-bold text-center">
 												{review.name}
 											</h3>
-											<span className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs sm:text-sm font-medium">
+											<span className="bg-sky-50 text-sky-700 px-2 py-1 rounded text-xs sm:text-sm font-medium">
 												{review.role}
 											</span>
 										</div>

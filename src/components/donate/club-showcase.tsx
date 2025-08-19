@@ -37,7 +37,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 
 				<h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 my-2 sm:my-4">
 					The{" "}
-					<span className="text-blue-600">
+					<span className="text-sky-600">
 						{"\u20B9"}
 						{amount}
 					</span>{" "}
@@ -47,7 +47,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 				<p className="text-lg text-center text-gray-500 max-w-xl">
 					Big hearts, bigger impact. Join thousands of everyday heroes
 					who donate just
-					<span className="font-semibold text-blue-600">
+					<span className="font-semibold text-sky-600">
 						{" "}
 						{"\u20B9"}
 						{amount} per {period}
@@ -79,7 +79,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 						{/* Amount Badge */}
 						<div className="absolute bottom-[-10px] right-[-10px] bg-white p-4 rounded-lg shadow-lg">
 							<div className="flex flex-col items-center gap-1 ">
-								<p className="text-xl font-bold text-blue-600">
+								<p className="text-xl font-bold text-sky-600">
 									{"\u20B9"}
 									{amount}
 								</p>
@@ -104,7 +104,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 						{/* Three Pillars */}
 						<div className="flex gap-7 sm:justify-around justify-center">
 							<div className="flex flex-col items-center text-center  gap-3">
-								<div className="w-12 h-12  bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+								<div className="w-12 h-12  bg-sky-100 rounded-full flex items-center justify-center mx-auto">
 									<Heart size={24} color="#2563eb" />
 								</div>
 								<p className="font-semibold text-sm">
