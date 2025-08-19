@@ -184,7 +184,6 @@ const Footer: React.FC = () => {
 								alt="Visa"
 								height={40}
 								width={40}
-								className="h-4 w-4"
 							/>
 						);
 					})}
