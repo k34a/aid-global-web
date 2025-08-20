@@ -11,25 +11,21 @@ import {
 
 const MissionSection = () => {
 	return (
-		<section className="bg-white rounded-xl mx-2 sm:mx-4 md:mx-10 lg:mx-15 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8">
-			<h2 className="text-base sm:text-lg font-bold flex items-center gap-2">
-				<CircleDotDashed className="text-sky-600 h-5 w-5 sm:h-6 sm:w-6 font-bold" />{" "}
-				About Aid Global Foundation
-			</h2>
-			<div className="my-6 sm:my-8 md:my-10 mx-2 sm:mx-4 md:mx-10 lg:mx-30 px-2 sm:px-4 md:px-8 lg:px-25">
-				<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-sky-900 font-mono text-center mx-2 sm:mx-4 md:mx-10 lg:mx-20">
+		<section className="w-full my-10">
+			<div className="flex w-full flex-col items-center">
+				<h2 className="text-center w-full text-sky-600 text-2xl px-2 sm:px-0 sm:text-4xl font-bold py-8">
 					Helping Each Other Can Make The World Better
-				</h1>
-				<div className="px-2 sm:px-4 md:px-8 lg:px-20 pt-6 sm:pt-8 md:pt-10">
-					<div className="flex flex-col md:flex-row gap-4 md:gap-0">
+				</h2>
+				<div className="px-[20vw] my-10 ">
+					<div className="flex justify-center sm:items-center flex-col sm:flex-row gap-4 sm:gap-0">
 						<Image
 							src={`${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`}
 							alt="child-image"
-							width={200}
-							height={50}
-							className="object-contain border border-transparent rounded-[40%] w-full md:w-auto max-w-[200px] mx-auto md:mx-0"
+							width={500}
+							height={500}
+							className="sm:w-[10vw] sm:h-[10vw] border-2  rounded-3xl"
 						/>
-						<p className="text-gray-700 md:pl-10 text-base sm:text-lg font-semibold text-center md:text-left">
+						<p className="text-zinc-800 sm:p-10 sm:pr-30 sm:text-left sm:text-lg text-center">
 							At Aid Global Foundation, we deliver compassionate
 							aid with heart and create lasting impact with clear
 							purpose. Our commitment is to empower vulnerable
@@ -57,7 +53,7 @@ const MissionSection = () => {
 								Total Fund Raised
 							</span>
 							<span className="text-sm sm:text-base">
-								10 Lakhs+
+								1 Lakh+
 							</span>
 						</div>
 					</div>

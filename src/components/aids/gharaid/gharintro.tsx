@@ -22,7 +22,7 @@ function Gharintro() {
 								src={`${STATIC_IMAGE_HOST}ghar-aid/gharaid.webp`}
 								width={520}
 								height={520}
-								alt="Ghar Aid"
+								alt="GharAid"
 							/>
 						</div>
 					</div>

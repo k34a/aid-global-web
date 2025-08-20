@@ -5,6 +5,30 @@ import {
 	careerApplicationSchema,
 	CareerApplicationData,
 } from "@/lib/db/careers/schema";
+import { escape } from "html-escaper";
+import { sendTelegramMessage } from "@/lib/telegram";
+
+async function notifyAdminsCareer(data: CareerApplicationData) {
+	try {
+		const {
+			userInfo: { firstName, lastName, email, contact, applyingFor },
+			resume: { fileName },
+		} = data;
+
+		const telegramText = `
+<b>New Career Application Received</b>
+<b>Name:</b> ${escape(firstName)} ${escape(lastName)}
+<b>Email:</b> ${escape(email)}
+<b>Contact:</b> ${escape(contact)}
+<b>Position:</b> ${escape(applyingFor)}
+<b>Resume:</b> ${escape(fileName)}
+		`.trim();
+
+		await sendTelegramMessage(telegramText);
+	} catch (error) {
+		console.error("Failed to notify admin:", error);
+	}
+}
 
 interface SuccessResponse {
 	success: true;
@@ -56,6 +80,8 @@ export async function submitCareerApplication(
 				`Failed to generate upload URL: ${urlError.message}`,
 			);
 		}
+
+		await notifyAdminsCareer(validatedData);
 
 		return {
 			success: true,

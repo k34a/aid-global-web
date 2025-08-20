@@ -1,37 +1,62 @@
-import Image from "@/components/image";
+import React from "react";
+import { Card, Text, Avatar, Center, Stack } from "@mantine/core";
+import { Linkedin } from "../icons";
+import Link from "next/link";
 
 type TeamCardProps = {
 	name: string;
 	role: string;
 	imageSrc: string;
 	linkedinUrl: string;
+	onClick: () => void;
 };
 
-export default function TeamCard({
+const TeamCard: React.FC<TeamCardProps> = ({
 	name,
 	role,
 	imageSrc,
 	linkedinUrl,
-}: TeamCardProps) {
+	onClick,
+}) => {
 	return (
-		<li className="text-center border p-4 rounded-lg bg-amber-100 w-[90%] max-w-xs mx-auto sm:w-60">
-			<Image
+		<Card
+			shadow="md"
+			padding="lg"
+			radius="md"
+			className="bg-amber-100 hover:shadow-xl transition cursor-pointer"
+			onClick={onClick}
+		>
+			<Avatar
 				src={imageSrc}
 				alt={`${name} profile`}
-				width={180}
-				height={180}
-				className="mx-auto rounded-full"
+				size={100}
+				radius={50}
+				mx="auto"
+				className="mb-4"
 			/>
-			<h3 className="mt-3 font-semibold">{name}</h3>
-			<p className="text-indigo-600">{role}</p>
-			<a
-				href={linkedinUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				className="text-sky-600 hover:underline text-sm mt-1 inline-block"
-			>
-				LinkedIn
-			</a>
-		</li>
+
+			<Stack>
+				<Center>
+					<Text className="text-lg">{name}</Text>
+				</Center>
+				<Center>
+					<Text c="blue.7" className="text-sm">
+						{role}
+					</Text>
+				</Center>
+				<Center>
+					<Link
+						href={linkedinUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="hover:underline text-sky-700"
+					>
+						Linkedin
+					</Link>
+				</Center>
+			</Stack>
+		</Card>
 	);
-}
+};
+
+export default TeamCard;

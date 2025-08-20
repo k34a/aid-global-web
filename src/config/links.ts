@@ -1,26 +1,25 @@
 import type { Links, NavigationLink } from "@/config/types";
 
 export const programLinks: NavigationLink[] = [
-	{ name: "Cure Aid", href: "/cure-aid" },
-	{ name: "Enable Aid", href: "/enable-aid" },
-	{ name: "Ghar Aid", href: "/ghar-aid" },
-	{ name: "Hunger Aid", href: "/hunger-aid" },
-	{ name: "Sakhi Aid", href: "/sakhi-aid" },
-	{ name: "Shiksha Aid", href: "/shiksha-aid" },
-	{ name: "Vision Aid", href: "/vision-aid" },
+	{ name: "ShikshaAid", href: "/shiksha-aid" },
+	{ name: "HungerAid", href: "/hunger-aid" },
+	{ name: "EnableAid", href: "/enable-aid" },
+	{ name: "CureAid", href: "/cure-aid" },
+	{ name: "VisionAid", href: "/vision-aid" },
+	{ name: "GharAid", href: "/ghar-aid" },
+	{ name: "SakhiAid", href: "/sakhi-aid" },
 ];
 
 export const links: Links = {
 	primaryLinks: [
 		{ name: "Home", href: "/" },
-
 		{
 			name: "Who We Are",
 			href: "/who-we-are",
 			sublinks: [
 				{ name: "About Us", href: "/who-we-are#about" },
 				{ name: "Vision & Mission", href: "/who-we-are#vision" },
-				{ name: "Core", href: "/who-we-are#core" },
+				{ name: "Core Values", href: "/who-we-are#core" },
 				{ name: "Our Team", href: "/who-we-are#team" },
 				{ name: "Partners", href: "/who-we-are#partners" },
 			],
@@ -46,6 +45,7 @@ export const links: Links = {
 			],
 		},
 		{ name: "Contact", href: "/contact" },
+		{ name: "Our Clinics", href: "our-clinics" },
 	],
 
 	donateLink: {

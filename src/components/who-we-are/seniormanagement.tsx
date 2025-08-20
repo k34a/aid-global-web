@@ -1,74 +1,75 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import TeamCard from "@/components/who-we-are/teamcard";
-import TeamCardDesc from "@/components/who-we-are/teamcarddesc";
-import { teamembers } from "@/config/team";
-import { teamembersdata } from "@/config/teamdesc";
 
-function Seniormanagement() {
+import React, { useState } from "react";
+import {
+	Modal,
+	Container,
+	Title,
+	SimpleGrid,
+	Center,
+	Space,
+} from "@mantine/core";
+import { teamembers } from "@/config/team";
+import TeamCard from "./teamcard";
+
+const SeniorManagement: React.FC = () => {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-	function handleCardClick(index: number) {
-		setSelectedIndex(index === selectedIndex ? null : index);
-	}
+	const handleOpenModal = (index: number) => {
+		setSelectedIndex(index);
+	};
 
-	function handleBackClick() {
+	const handleCloseModal = () => {
 		setSelectedIndex(null);
-	}
+	};
 
-	useEffect(() => {
-		document.body.style.overflow =
-			selectedIndex !== null ? "hidden" : "auto";
-	}, [selectedIndex]);
+	const selectedMember =
+		selectedIndex !== null ? teamembers[selectedIndex] : null;
 
 	return (
-		<div>
-			<section id="team" className="py-6 sm:py-12 bg-gray-50">
-				<h2 className="text-center text-3xl sm:text-4xl font-bold text-sky-800 mb-6 sm:mb-10">
-					Senior Management
-				</h2>
-				<ul className="flex flex-wrap justify-center gap-6 sm:gap-8 px-2 sm:px-4">
+		<section id="team" className="py-10 bg-gray-50">
+			<Container size="lg">
+				<Center>
+					<Title
+						order={2}
+						className="text-sky-800 mb-8 text-3xl sm:text-4xl font-bold"
+					>
+						Senior Management
+					</Title>
+				</Center>
+				<Space h="lg" />
+				<SimpleGrid
+					cols={{ base: 1, sm: 2, md: 3 }}
+					spacing="lg"
+					verticalSpacing="xl"
+					className="justify-center"
+				>
 					{teamembers.map((member, index) => (
-						<div
+						<TeamCard
 							key={index}
-							className="relative w-[90%] max-w-xs sm:w-60"
-						>
-							<div
-								onClick={() => handleCardClick(index)}
-								className="cursor-pointer z-10 relative"
-							>
-								<TeamCard
-									name={member.name}
-									role={member.role}
-									imageSrc={member.imageSrc}
-									linkedinUrl={member.linkedinUrl}
-								/>
-							</div>
-						</div>
-					))}
-				</ul>
-			</section>
-
-			{selectedIndex !== null && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
-					<div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 w-[90%] max-w-xl max-h-[90vh] overflow-y-auto relative animate-zoomIn border border-gray-300">
-						<button
-							onClick={handleBackClick}
-							className="absolute top-3 right-3 text-white bg-sky-600 px-3 sm:px-4 py-1 rounded-md text-sm font-medium hover:bg-sky-700 transition"
-						>
-							&larr; Back
-						</button>
-
-						<TeamCardDesc
-							name={teamembersdata[selectedIndex].name}
-							role={teamembersdata[selectedIndex].role}
-							desc={teamembersdata[selectedIndex].desc}
+							{...member}
+							onClick={() => handleOpenModal(index)}
 						/>
-					</div>
-				</div>
-			)}
-		</div>
+					))}
+				</SimpleGrid>
+				<Modal
+					opened={selectedIndex !== null}
+					onClose={handleCloseModal}
+					centered
+					size="lg"
+					overlayProps={{ opacity: 0.55, blur: 3 }}
+					radius="md"
+					classNames={{
+						body: "bg-white p-6",
+						title: "font-bold",
+					}}
+					title={selectedMember?.name}
+				>
+					{selectedMember?.desc}
+				</Modal>
+			</Container>
+		</section>
 	);
-}
+};
 
-export default Seniormanagement;
+export default SeniorManagement;

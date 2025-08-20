@@ -9,14 +9,14 @@ import OneHundredClubs from "@/components/donate/one-hundred-clubs";
 export default async function HomePage() {
 	try {
 		return (
-			<main className="p-0 overflow-hidden">
+			<main className={`p-0 overflow-hidden`}>
 				<CalltoActionSection />
 				<MissionSection />
+				<OneHundredClubs />
 				<AidsSection />
 				<ReviewSection />
 				<AssuranceSection />
 				<PartnersSection />
-				<OneHundredClubs />
 			</main>
 		);
 	} catch (error) {

@@ -4,7 +4,7 @@ import React from "react";
 import { MapPin, Mail, Phone, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "@/components/image";
-import { ngoDetails } from "@/config/config";
+import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import NewsLetter from "@/components/structure/newsletter";
 import { links, programLinks } from "@/config/links";
 import {
@@ -27,11 +27,11 @@ const Footer: React.FC = () => {
 
 			{/* Main Footer Content */}
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center sm:text-left">
 					{/* Organization Info */}
 					<div className="lg:col-span-1">
-						<div className="flex items-center space-x-3 mb-6">
-							<div className="relative w-12 h-12 shrink-0">
+						<div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-6">
+							<div className="relative w-16 h-16 mx-auto sm:mx-0 shrink-0">
 								<Image
 									src={ngoDetails.logo}
 									alt={`${ngoDetails.name} Logo`}
@@ -40,12 +40,11 @@ const Footer: React.FC = () => {
 									height={300}
 								/>
 							</div>
-							<div>
-								<h3 className="text-xl font-bold">
-									{ngoDetails.name}
-								</h3>
-							</div>
+							<h3 className="text-xl font-bold mt-4 sm:ml-3 sm:mt-0">
+								{ngoDetails.name}
+							</h3>
 						</div>
+
 						<p className="text-gray-300 mb-6 leading-relaxed">
 							{ngoDetails.description}
 						</p>
@@ -60,7 +59,7 @@ const Footer: React.FC = () => {
 						</p>
 
 						{/* Social Links */}
-						<div className="flex space-x-4">
+						<div className="flex justify-center sm:justify-start space-x-4">
 							{links.socialLinks.map((social) => (
 								<a
 									key={social.name}
@@ -126,14 +125,14 @@ const Footer: React.FC = () => {
 							Contact Us
 						</h4>
 						<div className="space-y-4">
-							<div className="flex items-start space-x-3">
-								<MapPin className="w-5 h-5 mt-1 text-gray-400 shrink-0" />
+							<div className="flex items-start sm:items-center sm:space-x-3 justify-center sm:justify-start">
+								<MapPin className="w-5 h-5 mt-1 sm:mt-0 text-gray-400 shrink-0" />
 								<p className="text-gray-300 text-sm leading-relaxed">
 									{ngoDetails.contact.address}
 								</p>
 							</div>
 
-							<div className="flex items-center space-x-3">
+							<div className="flex items-center justify-center sm:justify-start space-x-3">
 								<Mail className="w-5 h-5 text-gray-400 shrink-0" />
 								<a
 									href={`mailto:${ngoDetails.contact.email}`}
@@ -143,7 +142,7 @@ const Footer: React.FC = () => {
 								</a>
 							</div>
 
-							<div className="flex items-center space-x-3">
+							<div className="flex items-center justify-center sm:justify-start space-x-3">
 								<Phone className="w-5 h-5 text-gray-400 shrink-0" />
 								<a
 									href={`tel:${ngoDetails.contact.phone}`}
@@ -155,7 +154,7 @@ const Footer: React.FC = () => {
 						</div>
 
 						{/* Donate Button */}
-						<div className="mt-8">
+						<div className="mt-8 flex justify-center sm:justify-start">
 							<Link
 								href="/donate"
 								className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg"
@@ -165,6 +164,29 @@ const Footer: React.FC = () => {
 							</Link>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div className="flex items-center justify-center py-6">
+				<div className="flex items-center gap-3 flex-wrap">
+					{[
+						"visa-svgrepo-com.svg",
+						"mastercard-svgrepo-com.svg",
+						"amex-svgrepo-com.svg",
+						"google-pay-primary-logo-logo-svgrepo-com.svg",
+						"paypal-color-svgrepo-com.svg",
+						"secure-svgrepo-com.svg",
+					].map((method, idx) => {
+						return (
+							<Image
+								src={`${STATIC_IMAGE_HOST}accepted-payment-methods/${method}`}
+								key={idx}
+								alt="Visa"
+								height={40}
+								width={40}
+							/>
+						);
+					})}
 				</div>
 			</div>
 

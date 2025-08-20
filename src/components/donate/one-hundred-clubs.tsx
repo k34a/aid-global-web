@@ -1,18 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import {
-	Text,
-	Title,
-	Badge,
-	Tabs,
-	Group,
-	Stack,
-	Center,
-	Container,
-	Paper,
-	Flex,
-} from "@mantine/core";
 import { Heart, Shield, Star } from "lucide-react";
 import ClubShowcase from "@/components/donate/club-showcase";
 
@@ -20,79 +8,80 @@ export default function OneHundredClubs() {
 	const [selectedFrequency, setSelectedFrequency] = useState<
 		"monthly" | "daily"
 	>("monthly");
+
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
 			{/* Header */}
-			<Paper shadow="sm" className="border-t border-gray-200">
-				<Container size="xl" py="md" px="xl">
-					<Flex
-						justify="space-between"
-						align="center"
-						className="flex-col sm:flex-row gap-y-2 sm:gap-y-0 px-4"
-					>
-						<Group gap="xs" className="sm:ml-4">
+			<div className="shadow-sm border-b border-gray-200 bg-white">
+				<div className="max-w-6xl mx-auto py-4 px-6">
+					<div className="flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:gap-y-0 px-4">
+						<div className="flex items-center gap-2 sm:ml-4">
 							<Heart size={24} color="#ef4444" />
-							<Text fw={600} size="lg">
+							<p className="font-semibold text-lg">
 								Join The Movement
-							</Text>
-						</Group>
+							</p>
+						</div>
 
-						<Badge
-							color="green"
-							variant="light"
-							leftSection={<Shield size={12} />}
-							className="sm:mr-4"
-						>
+						<span className="flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm sm:mr-4">
+							<Shield size={12} />
 							Secure & Trusted
-						</Badge>
-					</Flex>
-				</Container>
-			</Paper>
+						</span>
+					</div>
+				</div>
+			</div>
 
-			<Container size="xl" py="xl">
+			<div className="max-w-6xl mx-auto py-12 px-3 sm:px-6">
 				{/* Hero Section */}
-				<Stack align="center" gap="xl" mb="xl">
-					<Badge
-						size="lg"
-						color="orange"
-						variant="light"
-						leftSection={<Star size={16} />}
-					>
+				<div className="flex flex-col items-center gap-8 mb-12 text-center">
+					<span className="flex items-center gap-1 bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-base">
+						<Star size={16} />
 						5,000+ Active Members
-					</Badge>
+					</span>
 
-					<Title order={1} size="3rem" ta="center" c="dark">
+					<h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900">
 						Choose Your Impact Level
-					</Title>
+					</h1>
 
-					<Text size="xl" c="dimmed" ta="center" maw={800}>
+					<p className="text-xl text-gray-600 max-w-3xl">
 						From {"\u20B9"}1 to {"\u20B9"}100 - every contribution
 						creates ripples of positive change. Start where
 						you&apos;re comfortable and grow your impact over time.
-					</Text>
-				</Stack>
+					</p>
+				</div>
 
 				{/* Frequency Toggle */}
-				<Center mb="xl">
-					<Tabs
-						value={selectedFrequency}
-						onChange={(value) =>
-							setSelectedFrequency(value as "monthly" | "daily")
-						}
-						style={{ width: "100%", maxWidth: "400px" }}
-					>
-						<Tabs.List grow>
-							<Tabs.Tab value="monthly">Monthly</Tabs.Tab>
-							<Tabs.Tab value="daily">Daily</Tabs.Tab>
-						</Tabs.List>
-					</Tabs>
-				</Center>
+				<div className="flex justify-center mb-12">
+					<div className="w-full max-w-sm">
+						<div className="flex border rounded-lg overflow-hidden">
+							<button
+								onClick={() => setSelectedFrequency("monthly")}
+								className={`flex-1 py-2 text-center ${
+									selectedFrequency === "monthly"
+										? "bg-sky-500 text-white"
+										: "bg-gray-100 text-gray-700"
+								}`}
+							>
+								Monthly
+							</button>
+							<button
+								onClick={() => setSelectedFrequency("daily")}
+								className={`flex-1 py-2 text-center ${
+									selectedFrequency === "daily"
+										? "bg-sky-500 text-white"
+										: "bg-gray-100 text-gray-700"
+								}`}
+							>
+								Daily
+							</button>
+						</div>
+					</div>
+				</div>
 
 				{/* Dynamic Club Showcase */}
-				<Paper shadow="sm" radius="xl" p="xl" mb="xl">
+				<div className="shadow-sm rounded-2xl px-2 sm:p-5 mb-12 bg-white">
 					<ClubShowcase frequency={selectedFrequency} />
-				</Paper>
-			</Container>
+				</div>
+			</div>
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Aboutus() {
 	return (
@@ -29,9 +30,11 @@ function Aboutus() {
 			<div className="flex flex-col lg:flex-row">
 				<ul className="flex flex-col gap-y-3 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							ShikshaAid
-						</h2>{" "}
+						<Link href="/shiksha-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								ShikshaAid
+							</h2>
+						</Link>
 						<strong>Education for Every Child.</strong>
 						<br></br>
 						We deliver accessible learning opportunities for
@@ -40,20 +43,24 @@ function Aboutus() {
 						life skills, and hope for the future.
 					</li>
 					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl ">
-							VisionAid
-						</h2>
-						<strong>Restoring Sight, Renewing Lives.</strong>
+						<Link href="/hunger-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								HungerAid
+							</h2>
+						</Link>
+						<strong>Because No One Should Go Hungry.</strong>
 						<br></br>
-						Bringing vision care to vulnerable populations through
-						free eye screenings, prescription glasses, cataract
-						surgeries, and outreach programs that ensure no one is
-						left in the dark.
+						Combating hunger with dignity by serving hot nutritious
+						meals, home-delivered food for the elderly and disabled,
+						school feeding programs, and emergency grocery kits for
+						families in crisis.
 					</li>
 					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							EnableAid
-						</h2>{" "}
+						<Link href="/enable-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								EnableAid
+							</h2>{" "}
+						</Link>
 						<strong>Empowering Every Ability.</strong>
 						<br></br>
 						Providing free early diagnosis, treatment, and assistive
@@ -62,22 +69,11 @@ function Aboutus() {
 						thrive with independence and dignity.
 					</li>
 					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							GharAid
-						</h2>
-						<strong>Rescue. Rebuild. Restore.</strong>
-						<br></br>
-						Rescuing and rehabilitating homeless individuals and
-						orphaned children with safe shelter, medical care,
-						education, emotional healing, and pathways to
-						reintegration and dignity.
-					</li>
-				</ul>
-				<ul className="flex flex-col gap-y-3 lg:gap-y-19 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
-					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							CureAid
-						</h2>
+						<Link href="/cure-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								CureAid
+							</h2>
+						</Link>
 						<strong>Healthcare Where Its Needed Most.</strong>
 						<br></br>
 						Delivering primary healthcare through mobile clinics,
@@ -85,27 +81,47 @@ function Aboutus() {
 						HIV prevention, and essential treatments in underserved
 						and remote communities.
 					</li>
+				</ul>
+				<ul className="flex flex-col gap-y-3 lg:gap-y-19 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							SakhiAid
-						</h2>
+						<Link href="/vision-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								VisionAid
+							</h2>
+						</Link>
+						<strong>Restoring Sight, Renewing Lives.</strong>
+						<br></br>
+						Bringing vision care to vulnerable populations through
+						free eye screenings, prescription glasses, cataract
+						surgeries, and outreach programs that ensure no one is
+						left in the dark.
+					</li>
+
+					<li>
+						<Link href="/ghar-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								GharAid
+							</h2>
+						</Link>
+						<strong>Rescue. Rebuild. Restore.</strong>
+						<br></br>
+						Rescuing and rehabilitating homeless individuals and
+						orphaned children with safe shelter, medical care,
+						education, emotional healing, and pathways to
+						reintegration and dignity.
+					</li>
+					<li>
+						<Link href="/sakhi-aid" passHref>
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+								SakhiAid
+							</h2>
+						</Link>
 						<strong>Empowering Women. Enabling Futures.</strong>
 						<br></br>
 						Promoting health awareness, menstrual hygiene, skill
 						training, economic independence, and leadership
 						development for marginalized women and adolescent girls
 						to build stronger, more equitable communities.
-					</li>
-					<li>
-						<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl">
-							HungerAid
-						</h2>
-						<strong>Because No One Should Go Hungry.</strong>
-						<br></br>
-						Combating hunger with dignity by serving hot nutritious
-						meals, home-delivered food for the elderly and disabled,
-						school feeding programs, and emergency grocery kits for
-						families in crisis.
 					</li>
 				</ul>
 			</div>
