@@ -1,6 +1,6 @@
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
-export const partners = [
+const partners = [
 	{
 		name: "Rise Against Hunger",
 		imageSrc: `${STATIC_IMAGE_HOST}partners/partners/partner-rise.webp`,
@@ -49,4 +49,9 @@ export const partners = [
 		name: "clubfoot",
 		imageSrc: `${STATIC_IMAGE_HOST}partners/partners/clubfootsols.webp`,
 	},
-];
+].map((partner) => ({
+	id: crypto.randomUUID(),
+	...partner,
+}));
+
+export { partners };
