@@ -14,8 +14,8 @@ function ThankYouMessage() {
 				Thank You!
 			</h2>
 			<p className="text-sm sm:text-base text-gray-700">
-				Your message has been successfully sent. We’ll get back to you
-				soon.
+				Your message has been successfully sent. We&apos;ll get back to
+				you soon.
 			</p>
 		</div>
 	);
