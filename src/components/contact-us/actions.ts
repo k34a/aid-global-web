@@ -14,7 +14,6 @@ async function notifyAdmins(data: z.infer<typeof contactFormSchema>) {
 
 		const telegramText = `
 			<b>New Contact Message Received</b>
-			<br />
 			<b>Name:</b> ${escape(name)}
 			<b>Email:</b> ${escape(email)}
 			<b>Subject:</b> ${escape(subject)}

@@ -140,14 +140,10 @@ export class SubscriptionManager {
 		created_at: number,
 	) {
 		const { id } = await this.getUserSubscriptionStatus();
-		const ts = new Date(created_at * 1000);
-		console.log(
-			`created_at of charge: '${created_at}', timestamp: '${ts}'`,
-		);
 		const { error } = await supabaseAdmin
 			.from("subscription_charges")
 			.insert({
-				created_at: ts,
+				created_at: new Date(created_at * 1000),
 				subscription_id: id,
 				razorpay_payment_id: payment_id,
 				amount,
