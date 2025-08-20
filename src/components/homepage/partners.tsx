@@ -1,6 +1,6 @@
 "use client";
 
-import { partners } from "@/components/homepage/data/partners";
+import { partners } from "@/config/partners";
 
 export default function PartnersSection() {
 	return (

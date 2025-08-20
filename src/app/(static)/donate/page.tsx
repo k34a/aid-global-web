@@ -290,7 +290,6 @@ export default function DonatePage() {
 				</Box>
 			</Container>
 
-			<FAQ items={donationFaqs} />
 
 			<FaqSection />
 
