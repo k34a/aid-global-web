@@ -6,26 +6,26 @@ const assurances = [
 	{
 		icon: ShieldCheck,
 		title: "Empowered by You",
-		text: "Your support fuels every initiative we undertake.",
-		color: "from-blue-100 to-blue-300",
+		text: "All Our Efforts Are Made Possible Only Because Of Your Efforts.",
+		color: "from-sky-100 to-sky-300",
 	},
 	{
 		icon: Receipt,
 		title: "80G Certified",
-		text: "Donations are tax-exempt under Section 80G.",
-		color: "from-blue-300 to-blue-100",
+		text: "All Donations Are Tax Deductible Under Section 80G Of Income Tax Act",
+		color: "from-sky-300 to-sky-100",
 	},
 	{
 		icon: Lock,
 		title: "Secure Giving",
-		text: "We ensure bank-grade security for every transaction.",
-		color: "from-blue-100 to-blue-300",
+		text: "Your Donation Transactions Are Completely Safe and Secure",
+		color: "from-sky-100 to-sky-300",
 	},
 	{
 		icon: Eye,
 		title: "Transparent Impact",
-		text: "You receive photo updates on how your donation helped.",
-		color: "from-blue-300 to-blue-100",
+		text: "100% transparency with photo proof and sponsor recognition",
+		color: "from-sky-300 to-sky-100",
 	},
 ];
 
@@ -33,9 +33,9 @@ const AssuranceSection = () => {
 	return (
 		<>
 			<section className="w-full py-16 px-5 sm:px-0">
-				<h2 className="text-center w-fit text-3xl sm:text-4xl font-bold text-black mb-16 relative border-b-4 border-b-blue-300 pb-3 mx-auto">
+				<h2 className="text-center w-fit text-3xl sm:text-4xl font-bold text-black mb-16 relative border-b-4 border-b-sky-300 pb-3 mx-auto">
 					<span className="inline-block relative">
-						Your <span className="text-blue-500">Assurance</span>,
+						Your <span className="text-sky-500">Assurance</span>,
 						Our Priority
 					</span>
 				</h2>
@@ -56,7 +56,7 @@ const AssuranceSection = () => {
 								className={`flex flex-col items-center text-center rounded-2xl shadow-lg bg-gradient-to-br ${item.color} p-6 w-72`}
 							>
 								<div className="p-2 rounded-full bg-white shadow-md mb-4 border-2">
-									<Icon className="w-8 h-8 text-blue-500" />
+									<Icon className="w-8 h-8 text-sky-500" />
 								</div>
 								<h3 className="text-lg font-semibold text-gray-800 mb-2">
 									{item.title}

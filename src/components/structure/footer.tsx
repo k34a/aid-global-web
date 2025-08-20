@@ -4,7 +4,7 @@ import React from "react";
 import { MapPin, Mail, Phone, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "@/components/image";
-import { ngoDetails } from "@/config/config";
+import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import NewsLetter from "@/components/structure/newsletter";
 import { links, programLinks } from "@/config/links";
 import {
@@ -164,6 +164,29 @@ const Footer: React.FC = () => {
 							</Link>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div className="flex items-center justify-center py-6">
+				<div className="flex items-center gap-3 flex-wrap">
+					{[
+						"visa-svgrepo-com.svg",
+						"mastercard-svgrepo-com.svg",
+						"amex-svgrepo-com.svg",
+						"google-pay-primary-logo-logo-svgrepo-com.svg",
+						"paypal-color-svgrepo-com.svg",
+						"secure-svgrepo-com.svg",
+					].map((method, idx) => {
+						return (
+							<Image
+								src={`${STATIC_IMAGE_HOST}accepted-payment-methods/${method}`}
+								key={idx}
+								alt="Visa"
+								height={40}
+								width={40}
+							/>
+						);
+					})}
 				</div>
 			</div>
 

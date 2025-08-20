@@ -4,6 +4,7 @@ import { Subscription } from "./subscription-donation";
 import { z } from "zod/v4";
 import { DonationError, userInfoSchema } from "./donation";
 import { sendTelegramMessage } from "@/lib/telegram";
+import { escape } from "html-escaper";
 
 const SubscriptionStatus = {
 	Pending: "Pending",
@@ -56,10 +57,10 @@ export class SubscriptionManager {
 		}
 
 		try {
-			const message = `${customMessages[status]}<br/><br/>
-			<b>Donor Name:</b> ${name} (${id})<br/>
-			<b>Subscription:</b> ${(subscription_plans as any).name}<br/>
-			<b>Status</b>: ${status}<br/>`;
+			const message = `<b>${customMessages[status]}</b>
+<b>Donor Name:</b> ${escape(name)} (${escape(id)})
+<b>Subscription:</b> ${escape((subscription_plans as any).name)}
+<b>Status:</b> ${escape(status)}`;
 
 			await sendTelegramMessage(message);
 		} catch (error) {

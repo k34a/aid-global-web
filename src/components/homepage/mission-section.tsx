@@ -13,7 +13,7 @@ const MissionSection = () => {
 	return (
 		<section className="w-full my-10">
 			<div className="flex w-full flex-col items-center">
-				<h2 className="text-center w-full text-blue-600 text-2xl px-2 sm:px-0 sm:text-4xl font-bold py-8">
+				<h2 className="text-center w-full text-sky-600 text-2xl px-2 sm:px-0 sm:text-4xl font-bold py-8">
 					Helping Each Other Can Make The World Better
 				</h2>
 				<div className="px-[20vw] my-10 ">
@@ -35,20 +35,20 @@ const MissionSection = () => {
 					</div>
 					<div className="flex flex-col sm:flex-row justify-between mt-6 sm:mt-8 md:mt-10 text-center text-black font-semibold gap-4 sm:gap-0">
 						<div className="flex flex-col items-center">
-							<HeartHandshake className="text-blue-600 h-6 w-6 sm:h-8 sm:w-8 font-bold text-center" />
+							<HeartHandshake className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold text-center" />
 							<span className="text-sm sm:text-base">
 								Join Our team
 							</span>
 							<span className="text-sm sm:text-base">120+</span>
 						</div>
 						<div className="flex flex-col items-center">
-							<HandCoins className="text-blue-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
+							<HandCoins className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
 							<span className="text-sm sm:text-base">
 								Donate Now
 							</span>
 						</div>
 						<div className="flex flex-col items-center">
-							<PiggyBank className="text-blue-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
+							<PiggyBank className="text-sky-600 h-6 w-6 sm:h-8 sm:w-8 font-bold" />
 							<span className="text-sm sm:text-base">
 								Total Fund Raised
 							</span>

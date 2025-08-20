@@ -12,8 +12,8 @@ const AidsSection = () => {
 		<section className="relative w-full pb-8 bg-white flex flex-col justify-center items-center">
 			<h2 className="text-center w-full text-3xl sm:text-4xl font-bold pb-8">
 				<span className="inline-block relative">
-					Give a Helping <span className="text-blue-500 ">Hand</span>{" "}
-					For <span className="text-blue-500 ">Needy People</span>
+					Give a Helping <span className="text-sky-500 ">Hand</span>{" "}
+					For <span className="text-sky-500 ">Needy People</span>
 				</span>
 			</h2>
 			<div className="w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -97,7 +97,7 @@ const AidsSection = () => {
 									<div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-5 lg:p-6">
 										{/* Title */}
 										<div className="flex-shrink-0">
-											<h3 className="text-white text-base sm:text-lg lg:text-xl font-bold leading-tight mb-2 drop-shadow-lg group-hover:text-blue-100 transition-colors duration-300">
+											<h3 className="text-white text-base sm:text-lg lg:text-xl font-bold leading-tight mb-2 drop-shadow-lg group-hover:text-sky-100 transition-colors duration-300">
 												{item.title}
 											</h3>
 										</div>
@@ -110,17 +110,16 @@ const AidsSection = () => {
 
 											{/* Action Buttons */}
 											<div className="flex  sm:flex-row gap-5 sm:gap-10">
-												<button
-													className="flex-1 px-2 sm:px-2 sm:py-2 rounded-lg backdrop-blur-3xl border border-white"
+												<Link
+													className="flex-1 px-2 py-1 sm:px-4 sm:py-2.5 rounded-lg backdrop-blur-3xl border border-white font-semibold text-white text-center text-sm"
 													aria-label={`Donate to ${item.title}`}
+													href={`/donate?program=${item.link.substring(1)}`}
 												>
-													<span className="font-semibold text-white text-center text-sm">
-														Donate Now
-													</span>
-												</button>
+													Donate Now
+												</Link>
 												<Link
 													href={item.link}
-													className="flex-1 px-2 py-1 sm:px-4 sm:py-2.5 rounded-lg font-semibold bg-blue-500 text-white ext-sm text-center"
+													className="flex-1 px-2 py-1 sm:px-4 sm:py-2.5 rounded-lg font-semibold bg-sky-500 text-white text-sm text-center"
 													aria-label={`Read more about ${item.title}`}
 												>
 													Read More

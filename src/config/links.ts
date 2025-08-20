@@ -18,7 +18,7 @@ export const links: Links = {
 			sublinks: [
 				{ name: "About Us", href: "/who-we-are#about" },
 				{ name: "Vision & Mission", href: "/who-we-are#vision" },
-				{ name: "Core", href: "/who-we-are#core" },
+				{ name: "Core Values", href: "/who-we-are#core" },
 				{ name: "Our Team", href: "/who-we-are#team" },
 				{ name: "Partners", href: "/who-we-are#partners" },
 			],

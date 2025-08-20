@@ -7,6 +7,8 @@ import type { Metadata } from "next";
 import FAQ from "@/components/faq";
 import { oneRupeeFaqs } from "@/config/faqs";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
 	title: "The 1 Club - Big Hearts. Bigger Impact.",
 	description:
