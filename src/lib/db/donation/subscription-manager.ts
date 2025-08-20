@@ -56,10 +56,10 @@ export class SubscriptionManager {
 		}
 
 		try {
-			const message = `${customMessages[status]}<br/><br/>
-			<b>Donor Name:</b> ${name} (${id})<br/>
-			<b>Subscription:</b> ${(subscription_plans as any).name}<br/>
-			<b>Status</b>: ${status}<br/>`;
+			const message = `${customMessages[status]}<br><br>
+			<b>Donor Name:</b> ${name} (${id})<br>
+			<b>Subscription:</b> ${(subscription_plans as any).name}<br>
+			<b>Status:</b> ${status}<br>`;
 
 			await sendTelegramMessage(message);
 		} catch (error) {
