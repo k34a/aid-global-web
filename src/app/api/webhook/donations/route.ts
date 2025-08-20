@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
 					await subManager.onCharged(
 						paymentEntity.amount,
 						paymentEntity.id,
-						paymentEntity.current_start,
+						subEntity.current_start,
 					);
 					break;
 				case "subscription.completed":
