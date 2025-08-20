@@ -7,6 +7,8 @@ import FAQ from "@/components/faq";
 import { hundredRupeeFaqs } from "@/config/faqs";
 import SubscriberCounter from "@/components/recurring-donations/1rupee/subscribers-count";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
 	title: "The 100 Club - Big Hearts. Bigger Impact.",
 	description:
