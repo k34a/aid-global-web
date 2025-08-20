@@ -35,6 +35,7 @@ import OtherDonationModes from "@/components/donate/other-donation-modes";
 import toast from "react-hot-toast";
 import FAQ from "@/components/faq";
 import { donationFaqs } from "@/config/faqs";
+import { useSearchParams } from "next/navigation";
 
 interface DonationFormData {
 	name: string;
@@ -58,6 +59,8 @@ export default function DonatePage() {
 	const [customAmount, setCustomAmount] = useState<number | undefined>(
 		undefined,
 	);
+	const searchParams = useSearchParams();
+	const programParam = searchParams.get("program");
 
 	const form = useForm<DonationFormData>({
 		mode: "uncontrolled",
@@ -68,7 +71,7 @@ export default function DonatePage() {
 			amount: 500,
 			pan_number: "",
 			address: "",
-			notes: "",
+			notes: programParam ?? "",
 			is_anonymous: false,
 			tax_exemption: false,
 		},
