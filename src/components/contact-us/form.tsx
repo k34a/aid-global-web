@@ -7,8 +7,23 @@ import toast from "react-hot-toast";
 import { zod4Resolver } from "mantine-form-zod-resolver";
 import { contactFormSchema } from "./schema";
 
+function ThankYouMessage() {
+	return (
+		<div className="p-6 sm:p-10 bg-white rounded-2xl shadow-lg text-center">
+			<h2 className="text-2xl sm:text-4xl font-bold mb-4 text-green-600">
+				Thank You!
+			</h2>
+			<p className="text-sm sm:text-base text-gray-700">
+				Your message has been successfully sent. We’ll get back to you
+				soon.
+			</p>
+		</div>
+	);
+}
+
 export default function ContactUsForm() {
 	const [loading, setLoading] = useState(false);
+	const [submitted, setSubmitted] = useState(false);
 
 	const form = useForm({
 		mode: "uncontrolled",
@@ -31,6 +46,7 @@ export default function ContactUsForm() {
 			} else {
 				toast.success("Your message is sent");
 				form.reset();
+				setSubmitted(true);
 			}
 		} catch (error) {
 			toast.error("Unable to send your message");
@@ -39,7 +55,9 @@ export default function ContactUsForm() {
 		}
 	};
 
-	return (
+	return submitted ? (
+		<ThankYouMessage />
+	) : (
 		<form
 			onSubmit={form.onSubmit(handleSubmit)}
 			className="p-6 sm:p-10 md:col-span-2 bg-white rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl shadow-lg flex flex-col"
