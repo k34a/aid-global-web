@@ -25,7 +25,7 @@ export default function CorporatePartners({ partners }: CorpPartnerListProps) {
 						height={700}
 						className="w-fit h-40 object-fill"
 					/>
-					<h3 className="text-center text-lg font-semibold my-2 text-blue-400">
+					<h3 className="text-center text-lg font-semibold my-2 text-sky-400">
 						{part.title}
 					</h3>
 					<p className="text-center text-sm text-gray-600">

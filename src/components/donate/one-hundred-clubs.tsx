@@ -10,7 +10,7 @@ export default function OneHundredClubs() {
 	>("monthly");
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+		<div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
 			{/* Header */}
 			<div className="shadow-sm border-b border-gray-200 bg-white">
 				<div className="max-w-6xl mx-auto py-4 px-6">

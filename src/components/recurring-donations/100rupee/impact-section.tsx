@@ -23,9 +23,9 @@ const aidPrograms = [
 		title: "ShikshaAid",
 		description:
 			"Provides books, school bags, stationery, and digital learning to children in underserved communities.",
-		color: "text-blue-600",
-		bgColor: "bg-blue-50",
-		borderColor: "border-blue-200",
+		color: "text-sky-600",
+		bgColor: "bg-sky-50",
+		borderColor: "border-sky-200",
 		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
 	},
 	{
@@ -141,17 +141,17 @@ export default function ImpactSection() {
 	};
 
 	return (
-		<section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
+		<section className="py-20 bg-gradient-to-br from-sky-50 via-white to-green-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="text-center mb-16">
-					<div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+					<div className="inline-flex items-center gap-2 bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
 						<Target className="w-4 h-4" />
 						<span>Your Impact</span>
 					</div>
 					<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
 						Where Does Your{" "}
-						<span className="inline-flex items-center gap-1 text-blue-600">
+						<span className="inline-flex items-center gap-1 text-sky-600">
 							<IndianRupee className="w-8 h-8" />
 							100
 						</span>{" "}
@@ -245,7 +245,7 @@ export default function ImpactSection() {
 								onClick={() => scrollToIndex(index)}
 								className={`w-3 h-3 rounded-full transition-all duration-300 ${
 									index === currentIndex
-										? "bg-blue-600 scale-125"
+										? "bg-sky-600 scale-125"
 										: "bg-gray-300 hover:bg-gray-400"
 								}`}
 								aria-label={`Go to slide ${index + 1}`}

@@ -138,9 +138,9 @@ function Partners() {
 		<section className="overflow-x-hidden">
 			<div className="flex flex-col items-center">
 				<div className="w-full max-w-xl px-4 sm:px-0 text-center z-10">
-					<h1 className="font-semibold text-2xl sm:text-4xl py-5 border-b-2 border-b-blue-400">
+					<h1 className="font-semibold text-2xl sm:text-4xl py-5 border-b-2 border-b-sky-400">
 						It&apos;ll take{" "}
-						<span className="text-blue-400 italic">
+						<span className="text-sky-400 italic">
 							each one of us
 						</span>{" "}
 						to create lasting change
@@ -215,7 +215,7 @@ function Partners() {
 							{res.button.url && (
 								<Link
 									href={res.button.url}
-									className="bg-blue-500 text-white rounded-full w-fit px-4 py-2 border-4 border-white hover:border-blue-300 transition"
+									className="bg-sky-500 text-white rounded-full w-fit px-4 py-2 border-4 border-white hover:border-sky-300 transition"
 								>
 									{res.button.label}
 								</Link>
@@ -235,7 +235,7 @@ function Partners() {
 
 			<div className="text-center text-2xl sm:text-3xl font-semibold py-10 px-4">
 				{"How India's brands "}
-				<span className="text-blue-400">have come together</span> for
+				<span className="text-sky-400">have come together</span> for
 				{" India's children"}
 			</div>
 
@@ -243,8 +243,8 @@ function Partners() {
 
 			<div className="py-10">
 				<h2 className="font-semibold text-center text-2xl sm:text-3xl py-3">
-					What <span className="text-blue-400">Our partners</span>{" "}
-					have to say
+					What <span className="text-sky-400">Our partners</span> have
+					to say
 				</h2>
 				<div className="flex justify-center">
 					<PartnerSay testimonial={PartnerTestimonialList} />
@@ -281,21 +281,21 @@ function Partners() {
 
 			<div className="flex flex-col sm:flex-row justify-center gap-6 py-10 px-4 text-sm text-zinc-600">
 				<div className="flex gap-2 items-start">
-					<HeartPlus size={28} className="text-blue-400" />
+					<HeartPlus size={28} className="text-sky-400" />
 					<p>
 						All our efforts are made possible only because of your
 						support
 					</p>
 				</div>
 				<div className="flex gap-2 items-start">
-					<NotepadText size={28} className="text-blue-400" />
+					<NotepadText size={28} className="text-sky-400" />
 					<p>
 						Your donations are tax exempted under 80G of the Indian
 						Income Tax Act
 					</p>
 				</div>
 				<div className="flex gap-2 items-start">
-					<LockKeyhole size={28} className="text-blue-400" />
+					<LockKeyhole size={28} className="text-sky-400" />
 					<p>
 						Your donation transactions are completely safe and
 						secure

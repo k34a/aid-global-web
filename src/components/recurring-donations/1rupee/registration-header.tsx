@@ -7,7 +7,7 @@ const features = [
 		icon: <Target className="w-8 h-8 text-white" />,
 		title: "7-Day Warrior",
 		description: "One week of kindness",
-		bgColor: "bg-blue-500",
+		bgColor: "bg-sky-500",
 	},
 	{
 		icon: <Gift className="w-8 h-8 text-white" />,
@@ -19,7 +19,7 @@ const features = [
 		icon: <Lightbulb className="w-8 h-8 text-white" />,
 		title: "100-Day Champion",
 		description: "100 days of impact",
-		bgColor: "bg-blue-500",
+		bgColor: "bg-sky-500",
 	},
 	{
 		icon: <BarChart3 className="w-8 h-8 text-white" />,
@@ -35,9 +35,9 @@ const RegistrationHeader = () => {
 			{/* Header */}
 			<div className="text-center mb-16">
 				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-					<span className="text-blue-500">Levels, Streaks </span>
+					<span className="text-sky-500">Levels, Streaks </span>
 					<span className="text-[#FFD700]">and</span>
-					<span className="text-blue-500"> Badges</span>
+					<span className="text-sky-500"> Badges</span>
 				</h2>
 				<h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#FFD700] mt-6">
 					Make giving a habit and earn recognition for your
@@ -61,7 +61,7 @@ const RegistrationHeader = () => {
 									{feature.icon}
 								</div>
 								<div>
-									<h3 className="text-blue-500 font-bold text-lg mb-1">
+									<h3 className="text-sky-500 font-bold text-lg mb-1">
 										{feature.title}
 									</h3>
 									<p className="text-gray-600 text-md">

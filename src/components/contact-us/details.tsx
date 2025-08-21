@@ -10,11 +10,11 @@ import {
 } from "@/components/icons";
 
 const iconMap: Record<string, React.ReactNode> = {
-	facebook: <Facebook className="w-5 h-5 text-white hover:text-blue-400" />,
-	twitter: <Twitter className="w-5 h-5 text-white hover:text-blue-400" />,
-	instagram: <Instagram className="w-5 h-5 text-white hover:text-blue-400" />,
-	linkedin: <Linkedin className="w-5 h-5 text-white hover:text-blue-400" />,
-	youtube: <Youtube className="w-5 h-5 text-white hover:text-blue-400" />,
+	facebook: <Facebook className="w-5 h-5 text-white hover:text-sky-400" />,
+	twitter: <Twitter className="w-5 h-5 text-white hover:text-sky-400" />,
+	instagram: <Instagram className="w-5 h-5 text-white hover:text-sky-400" />,
+	linkedin: <Linkedin className="w-5 h-5 text-white hover:text-sky-400" />,
+	youtube: <Youtube className="w-5 h-5 text-white hover:text-sky-400" />,
 };
 
 const SocialIcon: React.FC<{ name: string }> = ({ name }) => {

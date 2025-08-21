@@ -64,7 +64,7 @@ const aids = [
 
 export default function Intro() {
 	return (
-		<section className="py-16 px-4 relative overflow-hidden bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-blue-400">
+		<section className="py-16 px-4 relative overflow-hidden bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-sky-400">
 			{/* Background Circles */}
 			<div className="absolute top-[-50px] left-[-40px] w-[300px] h-[300px] rounded-full bg-white opacity-10 blur-3xl"></div>
 			<div className="absolute bottom-[-80px] right-[-60px] w-[250px] h-[250px] rounded-full bg-yellow-200 opacity-10 blur-2xl"></div>

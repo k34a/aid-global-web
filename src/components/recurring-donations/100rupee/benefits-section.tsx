@@ -17,7 +17,7 @@ const memberBenefits = [
 		title: "Quarterly Impact Reports",
 		description:
 			"Real stories and photos showing how your contribution is making a difference.",
-		color: "text-blue-600",
+		color: "text-sky-600",
 	},
 	{
 		icon: Eye,
@@ -92,17 +92,17 @@ export default function BenefitsSection() {
 				</div>
 
 				{/* Who Can Join Section */}
-				<div className="bg-gradient-to-br from-blue-50 via-white to-green-50 rounded-3xl p-10 shadow-lg border border-blue-100">
+				<div className="bg-gradient-to-br from-sky-50 via-white to-green-50 rounded-3xl p-10 shadow-lg border border-sky-100">
 					<div className="text-center mb-12">
-						<div className="inline-flex items-center px-6 py-3 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
+						<div className="inline-flex items-center px-6 py-3 bg-sky-100 text-sky-700 rounded-full text-sm font-medium mb-6">
 							<Users className="w-5 h-5 mr-2" />
 							Who Can Join the{" "}
-							<IndianRupee className="w-3 h-3 text-blue-600" />
+							<IndianRupee className="w-3 h-3 text-sky-600" />
 							100 Club?
 						</div>
 						<h3 className="text-3xl font-bold text-gray-900 mb-4">
 							The 100 Club is for anyone who wants to be part of{" "}
-							<span className="text-blue-600">real change</span>
+							<span className="text-sky-600">real change</span>
 						</h3>
 						<p className="text-lg text-gray-600 max-w-2xl mx-auto">
 							From students to seniors, professionals to parents -
@@ -140,7 +140,7 @@ export default function BenefitsSection() {
 									className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group"
 								>
 									<div className="flex items-start space-x-4">
-										<div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+										<div className="w-3 h-3 bg-gradient-to-r from-sky-500 to-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
 										<p className="text-gray-800 font-medium leading-relaxed">
 											{item}
 										</p>
@@ -155,7 +155,7 @@ export default function BenefitsSection() {
 									className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group"
 								>
 									<div className="flex items-start space-x-4">
-										<div className="w-3 h-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+										<div className="w-3 h-3 bg-gradient-to-r from-green-500 to-sky-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
 										<p className="text-gray-800 font-medium leading-relaxed">
 											{item}
 										</p>
@@ -166,7 +166,7 @@ export default function BenefitsSection() {
 					</div>
 
 					<div className="text-center">
-						<div className="bg-gradient-to-r from-blue-100 to-green-100 rounded-2xl p-8 border border-blue-200 max-w-3xl mx-auto">
+						<div className="bg-gradient-to-r from-sky-100 to-green-100 rounded-2xl p-8 border border-sky-200 max-w-3xl mx-auto">
 							<p className="text-xl font-bold text-gray-900 mb-3">
 								If you can afford{" "}
 								<span className="inline-flex items-baseline gap-1 align-baseline">
@@ -183,7 +183,7 @@ export default function BenefitsSection() {
 				</div>
 
 				{/* Share Movement Section */}
-				<div className="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 border border-green-200">
+				<div className="mt-12 bg-gradient-to-r from-green-50 to-sky-50 rounded-2xl p-8 border border-green-200">
 					<div className="text-center">
 						<h3 className="text-2xl font-bold text-gray-900 mb-4">
 							Share the Movement - Multiply the Impact

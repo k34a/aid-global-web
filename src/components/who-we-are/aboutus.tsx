@@ -24,14 +24,14 @@ function Aboutus() {
 					future
 				</p>
 			</div>
-			<h2 className="pt-2 text-2xl sm:text-3xl text-blue-800">
+			<h2 className="pt-2 text-2xl sm:text-3xl text-sky-800">
 				Our Programmes
 			</h2>
 			<div className="flex flex-col lg:flex-row">
 				<ul className="flex flex-col gap-y-3 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
 						<Link href="/shiksha-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								ShikshaAid
 							</h2>
 						</Link>
@@ -44,7 +44,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/hunger-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								HungerAid
 							</h2>
 						</Link>
@@ -57,7 +57,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/enable-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								EnableAid
 							</h2>{" "}
 						</Link>
@@ -70,7 +70,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/cure-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								CureAid
 							</h2>
 						</Link>
@@ -85,7 +85,7 @@ function Aboutus() {
 				<ul className="flex flex-col gap-y-3 lg:gap-y-19 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
 						<Link href="/vision-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								VisionAid
 							</h2>
 						</Link>
@@ -99,7 +99,7 @@ function Aboutus() {
 
 					<li>
 						<Link href="/ghar-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								GharAid
 							</h2>
 						</Link>
@@ -112,7 +112,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/sakhi-aid" passHref>
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
+							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
 								SakhiAid
 							</h2>
 						</Link>

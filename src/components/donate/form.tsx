@@ -447,7 +447,7 @@ export default function DonateForm() {
 							size="xl"
 							loading={isLoading}
 							leftSection={<Heart size={20} />}
-							className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-full px-12 py-4 text-base font-semibold transition-transform duration-300 ease-in-out hover:scale-105 hover:from-blue-700 hover:to-blue-900"
+							className="bg-gradient-to-br from-sky-600 to-sky-800 rounded-full px-12 py-4 text-base font-semibold transition-transform duration-300 ease-in-out hover:scale-105 hover:from-sky-700 hover:to-sky-900"
 						>
 							<Group gap={4}>
 								<Text>Donate</Text>

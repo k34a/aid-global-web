@@ -6,8 +6,8 @@ export default function RegistrationInfo() {
 				Provide your PAN number and complete address to receive tax
 				exemption benefits under Section 80G of the Income Tax Act.
 			</div>
-			<div className="p-4 bg-blue-50 rounded-md border-l-4 border-blue-600">
-				<strong className="text-blue-800">
+			<div className="p-4 bg-sky-50 rounded-md border-l-4 border-sky-600">
+				<strong className="text-sky-800">
 					Recurring Payment Setup:
 				</strong>{" "}
 				{
