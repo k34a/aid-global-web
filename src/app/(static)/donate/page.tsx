@@ -1,4 +1,6 @@
-import { Suspense } from "react";
+"use client";
+import { Suspense, useState } from "react";
+import { useForm } from "@mantine/form";
 import {
 	Text,
 	Title,
@@ -10,10 +12,11 @@ import {
 	SimpleGrid,
 } from "@mantine/core";
 import { IndianRupee, Users, GraduationCap, Stethoscope } from "lucide-react";
-import { DonateForm } from "@/components/donate/form";
+import DonateForm from "@/components/donate/form";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
 import toast from "react-hot-toast";
-import FaqSection from "@/components/donate/faq-section";
+import FAQ from "@/components/faq";
+import { donationFaqs } from "@/config/faqs";
 import { z } from "zod";
 import { useSearchParams } from "next/navigation";
 
@@ -290,7 +293,7 @@ export default function DonatePage() {
 				</Box>
 			</Container>
 
-			<FaqSection />
+			<FAQ items={donationFaqs} />
 		</Box>
 	);
 }

@@ -58,12 +58,12 @@ export default function Custom404() {
 								contact us
 							</Link>{" "}
 							or write to us at{" "}
-							<a
+							<Link
 								href={`mailto:${ngoDetails.contact.email}`}
 								className="text-sky-600 underline hover:text-sky-800"
 							>
 								{ngoDetails.contact.email}
-							</a>
+							</Link>
 							.
 						</Text>
 
