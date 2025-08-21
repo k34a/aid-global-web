@@ -53,18 +53,14 @@ export default function Custom404() {
 							If you believe this is a mistake, please{" "}
 							<Link
 								href="/contact"
-
 								className="text-sky-600 underline hover:text-sky-800"
-
 							>
 								contact us
 							</Link>{" "}
 							or write to us at{" "}
 							<a
 								href={`mailto:${ngoDetails.contact.email}`}
-
 								className="text-sky-600 underline hover:text-sky-800"
-)
 							>
 								{ngoDetails.contact.email}
 							</a>

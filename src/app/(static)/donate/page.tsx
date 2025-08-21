@@ -10,6 +10,7 @@ import {
 	SimpleGrid,
 } from "@mantine/core";
 import { IndianRupee, Users, GraduationCap, Stethoscope } from "lucide-react";
+import { DonateForm } from "@/components/donate/form";
 import OtherDonationModes from "@/components/donate/other-donation-modes";
 import toast from "react-hot-toast";
 import FaqSection from "@/components/donate/faq-section";
@@ -148,7 +149,6 @@ export default function DonatePage() {
 			setIsLoading(false);
 		}
 	};
-
 
 	return (
 		<Box
@@ -290,9 +290,7 @@ export default function DonatePage() {
 				</Box>
 			</Container>
 
-
 			<FaqSection />
-
 		</Box>
 	);
 }

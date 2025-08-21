@@ -60,9 +60,7 @@ export default function CorporatePartnershipForm() {
 							and internship opportunities, please{" "}
 							<Link
 								href="/volunteer"
-
 								className="text-sky-500 hover:underline"
-
 							>
 								click here
 							</Link>
@@ -73,11 +71,7 @@ export default function CorporatePartnershipForm() {
 							<h2 className="text-lg font-semibold mb-2">
 								Frequently Asked Questions
 							</h2>
-<<<<<<< HEAD
 							<div className="flex gap-4 text-sky-500">
-=======
-							<div className="flex gap-4 text-blue-500">
->>>>>>> 8c86792 (fix: resolved issues)
 								<Link
 									href="/who-we-are#vision"
 									className="hover:underline border-r border-zinc-400 pr-4"
@@ -176,11 +170,7 @@ export default function CorporatePartnershipForm() {
 										<Button
 											type="submit"
 											loading={loading}
-<<<<<<< HEAD
 											className="bg-sky-500 hover:bg-sky-600 transition rounded-full"
-=======
-											className="bg-blue-500 hover:bg-blue-600 transition rounded-full"
->>>>>>> 8c86792 (fix: resolved issues)
 										>
 											Submit
 										</Button>

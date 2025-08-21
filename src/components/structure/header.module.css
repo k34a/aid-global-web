@@ -122,7 +122,6 @@
 
   @media (max-width: 300px) {
 	.header {
-<<<<<<< HEAD
 	  padding: 0 0.5rem; /* reduce padding */
 	  height: auto; /* let height adjust */
 	  flex-wrap: wrap; /* allow items to wrap */

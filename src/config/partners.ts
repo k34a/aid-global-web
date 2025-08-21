@@ -30,7 +30,7 @@ const partners = [
 		imageSrc: `${STATIC_IMAGE_HOST}partners/partners/guidestar.webp`,
 	},
 	{
-		name: "karmpoints",
+		name: "karmapoints",
 		imageSrc: `${STATIC_IMAGE_HOST}partners/partners/karm.webp`,
 	},
 	{

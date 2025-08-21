@@ -31,9 +31,7 @@ function Aboutus() {
 				<ul className="flex flex-col gap-y-3 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
 						<Link href="/shiksha-aid" passHref>
-
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-
 								ShikshaAid
 							</h2>
 						</Link>
@@ -46,11 +44,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/hunger-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								HungerAid
 							</h2>
 						</Link>
@@ -63,11 +57,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/enable-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								EnableAid
 							</h2>{" "}
 						</Link>
@@ -80,11 +70,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/cure-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								CureAid
 							</h2>
 						</Link>
@@ -99,11 +85,7 @@ function Aboutus() {
 				<ul className="flex flex-col gap-y-3 lg:gap-y-19 mt-4 sm:mt-6 pl-4 sm:pl-6 list-disc text-sm sm:text-base">
 					<li>
 						<Link href="/vision-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								VisionAid
 							</h2>
 						</Link>
@@ -117,11 +99,7 @@ function Aboutus() {
 
 					<li>
 						<Link href="/ghar-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								GharAid
 							</h2>
 						</Link>
@@ -134,11 +112,7 @@ function Aboutus() {
 					</li>
 					<li>
 						<Link href="/sakhi-aid" passHref>
-<<<<<<< HEAD
 							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-sky-600 transition">
-=======
-							<h2 className="font-bold text-base sm:text-lg md:text-lg lg:text-xl underline cursor-pointer hover:text-blue-600 transition">
->>>>>>> 8c86792 (fix: resolved issues)
 								SakhiAid
 							</h2>
 						</Link>
