@@ -41,7 +41,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 						{"\u20B9"}
 						{amount}
 					</span>{" "}
-					Club
+					Warrior
 				</h1>
 
 				<p className="text-lg text-center text-gray-500 max-w-xl">
@@ -50,7 +50,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 					<span className="font-semibold text-sky-600">
 						{" "}
 						{"\u20B9"}
-						{amount} per {period}
+						{amount} / {period}
 					</span>{" "}
 					to create sustainable change.
 				</p>

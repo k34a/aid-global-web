@@ -10,16 +10,13 @@ export default function Campaignsection() {
 					</h2>
 				</div>
 				<p className="text-lg text-gray-700 mb-4 max-w-3xl mx-auto leading-relaxed">
-					Launched on{" "}
-					<span className="font-semibold text-orange-400">
-						Women&apos;s Day 2022
-					</span>
-					, this campaign supports girl students in tribal and remote
+					This campaign supports girl students in tribal and remote
 					areas who walk{" "}
 					<span className="font-semibold text-[#007799]">
 						8-10 km daily
 					</span>{" "}
-					to attend school.
+					to attend school, ensuring they have access to education,
+					dignity, and a brighter future.
 				</p>
 				<p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
 					Your donation of a{" "}
