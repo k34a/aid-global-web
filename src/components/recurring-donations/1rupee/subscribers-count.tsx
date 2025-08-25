@@ -48,7 +48,7 @@ export default async function SubscriberCounter({
 				</div>
 
 				{/* Description */}
-				<p className="text-xl md:text-2xl lg:text-2xl font-bold text-blue-500 leading-relaxed font-sans">
+				<p className="text-xl md:text-2xl lg:text-2xl font-bold text-sky-500 leading-relaxed font-sans">
 					Changemakers are already on board. Every transaction will
 					spark a wave of hope, turning generosity into unstoppable
 					global impact.

@@ -4,7 +4,7 @@ import React from "react";
 
 const CallToAction = () => {
 	return (
-		<div className="flex flex-col lg:flex-row bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-blue-400 text-white rounded-xl p-6 lg:p-10 gap-6 lg:gap-10 max-w-6xl mx-auto my-10 md:my-16 lg:my-24">
+		<div className="flex flex-col lg:flex-row bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-sky-400 text-white rounded-xl p-6 lg:p-10 gap-6 lg:gap-10 max-w-6xl mx-auto my-10 md:my-16 lg:my-24">
 			{/* Left Section */}
 			<div className="flex-1">
 				<h2 className="text-2xl md:text-3xl font-extrabold mb-4">

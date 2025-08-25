@@ -43,7 +43,7 @@ export default function RecurringDonationForm() {
 					</div>
 				</div>
 
-				<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-200">
+				<div className="bg-gradient-to-br from-sky-50 to-indigo-50 rounded-2xl p-8 border border-sky-200">
 					<SubscriptionForm
 						plan_id="ac1ad332-5ce0-4fdc-a808-84dbc29f8701"
 						footer={
@@ -108,7 +108,7 @@ export default function RecurringDonationForm() {
 				</div>
 
 				{/* Success Stories Preview */}
-				<div className="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 border border-green-200">
+				<div className="mt-12 bg-gradient-to-r from-green-50 to-sky-50 rounded-2xl p-8 border border-green-200">
 					<div className="text-center mb-8">
 						<h3 className="text-2xl font-bold text-gray-900 mb-4">
 							Success Stories from Our Members

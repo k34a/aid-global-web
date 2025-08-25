@@ -131,7 +131,7 @@ export default function CareerApplicationForm() {
 			py="xl"
 			className="mb-10 rounded-3xl mx-auto max-w-lg w-full sm:px-8 sm:py-10"
 		>
-			<Title className="text-center font-bold mb-1 text-blue-600 text-3xl sm:text-4xl lg:text-5xl">
+			<Title className="text-center font-bold mb-1 text-sky-600 text-3xl sm:text-4xl lg:text-5xl">
 				Join Our Team
 			</Title>
 

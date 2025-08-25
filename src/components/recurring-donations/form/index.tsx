@@ -94,7 +94,7 @@ export default function SubscriptionForm(props: Props) {
 					placeholder="Enter your full name"
 					{...form.getInputProps("name")}
 					classNames={{
-						input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+						input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-sky-500",
 					}}
 				/>
 
@@ -105,7 +105,7 @@ export default function SubscriptionForm(props: Props) {
 					placeholder="your.email@example.com"
 					{...form.getInputProps("email")}
 					classNames={{
-						input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+						input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-sky-500",
 					}}
 				/>
 
@@ -118,7 +118,7 @@ export default function SubscriptionForm(props: Props) {
 					{...form.getInputProps("contact_number")}
 					className="flex-1"
 					classNames={{
-						input: "rounded-lg px-4 py-3 border-0 focus:ring-2 focus:ring-blue-500",
+						input: "rounded-lg px-4 py-3 border-0 focus:ring-2 focus:ring-sky-500",
 					}}
 				/>
 
@@ -144,7 +144,7 @@ export default function SubscriptionForm(props: Props) {
 						placeholder="ABCDE1234F"
 						{...form.getInputProps("pan_number")}
 						classNames={{
-							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-sky-500",
 						}}
 					/>
 				)}
@@ -160,7 +160,7 @@ export default function SubscriptionForm(props: Props) {
 						placeholder="Enter your complete address"
 						{...form.getInputProps("address")}
 						classNames={{
-							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-sky-500",
 						}}
 					/>
 				)}
@@ -176,7 +176,7 @@ export default function SubscriptionForm(props: Props) {
 							form.setFieldValue("notes", e.currentTarget.value);
 						}}
 						classNames={{
-							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-500",
+							input: "px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-sky-500",
 						}}
 					/>
 				</div>
@@ -202,7 +202,7 @@ export default function SubscriptionForm(props: Props) {
 						disabled={loading}
 						loading={loading}
 						type="submit"
-						className="bg-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide rounded-lg"
+						className="bg-sky-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide rounded-lg"
 					>
 						{props.submitButton}
 					</Button>

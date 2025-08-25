@@ -49,7 +49,7 @@ export default function IntroCarousel() {
 	];
 
 	return (
-		<div className="relative min-h-screen bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-blue-400 overflow-hidden">
+		<div className="relative min-h-screen bg-gradient-to-br from-[#2563eb] via-[#4ECDC4] to-sky-400 overflow-hidden">
 			{/* Background Geometric Patterns */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-20 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function HundredRupeeClub() {
 	return (
-		<main className="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen">
+		<main className="bg-gradient-to-br from-sky-50 via-white to-green-50 min-h-screen">
 			<HeroSection />
 			<ImpactSection />
 			<BenefitsSection />

@@ -63,6 +63,7 @@ export const links: Links = {
 		{ name: "Privacy Policy", href: "/privacy" },
 		{ name: "Terms & Conditions", href: "/terms" },
 		{ name: "Refund Policy", href: "/refund-policy" },
+		{ name: "Developers & Contributers", href: "/developers" },
 	],
 	socialLinks: [
 		{

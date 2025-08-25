@@ -18,7 +18,7 @@ const LegalDocumentCard = ({ title, description, link }: LegalCardProps) => {
 				withBorder
 				className="hover:shadow-md transition-shadow h-full"
 			>
-				<Title order={5} className="mb-2 text-blue-700">
+				<Title order={5} className="mb-2 text-sky-700">
 					{title}
 				</Title>
 				<Text size="sm" className="text-gray-600">
