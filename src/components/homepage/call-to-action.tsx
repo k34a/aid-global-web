@@ -45,7 +45,7 @@ export function CallToActionQuote() {
 	const word = rotatingWords[index] + ".";
 
 	return (
-		<h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-blue-900 tracking-tight">
+		<h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sky-900 tracking-tight">
 			Together, we can build a better{" "}
 			<motion.span
 				key={word}
@@ -53,7 +53,7 @@ export function CallToActionQuote() {
 				animate={{ opacity: 1, y: 0 }}
 				exit={{ opacity: 0, y: 15 }}
 				transition={{ duration: 0.6, ease: "easeOut" }}
-				className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-500"
+				className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-sky-500"
 			>
 				{word}
 			</motion.span>
@@ -63,13 +63,13 @@ export function CallToActionQuote() {
 
 export default function CallToActionSection() {
 	return (
-		<section className="bg-gradient-to-br from-gray-100 via-blue-200 to-blue-800 animate-gradient-slow text-white px-4 py-10 sm:px-10 lg:px-20">
+		<section className="bg-gradient-to-br from-gray-100 via-sky-200 to-sky-800 animate-gradient-slow text-white px-4 py-10 sm:px-10 lg:px-20">
 			<div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
 				{/* Left Text Content */}
 				<div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
 					<p className="text-md tracking-[0.2em] mb-4 uppercase text-stone-800 font-semibold">
 						Transforming Lives Together
-						<span className="block mx-auto lg:mx-0 mt-1 w-20 h-[3px] bg-gradient-to-r from-blue-400 to-blue-400 rounded-full"></span>
+						<span className="block mx-auto lg:mx-0 mt-1 w-20 h-[3px] bg-gradient-to-r from-sky-400 to-sky-400 rounded-full"></span>
 					</p>
 
 					<CallToActionQuote />
@@ -84,12 +84,12 @@ export default function CallToActionSection() {
 						<Link
 							href="/donate"
 							className="relative flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold transition-all duration-300
-              bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg
+              bg-gradient-to-r from-sky-500 to-sky-600 text-white shadow-lg
               hover:scale-105 hover:shadow-2xl overflow-hidden group"
 						>
 							<span className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
 							<span className="relative z-10">Donate Now</span>
-							<HandHeart className="w-5 h-6 text-white relative z-10 transition duration-300 group-hover:text-blue-600 group-hover:scale-110 animate-pulse" />
+							<HandHeart className="w-5 h-6 text-white relative z-10 transition duration-300 group-hover:text-sky-600 group-hover:scale-110 animate-pulse" />
 						</Link>
 					</div>
 				</div>

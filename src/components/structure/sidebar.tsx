@@ -19,10 +19,10 @@ const iconMap: Record<
 	"facebook" | "twitter" | "instagram" | "linkedin" | "youtube",
 	React.ReactElement
 > = {
-	facebook: <Facebook className="text-blue-600" />,
-	twitter: <Twitter className="text-blue-500" />,
+	facebook: <Facebook className="text-sky-600" />,
+	twitter: <Twitter className="text-sky-500" />,
 	instagram: <Instagram className="text-pink-700" />,
-	linkedin: <Linkedin className="text-blue-800" />,
+	linkedin: <Linkedin className="text-sky-800" />,
 	youtube: <Youtube className="text-red-500" />,
 };
 
@@ -39,7 +39,7 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 			{/* Overlay */}
 			{isOpen && (
 				<div
-					className="fixed inset-0 z-40 bg-blue-800/30"
+					className="fixed inset-0 z-40 bg-sky-800/30"
 					onClick={() => setIsOpen(false)}
 				/>
 			)}
@@ -76,7 +76,7 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 							link.sublinks.length > 0 ? (
 								<div>
 									<button
-										className="flex w-full items-center justify-between pl-2 hover:text-blue-400"
+										className="flex w-full items-center justify-between pl-2 hover:text-sky-400"
 										onClick={() =>
 											setOpenDropdown(
 												openDropdown === link.name
@@ -88,7 +88,7 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 										<span>{link.name}</span>
 										<ChevronDown
 											size={20}
-											className={`rounded-3xl bg-blue-500 p-1 text-white transition-transform duration-300 ${
+											className={`rounded-3xl bg-sky-500 p-1 text-white transition-transform duration-300 ${
 												openDropdown === link.name
 													? "rotate-180"
 													: ""
@@ -115,7 +115,7 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 												<li key={sub.href}>
 													<Link
 														href={sub.href ?? "#"}
-														className="hover:text-blue-400 hover:no-underline"
+														className="hover:text-sky-400 hover:no-underline"
 														onClick={() =>
 															setIsOpen(false)
 														}
@@ -130,7 +130,7 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 							) : (
 								<Link
 									href={link.href ?? "#"}
-									className=" px-2 hover:text-blue-400"
+									className=" px-2 hover:text-sky-400"
 									onClick={() => setIsOpen(false)}
 								>
 									{link.name}
@@ -144,10 +144,10 @@ export default function SideBar({ isOpen, setIsOpen }: SideBarProps) {
 				{/* Donate CTA */}
 				<Link
 					href={links.donateLink.href}
-					className="rounded-3xl border-2 flex gap-2 justify-center items-center border-black p-2 text-center font-bold hover:bg-blue-400 hover:text-white"
+					className="rounded-3xl border-2 flex gap-2 justify-center items-center border-black p-2 text-center font-bold hover:bg-sky-400 hover:text-white"
 					onClick={() => setIsOpen(false)}
 				>
-					<Heart className="text-blue-500" size={20} />{" "}
+					<Heart className="text-sky-500" size={20} />{" "}
 					{links.donateLink.name.toUpperCase()}
 				</Link>
 

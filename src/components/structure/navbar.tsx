@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Heart, Menu } from "lucide-react";
+import { Heart, Menu, ChevronDown } from "lucide-react";
 import { ngoDetails } from "@/config/config";
 import SideBar from "./sidebar";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,7 +19,7 @@ function NavLink({ href, children }: NavLinkProps) {
 	return (
 		<Link
 			href={href}
-			className="h-full font-semibold px-2 hover:no-underline hover:text-blue-400 transition-colors"
+			className="h-full font-semibold px-2 hover:no-underline hover:text-sky-400 transition-colors"
 		>
 			{children}
 		</Link>
@@ -31,9 +31,9 @@ function DonateButton() {
 	return (
 		<Link
 			href={links.donateLink.href}
-			className="p-3 flex font-semibold items-center text-sm justify-center gap-1 rounded-3xl border-2 hover:no-underline shadow-sm hover:shadow-lg transition duration-300 border-black"
+			className="px-3 py-2 flex font-semibold items-center text-sm justify-center gap-1 rounded-3xl border-2 hover:no-underline shadow-sm hover:shadow-lg transition duration-300 border-black"
 		>
-			<Heart size={20} className="text-blue-500 fill-blue-500" />{" "}
+			<Heart size={20} className="text-sky-500 fill-sky-500" />{" "}
 			{typeof links.donateLink.name === "string"
 				? links.donateLink.name.toUpperCase()
 				: ""}
@@ -56,7 +56,7 @@ function DropDownItem({ name, href }: DropDownItemProps) {
 		>
 			<Link
 				href={href}
-				className="block px-4 py-2 text-black transition-colors hover:bg-blue-50 hover:text-blue-500 hover:no-underline"
+				className="block px-4 py-2 text-black transition-colors hover:bg-sky-50 hover:text-sky-500 hover:no-underline"
 			>
 				{name}
 			</Link>
@@ -66,7 +66,7 @@ function DropDownItem({ name, href }: DropDownItemProps) {
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [isVisible, setIsVisible] = useState<boolean>(true);
+	// const [isVisible, setIsVisible] = useState<boolean>(true);
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
 	const dropdownVariants = {
@@ -79,25 +79,10 @@ function Navbar() {
 		exit: { opacity: 0, y: -5, transition: { duration: 0.2 } },
 	};
 
-	// Show/hide navbar on scroll
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 300) {
-				setIsVisible(false);
-			} else {
-				setIsVisible(true);
-			}
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
-
 	return (
 		<>
 			<nav
-				className={`fixed top-0 w-full z-50 h-20 flex justify-center bg-white  pl-5 pr-3 shadow-md transition duration-300 xl:px-50 lg:px-1 ${
-					isVisible ? "opacity-100" : "pointer-events-none opacity-0"
-				}`}
+				className={`fixed top-0 w-full z-50 h-20 flex justify-center bg-white px-5 shadow-md transition duration-300 xl:px-[12vw] lg:px-10`}
 			>
 				{/* LOGO */}
 				<div className="flex items-center gap-1">
@@ -120,7 +105,7 @@ function Navbar() {
 				</div>
 
 				{/* Desktop Links */}
-				<div className="ml-auto hidden lg:flex">
+				<div className="ml-auto hidden xl:flex">
 					<ul className="flex items-center space-x-6">
 						{links.primaryLinks.map((link) => {
 							const hasSublinks =
@@ -130,21 +115,31 @@ function Navbar() {
 							return (
 								<div
 									key={link.name}
-									className="relative"
+									className="relative text-zinc-700 hover:text-sky-500"
 									onMouseEnter={() =>
 										setActiveDropdown(link.name)
 									}
 									onMouseLeave={() => setActiveDropdown(null)}
 								>
-									<NavLink
-										href={
-											"href" in link && link.href
-												? link.href
-												: "#"
-										}
-									>
-										{link.name}
-									</NavLink>
+									<div className="flex items-end ">
+										<NavLink
+											href={
+												"href" in link && link.href
+													? link.href
+													: "#"
+											}
+										>
+											{link.name}
+										</NavLink>
+										{hasSublinks ? (
+											<ChevronDown
+												className=""
+												size={20}
+											/>
+										) : (
+											""
+										)}
+									</div>
 
 									{/* Dropdown if sublinks exist */}
 									{hasSublinks && (
@@ -188,7 +183,7 @@ function Navbar() {
 				</div>
 
 				{/* Mobile Menu Button */}
-				<div className="ml-auto flex items-center gap-2 lg:hidden">
+				<div className="ml-auto flex items-center gap-2 xl:hidden">
 					<DonateButton />
 					<button onClick={() => setIsOpen(true)} type="button">
 						<Menu size={30} />
