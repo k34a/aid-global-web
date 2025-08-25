@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/structure/header";
 import Footer from "@/components/structure/footer";
 import { ngoDetails } from "@/config/config";
+import Navbar from "@/components/structure/navbar";
 
 export const metadata: Metadata = {
 	title: {
@@ -17,7 +18,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
+			<Navbar />
 			<main className="flex-grow">{children}</main>
 			<Footer />
 		</>

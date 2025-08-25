@@ -1,6 +1,7 @@
 import Image from "@/components/image";
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
+import Navbar from "@/components/structure/navbar";
 import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	Button,
@@ -17,7 +18,8 @@ import Link from "next/link";
 export default function Custom404() {
 	return (
 		<>
-			<HeaderMegaMenu />
+			{/* <HeaderMegaMenu /> */}
+			<Navbar />
 
 			<div className="flex min-h-[80vh] flex-col justify-center items-center bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 mt-12">
 				<Container className="max-w-3xl text-center">
