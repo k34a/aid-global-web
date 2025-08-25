@@ -9,10 +9,10 @@ import {
 	Container,
 	SimpleGrid,
 	Anchor,
-	Divider,
 } from "@mantine/core";
 import Github from "@/components/icons/github";
 import Linkedin from "@/components/icons/linkedin";
+import Link from "next/link";
 
 const getGithubAvatar = (username: string) =>
 	`https://github.com/${username}.png`;
@@ -20,24 +20,31 @@ const getGithubAvatar = (username: string) =>
 export default function DevelopersPage() {
 	return (
 		<Container size="lg" py="xl">
-			<Title order={1} className="text-center" mb="xs">
-				Our Developers & Contributors
+			<Title order={1} mb="xs">
+				Our Developers &amp; Contributors
 			</Title>
-			<Text ta="center" c="dimmed" mb="md">
+			<Text c="dimmed" mb="sm">
 				Meet the people who have built and maintained this site. Connect
 				with us on GitHub and LinkedIn!
 			</Text>
+			<Text c="dimmed" mt="sm" mb="md">
+				The codebase is open source and available here:{" "}
+				<Link
+					href="https://github.com/k34a/aid-global-web"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="hover:underline text-sky-500 hover:text-sky-700"
+				>
+					GitHub
+				</Link>
+			</Text>
 			<Stack gap="xl">
 				{developers.map((section, idx) => (
-					<div key={section.role}>
+					<div key={idx}>
 						<Title
 							order={2}
 							mb="md"
-							className={
-								idx === 0
-									? "text-center text-blue-700"
-									: "text-center"
-							}
+							className="text-center text-sky-700"
 						>
 							{section.role}
 						</Title>
@@ -72,7 +79,7 @@ export default function DevelopersPage() {
 										mb={8}
 										className="text-center"
 									>
-										{member.role}
+										{section.role}
 									</Text>
 									<Group gap={12} mt={4}>
 										<Anchor
