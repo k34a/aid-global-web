@@ -110,6 +110,7 @@ const AidsSection = () => {
 
 											{/* Action Buttons */}
 											<div className="flex  sm:flex-row gap-5 sm:gap-10">
+
 												<Link
 													className="flex-1 px-2 py-1 sm:px-4 sm:py-2.5 rounded-lg backdrop-blur-3xl border border-white font-semibold text-white text-center text-sm"
 													aria-label={`Donate to ${item.title}`}
@@ -120,6 +121,7 @@ const AidsSection = () => {
 												<Link
 													href={item.link}
 													className="flex-1 px-2 py-1 sm:px-4 sm:py-2.5 rounded-lg font-semibold bg-sky-500 text-white text-sm text-center"
+
 													aria-label={`Read more about ${item.title}`}
 												>
 													Read More
