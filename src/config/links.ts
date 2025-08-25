@@ -23,6 +23,7 @@ export const links: Links = {
 				{ name: "Partners", href: "/who-we-are#partners" },
 			],
 		},
+		{ name: "Developers", href: "/developers" },
 		{ name: "Programs", sublinks: programLinks },
 		{
 			name: "Get Involved",
