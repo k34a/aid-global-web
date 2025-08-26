@@ -5,7 +5,7 @@ import ImpactSection from "@/components/recurring-donations/100rupee/impact-sect
 import SubscriptionForm from "@/components/recurring-donations/100rupee/donation-form";
 import FAQ from "@/components/faq";
 import { hundredRupeeFaqs } from "@/config/faqs";
-import SubscriberCounter from "@/components/recurring-donations/1rupee/subscribers-count";
+import SubscriberCounter from "@/components/recurring-donations/subscribers-count";
 
 export const dynamic = "force-dynamic";
 

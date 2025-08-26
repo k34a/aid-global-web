@@ -9,15 +9,18 @@ import {
 	Check,
 	ArrowRight,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
+import Link from "next/link";
 
-export default function OneRupeeClub() {
-	const router = useRouter();
-	const amount = 1;
-	const period = "day";
-	const costPerDay = "\u20B91/day";
+interface ShowcaseProps {
+	count: number;
+}
+
+export default function ShowcaseCard(props: ShowcaseProps) {
+	const amount = 100;
+	const period = "month";
+	const costPerDay = "\u20B9100/month";
 
 	return (
 		<div className="bg-white py-2">
@@ -36,7 +39,7 @@ export default function OneRupeeClub() {
 						{"\u20B9"}
 						{amount}
 					</span>{" "}
-					Warrior
+					Club
 				</h1>
 
 				<p className="text-lg text-center text-gray-500 max-w-xl">
@@ -54,7 +57,7 @@ export default function OneRupeeClub() {
 			<div className="flex flex-col gap-8 mb-8">
 				<h2 className="text-3xl text-center text-gray-900 font-bold">
 					Why Join The {"\u20B9"}
-					{amount} Warrior?
+					{amount} Club?
 				</h2>
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -87,7 +90,7 @@ export default function OneRupeeClub() {
 					{/* Content Section */}
 					<div className="flex flex-col gap-4 text-center sm:text-left">
 						<p className="text-gray-500">
-							For less than the cost of a small snack, you can
+							For less than the cost of a daily coffee, you can
 							become part of a movement that transforms lives.
 							Your {"\u20B9"}
 							{amount}/{period} contribution creates ripples of
@@ -139,21 +142,23 @@ export default function OneRupeeClub() {
 			{/* Statistics */}
 			<div className="flex items-center gap-8 mb-8 justify-center">
 				<div className="w-52 bg-green-50 border border-green-200 text-center p-8 rounded-lg">
-					<p className="text-2xl font-bold text-green-600">4,000+</p>
+					<p className="text-2xl font-bold text-green-600">
+						{props.count}+
+					</p>
 					<p className="text-sm text-gray-500">Active Members</p>
 				</div>
 			</div>
 
 			{/* CTA Section */}
 			<div className="flex flex-col items-center gap-8">
-				<button
-					onClick={() => router.push("1rupee")}
+				<Link
+					href="/100rupee"
 					className="bg-orange-500 text-white text-lg font-semibold rounded-xl px-8 py-4 flex items-center gap-2 hover:bg-orange-600"
 				>
 					Join with {"\u20B9"}
 					{amount}/{period}
 					<ArrowRight size={20} />
-				</button>
+				</Link>
 
 				<div className="flex flex-wrap justify-center gap-8">
 					<div className="flex items-center gap-2">
