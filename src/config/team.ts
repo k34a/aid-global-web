@@ -26,6 +26,6 @@ export const teamembers = [
 		role: "Founder",
 		imageSrc: `${STATIC_IMAGE_HOST}whoweare/zeel.webp`,
 		linkedinUrl: "https://www.linkedin.com/in/ZeelMangukiya",
-		desc: "Zeel is a detail-driven operational leader who combines logic, planning, and adaptability to achieve seamless execution. As COO, he leads initiatives that enhance internal systems and improve cross-functional efficiency. Zeel is known for transforming complex challenges into structured, scalable solutions. His ability to balance high-level strategy with day-to-day execution makes him a key pillar of the organization. He believes that operational excellence is rooted in clarity, discipline, and team trust. Zeel is also passionate about continuous improvement, embracing change, and fostering innovation at every level of the company.",
+		desc: "Zeel is a detail-driven operational leader who combines logic, planning, and adaptability to achieve seamless execution. As a founder, he leads initiatives that enhance internal systems and improve cross-functional efficiency. Zeel is known for transforming complex challenges into structured, scalable solutions. His ability to balance high-level strategy with day-to-day execution makes him a key pillar of the organization. He believes that operational excellence is rooted in clarity, discipline, and team trust. Zeel is also passionate about continuous improvement, embracing change, and fostering innovation at every level of the company.",
 	},
 ];
