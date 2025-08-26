@@ -32,6 +32,7 @@ const volunteerAreas = [
 	"Fundraising & Events",
 	"Administrative Support",
 	"Social Media & Marketing",
+	"Graphics & Communication section",
 	"Translation & Language Support",
 	"Technical Support",
 	"Childcare & Youth Programs",
