@@ -19,7 +19,7 @@ jobs:
 
             - name: Install script dependencies
               run: |
-                  npm install @supabase/supabase-js dotenv node-telegram-bot-api
+                  npm install @supabase/supabase-js dotenv node-telegram-bot-api razorpay
 
             - name: Run archival script
               run: node scripts/archive-backers.mjs
