@@ -83,7 +83,7 @@ async function getArticle(slug: string): Promise<Article | null> {
 		return null;
 	}
 
-	const baseImageURL = process.env.SUPABASE_IMAGE_STORE_BASE_URL!;
+	const baseImageURL = `https://${process.env.NEXT_PUBLIC_SUPABASE_HOSTNAME}/storage/v1/object/public/content/images/`;
 
 	const fixedMarkdown = text.replace(
 		/!\[(.*?)\]\((?!https?:\/\/)(.*?)\)/g,
