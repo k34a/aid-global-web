@@ -131,7 +131,7 @@ export default function ShowcaseCard(props: ShowcaseProps) {
 									Community
 								</p>
 								<p className="text-xs text-gray-500">
-									500+ daily heroes
+									{props.count}+ daily warriors
 								</p>
 							</div>
 						</div>

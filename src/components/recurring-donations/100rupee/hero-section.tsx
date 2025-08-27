@@ -4,7 +4,11 @@ import { Heart, Users, TrendingUp, Star, IndianRupee } from "lucide-react";
 import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
-export default function HeroSection() {
+interface Props {
+	subscribersCount: number;
+}
+
+export default function HeroSection(props: Props) {
 	const scrollToSubscriptionForm = () => {
 		const subscriptionForm = document.getElementById(
 			"recurring-donation-form",
@@ -15,6 +19,17 @@ export default function HeroSection() {
 				block: "start",
 			});
 		}
+	};
+
+	const monthlyImpact = (count: number) => {
+		const num = count * 100;
+		if (num >= 1_00_00_000)
+			return (num / 1_00_00_000).toFixed(1).replace(/\.0$/, "") + "Cr";
+		if (num >= 1_00_000)
+			return (num / 1_00_000).toFixed(1).replace(/\.0$/, "") + "L";
+		if (num >= 1000)
+			return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+		return num.toString();
 	};
 
 	return (
@@ -97,14 +112,18 @@ export default function HeroSection() {
 						<div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[#1e40af]/20 shadow-lg">
 							<Heart className="w-8 h-8 text-[#ef4444] mx-auto mb-3" />
 							<div className="text-2xl font-bold text-[#1A1A1D]">
-								1000+
+								{props.subscribersCount}
 							</div>
 							<div className="text-sm text-gray-600">Members</div>
 						</div>
 						<div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[#1e40af]/20 shadow-lg">
 							<Users className="w-8 h-8 text-[#3b82f6] mx-auto mb-3" />
 							<div className="text-2xl font-bold text-[#1A1A1D]">
-								50,000+
+								{(
+									(props.subscribersCount - 1) *
+									1000
+								).toLocaleString("en-IN")}
+								+
 							</div>
 							<div className="text-sm text-gray-600">
 								Lives Impacted
@@ -113,7 +132,7 @@ export default function HeroSection() {
 						<div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[#1e40af]/20 shadow-lg">
 							<TrendingUp className="w-8 h-8 text-[#60a5fa] mx-auto mb-3" />
 							<div className="text-2xl font-bold text-[#1A1A1D]">
-								10L+
+								{monthlyImpact(props.subscribersCount)}+
 							</div>
 							<div className="text-sm text-gray-600">
 								Monthly Impact
