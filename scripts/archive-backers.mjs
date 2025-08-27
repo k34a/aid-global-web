@@ -4,8 +4,12 @@ import { join } from "path";
 import fs from "fs/promises";
 import dotenv from "dotenv";
 import TelegramBot from "node-telegram-bot-api";
+import Razorpay from "razorpay";
 
 dotenv.config();
+const threeDaysAgo = new Date(
+	Date.now() - 3 * 24 * 60 * 60 * 1000,
+).toISOString();
 
 const supabase = createClient(
 	process.env.SUPABASE_URL,
@@ -24,10 +28,6 @@ async function sendTelegramMessage(text) {
 }
 
 async function archiveBackers() {
-	const threeDaysAgo = new Date(
-		Date.now() - 3 * 24 * 60 * 60 * 1000,
-	).toISOString();
-
 	console.log(
 		"Searching the DB for unsuccessful backers data which needs to be archived",
 	);
@@ -41,7 +41,7 @@ async function archiveBackers() {
 	if (error) {
 		console.log(error);
 		await sendTelegramMessage(
-			`Archival process failed. Please check logs.`,
+			`Donor archival failed. Please check logs.`,
 		);
 		console.log("Notified admins");
 		throw error;
@@ -87,4 +87,95 @@ async function archiveBackers() {
 	await sendTelegramMessage(`Archived ${data.length} unsuccessful backers records.`);
 }
 
-archiveBackers().catch(console.error);
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+async function archiveSubscriptions() {
+    console.log("Searching DB for subscriptions pending >3 days without any charges");
+
+    const { data: subs, error } = await supabase
+        .from("subscriptions")
+        .select("id, razorpay_subscription_id, created_at")
+        .lt("start_date", threeDaysAgo)
+        .eq("status", "Pending");
+
+    if (error) {
+        console.error(error);
+        await sendTelegramMessage("Subscription archival failed. Please check logs.");
+        return;
+    }
+
+    if (!subs || subs.length === 0) {
+        console.log("No subscriptions to archive");
+        await sendTelegramMessage("Archived 0 subscription records");
+        return;
+    }
+
+    const results = [];
+    for (const sub of subs) {
+        // Check if any charges exist
+        const { data: charges, error } = await supabase
+            .from("subscription_charges")
+            .select("id")
+            .eq("subscription_id", sub.id)
+            .limit(1);
+
+		if (error) {
+			console.error(error);
+			continue;
+		}
+
+        if (charges && charges.length > 0) continue;
+
+        // Cancel in Razorpay if applicable
+        if (sub.razorpay_subscription_id) {
+            try {
+                await razorpay.subscriptions.cancel(sub.razorpay_subscription_id, false);
+                console.log(`Cancelled Razorpay subscription ${sub.razorpay_subscription_id}`);
+            } catch (err) {
+                console.error(`Failed to cancel Razorpay subscription ${sub.razorpay_subscription_id}`, err);
+            }
+        }
+
+        results.push(sub);
+    }
+
+    if (results.length === 0) {
+        console.log("No subscriptions eligible for archival after checks");
+        await sendTelegramMessage("Archived 0 subscription records");
+        return;
+    }
+
+    const fileName = `subscriptions-${new Date().toISOString().split("T")[0]}.json`;
+    const filePath = join(tmpdir(), fileName);
+    await fs.writeFile(filePath, JSON.stringify(results, null, 2));
+
+    const file = await fs.readFile(filePath);
+    const { error: archiveError } = await supabase.storage
+        .from("data-dump")
+        .upload(`subscriptions/${fileName}`, file, {
+            contentType: "application/json",
+            upsert: true,
+        });
+
+    if (archiveError) {
+        console.error(archiveError);
+        return;
+    }
+
+    console.log("Archived subscription records in storage");
+
+    await supabase
+        .from("subscriptions")
+        .delete()
+        .in("id", results.map((r) => r.id));
+
+    console.log(`Successfully archived ${results.length} subscription records`);
+    await sendTelegramMessage(`Archived ${results.length} pending subscription records`);
+}
+
+
+archiveBackers().then(() => {console.log("SUCCESS")}).catch(console.error);
+archiveSubscriptions().then(() => {console.log("SUCCESS")}).catch(console.error);
