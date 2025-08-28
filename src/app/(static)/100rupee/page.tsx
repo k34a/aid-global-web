@@ -5,7 +5,8 @@ import ImpactSection from "@/components/recurring-donations/100rupee/impact-sect
 import SubscriptionForm from "@/components/recurring-donations/100rupee/donation-form";
 import FAQ from "@/components/faq";
 import { hundredRupeeFaqs } from "@/config/faqs";
-import SubscriberCounter from "@/components/recurring-donations/1rupee/subscribers-count";
+import SubscriberCounter from "@/components/recurring-donations/subscribers-count";
+import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
 
 export const dynamic = "force-dynamic";
 
@@ -15,16 +16,21 @@ export const metadata: Metadata = {
 		"Join The 100 Club - a movement of everyday heroes who believe in the power of collective action. For just 100/month, become a force for sustainable change.",
 };
 
-export default function HundredRupeeClub() {
+export default async function HundredRupeeClub() {
+	let count = 5;
+	try {
+		count = await getNumberOfSubscribers(
+			"ac1ad332-5ce0-4fdc-a808-84dbc29f8701",
+		);
+	} catch (err) {
+		console.error("Failed to fetch subscriber count:", err);
+	}
 	return (
 		<main className="bg-gradient-to-br from-sky-50 via-white to-green-50 min-h-screen">
-			<HeroSection />
+			<HeroSection subscribersCount={count} />
 			<ImpactSection />
 			<BenefitsSection />
-			<SubscriberCounter
-				subscriptionId="ac1ad332-5ce0-4fdc-a808-84dbc29f8701"
-				subscriptionName="100"
-			/>
+			<SubscriberCounter count={count} subscriptionName="100" />
 			<SubscriptionForm />
 			<FAQ items={hundredRupeeFaqs} />
 		</main>

@@ -1,28 +1,12 @@
-import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
-
 type SubscriberCounterProps = {
-	subscriptionId: string;
+	count: number;
 	subscriptionName: React.ReactNode;
 };
 
 export default async function SubscriberCounter({
-	subscriptionId,
+	count,
 	subscriptionName,
 }: SubscriberCounterProps) {
-	let res: number | null = null;
-
-	try {
-		res = await getNumberOfSubscribers(subscriptionId);
-	} catch (err) {
-		console.error("Failed to fetch subscriber count:", err);
-		res = null;
-	}
-
-	const digits =
-		typeof res === "number" && !isNaN(res)
-			? res.toString().padStart(3, "0").split("")
-			: "005".split("");
-
 	return (
 		<section className="py-16 px-4 bg-gray-100">
 			<div className="container mx-auto max-w-4xl text-center">
@@ -35,16 +19,20 @@ export default async function SubscriberCounter({
 
 				{/* Number Cards */}
 				<div className="flex justify-center gap-4 mb-12">
-					{digits.map((digit, index) => (
-						<div
-							key={index}
-							className="bg-white rounded-2xl shadow-lg w-20 h-24 md:w-28 md:h-32 lg:w-32 lg:h-36 flex items-center justify-center"
-						>
-							<span className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
-								{digit}
-							</span>
-						</div>
-					))}
+					{count
+						.toString()
+						.padStart(3, "0")
+						.split("")
+						.map((digit, index) => (
+							<div
+								key={index}
+								className="bg-white rounded-2xl shadow-lg w-20 h-24 md:w-28 md:h-32 lg:w-32 lg:h-36 flex items-center justify-center"
+							>
+								<span className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
+									{digit}
+								</span>
+							</div>
+						))}
 				</div>
 
 				{/* Description */}

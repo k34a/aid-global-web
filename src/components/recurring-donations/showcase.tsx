@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { Heart, Shield, Star } from "lucide-react";
-import ClubShowcase from "@/components/donate/club-showcase";
+import OneRupeeCard from "@/components/recurring-donations/1rupee/showcase-card";
+import HundredRupeeClub from "@/components/recurring-donations/100rupee/showcase-card";
 
-export default function OneHundredClubs() {
+interface ShowcaseProps {
+	subscribers1: number;
+	subscribers100: number;
+}
+
+export default function Showcase(props: ShowcaseProps) {
 	const [selectedFrequency, setSelectedFrequency] = useState<
 		"monthly" | "daily"
 	>("monthly");
@@ -35,7 +41,8 @@ export default function OneHundredClubs() {
 				<div className="flex flex-col items-center gap-8 mb-12 text-center">
 					<span className="flex items-center gap-1 bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-base">
 						<Star size={16} />
-						5,000+ Active Members
+						{props.subscribers1 + props.subscribers100}+ Active
+						Members
 					</span>
 
 					<h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900">
@@ -77,9 +84,12 @@ export default function OneHundredClubs() {
 					</div>
 				</div>
 
-				{/* Dynamic Club Showcase */}
 				<div className="shadow-sm rounded-2xl px-2 sm:p-5 mb-12 bg-white">
-					<ClubShowcase frequency={selectedFrequency} />
+					{selectedFrequency === "daily" ? (
+						<OneRupeeCard count={props.subscribers1} />
+					) : (
+						<HundredRupeeClub count={props.subscribers100} />
+					)}
 				</div>
 			</div>
 		</div>

@@ -1,11 +1,12 @@
 import IntroCarousel from "@/components/recurring-donations/1rupee/intro-carousel";
 import Intro from "@/components/recurring-donations/1rupee/intro";
 import CallToAction from "@/components/recurring-donations/1rupee/call-to-action";
-import SubscriberCounter from "@/components/recurring-donations/1rupee/subscribers-count";
+import SubscriberCounter from "@/components/recurring-donations/subscribers-count";
 import Register from "@/components/recurring-donations/1rupee/register";
 import type { Metadata } from "next";
 import FAQ from "@/components/faq";
 import { oneRupeeFaqs } from "@/config/faqs";
+import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
 
 export const dynamic = "force-dynamic";
 
@@ -16,15 +17,20 @@ export const metadata: Metadata = {
 };
 
 export default async function OneRupeeDonation() {
+	let count = 5;
+	try {
+		count = await getNumberOfSubscribers(
+			"29c7e0b7-7edf-4db5-95e2-977793672cee",
+		);
+	} catch (err) {
+		console.error("Failed to fetch subscriber count:", err);
+	}
 	return (
 		<main>
 			<IntroCarousel />
 			<Intro />
 			<CallToAction />
-			<SubscriberCounter
-				subscriptionId="29c7e0b7-7edf-4db5-95e2-977793672cee"
-				subscriptionName="1"
-			/>
+			<SubscriberCounter count={count} subscriptionName="1" />
 			<Register />
 			<FAQ items={oneRupeeFaqs} />
 		</main>
