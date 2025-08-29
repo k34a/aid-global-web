@@ -16,12 +16,12 @@ const callToActions = [
 	},
 	{
 		title: "Mission Hunger",
-		img: `${STATIC_IMAGE_HOST}home-page/emergencies/homeless.webp`,
+		img: `${STATIC_IMAGE_HOST}home-page/1704682327916.webp`,
 		route: "/hunger-aid",
 	},
 	{
 		title: "Mission Education",
-		img: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
+		img: `${STATIC_IMAGE_HOST}home-page/shiksha-roshni.webp`,
 		route: "/shiksha-aid",
 	},
 	{
@@ -104,6 +104,7 @@ export default function CallToActionSection() {
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.4, delay: idx * 0.15 }}
 							whileHover={{ scale: 1.05 }}
+							title={item.title}
 						>
 							<Link href={item.route}>
 								<Image

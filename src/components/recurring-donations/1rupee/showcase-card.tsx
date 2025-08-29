@@ -9,20 +9,18 @@ import {
 	Check,
 	ArrowRight,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Image from "@/components/image";
+import Link from "next/link";
 
-interface ClubShowcaseProps {
-	frequency: "monthly" | "daily";
+interface ShowcaseProps {
+	count: number;
 }
 
-export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
-	const router = useRouter();
-	const isMonthly = frequency === "monthly";
-	const amount = isMonthly ? 100 : 1;
-	const period = isMonthly ? "month" : "day";
-	const costPerDay = isMonthly ? "\u20B9 3.33/day" : "\u20B9 1/day";
+export default function ShowcaseCard(props: ShowcaseProps) {
+	const amount = 1;
+	const period = "day";
+	const costPerDay = "\u20B91/day";
 
 	return (
 		<div className="bg-white py-2">
@@ -41,18 +39,17 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 						{"\u20B9"}
 						{amount}
 					</span>{" "}
-					Club
+					Warrior
 				</h1>
 
 				<p className="text-lg text-center text-gray-500 max-w-xl">
-					Big hearts, bigger impact. Join thousands of everyday heroes
-					who donate just
+					Small steps, big impact. Be part of everyday heroes who
+					contribute just{" "}
 					<span className="font-semibold text-sky-600">
-						{" "}
 						{"\u20B9"}
-						{amount} per {period}
+						{amount}/{period}
 					</span>{" "}
-					to create sustainable change.
+					to transform lives sustainably.
 				</p>
 			</div>
 
@@ -60,7 +57,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 			<div className="flex flex-col gap-8 mb-8">
 				<h2 className="text-3xl text-center text-gray-900 font-bold">
 					Why Join The {"\u20B9"}
-					{amount} Club?
+					{amount} Warrior?
 				</h2>
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -93,18 +90,17 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 					{/* Content Section */}
 					<div className="flex flex-col gap-4 text-center sm:text-left">
 						<p className="text-gray-500">
-							For less than the cost of{" "}
-							{isMonthly ? "a daily coffee" : "a small snack"},
-							you can become part of a movement that transforms
-							lives. Your {"\u20B9"}
-							{amount} {period} contribution creates ripples of
+							For less than the cost of a small snack, you can
+							become part of a movement that transforms lives.
+							Your {"\u20B9"}
+							{amount}/{period} contribution creates ripples of
 							positive change across communities.
 						</p>
 
 						{/* Three Pillars */}
 						<div className="flex gap-7 sm:justify-around justify-center">
 							<div className="flex flex-col items-center text-center  gap-3">
-								<div className="w-12 h-12  bg-sky-100 rounded-full flex items-center justify-center mx-auto">
+								<div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto">
 									<Heart size={24} color="#2563eb" />
 								</div>
 								<p className="font-semibold text-sm">
@@ -123,9 +119,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 									Big Impact
 								</p>
 								<p className="text-xs text-gray-500">
-									{isMonthly
-										? "10,000+ lives changed"
-										: "1,000+ meals provided"}
+									1,000+ meals provided
 								</p>
 							</div>
 
@@ -137,9 +131,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 									Community
 								</p>
 								<p className="text-xs text-gray-500">
-									{isMonthly
-										? "1,000+ members"
-										: "500+ daily heroes"}
+									{props.count}+ daily warriors
 								</p>
 							</div>
 						</div>
@@ -151,7 +143,7 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 			<div className="flex items-center gap-8 mb-8 justify-center">
 				<div className="w-52 bg-green-50 border border-green-200 text-center p-8 rounded-lg">
 					<p className="text-2xl font-bold text-green-600">
-						{isMonthly ? "5,000+" : "2,000+"}
+						{props.count}+
 					</p>
 					<p className="text-sm text-gray-500">Active Members</p>
 				</div>
@@ -159,14 +151,14 @@ export default function ClubShowcase({ frequency }: ClubShowcaseProps) {
 
 			{/* CTA Section */}
 			<div className="flex flex-col items-center gap-8">
-				<button
-					onClick={() => router.push(`${amount}rupee`)}
+				<Link
+					href="/1rupee"
 					className="bg-orange-500 text-white text-lg font-semibold rounded-xl px-8 py-4 flex items-center gap-2 hover:bg-orange-600"
 				>
 					Join with {"\u20B9"}
-					{amount}/{amount === 100 ? "month" : "day"}
+					{amount}/{period}
 					<ArrowRight size={20} />
-				</button>
+				</Link>
 
 				<div className="flex flex-wrap justify-center gap-8">
 					<div className="flex items-center gap-2">

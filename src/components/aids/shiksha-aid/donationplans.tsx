@@ -32,33 +32,6 @@ const points = [
 	},
 ];
 
-const donations = [
-	{
-		title: "Educational Supplies",
-		desc: "For 5 children to get notebooks, stationery, and more.",
-		amount: "9,225",
-	},
-	{
-		title: "Nutritious Meals",
-		desc: "Feed 50 children 3x a week with healthy food.",
-		amount: "12,000",
-	},
-	{
-		title: "Health & Educational Tour",
-		desc: "Organize a camp and real-world exposure.",
-		amount: "33,000",
-	},
-	{
-		title: "Teacher Honorarium",
-		desc: "Support one month of dedicated teaching.",
-		amount: "10,000",
-	},
-	{
-		title: "Set Up a Shiksha Club",
-		desc: "Launch a full local learning hub.",
-		amount: "50,000",
-	},
-];
 export default function Donationsection() {
 	return (
 		<section className="bg-[#eaf5ff]/20 px-4 py-6">

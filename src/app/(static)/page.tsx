@@ -4,15 +4,25 @@ import CalltoActionSection from "@/components/homepage/call-to-action";
 import AssuranceSection from "@/components/homepage/assurance-section";
 import ReviewSection from "@/components/homepage/review-section";
 import PartnersSection from "@/components/homepage/partners";
-import OneHundredClubs from "@/components/donate/one-hundred-clubs";
+import RecurringPlansShowcase from "@/components/recurring-donations/showcase";
+import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
+
+export const revalidate = 3600; // refresh every hour to prevent data from being stale for long
 
 export default async function HomePage() {
+	const [subscribers1, subscribers100] = await Promise.all([
+		getNumberOfSubscribers("29c7e0b7-7edf-4db5-95e2-977793672cee"),
+		getNumberOfSubscribers("ac1ad332-5ce0-4fdc-a808-84dbc29f8701"),
+	]);
 	try {
 		return (
 			<main className={`p-0 overflow-hidden`}>
 				<CalltoActionSection />
 				<MissionSection />
-				<OneHundredClubs />
+				<RecurringPlansShowcase
+					subscribers1={subscribers1}
+					subscribers100={subscribers100}
+				/>
 				<AidsSection />
 				<ReviewSection />
 				<AssuranceSection />

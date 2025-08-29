@@ -8,6 +8,7 @@ import Whatsapp from "@/components/icons/whatsapp";
 import { useEffect, useState } from "react";
 import { copyToClipboard } from "@/lib/client-utils/copytoclipboard";
 import { getCampaignMilestones, Milestone } from "@/data/campaignmilestones";
+import { RingProgress, Text, Center } from "@mantine/core";
 
 interface CampaignSidebarProps {
 	backers: number;
@@ -20,19 +21,6 @@ export default function CampaignSidebar({
 	goal,
 	currentAmount,
 }: CampaignSidebarProps) {
-	const [url, setUrl] = useState("");
-	const [copied, setCopied] = useState(false);
-
-	useEffect(() => {
-		setUrl(window.location.href);
-	}, []);
-
-	const handleCopyLink = async () => {
-		await copyToClipboard(url);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 2000);
-	};
-
 	// Get milestones from external data file
 	const milestones = getCampaignMilestones(goal);
 
@@ -83,77 +71,26 @@ export default function CampaignSidebar({
 			</div>
 
 			<div className="bg-white rounded-xl shadow-lg p-6">
-				<h3 className="text-lg font-bold text-gray-800 mb-4">
-					Share Our Mission
-				</h3>
-				<div className="flex items-center gap-3">
-					<button
-						onClick={() =>
-							window.open(
-								`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-								"_blank",
-							)
-						}
-						className="bg-[#3b5998] text-white p-3 rounded-full hover:scale-105 transition"
-					>
-						<Facebook className="w-4 h-4" />
-					</button>
-
-					<button
-						onClick={() =>
-							window.open(
-								`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`,
-								"_blank",
-							)
-						}
-						className="bg-[#1da1f2] text-white p-3 rounded-full hover:scale-105 transition"
-					>
-						<Twitter className="w-4 h-4" />
-					</button>
-
-					<button
-						onClick={handleCopyLink}
-						className={`${copied ? "bg-green-500" : "bg-gray-500"} text-white p-3 rounded-full hover:scale-105 transition relative`}
-					>
-						<Link2 className="w-4 h-4" />
-						{copied && (
-							<span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-								Copied!
-							</span>
-						)}
-					</button>
-
-					<button
-						onClick={() =>
-							window.open(
-								`https://wa.me/?text=${encodeURIComponent("Check this out: " + url)}`,
-								"_blank",
-							)
-						}
-						className="bg-[#25d366] text-white p-3 rounded-full hover:scale-105 transition"
-					>
-						<Whatsapp className="w-4 h-4" />
-					</button>
-				</div>
-			</div>
-
-			<div className="bg-white rounded-xl shadow-lg p-6">
 				<div className="flex items-center justify-between mb-4">
-					<h3 className="text-lg font-bold text-gray-800">
+					<h3 className="text-lg font-bold text-black">
 						Impact Milestones
 					</h3>
-					<span className="text-sm text-gray-500">
-						{achievedCount}/{milestones.length} achieved
-					</span>
-				</div>
-
-				{/* Progress bar */}
-				<div className="mb-4">
-					<div className="w-full bg-gray-200 rounded-full h-2">
-						<div
-							className="bg-gradient-to-r from-sky-500 to-green-500 h-2 rounded-full transition-all duration-500"
-							style={{ width: `${progressPercentage}%` }}
-						></div>
+					<div className="flex flex-col items-center">
+						<RingProgress
+							size={60}
+							thickness={8}
+							label={
+								<Center>
+									<Text size="xs">
+										{achievedCount}/{milestones.length}
+									</Text>
+								</Center>
+							}
+							sections={[
+								{ value: progressPercentage, color: "blue" },
+							]}
+						/>
+						<span className="text-xs text-gray-500 ">Achieved</span>
 					</div>
 				</div>
 
@@ -165,14 +102,14 @@ export default function CampaignSidebar({
 								key={milestone.id}
 								className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
 									isAchieved
-										? "bg-green-50 border border-green-200"
+										? "bg-sky-50 border border-sky-200"
 										: "bg-gray-50 border border-gray-200"
 								}`}
 							>
 								<div
 									className={`flex-shrink-0 ${
 										isAchieved
-											? "text-green-500"
+											? "text-sky-500"
 											: "text-gray-400"
 									}`}
 								>
@@ -180,10 +117,7 @@ export default function CampaignSidebar({
 								</div>
 								<div className="flex-1">
 									<div
-										className={`font-medium text-sm ${
-											isAchieved
-												? "text-green-800"
-												: "text-gray-600"
+										className={`font-medium text-sm ${isAchieved ? "text-sky-600" : "text-gray-800"}
 										}`}
 									>
 										{milestone.title}
@@ -191,7 +125,7 @@ export default function CampaignSidebar({
 									<div
 										className={`text-xs ${
 											isAchieved
-												? "text-green-600"
+												? "text-sky-600"
 												: "text-gray-500"
 										}`}
 									>
@@ -199,7 +133,7 @@ export default function CampaignSidebar({
 									</div>
 								</div>
 								{isAchieved && (
-									<CheckCircle className="text-green-500 w-4 h-4 flex-shrink-0" />
+									<CheckCircle className="text-sky-500 w-4 h-4 flex-shrink-0" />
 								)}
 							</li>
 						);
