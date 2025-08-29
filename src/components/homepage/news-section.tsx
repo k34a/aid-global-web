@@ -3,7 +3,10 @@
 import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { ArticleMeta } from "@/lib/db/articles";
+import { Carousel } from "@mantine/carousel";
 import "@mantine/carousel/styles.css";
+import { ArrowRight, CircleDotDashed } from "lucide-react";
+import { motion } from "motion/react";
 
 type Props = {
 	articles: ArticleMeta[];
