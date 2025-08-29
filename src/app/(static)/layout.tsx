@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/structure/header";
-import Navbar from "@/components/structure/navbar";
+
 import Footer from "@/components/structure/footer";
 import { ngoDetails } from "@/config/config";
 
@@ -18,8 +18,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<>
-			{/* <Header /> */}
-			<Navbar />
+			<Header />
 			<div className="mt-[80px]">{children}</div>
 			<Footer />
 		</>
