@@ -34,7 +34,7 @@ function Childsupport() {
 				<Image
 					className="rounded-xl shadow-lg"
 					src={`${STATIC_IMAGE_HOST}ghar-aid/children.webp`}
-					width={500}
+					width={600}
 					height={400}
 					alt="child"
 				/>

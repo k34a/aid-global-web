@@ -22,7 +22,7 @@ export default function DonorList({
 
 	return (
 		<div className="bg-white rounded-2xl border border-slate-200 shadow-lg p-6">
-			<div className="flex items-center gap-3 mb-6">
+			<div className="flex items-center gap-3 mb-3">
 				<div className="p-2 bg-sky-500 rounded-lg shadow-md">
 					<Heart className="w-5 h-5 text-white" />
 				</div>
@@ -41,7 +41,10 @@ export default function DonorList({
 				{initialDonors.length === 0 ? (
 					<div className="text-center py-8 text-slate-500">
 						<Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
-						<p>Be the first to support this campaign!</p>
+						<p className="text-sm text-slate-500">
+							No donors yet. Be the first to support this
+							campaign!
+						</p>
 					</div>
 				) : (
 					initialDonors.map((d, index) => (
@@ -51,7 +54,7 @@ export default function DonorList({
 							style={{ animationDelay: `${index * 100}ms` }}
 						>
 							<div className="flex items-center gap-3">
-								<div className="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md">
+								<div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md bg-gradient-to-tr from-teal-500 to-cyan-600">
 									{getInitials(
 										d.is_anon ? "Anonymous" : d.name,
 									)}

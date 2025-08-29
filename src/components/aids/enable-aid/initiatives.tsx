@@ -4,14 +4,14 @@ import { enableAidData } from "@/components/aids/enable-aid/key-initiatives";
 
 export default function KeyInitiatives() {
 	return (
-		<section className="w-full bg-white">
+		<section className="w-[95%] bg-white mx-auto overflow-hidden">
 			{enableAidData.map((item) => (
 				<div
 					key={item.id}
-					className={`flex flex-col gap-6 md:gap-10 lg:gap-0 lg:flex-row ${item.id % 2 !== 0 ? "lg:flex-row-reverse" : ""} shadow-xl rounded-3xl my-6 md:my-10 lg:my-14`}
+					className={`flex flex-col  md:gap-8 lg:gap-0 lg:flex-row ${item.id % 2 !== 0 ? "lg:flex-row-reverse" : ""} shadow-xl rounded-3xl my-3 mx-2 md:my-6 lg:my-8`}
 				>
 					{/* Image Section */}
-					<div className="relative w-full h-56 xs:h-64 sm:h-80 md:h-96 lg:w-1/2 lg:h-auto shadow-lg rounded-3xl overflow-hidden mx-3 mt-3 mb-0 lg:my-10 lg:mx-10 min-h-[220px]">
+					<div className="relative w-[95%] mx-auto h-56 xs:h-64 sm:h-80 md:h-96 lg:w-1/2 lg:h-auto shadow-lg rounded-3xl overflow-hidden mx-3 mt-2 mb-0 lg:my-10 lg:mx-3 min-h-[220px]">
 						<Image
 							src={item.image}
 							alt={item.title}
@@ -22,8 +22,9 @@ export default function KeyInitiatives() {
 					</div>
 
 					{/* Text Section with Background Circles */}
-					<div className="relative w-full lg:w-1/2 p-4 xs:p-6 sm:p-8 md:p-10 lg:p-16 bg-[#fbf6ff] flex flex-col justify-center text-[#3a3a3a] rounded-3xl overflow-hidden shadow-lg my-3 mx-3 lg:my-10 lg:mx-10 min-h-[220px]">
+					<div className="relative w-[95%] mx-auto lg:w-1/2 p-4 xs:p-6 sm:p-8 md:p-10 lg:p-16 bg-[#fbf6ff] flex flex-col justify-center text-[#3a3a3a] rounded-3xl overflow-hidden shadow-lg my-3 mx-3 lg:my-10 lg:mx-10 min-h-[220px]">
 						{/* Background Circles */}
+
 						<div className="absolute right-[-120px] xs:right-[-180px] sm:right-[-220px] md:right-[-260px] lg:right-[-300px] top-1/2 -translate-y-1/2 z-0 pointer-events-none max-w-full overflow-x-hidden">
 							<div className="w-[240px] xs:w-[320px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[240px] xs:h-[320px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-full bg-[#d9e6ea] opacity-60" />
 							<div className="absolute top-[24px] left-[24px] xs:top-[36px] xs:left-[36px] sm:top-[48px] sm:left-[48px] md:top-[60px] md:left-[60px] w-[180px] xs:w-[240px] sm:w-[300px] md:w-[360px] lg:w-[480px] h-[180px] xs:h-[240px] sm:h-[300px] md:h-[360px] lg:h-[480px] rounded-full bg-[#aac7d1] opacity-50" />
@@ -33,7 +34,7 @@ export default function KeyInitiatives() {
 
 						{/* Foreground Content */}
 						<div className="relative z-10">
-							<h2 className="text-lg xs:text-xl sm:text-2xl font-bold text-[#003944] mb-2">
+							<h2 className="text-xl sm:text-2xl font-bold text-[#003944] mb-2">
 								{item.title}
 							</h2>
 							<p className="italic font-bold text-xs xs:text-sm sm:text-base mb-4 text-rose-800">
@@ -54,25 +55,22 @@ export default function KeyInitiatives() {
 										</span>
 										<div>
 											{typeof bullet === "string" ? (
-												bullet
+												<span className="text-sm sm:text-base">
+													{bullet}
+												</span>
 											) : (
 												<>
-													<span className="font-semibold">
+													<span className="font-semibold text-sm sm:text-base">
 														{bullet.text}
 													</span>
-													<ul className="mt-2 pl-4 xs:pl-6 space-y-1 xs:space-y-2">
+													<ul className="mt-2 pl-2 xs:pl-6 space-y-1 xs:space-y-2">
 														{bullet.subpoints.map(
 															(sub, j) => (
 																<li
 																	key={j}
-																	className="flex items-start gap-2 text-md xs:text-md text-gray-700"
+																	className="flex items-start gap-2 text-sm sm:text-base text-gray-700"
 																>
-																	<ArrowBigRight
-																		className="mt-0.5 text-pink-600"
-																		size={
-																			14
-																		}
-																	/>
+																	<ArrowBigRight className="text-pink-600 w-4 h-4 sm:w-5 sm:h-5 mt-[2px] shrink-0" />
 																	<span>
 																		{sub}
 																	</span>

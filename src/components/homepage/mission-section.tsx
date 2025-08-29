@@ -43,12 +43,14 @@ const MissionSection = () => {
 							Donate Now
 						</span>
 					</div>
+
 					<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
 						<PiggyBank className="text-sky-600 h-8 w-8 mb-2" />
 						<span className="text-base font-semibold">
 							Total Fund Raised
 						</span>
 						<span className="text-sm text-zinc-700">1 Lakh+</span>
+
 					</div>
 				</div>
 			</div>
