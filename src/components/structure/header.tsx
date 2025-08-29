@@ -30,6 +30,18 @@ import classes from "./header.module.css";
 import Image from "@/components/image";
 import { Heart } from "lucide-react";
 
+const iconMap: Record<string, React.ReactNode> = {
+	facebook: <Facebook className="w-5 h-5 text-blue-600" />,
+	twitter: <Twitter className="w-5 h-5 text-blue-500" />,
+	instagram: <Instagram className="w-5 h-5 text-pink-700" />,
+	linkedin: <Linkedin className="w-5 h-5 text-blue-800" />,
+	youtube: <Youtube className="w-5 h-5 text-red-500" />,
+};
+
+const SocialIcon: React.FC<{ name: string }> = ({ name }) => {
+	return iconMap[name.toLowerCase()] ?? <div className="w-5 h-5" />;
+};
+
 export default function HeaderMegaMenu() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
 		useDisclosure(false);
@@ -130,7 +142,7 @@ export default function HeaderMegaMenu() {
 			<Drawer
 				opened={drawerOpened}
 				onClose={closeDrawer}
-				size="100%"
+				size="80%"
 				padding="md"
 				title="Menu"
 				hiddenFrom="lg"
@@ -186,66 +198,49 @@ export default function HeaderMegaMenu() {
 
 					<Divider my="sm" />
 
-					<div className="gap-6 py-2 px-10 mx-3  flex flex-col items-center">
+					<div className="gap-6 py-2 px-10 mx-3 flex flex-col items-center">
 						<Link
 							href={links.donateLink.href}
 							onClick={closeDrawer}
-							className="px-5 border-2 p-2 text-center border-sky-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
+							className="w-full  border-2 p-2 text-center border-sky-500 text-black rounded-4xl text-xl flex gap-2 items-center justify-center"
 						>
 							<Heart className="w-4 h-4 text-sky-500 fill-sky-500" />
 							<span>Donate</span>
 						</Link>
 						<div className="flex flex-col gap-4">
 							<div className="flex items-center gap-3">
-								<Phone className="" />
+								<Phone className="w-5" />
 								<a
 									className=" font-semibold"
-									href="tel:+919607753148"
+									href={`tel:${ngoDetails.contact.phone}`}
 								>
-									+91 96077-53148
+									{ngoDetails.contact.phone}
 								</a>
 							</div>
 							<div className="flex items-center gap-3">
-								<Mail className="" />
+								<Mail className="w-5" />
 								<a
 									className=" font-semibold"
-									href="mailto:info@aidglobal.ngo"
+									href={`mailto:${ngoDetails.contact.email}`}
 								>
-									info@aidglobal.ngo
+									{ngoDetails.contact.email}
 								</a>
 							</div>
 						</div>
 
 						<div className="flex gap-6">
-							<div className="flex items-center gap-3">
-								<a href="https://facebook.com/aidglobal">
-									<Facebook className="text-blue-600" />
+							{links.socialLinks.map((social) => (
+								<a
+									key={social.name}
+									href={social.href}
+									target="_blank"
+								>
+									<span className="sr-only">
+										{social.name}
+									</span>
+									<SocialIcon name={social.icon} />
 								</a>
-							</div>
-
-							<div className="flex items-center gap-3">
-								<a href="https://twitter.com/aidglobal">
-									<Twitter className="text-blue-500" />
-								</a>
-							</div>
-
-							<div className="flex items-center gap-3">
-								<a href="https://instagram.com/aidglobal">
-									<Instagram className="text-pink-700" />
-								</a>
-							</div>
-
-							<div className="flex items-center gap-3">
-								<a href="https://linkedin.com/company/aidglobal">
-									<Linkedin className="text-blue-800" />
-								</a>
-							</div>
-
-							<div className="flex items-center gap-3">
-								<a className="https://youtube.com/@aidglobal">
-									<Youtube className="text-red-500" />
-								</a>
-							</div>
+							))}
 						</div>
 					</div>
 				</ScrollArea>

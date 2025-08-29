@@ -1,5 +1,6 @@
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
+
 import { Button, Container, Group, Stack, Text, Title } from "@mantine/core";
 import Link from "next/link";
 
@@ -7,6 +8,7 @@ export default function Page() {
 	return (
 		<>
 			<HeaderMegaMenu />
+			{/* <Navbar /> */}
 			<div className="min-h-screen flex items-center justify-center bg-gray-50">
 				<Container className="text-center px-6 py-16">
 					<Stack gap="lg">

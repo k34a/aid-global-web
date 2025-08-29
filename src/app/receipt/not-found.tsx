@@ -1,6 +1,7 @@
 import Image from "@/components/image";
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
+
 import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	Button,
