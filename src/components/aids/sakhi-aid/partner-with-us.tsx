@@ -2,7 +2,7 @@ import Image from "@/components/image";
 import { HandHeart } from "lucide-react";
 import Link from "next/link";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-import { Grid, Flex } from "@mantine/core";
+import { Grid } from "@mantine/core";
 
 const content = [
 	{
@@ -36,10 +36,10 @@ export default function PartnerWithUs() {
 		<section className="bg-gradient-to-br from-rose-300 via-red-200 to-rose-300 py-12 px-2 sm:px-6">
 			<div>
 				<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center justify-center gap-2 mb-8 text-center">
-					Partner with us to:
+					Partner with us to -
 				</h2>
 
-				<Grid gutter="0">
+				<Grid gutter="0" justify="center">
 					{content.map((item, idx) => (
 						<div
 							key={idx}
