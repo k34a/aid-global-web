@@ -73,7 +73,7 @@ const HeroSection = () => {
 					<div className="absolute -top-[6px] -left-[6px] w-full h-full rounded-[2rem] bg-[#5DB996] shadow-md z-0" />
 					<div className="relative w-full h-[300px] sm:w-full sm:h-full rounded-[2rem] overflow-hidden bg-white/30 backdrop-blur-lg shadow-xl z-10 group">
 						<Image
-							src={`${STATIC_IMAGE_HOST}cure-aid/women-health.webp`}
+							src={`${STATIC_IMAGE_HOST}cure-aid/cureAid-1.webp`}
 							alt="CureAid On Ground"
 							fill
 							sizes="(max-width: 640px) 100vw, (min-width: 640px) 50vw"

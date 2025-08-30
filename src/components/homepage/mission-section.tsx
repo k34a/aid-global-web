@@ -14,7 +14,7 @@ const MissionSection = () => {
 
 				<div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
 					<Image
-						src={`${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`}
+						src={`${STATIC_IMAGE_HOST}home-page/home-5.webp`}
 						alt="child-image"
 						width={500}
 						height={500}
@@ -50,7 +50,6 @@ const MissionSection = () => {
 							Total Fund Raised
 						</span>
 						<span className="text-sm text-zinc-700">1 Lakh+</span>
-
 					</div>
 				</div>
 			</div>

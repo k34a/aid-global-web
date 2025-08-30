@@ -3,19 +3,19 @@ import Image from "@/components/image";
 
 export default function HeroImage() {
 	return (
-		<section className="relative w-[95%] mx-auto rounded-2xl h-[50vh] md:h-[75vh] overflow-hidden shadow-2xl">
+		<section className="relative w-[95%] mx-auto rounded-2xl h-[100vh] md:h-[115vh] overflow-hidden shadow-2xl">
 			<Image
-				src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha.webp`}
+				src={`${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid-intro.webp`}
 				alt="ShikshaAid Hero"
 				fill
 				style={{ objectFit: "cover" }}
-				className="brightness-50 scale-105 transition-transform duration-700 hover:scale-100"
+				className="brightness-70 scale-105 transition-transform duration-700 hover:scale-100"
 				priority
 			/>
 			<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 			<div className="absolute inset-0 flex flex-col items-center justify-end sm:justify-center text-center px-6 z-10">
 				<h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
-					<span className="bg-gradient-to-r from-white to-orange-300 bg-clip-text text-transparent">
+					<span className="bg-gradient-to-r from-orange-300 to-orange-700 bg-clip-text text-transparent">
 						ShikshaAid
 					</span>
 				</h1>

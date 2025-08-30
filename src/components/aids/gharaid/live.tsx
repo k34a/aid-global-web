@@ -27,7 +27,7 @@ function Live() {
 				</div>
 				<Image
 					className="rounded-xl shadow-lg sm:mx-auto"
-					src={`${STATIC_IMAGE_HOST}ghar-aid/buildlives.webp`}
+					src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-6.webp`}
 					alt="lives"
 					width={500}
 					height={400}

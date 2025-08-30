@@ -10,7 +10,7 @@ function Whoweeare() {
 				backgroundImage: `url(${STATIC_IMAGE_HOST}whoweare/background.webp)`,
 			}}
 		>
-			<section className="max-w-7xl mx-4 sm:mx-20 flex flex-col lg:flex-row items-center gap-y-8 gap-8 lg:gap-x-12 px-2 sm:px-4">
+			<section className="max-w-7xl mx-4 my-10 sm:mx-20 flex flex-col lg:flex-row items-center gap-y-8 gap-8 lg:gap-x-12 px-2 sm:px-4">
 				<div className="w-full lg:w-1/2 flex flex-col justify-center">
 					<h2 className="text-3xl sm:text-4xl font-bold text-sky-800 mb-4">
 						Who Are We
@@ -33,10 +33,10 @@ function Whoweeare() {
 				<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
 					<div className="w-full max-w-xs">
 						<Image
-							src={`${STATIC_IMAGE_HOST}whoweare/whoweare.webp`}
+							src={`${STATIC_IMAGE_HOST}whoweare/aboutus-1.webp`}
 							alt="who we are"
-							width={240}
-							height={240}
+							width={340}
+							height={340}
 							className="w-full h-auto object-contain rounded-lg shadow-lg"
 						/>
 					</div>

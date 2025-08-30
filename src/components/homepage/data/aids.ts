@@ -3,7 +3,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 export const aids = [
 	{
 		id: 1,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
+		image: `${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid-2.webp`,
 		title: "ShikshaAid",
 		desc: "Access to education for underpriviliged children. Partner with Aid Global Foundation to provide quality education and resources to children in need.",
 		button: "Read More",
@@ -11,7 +11,7 @@ export const aids = [
 	},
 	{
 		id: 2,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/intro.webp`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hungerAid-1.webp`,
 		title: "HungerAid",
 		desc: "HungerAid is that voice - a movement by Aid Global Foundation that brings not just food, but dignity, comfort, and care to those who need it most.",
 		button: "Read More",
@@ -35,7 +35,7 @@ export const aids = [
 	},
 	{
 		id: 5,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
+		image: `${STATIC_IMAGE_HOST}vision-aid/visionAid-1.webp`,
 		title: "VisionAid",
 		desc: "Eye care and vision restoration. Partner with Aid Global Foundation and be the reason someone sees the world again.",
 		button: "Read More",
@@ -51,7 +51,7 @@ export const aids = [
 	},
 	{
 		id: 7,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
+		image: `${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`,
 		title: "SakhiAid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Read More",

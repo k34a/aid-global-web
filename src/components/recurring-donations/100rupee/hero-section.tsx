@@ -74,18 +74,18 @@ export default function HeroSection(props: Props) {
 
 					<div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
 						<Image
-							src={`${STATIC_IMAGE_HOST}home-page/aids/intro.webp`}
+							src={`${STATIC_IMAGE_HOST}hundred-club/hunger.webp`}
 							alt="Community members coming together"
 							width={1200}
-							height={500}
-							className="w-full h-[300px] sm:h-[400px] object-cover"
+							height={700}
+							className="w-full h-[670px] sm:h-[600px] object-cover"
 						/>
 						<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 						<div className="absolute bottom-6 left-6 right-6 text-white text-center">
-							<p className="text-xl sm:text-2xl font-semibold">
+							<p className="text-2xl sm:text-3xl font-semibold">
 								Together we can make a difference
 							</p>
-							<p className="text-sm sm:text-base opacity-90">
+							<p className="text-md sm:text-lg opacity-90">
 								Every contribution matters
 							</p>
 						</div>

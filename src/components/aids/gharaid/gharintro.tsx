@@ -15,13 +15,13 @@ function Gharintro() {
 				</div>
 
 				<div className="relative z-10 flex flex-col lg:flex-row items-stretch justify-center gap-10 lg:gap-0 px-6 py-12">
-					<div className="w-full lg:w-1/2 flex justify-center items-stretch">
-						<div className="w-full h-full max-w-[520px] flex">
+					<div className="w-full lg:w-1/2 flex justify-center items-center">
+						<div className="w-full max-w-[520px] h-[500px] flex">
 							<Image
 								className="rounded-xl border-4 border-sky-400 shadow-xl object-cover w-full h-full"
-								src={`${STATIC_IMAGE_HOST}ghar-aid/gharaid.webp`}
+								src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-1.webp`}
 								width={520}
-								height={520}
+								height={500}
 								alt="GharAid"
 							/>
 						</div>

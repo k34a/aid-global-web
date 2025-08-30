@@ -47,7 +47,7 @@ export default function VisionAidHero() {
 				<div className="w-full md:w-1/2 flex justify-center relative">
 					<div className="relative w-[500px] h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
 						<Image
-							src={`${STATIC_IMAGE_HOST}vision-aid/vision.webp`}
+							src={`${STATIC_IMAGE_HOST}vision-aid/visionAid-2.webp`}
 							alt="VisionAid Hero"
 							fill
 							className="object-cover"

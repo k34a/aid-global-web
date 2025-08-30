@@ -50,7 +50,7 @@ export default function Introsection() {
 				</div>
 				<div className="flex items-center justify-center">
 					<Image
-						src={`${STATIC_IMAGE_HOST}shiksha-aid/shiksha1.webp`}
+						src={`${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid-2.webp`}
 						alt="ShikshaAid Center"
 						width={300}
 						height={500}
