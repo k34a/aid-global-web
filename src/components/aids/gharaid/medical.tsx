@@ -22,7 +22,7 @@ function Medical() {
 			<div
 				className="relative  bg-cover bg-center rounded-2xl shadow-xl overflow-hidden"
 				style={{
-					backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/medical.webp)`,
+					backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/gharAid-4.webp)`,
 				}}
 			>
 				<div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
@@ -32,14 +32,14 @@ function Medical() {
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
 							We serve individuals suffering from:
 						</h3>
-						<ul className="list-none space-y-3 text-base text-black sm:text-lg md:text-xl leading-relaxed">
+						<ul className="list-none space-y-3 text-base sm:text-lg md:text-lg text-black leading-snug md:leading-relaxed break-words text-pretty px-2">
 							{servinginfo.map((item) => (
 								<li
 									key={item}
-									className="flex items-start gap-2"
+									className="flex items-start gap-3"
 								>
 									<CheckSquare className="text-cyan-700 w-5 h-5 flex-shrink-0 mt-1" />
-									<span>{item}</span>
+									<span className="pl-1">{item}</span>
 								</li>
 							))}
 						</ul>
@@ -49,7 +49,7 @@ function Medical() {
 						<h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
 							We provide:
 						</h3>
-						<ul className="space-y-3 text-base text-black sm:text-lg md:text-xl leading-relaxed">
+						<ul className="space-y-3 text-base sm:text-lg md:text-lg text-black leading-snug md:leading-relaxed break-words text-pretty">
 							<li className="flex items-start gap-2">
 								<ArrowRight className="text-cyan-700 w-5 h-5 mt-1 flex-shrink-0" />
 								Doctor Visits & Mobile Health Vans

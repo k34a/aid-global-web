@@ -25,7 +25,7 @@ export default function VisionVanSection() {
 		<section className="bg-white py-5 px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
 			<div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-md">
 				<Image
-					src={`${STATIC_IMAGE_HOST}vision-aid/vision.webp`}
+					src={`${STATIC_IMAGE_HOST}vision-aid/visionAid-1.webp`}
 					alt="Vision Van Service"
 					fill
 					className="object-cover rounded-xl"

@@ -14,7 +14,7 @@ export default function WhyItMattersSection() {
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
 				<div className="col-span-1 relative w-full h-[350px] rounded-xl overflow-hidden shadow-lg">
 					<Image
-						src={`${STATIC_IMAGE_HOST}vision-aid/childwithglasses.webp`}
+						src={`${STATIC_IMAGE_HOST}vision-aid/visionAid-4.webp`}
 						alt="Beneficiary smiling after receiving glasses"
 						fill
 						className="object-cover rounded-xl"

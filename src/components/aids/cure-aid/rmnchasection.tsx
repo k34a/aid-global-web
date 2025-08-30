@@ -17,7 +17,7 @@ const rmhchData = [
 			"Coordination with local Anganwadi centers for sustained follow-up and support.",
 		],
 		icon: <Baby className="w-7 h-7 text-[#118B50]" />,
-		image: "cure-aid/malnutrition.webp",
+		image: "cure-aid/cureAid-2.webp",
 		color: "text-[#E3B505]",
 	},
 	{
@@ -38,7 +38,7 @@ const rmhchData = [
 			"Community-based health models addressing the social and safety needs of women and girls in urban slums.",
 		],
 		icon: <ShieldCheck className="w-7 h-7 text-[#E3B505]" />,
-		image: "cure-aid/women-health.webp",
+		image: "cure-aid/cureAid-3.webp",
 		color: "text-[#118B50]",
 	},
 ];

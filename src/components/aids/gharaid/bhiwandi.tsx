@@ -30,7 +30,7 @@ function Bhiwandi() {
 				<div className="w-full lg:w-1/2 flex justify-center">
 					<div className="w-full h-full">
 						<Image
-							src={`${STATIC_IMAGE_HOST}ghar-aid/house.webp`}
+							src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-3.webp`}
 							alt="Shelter Home"
 							width={700}
 							height={700}
