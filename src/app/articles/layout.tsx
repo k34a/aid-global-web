@@ -1,5 +1,6 @@
 import Footer from "@/components/structure/footer";
 import Header from "@/components/structure/header";
+
 import { ngoDetails } from "@/config/config";
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({
 	return (
 		<>
 			<Header />
+			{/* <Navbar /> */}
 			<main>{children}</main>
 			<Footer />
 		</>

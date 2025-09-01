@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/structure/header";
+
 import Footer from "@/components/structure/footer";
 import { ngoDetails } from "@/config/config";
 
