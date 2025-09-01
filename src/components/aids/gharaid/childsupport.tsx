@@ -7,7 +7,6 @@ function Childsupport() {
 			<h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-sky-900 mb-10">
 				Orphaned & Abandoned Child Support
 			</h2>
-
 			<div className="flex flex-col lg:flex-row justify-between mx-5 sm:mx-10 gap-12 lg:gap-10">
 				<div className="flex flex-col p-6 sm:p-8 rounded-xl bg-white/90 shadow-lg text-black">
 					<h3 className="font-semibold text-sm sm:text-base md:text-lg lg:text-xl mb-4 text-sky-700">
@@ -32,13 +31,13 @@ function Childsupport() {
 				</div>
 
 				<Image
-					className="rounded-xl shadow-lg"
-					src={`${STATIC_IMAGE_HOST}ghar-aid/children.webp`}
-					width={600}
+					className="rounded-xl shadow-lg sm:mx-auto"
+					src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-5.webp`}
+					alt="lives"
+					width={500}
 					height={400}
-					alt="child"
 				/>
-			</div>
+			</div>{" "}
 		</div>
 	);
 }

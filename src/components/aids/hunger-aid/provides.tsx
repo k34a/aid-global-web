@@ -16,7 +16,7 @@ export default function HungerAidProvides() {
 						key={index}
 						className="shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-gradient-to-r from-orange-100 to-orange-300 w-full max-w-xs sm:max-w-sm flex flex-col"
 					>
-						<div className="relative h-48 sm:h-52 w-full">
+						<div className="relative h-80 sm:h-90 w-full">
 							<Image
 								src={card.image}
 								alt={card.title}
@@ -56,7 +56,7 @@ export default function HungerAidProvides() {
 				{/* Custom 6th card */}
 				<div className="relative shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-orange-100 flex flex-col items-center justify-center min-h-[220px] sm:min-h-[320px] w-full max-w-xs sm:max-w-sm">
 					<Image
-						src={`${STATIC_IMAGE_HOST}hunger-aid/intro.webp`}
+						src={`${STATIC_IMAGE_HOST}hunger-aid/hungerAid-7.webp`}
 						alt="Your contribution creates a change"
 						fill
 						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

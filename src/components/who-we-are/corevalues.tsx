@@ -71,14 +71,14 @@ function Corevalues() {
 							</ul>
 						</div>
 
-						<div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-							<div className="w-56 sm:w-72 md:w-96">
+						<div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg flex justify-center lg:justify-end">
+							<div className="w-68 sm:w-72 md:w-96">
 								<Image
-									src={`${STATIC_IMAGE_HOST}whoweare/coreval.webp`}
+									src={`${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`}
 									alt="core values"
 									width={400}
 									height={400}
-									className="w-full h-auto object-contain rounded-lg shadow-lg"
+									className="w-full h-80 sm:h-96 lg:h-[500px] object-cover rounded-lg shadow-lg"
 								/>
 							</div>
 						</div>

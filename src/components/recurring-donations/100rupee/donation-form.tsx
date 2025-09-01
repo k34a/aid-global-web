@@ -26,7 +26,7 @@ export default function RecurringDonationForm() {
 				{/* Trust and Impact Image */}
 				<div className="relative mb-8 rounded-2xl overflow-hidden shadow-lg">
 					<Image
-						src={`${STATIC_IMAGE_HOST}home-page/aids/intro.webp`}
+						src={`${STATIC_IMAGE_HOST}cure-aid/cureAid-2.webp`}
 						alt="People making a difference together"
 						width={800}
 						height={300}
@@ -122,7 +122,7 @@ export default function RecurringDonationForm() {
 						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
 							<div className="relative h-32">
 								<Image
-									src={`${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`}
+									src={`${STATIC_IMAGE_HOST}hundred-club/children-supplies.webp`}
 									alt="Education impact"
 									width={300}
 									height={128}
@@ -139,7 +139,7 @@ export default function RecurringDonationForm() {
 						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
 							<div className="relative h-32">
 								<Image
-									src={`${STATIC_IMAGE_HOST}hunger-aid/intro.webp`}
+									src={`${STATIC_IMAGE_HOST}hunger-aid/hungerAid-6.webp`}
 									alt="Hunger relief impact"
 									width={300}
 									height={128}
@@ -156,7 +156,7 @@ export default function RecurringDonationForm() {
 						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
 							<div className="relative h-32">
 								<Image
-									src={`${STATIC_IMAGE_HOST}home-page/aids/cure.webp`}
+									src={`${STATIC_IMAGE_HOST}enable-aid/enableAid-4.webp`}
 									alt="Healthcare impact"
 									width={300}
 									height={128}

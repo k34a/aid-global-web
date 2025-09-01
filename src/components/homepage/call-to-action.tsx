@@ -11,7 +11,7 @@ const rotatingWords = ["future", "world", "society", "tomorrow", "community"];
 const callToActions = [
 	{
 		title: "Save Life",
-		img: `${STATIC_IMAGE_HOST}home-page/emergencies/Heart-Disease-2.webp`,
+		img: `${STATIC_IMAGE_HOST}home-page/home-1.webp`,
 		route: "/cure-aid",
 	},
 	{
@@ -26,7 +26,7 @@ const callToActions = [
 	},
 	{
 		title: "Women Empowerment",
-		img: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
+		img: `${STATIC_IMAGE_HOST}home-page/home-4.webp`,
 		route: "/sakhi-aid",
 	},
 ];

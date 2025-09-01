@@ -26,7 +26,7 @@ const aidPrograms = [
 		color: "text-sky-600",
 		bgColor: "bg-sky-50",
 		borderColor: "border-sky-200",
-		image: `${STATIC_IMAGE_HOST}home-page/aids/shiksha.webp`,
+		image: `${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid-2.webp`,
 	},
 	{
 		icon: Utensils,
@@ -36,7 +36,7 @@ const aidPrograms = [
 		color: "text-orange-600",
 		bgColor: "bg-orange-50",
 		borderColor: "border-orange-200",
-		image: `${STATIC_IMAGE_HOST}hunger-aid/intro.webp`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hungerAid-1.webp`,
 	},
 	{
 		icon: Heart,
@@ -46,7 +46,7 @@ const aidPrograms = [
 		color: "text-purple-600",
 		bgColor: "bg-purple-50",
 		borderColor: "border-purple-200",
-		image: `${STATIC_IMAGE_HOST}enable-aid/intro.webp`,
+		image: `${STATIC_IMAGE_HOST}home-page/aids/enable.webp`,
 	},
 	{
 		icon: Sparkles,
@@ -66,7 +66,7 @@ const aidPrograms = [
 		color: "text-indigo-600",
 		bgColor: "bg-indigo-50",
 		borderColor: "border-indigo-200",
-		image: `${STATIC_IMAGE_HOST}home-page/aids/vision.webp`,
+		image: `${STATIC_IMAGE_HOST}vision-aid/visionAid-1.webp`,
 	},
 	{
 		icon: Home,
@@ -86,7 +86,7 @@ const aidPrograms = [
 		color: "text-pink-600",
 		bgColor: "bg-pink-50",
 		borderColor: "border-pink-200",
-		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi.webp`,
+		image: `${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`,
 	},
 ];
 
