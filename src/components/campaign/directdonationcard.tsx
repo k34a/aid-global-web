@@ -8,6 +8,7 @@ interface DirectDonationCardProps {
 	onAmountChange: (amount: number) => void;
 	isSelected: boolean;
 	onToggle: () => void;
+	onDonateClick: () => void; // New prop for triggering donation modal
 }
 
 export const DirectDonationCard = ({
@@ -15,6 +16,7 @@ export const DirectDonationCard = ({
 	onAmountChange,
 	isSelected,
 	onToggle,
+	onDonateClick,
 }: DirectDonationCardProps) => {
 	const [inputValue, setInputValue] = useState(amount.toString());
 	const [isTyping, setIsTyping] = useState(false);
@@ -106,6 +108,17 @@ export const DirectDonationCard = ({
 						className="w-full text-sm text-red-600 hover:text-red-700 hover:bg-red-50 py-2 px-3 rounded-lg transition-colors font-medium border border-red-200 hover:border-red-300"
 					>
 						Cancel
+					</button>
+					<button
+						onClick={onDonateClick}
+						disabled={amount <= 0}
+						className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
+							amount <= 0
+								? "bg-gray-300 text-gray-500 cursor-not-allowed"
+								: "bg-sky-600 hover:bg-sky-700 text-white"
+						}`}
+					>
+						Donate &#8377;{amount}
 					</button>
 				</div>
 			)}

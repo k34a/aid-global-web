@@ -7,6 +7,7 @@ import { ProductCard } from "./productcard";
 import { DonationSummary } from "./donationsummary";
 import { CampaignProduct } from "@/lib/db/campaigns";
 import { DirectDonationCard } from "./directdonationcard";
+import { DonationDetailsModal } from "./donationdetailsmodal";
 
 interface CampaignProductsProps {
 	products: CampaignProduct[];
@@ -46,6 +47,27 @@ export default function CampaignProducts({
 
 	const previousTotalCostRef = useRef(0);
 	const currentAmountInputRef = useRef(0);
+
+	const [donationModalOpened, setDonationModalOpened] = useState(false);
+	const [modalDonationDetails, setModalDonationDetails] = useState<any>(null);
+
+	const handleOpenDonationModal = (
+		isDirect: boolean,
+		amount: number = 0,
+		productSelections: Record<string, number> = {},
+		autoAlloc: boolean = false,
+	) => {
+		setModalDonationDetails({
+			products: products,
+			selectedProducts: productSelections,
+			totalCost: isDirect ? amount : totalCost,
+			amountInput: amount,
+			autoAllocate: isDirect ? true : autoAlloc,
+			campaignId: campaignId,
+			isDirectDonation: isDirect,
+		});
+		setDonationModalOpened(true);
+	};
 
 	const increment = (id: string) => {
 		setSelectedProducts((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
@@ -150,6 +172,9 @@ export default function CampaignProducts({
 					onAmountChange={handleDirectDonationAmountChange}
 					isSelected={directDonationMode}
 					onToggle={handleDirectDonationToggle}
+					onDonateClick={() =>
+						handleOpenDonationModal(true, directDonationAmount)
+					}
 				/>
 			</div>
 
@@ -202,10 +227,38 @@ export default function CampaignProducts({
 					}
 					campaignId={campaignId}
 					isDirectDonation={directDonationMode}
+					onOpenDonationModal={(
+						isDirect,
+						amount,
+						productSelections,
+						autoAlloc,
+					) =>
+						handleOpenDonationModal(
+							isDirect,
+							amount,
+							productSelections,
+							autoAlloc,
+						)
+					}
+					// isDonationValid={shouldShowDonationSummary} // This prop is no longer needed here
 				/>
 			)}
 
 			{!shouldShowDonationSummary && <EmptyState />}
+
+			{donationModalOpened && modalDonationDetails && (
+				<DonationDetailsModal
+					opened={donationModalOpened}
+					onClose={() => setDonationModalOpened(false)}
+					products={modalDonationDetails.products}
+					selectedProducts={modalDonationDetails.selectedProducts}
+					totalCost={modalDonationDetails.totalCost}
+					amountInput={modalDonationDetails.amountInput}
+					autoAllocate={modalDonationDetails.autoAllocate}
+					campaignId={modalDonationDetails.campaignId}
+					isDirectDonation={modalDonationDetails.isDirectDonation}
+				/>
+			)}
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { IndianRupee } from "lucide-react";
 import {
 	onCampaignDonateButtonClick,
@@ -8,6 +8,7 @@ import {
 } from "@/components/donate";
 import { CampaignProduct } from "@/lib/db/campaigns";
 import { Button } from "@mantine/core";
+// Removed: import { DonationDetailsModal } from "./donationdetailsmodal";
 
 interface DonationSummaryProps {
 	products: CampaignProduct[];
@@ -19,6 +20,12 @@ interface DonationSummaryProps {
 	handleAmountChange: (value: number) => void;
 	campaignId: string;
 	isDirectDonation?: boolean;
+	onOpenDonationModal: (
+		isDirect: boolean,
+		amount: number,
+		productSelections: Record<string, number>,
+		autoAlloc: boolean,
+	) => void;
 }
 
 export const DonationSummary = ({
@@ -31,25 +38,16 @@ export const DonationSummary = ({
 	handleAmountChange,
 	campaignId,
 	isDirectDonation = false,
+	onOpenDonationModal,
 }: DonationSummaryProps) => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [contact, setContact] = useState("");
-	const [isAnonymous, setIsAnonymous] = useState(false);
-	const [notes, setNotes] = useState("");
-
 	const isDonationValid = () => {
 		if (isDirectDonation) {
-			// For direct donation, just need amount > 0 and user details
-			if (amountInput <= 0) return false;
-			if (!name || !email || !contact) return false;
-			return true;
+			return amountInput > 0;
 		} else {
-			// For product-based donation, use existing logic
-			if (amountInput < totalCost) return false;
-			if (amountInput > totalCost && !autoAllocate) return false;
-			if (!name || !email || !contact) return false;
-			return true;
+			return (
+				amountInput >= totalCost &&
+				(amountInput > totalCost ? autoAllocate : true)
+			);
 		}
 	};
 
@@ -178,74 +176,16 @@ export const DonationSummary = ({
 				</div>
 			)}
 
-			{/* User Input Section */}
-			<div className="space-y-3 mb-4">
-				<input
-					type="text"
-					placeholder="Your Name"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
-				<input
-					type="email"
-					placeholder="Your Email"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="tel"
-					placeholder="Contact Number"
-					className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
-					value={contact}
-					onChange={(e) => setContact(e.target.value)}
-				/>
-				<label className="flex items-center gap-2 text-sm text-gray-700">
-					<input
-						type="checkbox"
-						checked={isAnonymous}
-						onChange={() => setIsAnonymous(!isAnonymous)}
-						className="w-4 h-4 border-gray-300 text-sky-600"
-					/>
-					Donate Anonymously
-				</label>
-				<div>
-					<label className="block text-sm font-medium text-gray-700 mb-1">
-						Donation Message (Optional)
-					</label>
-					<textarea
-						placeholder="Share why you're making this donation (100-160 characters)"
-						value={notes}
-						onChange={(e) => setNotes(e.target.value)}
-						maxLength={160}
-						rows={3}
-						className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-sky-500"
-					/>
-					<p className="text-xs text-gray-500 mt-1">
-						{notes.length}/160 characters{" "}
-					</p>
-				</div>
-			</div>
-
 			<Button
-				onClick={() => {
-					onCampaignDonateButtonClick({
-						userInfo: {
-							name,
-							email,
-							contact_number: contact,
-							notes,
-						},
-						is_anon: isAnonymous,
-						campaign_details: {
-							campaign_id: campaignId,
-							products: selectedProducts,
-							auto_allocate: autoAllocate,
-							amount: amountInput,
-						},
-					});
-				}}
+				onClick={() =>
+					onOpenDonationModal(
+						isDirectDonation,
+						isDirectDonation ? amountInput : amountInput,
+						isDirectDonation ? {} : selectedProducts,
+						isDirectDonation ? true : autoAllocate,
+					)
+				}
+				disabled={!isDonationValid()}
 				className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
 					isDonationValid()
 						? "bg-sky-600 hover:bg-sky-700 text-white"
