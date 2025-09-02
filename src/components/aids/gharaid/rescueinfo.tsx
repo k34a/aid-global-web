@@ -54,7 +54,7 @@ function Rescueinfo() {
 					<div className="flex-1 flex flex-col gap-8">
 						<div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 rounded-2xl shadow-lg overflow-hidden">
 							<Image
-								src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-2.webp`}
+								src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-rescue.webp`}
 								alt="Rescue operations"
 								fill
 								style={{ objectFit: "cover" }}

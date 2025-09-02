@@ -60,7 +60,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 3,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-4.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-mission.webp`,
 		icon: Smile,
 		title: "Mission Smile Program",
 		tagline: "Healing smiles. Building futures.",
@@ -106,7 +106,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 5,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-6.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-awareness.webp`,
 		icon: Megaphone,
 		title: "Awareness, Advocacy & Inclusion",
 		tagline: "Changing minds. Creating opportunity.",
@@ -119,7 +119,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 6,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-7.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-clinics.webp`,
 		icon: Hospital,
 		title: "EnableAid Clinics at Hospitals & Medical Colleges",
 		tagline: "One-stop care. Community-rooted impact.",
