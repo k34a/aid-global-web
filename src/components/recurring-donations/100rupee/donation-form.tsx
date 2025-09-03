@@ -139,7 +139,7 @@ export default function RecurringDonationForm() {
 						<div className="bg-white rounded-xl overflow-hidden shadow-sm">
 							<div className="relative h-32">
 								<Image
-									src={`${STATIC_IMAGE_HOST}hunger-aid/hungerAid-6.webp`}
+									src={`${STATIC_IMAGE_HOST}hundred-club/foodSupport.webp`}
 									alt="Hunger relief impact"
 									width={300}
 									height={128}

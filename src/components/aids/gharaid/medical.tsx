@@ -22,7 +22,7 @@ function Medical() {
 			<div
 				className="relative  bg-cover bg-center rounded-2xl shadow-xl overflow-hidden"
 				style={{
-					backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/gharAid-4.webp)`,
+					backgroundImage: `url(${STATIC_IMAGE_HOST}ghar-aid/gharAid-3.webp)`,
 				}}
 			>
 				<div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
