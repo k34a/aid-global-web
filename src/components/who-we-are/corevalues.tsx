@@ -1,8 +1,35 @@
 import React from "react";
 import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
-
+import { List, ListItem, Title, Text } from "@mantine/core";
 function Corevalues() {
+	const values = [
+		{
+			title: "GODLIKE",
+			description:
+				"We serve with divine compassion, honoring the worth of every person.",
+		},
+		{
+			title: "CHILDLIKE",
+			description:
+				"We live with wonder, humility, and a deep dependence on values greater than ourselves.",
+		},
+		{
+			title: "INTEGRITY",
+			description:
+				"We uphold honesty and accountability in all that we do.",
+		},
+		{
+			title: "RESTORING THE BROKEN",
+			description:
+				"We address the physical, emotional, and spiritual needs of those who are overlooked or suffering.",
+		},
+		{
+			title: "INTENTIONAL RELATIONSHIPS",
+			description:
+				"We build authentic, trust-based partnerships to amplify our collective impact.",
+		},
+	];
 	return (
 		<div>
 			<section
@@ -17,58 +44,37 @@ function Corevalues() {
 						Core Values
 					</h2>
 
-					<div className="flex flex-col lg:flex-row items-center gap-y-6 sm:gap-y-10 lg:gap-x-12">
+					<div className="flex flex-col lg:flex-row items-center gap-y-3 sm:gap-y-6 lg:gap-x-12">
 						<div className="w-full lg:w-1/2">
-							<ul className="space-y-4 sm:space-y-6 text-sm sm:text-lg text-gray-800">
-								<li>
-									<h3 className="text-base sm:text-lg font-bold text-sky-600">
-										GODLIKE
-									</h3>
-									<p>
-										We serve with divine compassion,
-										honoring the worth of every person.
-									</p>
-								</li>
-								<li>
-									<h3 className="text-base sm:text-lg font-bold text-sky-600">
-										CHILDLIKE
-									</h3>
-									<p>
-										We live with wonder, humility, and a
-										deep dependence on values greater than
-										ourselves.
-									</p>
-								</li>
-								<li>
-									<h3 className="text-base sm:text-lg font-bold text-sky-600">
-										INTEGRITY
-									</h3>
-									<p>
-										We uphold honesty and accountability in
-										all that we do.
-									</p>
-								</li>
-								<li>
-									<h3 className="text-base sm:text-lg font-bold text-sky-600">
-										RESTORING THE BROKEN
-									</h3>
-									<p>
-										We address the physical, emotional, and
-										spiritual needs of those who are
-										overlooked or suffering.
-									</p>
-								</li>
-								<li>
-									<h3 className="text-base sm:text-lg font-bold text-sky-600">
-										INTENTIONAL RELATIONSHIPS
-									</h3>
-									<p>
-										We build authentic, trust-based
-										partnerships to amplify our collective
-										impact.
-									</p>
-								</li>
-							</ul>
+							<List
+								spacing={{ base: "sm", sm: "xl" } as any}
+								size="md"
+							>
+								{values.map((item, idx) => (
+									<ListItem
+										key={idx}
+										style={{ marginBottom: "1rem" }}
+									>
+										<Title
+											order={4}
+											fz={{ base: "sm", sm: "lg" }}
+											c="blue.6"
+											fw={700}
+										>
+											{item.title}
+										</Title>
+										<Text
+											fz={{
+												base: "sm",
+												sm: "lg",
+											}}
+											c="gray.9"
+										>
+											{item.description}
+										</Text>
+									</ListItem>
+								))}
+							</List>
 						</div>
 
 						<div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg flex justify-center lg:justify-end">

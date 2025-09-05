@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Search,
 	School,
@@ -8,6 +10,19 @@ import {
 	Lightbulb,
 } from "lucide-react";
 import Link from "next/link";
+import {
+	Title,
+	Text,
+	Card,
+	Stack,
+	Group,
+	ThemeIcon,
+	Table,
+	Button,
+	Grid,
+	GridCol,
+} from "@mantine/core";
+import { IndianRupee } from "lucide-react";
 
 const points = [
 	{
@@ -32,26 +47,47 @@ const points = [
 	},
 ];
 
+const donationPlans = [
+	["Educational supplies for 5 children", "9,225"],
+	["Nutritious meals for 50 children (3x a week)", "12,000"],
+	["Health camp & educational tour", "33,000"],
+	["Teacher's honorarium (monthly)", "10,000"],
+	["Set up a new Shiksha Club", "50,000"],
+];
+
 export default function Donationsection() {
 	return (
-		<section className="bg-[#eaf5ff]/20 px-4 py-6">
-			<div className=" rounded-2xl  p-6">
-				{/* Heading */}
-				<h3 className="text-2xl font-bold text-[#003366] flex items-center mb-4">
-					<span className="text-3xl mr-2">
-						<Lightbulb className="text-yellow-500" />
-					</span>{" "}
-					Why ShikshaAid Centre?
-				</h3>
-				<p className="text-[#003366] font-bold mb-6">
+		<section
+			style={{
+				backgroundColor: "rgba(234, 245, 255, 0.2)", // bg-[#eaf5ff]/20
+				padding: "1.5rem 1rem",
+			}}
+		>
+			<Card radius="xl" p="lg" shadow="xs" withBorder={false}>
+				<Group mb="md" align="center" gap="sm" wrap="nowrap">
+					<ThemeIcon
+						radius="xl"
+						size={36}
+						color="yellow"
+						className="flex-shrink-0"
+					>
+						<Lightbulb size={20} />
+					</ThemeIcon>
+					<Title order={3} c="#003366" fw={700}>
+						Why ShikshaAid Centre?
+					</Title>
+				</Group>
+
+				<Text c="#003366" fw={700} mb="lg">
 					The ShikshaAid Centre is our innovative grassroots model for
 					informal yet impactful education. It acts as a safe space
 					for learning, healing, and growth for children who lack
 					access to traditional classrooms.
-				</p>
-				<div className="flex flex-col lg:flex-row gap-2">
-					<div className="flex-1 mt-10 ml-4">
-						<div className="space-y-4">
+				</Text>
+
+				<Grid gutter="xl">
+					<GridCol span={{ base: 12, lg: 6 }}>
+						<Stack gap="md" ml="sm" mt="md">
 							{points.map((item, index) => {
 								const Icon = item.icon;
 								return (
@@ -59,94 +95,111 @@ export default function Donationsection() {
 										key={index}
 										className="flex items-start gap-3"
 									>
-										<Icon className="mt-1 text-orange-400" />
-
-										<span className="text-[#003366]">
+										<div className="flex-shrink-0 mt-1 w-5 h-5 text-orange-400">
+											<Icon className="w-5 h-5" />
+										</div>
+										<span className="text-[#003366] leading-snug">
 											{item.text}
 										</span>
 									</div>
 								);
 							})}
-						</div>
-					</div>
-
-					<div className="flex-1 border border-orange-300 rounded-2xl shadow-md p-2 bg-white">
-						<h3 className="text-2xl font-bold text-orange-600 flex items-center mb-2">
-							<span className="text-3xl mr-2">
-								<Goal className="text-red-600" />
-							</span>{" "}
-							Donation Plans - ShikshaAid Centre
-						</h3>
-						<table className="w-full text-[#003366] text-sm md:text-base">
-							<thead className="border-b border-[#004466]">
-								<tr>
-									<th className="py-1 text-left font-semibold">
-										Support For
-									</th>
-									<th className="py-1 text-right font-semibold">
-										Amount (INR)
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr className="border-b">
-									<td className="py-1">
-										Educational supplies for 5 children
-									</td>
-									<td className="py-1 text-right font-medium">
-										&#8377;9,225
-									</td>
-								</tr>
-								<tr className="border-b">
-									<td className="py-1">
-										Nutritious meals for 50 children (3x a
-										week)
-									</td>
-									<td className="py-1 text-right font-medium">
-										&#8377;12,000
-									</td>
-								</tr>
-								<tr className="border-b">
-									<td className="py-1">
-										Health camp & educational tour
-									</td>
-									<td className="py-1 text-right font-medium">
-										&#8377;33,000
-									</td>
-								</tr>
-								<tr className="border-b">
-									<td className="py-1">
-										Teacher&apos;s honorarium (monthly)
-									</td>
-									<td className="py-2 text-right font-medium">
-										&#8377;10,000
-									</td>
-								</tr>
-								<tr>
-									<td className="py-1">
-										Set up a new Shiksha Club
-									</td>
-									<td className="py-1 text-right font-medium">
-										&#8377;50,000
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<p className="mt-4 italic text-sm text-[#444]">
-							Every rupee you contribute turns the street into a
-							stepping stone for a better life.
-						</p>
-						<div className="mt-2 flex items-center justify-center">
-							<Link
-								href="/donate?program=shiksha-aid"
-								className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition"
+						</Stack>
+					</GridCol>
+					<GridCol span={{ base: 12, lg: 6 }}>
+						<Card
+							withBorder
+							shadow="md"
+							radius="xl"
+							p="md"
+							style={{
+								backgroundColor: "white",
+								borderColor: "#fdba74",
+							}}
+						>
+							<Group mb="sm" align="left" gap="sm" wrap="nowrap">
+								<ThemeIcon
+									radius="xl"
+									size={34}
+									color="red"
+									className="flex-shrink-0"
+								>
+									<Goal size={20} />
+								</ThemeIcon>
+								<Title order={3} c="orange.6" fw={700}>
+									Donation Plans- ShikshaAid Centre
+								</Title>
+							</Group>
+							<Table
+								striped
+								highlightOnHover
+								withTableBorder={false}
+								withColumnBorders={false}
+								styles={{
+									thead: {
+										borderBottom: "2px solid #004466",
+									},
+									th: {
+										padding: "6px 8px",
+										fontWeight: 600,
+										color: "#003366",
+									},
+									td: {
+										padding: "6px 8px",
+										borderBottom: "1px solid #ccc",
+										color: "#003366",
+									},
+								}}
 							>
-								Donate Now
-							</Link>
-						</div>
-					</div>
-				</div>
-			</div>
+								<Table.Thead>
+									<Table.Tr>
+										<Table.Th>Support For</Table.Th>
+										<Table.Th ta="right">
+											Amount (INR)
+										</Table.Th>
+									</Table.Tr>
+								</Table.Thead>
+								<Table.Tbody>
+									{donationPlans.map(
+										([support, amount], i) => (
+											<Table.Tr key={i}>
+												<Table.Td>{support}</Table.Td>
+												<Table.Td
+													ta="right"
+													fw={500}
+													className="flex items-center justify-end gap-1"
+												>
+													<IndianRupee
+														size={14}
+														strokeWidth={2}
+													/>{" "}
+													{amount}
+												</Table.Td>
+											</Table.Tr>
+										),
+									)}
+								</Table.Tbody>
+							</Table>
+
+							<Text mt="md" size="sm" fs="italic">
+								Every rupee you contribute turns the street into
+								a stepping stone for a better life.
+							</Text>
+
+							<Group justify="center" mt="md">
+								<Button
+									component={Link}
+									href="/donate?program=shiksha-aid"
+									radius="xl"
+									color="orange"
+								>
+									Donate Now
+								</Button>
+							</Group>
+						</Card>
+					</GridCol>
+				</Grid>
+			</Card>
 		</section>
 	);
 }
