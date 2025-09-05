@@ -83,10 +83,14 @@ export default function Intro() {
 
 				{/* Aids Grid */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-12 px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32">
-					{aids.slice(0, 6).map((aid, index) => (
+					{aids.map((aid, index) => (
 						<div
 							key={index}
-							className={`rounded-2xl p-6 md:p-8 text-white shadow-xl hover:scale-[1.03] transition-transform duration-300 ${aid.bg}`}
+							className={`rounded-2xl p-6 md:p-8 text-white shadow-xl hover:scale-[1.03] transition-transform duration-300 ${aid.bg} ${
+								index === aids.length - 1
+									? "sm:col-span-2 mx-auto max-w-lg"
+									: ""
+							}`}
 						>
 							<div className="flex items-center gap-3 mb-4">
 								<div className="bg-white/20 rounded-full p-3">
@@ -101,25 +105,6 @@ export default function Intro() {
 							</p>
 						</div>
 					))}
-				</div>
-
-				{/* Last Aid Centered */}
-				<div className="mt-6 flex justify-center px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32">
-					<div
-						className={`rounded-2xl p-6 md:p-8 text-white shadow-xl hover:scale-[1.03] transition-transform duration-300 ${aids[6].bg}`}
-					>
-						<div className="flex items-center gap-3 mb-4">
-							<div className="bg-white/20 rounded-full p-3">
-								{aids[6].icon}
-							</div>
-							<h4 className="text-xl font-bold">
-								{aids[6].title}
-							</h4>
-						</div>
-						<p className="text-sm md:text-base text-white/90 font-bold">
-							{aids[6].description}
-						</p>
-					</div>
 				</div>
 
 				{/* Support Line */}

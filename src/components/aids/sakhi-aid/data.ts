@@ -41,37 +41,37 @@ export const emotionalAwarenessData: AwarenessContent = {
 
 export const initiativesone: InitiativeItem[] = [
 	{
-		color: "text-rose-500",
+		color: "red.6",
 		title: "Health Awareness Sessions",
 		description:
 			"in schools, anganwadis, and communities about the menstrual cycle, safe practices, and breaking myths.",
 	},
 	{
-		color: "text-sky-500",
+		color: "blue.5",
 		title: "Sanitary Pad Distribution Drives",
 		description:
 			"to ensure every girl, especially in government schools and remote villages, has access to safe menstrual hygiene.",
 	},
 	{
-		color: "text-orange-500",
+		color: "orange.5",
 		title: "Reusable Pad Making Workshop",
 		description:
 			"Training women to make and sell eco-friendly cloth pads, creating both awareness and livelihood.",
 	},
 	{
-		color: "text-green-600",
+		color: "green.6",
 		title: "Pad Banks",
 		description:
 			"set up in schools, community centers, and villages for free or low-cost access during emergencies.",
 	},
 	{
-		color: "text-indigo-600",
+		color: "indigo.6",
 		title: "School Hygiene Campaigns",
 		description:
 			"Promoting better sanitation facilities in schools including waste bins, clean toilets, and privacy.",
 	},
 	{
-		color: "text-pink-700",
+		color: "pink.7",
 		title: "Mother-Daughter Menstrual Dialogues",
 		description: "to encourage open family conversations and reduce shame.",
 	},
@@ -79,43 +79,43 @@ export const initiativesone: InitiativeItem[] = [
 
 export const initiativestwo: InitiativeItem[] = [
 	{
-		color: "text-rose-500",
+		color: "red.6",
 		title: "Formation & Mobilization",
 		description:
 			"Creating women's groups based on mutual trust and community connection.",
 	},
 	{
-		color: "text-sky-500",
+		color: "blue.5",
 		title: "Tailored Training Programs",
 		description:
 			"Based on individual interest and local need-such as stitching, cooking, organic farming, handicrafts, etc.",
 	},
 	{
-		color: "text-orange-500",
+		color: "orange.5",
 		title: "Product Making & Branding",
 		description:
 			"Women learn to make market-ready items like pickles, snacks, hand-sewn cloth items, soaps, candles, chocolates, herbal products, and eco-kits.",
 	},
 	{
-		color: "text-green-600",
+		color: "green.6",
 		title: "Participation in Exhibitions & Fairs",
 		description:
 			"SHG women are trained to set up stalls at local markets, city expos, and NGO fairs to sell their goods and gain visibility.",
 	},
 	{
-		color: "text-indigo-600",
+		color: "indigo.6",
 		title: "Financial Literacy & Bank Linkages",
 		description:
 			"Basic knowledge of savings, loans, budgeting, and opening SHG bank accounts.",
 	},
 	{
-		color: "text-pink-700",
+		color: "pink.7",
 		title: "Leadership & Digital Skills",
 		description:
 			"Training women to manage meetings, maintain records, and operate smartphones for online selling.",
 	},
 	{
-		color: "text-yellow-600",
+		color: "yellow.6",
 		title: "Skill Showcasing & Awards",
 		description:
 			"Organizing SHG performance competitions to boost confidence and honor their growth.",
@@ -124,85 +124,81 @@ export const initiativestwo: InitiativeItem[] = [
 
 export const initiativesthree: InitiativeItem[] = [
 	{
-		color: "text-pink-600",
+		color: "pink.6",
 		title: "Tailoring & Fashion Design",
 		description:
 			"Skill development in stitching, embroidery, and designing garments for home use or boutique sales.",
 	},
 	{
-		color: "text-rose-500",
+		color: "red.6",
 		title: "Beautician & Salon Training",
 		description:
 			"Hands-on learning of beauty treatments, skincare, and grooming services for home parlours or salons.",
 	},
 	{
-		color: "text-sky-600",
+		color: "blue.6",
 		title: "Computer Basics & Office Management",
 		description:
 			"Training in digital skills, MS Office, and workplace readiness for admin or desk-based jobs.",
 	},
 	{
-		color: "text-orange-500",
+		color: "orange.5",
 		title: "Handmade Products",
 		description:
 			"Creating and designing bags, jewellery, gift items, and crafts for self-employment and exhibitions.",
 	},
 	{
-		color: "text-green-600",
+		color: "green.6",
 		title: "Paramedical & First Aid Training",
 		description:
 			"Building healthcare skills in first response, basic care, and support roles in rural clinics.",
 	},
 	{
-		color: "text-violet-600",
+		color: "violet.6",
 		title: "Retail Management & Spoken English",
 		description:
 			"Training in customer service, shopkeeping, billing, and spoken English for retail or service jobs.",
 	},
-
-	// Livelihood-Based Micro-Enterprises
 	{
-		color: "text-yellow-600",
+		color: "yellow.6",
 		title: "Dairy Farming",
 		description: "Cattle care, feeding, vaccination, and milk marketing.",
 	},
 	{
-		color: "text-amber-600",
+		color: "amber.6",
 		title: "Goat Farming",
 		description: "Low-cost models for village-based income.",
 	},
 	{
-		color: "text-emerald-600",
+		color: "green.6",
 		title: "Poultry Farming",
 		description: "Coop setup, feeding, hygiene, and poultry sales.",
 	},
 	{
-		color: "text-lime-600",
+		color: "lime.6",
 		title: "Organic Farming & Kitchen Gardens",
 		description: "Training in natural methods and seasonal planting",
 	},
-
-	// Business Readiness & Support
 	{
-		color: "text-indigo-600",
+		color: "indigo.6",
 		title: "Entrepreneurship Bootcamps",
 		description:
 			"Workshops for women-led business ideas, planning, and pitching to mentors or investors.",
 	},
 	{
-		color: "text-teal-600",
+		color: "teal.6",
 		title: "Seed Kit & Tool Distribution",
 		description:
 			"Providing necessary startup tools and seed material after completion of relevant training.",
 	},
 	{
-		color: "text-red-600",
+		color: "red.6",
 		title: "Micro-Loan Facilitation",
 		description:
 			"Helping women access loans through SHG federations and banks to launch or expand small businesses.",
 	},
 	{
-		color: "text-cyan-600",
+		color: "cyan.6",
 		title: "Market & Buyer Linkages",
 		description:
 			"Connecting SHGs and entrepreneurs to shops, buyers, and e-commerce platforms to sell products.",
@@ -211,25 +207,25 @@ export const initiativesthree: InitiativeItem[] = [
 
 export const initiativesfour: InitiativeItem[] = [
 	{
-		color: "text-rose-500",
+		color: "pink.6",
 		title: "Basic Mental Health Counseling",
 		description:
 			"One-on-one emotional support sessions provided by trained volunteers to address distress and trauma.",
 	},
 	{
-		color: "text-sky-500",
+		color: "blue.5",
 		title: "Group Therapy & Sharing Circles",
 		description:
 			"Safe spaces for women to share experiences, build emotional strength, and support each other collectively.",
 	},
 	{
-		color: "text-orange-500",
+		color: "orange.5",
 		title: "Legal Referral Assistance",
 		description:
 			"Connecting women facing violence with legal aid services and helping them navigate justice systems.",
 	},
 	{
-		color: "text-green-600",
+		color: "green.6",
 		title: "Peer Mentorship Programs",
 		description:
 			"Empowering survivors to mentor and support other women through recovery and confidence-building.",

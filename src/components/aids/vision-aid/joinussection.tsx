@@ -7,7 +7,7 @@ import {
 	Link as LinkIcon,
 } from "lucide-react";
 import Link from "next/link";
-
+import { SimpleGrid, Card, Title, Text } from "@mantine/core";
 const contributions = [
 	{
 		icon: Glasses,
@@ -46,31 +46,44 @@ export default function JoinUsSection() {
 				<div className="absolute top-[120px] left-[120px] w-[360px] h-[360px] rounded-full bg-[#d8beff] opacity-40" />
 				<div className="absolute top-[180px] left-[180px] w-[240px] h-[240px] rounded-full bg-[#caa6ff] opacity-30" />
 			</div>
+
 			<div className="relative z-10">
-				<h2 className="text-4xl  font-bold text-[#2f194d] mb-2">
+				<Title order={2} size="h1" fw={700} c="#2f194d" mb="sm">
 					Be the Light in Someone&apos;s Darkness
-				</h2>
-				<p className="text-xl text-[#5d3dc4] mb-4 max-w-2xl">
+				</Title>
+				<Text size="xl" c="#5d3dc4" mb="md" maw={600}>
 					You can be a part of this life-changing journey:
-				</p>
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+				</Text>
+				<SimpleGrid
+					cols={{ base: 1, sm: 2, lg: 3 }}
+					spacing="md"
+					mb="md"
+				>
 					{contributions.map(
 						({ icon: Icon, title, description }, i) => (
-							<div
+							<Card
 								key={i}
-								className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-[#f0e6ff]"
+								shadow="sm"
+								radius="md"
+								withBorder
+								className="hover:shadow-md transition-all"
+								p="md"
 							>
-								<Icon className="w-6 h-6 text-[#6a1e55] mb-3" />
-								<h3 className="text-[#1a1a1d] font-semibold mb-1">
+								<Icon
+									size={24}
+									color="#6a1e55"
+									style={{ marginBottom: 8 }}
+								/>
+								<Text fw={600} c="#1a1a1d" mb={4}>
 									{title}
-								</h3>
-								<p className="text-sm text-gray-700">
+								</Text>
+								<Text size="sm" c="gray.7">
 									{description}
-								</p>
-							</div>
+								</Text>
+							</Card>
 						),
 					)}
-				</div>
+				</SimpleGrid>
 				<div className="mb-4">
 					<h3 className="text-xl font-semibold text-[#2f194d] mb-2">
 						Connect with VisionAid Today

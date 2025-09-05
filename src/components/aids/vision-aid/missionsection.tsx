@@ -1,5 +1,5 @@
 import { Check, Goal } from "lucide-react";
-
+import { Title, Text, Flex, SimpleGrid, Paper } from "@mantine/core";
 const missionServices = [
 	{
 		title: "Free Eye Screening Camps",
@@ -41,55 +41,79 @@ export default function MissionSection() {
 	return (
 		<section className="bg-gradient-to-b from-[#f8f2fc] to-[#fbeffc] py-10 px-6 md:px-24">
 			<div className="text-center mb-10">
-				<h2 className="text-4xl md:text-5xl font-bold mb-4">
+				<Title order={2} size="h1" fw={700} ta="center" mb="sm">
 					Our Mission:{" "}
-					<span className="text-[#6a1e55]">Vision for All</span>
-				</h2>
-				<p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-4">
+					<Title
+						order={2}
+						size="h1"
+						fw={700}
+						component="span"
+						c="#6a1e55"
+					>
+						Vision for All
+					</Title>
+				</Title>
+				<Text
+					size="lg"
+					c="gray.7"
+					maw={700}
+					mx="auto"
+					ta="center"
+					mb="md"
+				>
 					<strong>VisionAid</strong>, a flagship program of{" "}
 					<strong>Aid Global Foundation</strong>, is working
 					tirelessly to ensure that{" "}
-					<em className="text-[#5d3dc4] font-semibold">
+					<Text component="em" c="#5d3dc4" fw={600}>
 						no life remains in darkness due to poor vision.
-					</em>
-				</p>
+					</Text>
+				</Text>
 			</div>
-			<div className="flex items-center gap-2 mb-4">
-				<Goal className="text-black w-7 h-7" />
-				<h3 className="text-2xl md:text-3xl font-bold text-[#6a1e55]">
+			<Flex align="center" gap="sm" mb="md">
+				<Goal size={28} color="black" />
+				<Title order={3} size="h2" fw={700} c="#6a1e55">
 					What VisionAid Does
-				</h3>
-			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[#2f194d]">
-				{missionServices.map((service, index) => (
-					<div key={index} className="flex items-start gap-4">
-						<Check
-							className="w-8 h-8 mt-1"
-							style={{ color: service.color }}
-						/>
+				</Title>
+			</Flex>
+			<SimpleGrid cols={{ base: 1, md: 2 }} spacing="md" c="#2f194d">
+				{missionServices.map(({ title, description, color }, i) => (
+					<Flex key={i} align="flex-start" gap="md">
+						<Check size={28} color={color} />
 						<div>
-							<h4 className="font-semibold text-lg">
-								{service.title}
-							</h4>
-							<p className="text-gray-700">
-								{service.description}
-							</p>
+							<Text fw={600} size="lg">
+								{title}
+							</Text>
+							<Text c="gray.7">{description}</Text>
 						</div>
-					</div>
+					</Flex>
 				))}
-			</div>
-			<div className="relative bg-[#f3eaff]/40 bg-opacity-40 border border-[#e4d3fb] rounded-2xl px-8 py-4 mt-6 sm:mt-10  text-center max-w-5xl mx-auto">
-				<h3 className="text-3xl sm:text-4xl font-extrabold text-[#6a1e55] mb-4">
+			</SimpleGrid>
+			<Paper
+				radius="xl"
+				shadow="sm"
+				px="xl"
+				py="lg"
+				mt="lg"
+				maw={900}
+				mx="auto"
+				withBorder
+				style={{
+					backgroundColor: "rgba(243, 234, 255, 0.4)",
+					borderColor: "#e4d3fb",
+				}}
+				ta="center"
+			>
+				<Title order={3} size="h2" fw={800} c="#6a1e55" mb="md">
 					Empowering Children Through Sight
-				</h3>
-				<p className="text-lg sm:text-xl text-[#2f194d] leading-relaxed max-w-3xl mx-auto">
+				</Title>
+				<Text size="lg" c="#2f194d" maw={700} mx="auto" lh="lg">
 					We ensure every child under our care receives routine eye
 					check-ups and glasses if needed.
-				</p>
-				<p className="mt-3 text-base sm:text-lg italic font-semibold text-[#5d3dc4]">
+				</Text>
+				<Text mt="sm" size="lg" fs="italic" fw={600} c="#5d3dc4">
 					Because every child deserves to see their dreams clearly.
-				</p>
-			</div>
+				</Text>
+			</Paper>
 		</section>
 	);
 }

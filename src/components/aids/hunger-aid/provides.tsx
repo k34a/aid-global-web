@@ -75,7 +75,7 @@ export default function HungerAidProvides() {
 						<Link
 							href="/donate?program=hunger-aid"
 							aria-label="Donate to HungerAid"
-							className="bg-orange-500 hover:bg-orange-800 shadow-lg hover:scale-105 hover:shadow-xl text-white text-base sm:text-2xl md:text-4xl font-serif font-bold py-2 px-4 sm:px-6 rounded shadow mt-6 sm:mt-10 transition-all"
+							className="bg-orange-500 hover:bg-orange-800 hover:scale-105 hover:shadow-xl text-white text-base sm:text-2xl md:text-4xl font-serif font-bold py-2 px-4 sm:px-6 rounded shadow mt-6 sm:mt-10 transition-all"
 						>
 							Donate now
 						</Link>
