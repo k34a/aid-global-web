@@ -1,5 +1,6 @@
 import React from "react";
 import { PackageCheck, Star } from "lucide-react";
+import { ThemeIcon } from "@mantine/core";
 import { InitiativeItem } from "@/components/aids/sakhi-aid/data";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
@@ -34,11 +35,17 @@ export default function KeyInitiatives({
 							className="flex items-start gap-2 sm:gap-3"
 							key={idx}
 						>
-							<Star
-								className={`w-5 h-5 sm:w-6 sm:h-6 mt-1 shrink-0 ${item.color}`}
-							/>
+							<ThemeIcon
+								variant="transparent"
+								color={item.color}
+								size="lg"
+								radius="xl"
+							>
+								<Star size={18} />
+							</ThemeIcon>
 							<span>
-								<strong>{item.title}</strong> {item.description}
+								<strong>{item.title}</strong>
+								{item.description}
 							</span>
 						</li>
 					))}
