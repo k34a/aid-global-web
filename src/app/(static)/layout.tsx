@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<>
 			<Header />
-			<div className="mt-[80px]">{children}</div>
+			<div style={{ marginTop: "80px" }}>{children}</div>
 			<Footer />
 		</>
 	);

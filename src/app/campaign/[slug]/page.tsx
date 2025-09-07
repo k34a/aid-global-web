@@ -49,7 +49,7 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 	const html = description || "No description available.";
 
 	return (
-		<div className="min-h-screen my-15">
+		<div className="min-h-screen">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
 				<CampaignIntro
 					id={campaign.id}

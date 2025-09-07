@@ -1,5 +1,12 @@
+import {
+	campaignSortByVsQuery,
+	querySchema,
+} from "@/components/campaign-listing/search-params";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
 import { supabaseAdmin } from "@/lib/db/supabase";
+import z from "zod";
+
+const PAGE_SIZE = 12;
 
 export interface CampaignProduct {
 	id: string;
@@ -29,7 +36,7 @@ export interface CampaignDetails {
 	campaign_products: Array<CampaignProduct>;
 }
 
-export interface Campaigns {
+export interface CampaignDetailsForListing {
 	id: string;
 	slug: string;
 	title: string;
@@ -39,27 +46,13 @@ export interface Campaigns {
 	ended_at: Date | null;
 	collection: number;
 	backers: number;
-	unallocated_amount: number;
+	banner_image: string;
+	beneficiary?: null | Record<string, any>;
 }
 
 export interface PaginationCampaignFilters {
 	limit: number;
 	offset: number;
-}
-
-interface ListCampaignsParams {
-	page: number;
-	pageSize: number;
-	search?: string;
-	activeOnly: boolean;
-	minAmount?: number;
-	maxAmount?: number;
-	minCollection?: number;
-	maxCollection?: number;
-	minBackers?: number;
-	maxBackers?: number;
-	sortBy: "created_at" | "amount" | "collection" | "backers" | "title";
-	sortOrder: "asc" | "desc";
 }
 
 export class CampaignService {
@@ -82,7 +75,7 @@ export class CampaignService {
 	static async getPaginated(
 		offset: number,
 		limit: number,
-	): Promise<Campaigns[]> {
+	): Promise<CampaignDetailsForListing[]> {
 		const { data, error } = await supabaseAdmin
 			.from("campaigns")
 			.select("*")
@@ -98,7 +91,7 @@ export class CampaignService {
 		return data || [];
 	}
 
-	static async getAll(): Promise<Campaigns[]> {
+	static async getAll(): Promise<CampaignDetailsForListing[]> {
 		const { data, error } = await supabaseAdmin
 			.from("campaigns")
 			.select("*")
@@ -115,7 +108,7 @@ export class CampaignService {
 
 	static async getAllWithFilter(
 		filter: PaginationCampaignFilters | null,
-	): Promise<Campaigns[]> {
+	): Promise<CampaignDetailsForListing[]> {
 		if (filter) {
 			return await this.getPaginated(filter.offset, filter.limit);
 		}
@@ -139,22 +132,12 @@ export class CampaignService {
 	}
 
 	static async list(
-		params: ListCampaignsParams,
-	): Promise<{ items: Campaigns[]; total: number }> {
-		const {
-			page,
-			pageSize,
-			search,
-			activeOnly,
-			minAmount,
-			maxAmount,
-			minCollection,
-			maxCollection,
-			minBackers,
-			maxBackers,
-			sortBy,
-			sortOrder,
-		} = params;
+		params: z.infer<typeof querySchema>,
+	): Promise<{ items: CampaignDetailsForListing[]; total: number }> {
+		const { page, search, minBackers, maxBackers, sortBy } = params;
+
+		const sort =
+			campaignSortByVsQuery[sortBy] ?? campaignSortByVsQuery["latest"];
 
 		let query = supabaseAdmin
 			.from("campaigns")
@@ -165,25 +148,14 @@ export class CampaignService {
 			query = query.ilike("title", `%${search}%`);
 		}
 
-		if (activeOnly) {
-			query = query.or(
-				`ended_at.is.null,ended_at.gt.${new Date().toISOString()}`,
-			);
-		}
-
-		if (minAmount !== undefined) query = query.gte("amount", minAmount);
-		if (maxAmount !== undefined) query = query.lte("amount", maxAmount);
-		if (minCollection !== undefined)
-			query = query.gte("collection", minCollection);
-		if (maxCollection !== undefined)
-			query = query.lte("collection", maxCollection);
 		if (minBackers !== undefined) query = query.gte("backers", minBackers);
-		if (maxBackers !== undefined) query = query.lte("backers", maxBackers);
+		if (maxBackers !== undefined && maxBackers !== Infinity)
+			query = query.lte("backers", maxBackers);
 
-		query = query.order(sortBy, { ascending: sortOrder === "asc" });
+		query = query.order(sort.column, { ascending: sort.ascending });
 
-		const from = (page - 1) * pageSize;
-		const to = from + pageSize - 1;
+		const from = page * PAGE_SIZE;
+		const to = from + PAGE_SIZE - 1;
 		query = query.range(from, to);
 
 		const { data, error, count } = await query;
