@@ -43,7 +43,7 @@ function formatTimeLeft(end_date?: Date | null): string | null {
 	}
 }
 
-export function getTimeAgo(dateInput: Date | string): string {
+function getTimeAgo(dateInput: Date | string): string {
 	const date = new Date(dateInput);
 	const now = new Date();
 	const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
@@ -70,7 +70,7 @@ export function getTimeAgo(dateInput: Date | string): string {
 	return "just now";
 }
 
-export function getInitials(name: string): string {
+function getInitials(name: string): string {
 	if (!name) return "";
 
 	const parts = name.trim().split(" ").filter(Boolean); // Remove empty strings
@@ -84,4 +84,4 @@ export function getInitials(name: string): string {
 	return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase(); // First letter of first & last words
 }
 
-export { getImageForCampaign, formatTimeLeft };
+export { getImageForCampaign, formatTimeLeft, getTimeAgo, getInitials };
