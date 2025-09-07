@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "@/components/image";
 import Footer from "@/components/structure/footer";
 import HeaderMegaMenu from "@/components/structure/header";
@@ -5,13 +7,16 @@ import HeaderMegaMenu from "@/components/structure/header";
 import { ngoDetails, STATIC_IMAGE_HOST } from "@/config/config";
 import {
 	Button,
+	Center,
 	Container,
 	Divider,
 	Group,
+	List,
 	Stack,
 	Text,
 	Title,
 } from "@mantine/core";
+import { IconChevronRight } from "@tabler/icons-react";
 import { Mail } from "lucide-react";
 import Link from "next/link";
 
@@ -20,58 +25,80 @@ export default function Custom404() {
 		<>
 			<HeaderMegaMenu />
 
-			<div className="flex min-h-[80vh] flex-col justify-center items-center bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 mt-12">
-				<Container className="max-w-3xl text-center">
-					<Stack gap="xl">
-						{/* SVG Illustration */}
-						<div className="w-full max-w-sm mx-auto">
-							<Image
-								src={`${STATIC_IMAGE_HOST}receipt-not-found.svg`}
-								alt="Receipt Not Found"
-								height={400}
-								width={400}
-								className="w-full h-auto"
-							/>
-						</div>
+			<Container size="md" py="xl" mih="80vh" mt={80}>
+				<Center>
+					<Stack align="center" gap="xl" w="100%">
+						{/* Illustration */}
+						<Image
+							src={`${STATIC_IMAGE_HOST}receipt-not-found.svg`}
+							alt="Receipt Not Found"
+							height={400}
+							width={400}
+							style={{ maxWidth: "100%", height: "auto" }}
+						/>
 
-						<Title
-							order={1}
-							className="text-4xl sm:text-5xl font-bold text-gray-800"
-						>
+						{/* Title */}
+						<Title order={1} ta="center">
 							Donation Receipt Not Found
 						</Title>
 
-						<Text size="md" className="text-gray-600">
+						{/* Description */}
+						<Text size="md" c="dimmed" ta="center">
 							We couldn&apos;t find the donation receipt
-							you&apos;re looking for. It might not exist, or it
-							may have expired if the donation wasn&apos;t
-							completed within 3 days.
+							you&apos;re looking for. This could be due to one of
+							the following reasons:
 						</Text>
 
-						<Divider />
+						{/* Reason List */}
+						<List
+							spacing="xs"
+							size="sm"
+							maw={500}
+							icon={<IconChevronRight size={14} />}
+						>
+							<List.Item>
+								The receipt doesn&apos;t exist.
+							</List.Item>
+							<List.Item>
+								The donation wasn&apos;t completed.
+							</List.Item>
+							<List.Item>
+								The link has expired (receipts for incomplete
+								donations are only available for 3 days).
+							</List.Item>
+						</List>
 
-						<Text size="sm" className="text-gray-500">
+						<Divider w="100%" />
+
+						{/* Contact Text */}
+						<Text size="sm" c="dimmed" ta="center">
 							If you believe this is a mistake, please{" "}
 							<Link
 								href="/contact"
-								className="text-sky-600 underline hover:text-sky-800"
+								style={{
+									color: "#0369a1",
+									textDecoration: "underline",
+								}}
 							>
 								contact us
 							</Link>{" "}
 							or write to us at{" "}
-							<a
+							<Text
+								component="a"
 								href={`mailto:${ngoDetails.contact.email}`}
-								className="text-sky-600 underline hover:text-sky-800"
+								c="blue.6"
+								td="underline"
 							>
 								{ngoDetails.contact.email}
-							</a>
+							</Text>
 							.
 						</Text>
 
+						{/* Contact Button */}
 						<Group justify="center">
 							<Button
+								component={Link}
 								href="/contact"
-								component="a"
 								size="md"
 								variant="filled"
 								color="blue"
@@ -81,8 +108,8 @@ export default function Custom404() {
 							</Button>
 						</Group>
 					</Stack>
-				</Container>
-			</div>
+				</Center>
+			</Container>
 
 			<Footer />
 		</>

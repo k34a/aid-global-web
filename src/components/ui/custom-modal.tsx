@@ -58,9 +58,7 @@ export function Modal({
 			/>
 
 			{/* Modal */}
-			<div
-				className={`relative z-50 w-full max-w-md mt-18 mb-8 max-h-[95vh] my-12 ${className}`}
-			>
+			<div className={`relative z-50 w-full max-w-md my-12 ${className}`}>
 				{children}
 			</div>
 		</div>
@@ -70,7 +68,7 @@ export function Modal({
 export function ModalContent({ children, className = "" }: ModalContentProps) {
 	return (
 		<div
-			className={`bg-white rounded-2xl shadow-2xl w-full border border-slate-200 overflow-hidden max-h-[85vh] flex flex-col ${className}`}
+			className={`bg-white rounded-2xl shadow-2xl w-full border border-slate-200 overflow-y-auto max-h-[90vh] flex flex-col ${className}`}
 		>
 			{children}
 		</div>
