@@ -24,6 +24,8 @@ interface CampaignDetails {
 	backers: number;
 	unallocated_amount: number;
 	banner_image: string;
+	beneficiary?: null | Record<string, any>;
+	program?: null | string;
 	campaign_products: Array<CampaignProduct>;
 }
 

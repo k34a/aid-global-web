@@ -13,14 +13,14 @@ import {
 	Paper,
 } from "@mantine/core";
 import { IconUsers, IconClock, IconInfoCircle } from "@tabler/icons-react";
-import { formatTimeLeft } from "./utils";
+import { formatTimeLeft, getInitials } from "./utils";
 import { ngoDetails } from "@/config/config";
 import Image from "@/components/image";
 import { getImageForCampaign } from "./utils";
 
 interface CampaignIntroProps {
 	id: string;
-	program: string;
+	program?: string;
 	bannerImage: string;
 	title: string;
 	description: string;
@@ -30,9 +30,9 @@ interface CampaignIntroProps {
 	};
 	backerCount: number;
 	endDate?: Date;
-	beneficiary: {
-		name: string;
-		location: string;
+	beneficiary?: {
+		name?: string;
+		location?: string;
 	};
 }
 
@@ -83,13 +83,15 @@ const Details = (props: CampaignIntroProps) => {
 					</Badge>
 				</Tooltip>
 
-				<Badge
-					style={{
-						textTransform: "none",
-					}}
-				>
-					{program}
-				</Badge>
+				{program && (
+					<Badge
+						style={{
+							textTransform: "none",
+						}}
+					>
+						{program}
+					</Badge>
+				)}
 			</Group>
 
 			<Text fw={500}>
@@ -115,22 +117,24 @@ const Details = (props: CampaignIntroProps) => {
 				</Group>
 			</Group>
 
-			<Card withBorder padding="md" radius="md">
-				<Text fw={500} fz="sm" c="dimmed">
-					Campaign Beneficiary
-				</Text>
-				<Group mt="sm">
-					<Avatar size="sm" radius="xl">
-						{beneficiary.name[0]}
-					</Avatar>
-					<div>
-						<Text fw={500}>{beneficiary.name}</Text>
-						<Text fz="xs" c="dimmed">
-							{beneficiary.location}
-						</Text>
-					</div>
-				</Group>
-			</Card>
+			{beneficiary && beneficiary.name && beneficiary.location && (
+				<Card withBorder padding="md" radius="md">
+					<Text fw={500} fz="sm" c="dimmed">
+						Campaign Beneficiary
+					</Text>
+					<Group mt="sm">
+						<Avatar size="sm" radius="xl">
+							{getInitials(beneficiary.name)}
+						</Avatar>
+						<div>
+							<Text fw={500}>{beneficiary.name}</Text>
+							<Text fz="xs" c="dimmed">
+								{beneficiary.location}
+							</Text>
+						</div>
+					</Group>
+				</Card>
+			)}
 		</Card>
 	);
 };

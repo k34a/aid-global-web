@@ -57,10 +57,10 @@ export default async function CampaignDetailPage({ params }: PageProps) {
 					bannerImage={campaign.banner_image}
 					title={campaign.title}
 					description={campaign.description}
-					program="ShikshaAid"
+					program={campaign.program || undefined}
 					beneficiary={{
-						name: "Saksham",
-						location: "Delhi",
+						name: campaign.beneficiary?.name,
+						location: campaign.beneficiary?.location,
 					}}
 					progress={{
 						collection: campaign.collection,
