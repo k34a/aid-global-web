@@ -93,7 +93,7 @@ export class CampaignDonation extends StaticDonation<
 		availableProducts: AvailableCampaignProduct[],
 	) {
 		let unallocated_funds = amount;
-		Object.keys(selectedProducts.products ?? {}).forEach((productId) => {
+		Object.keys(selectedProducts ?? {}).forEach((productId) => {
 			const quantity = selectedProducts[productId];
 			const product = availableProducts.find((p) => p.id === productId);
 			if (!product) {

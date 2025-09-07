@@ -2,27 +2,45 @@ import { PaymentManager } from "@/lib/db/donation/payment-manager";
 import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
 import { NextRequest, NextResponse } from "next/server";
 import razorpay from "razorpay";
+import crypto from "crypto";
+
+async function getRawBody(req: NextRequest): Promise<Buffer> {
+	const reader = req.body?.getReader();
+	if (!reader) return Buffer.from("");
+
+	const chunks: Uint8Array[] = [];
+	let done = false;
+
+	while (!done) {
+		const { value, done: readerDone } = await reader.read();
+		if (value) chunks.push(value);
+		done = readerDone;
+	}
+
+	return Buffer.concat(chunks);
+}
 
 export async function POST(request: NextRequest) {
 	try {
-		const body = await request.json();
+		const rawBody = await getRawBody(request);
+
 		const signature = request.headers.get("X-Razorpay-Signature") ?? "";
 		const secret = process.env.RAZORPAY_WEBHOOK_SECRET!;
+		const computedSignature = crypto
+			.createHmac("sha256", secret)
+			.update(rawBody)
+			.digest("hex");
 
-		if (
-			!razorpay.validateWebhookSignature(
-				JSON.stringify(body),
-				signature,
-				secret,
-			)
-		) {
-			console.error("Invalid signature:", signature);
+		if (signature !== computedSignature) {
+			console.error("Invalid webhook signature");
 			return NextResponse.json(
-				{ error: "Invalid signature", success: false },
+				{ error: "Invalid signature" },
 				{ status: 400 },
 			);
 		}
 
+		// Now it's safe to parse JSON
+		const body = JSON.parse(rawBody.toString("utf8"));
 		const event = body.event as string;
 		console.log("Received razropay event: ", event);
 

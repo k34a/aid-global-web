@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
 	Button,
 	TextInput,
-	NumberInput,
 	Textarea,
 	Checkbox,
 	Alert,
@@ -13,40 +12,37 @@ import {
 	Grid,
 	Group,
 	Stack,
-	Box,
-	SimpleGrid,
 	Center,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { Heart, Shield, Info, IndianRupee } from "lucide-react";
-import { onDonateButtonClick, RazorpayScript } from "@/components/donate";
+import {
+	onCampaignDonateButtonClick,
+	RazorpayScript,
+} from "@/components/donate";
 import toast from "react-hot-toast";
-import { useSearchParams } from "next/navigation";
 
 interface DonationFormData {
 	name: string;
 	email: string;
 	contact_number: string;
-	amount: number;
 	pan_number?: string;
 	address?: string;
 	notes?: string;
 	is_anonymous: boolean;
 	tax_exemption: boolean;
+	auto_allocate: boolean;
 }
 
-const PRESET_AMOUNTS = [100, 500, 1000, 2000, 5000];
+interface Props {
+	selectedAmount: number;
+	campaignId: string;
+	selectedProducts: Record<string, number>;
+	productsAvailable: boolean;
+}
 
-export default function DonateForm() {
+export default function CampaignForm(props: Props) {
 	const [isLoading, setIsLoading] = useState(false);
-	const [selectedAmount, setSelectedAmount] = useState<number | "custom">(
-		500,
-	);
-	const [customAmount, setCustomAmount] = useState<number | undefined>(
-		undefined,
-	);
-	const searchParams = useSearchParams();
-	const programParam = searchParams.get("program");
 
 	const form = useForm<DonationFormData>({
 		mode: "uncontrolled",
@@ -54,12 +50,14 @@ export default function DonateForm() {
 			name: "",
 			email: "",
 			contact_number: "",
-			amount: 500,
 			pan_number: "",
 			address: "",
-			notes: programParam ?? "",
+			notes: "",
 			is_anonymous: false,
 			tax_exemption: false,
+			auto_allocate:
+				props.productsAvailable &&
+				Object.keys(props.selectedProducts).length === 0,
 		},
 		validate: {
 			name: (value) =>
@@ -70,8 +68,6 @@ export default function DonateForm() {
 				/^\d{10}$/.test(value)
 					? null
 					: "Phone number must be exactly 10 digits",
-			amount: (value) =>
-				value < 1 ? "Amount must be at least 1 rupee" : null,
 			pan_number: (value, values) => {
 				if (!values.tax_exemption) return null;
 				return /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/.test(value!)
@@ -87,30 +83,10 @@ export default function DonateForm() {
 		},
 	});
 
-	const handleAmountSelect = (amount: number | "custom") => {
-		setSelectedAmount(amount);
-		if (amount !== "custom") {
-			form.setFieldValue("amount", amount as number);
-			setCustomAmount(undefined);
-		} else {
-			if (customAmount) {
-				form.setFieldValue("amount", customAmount);
-			}
-		}
-	};
-
-	const handleCustomAmountChange = (value: number | string) => {
-		const numValue = typeof value === "string" ? parseFloat(value) : value;
-		setCustomAmount(numValue);
-		if (!isNaN(numValue) && numValue > 0) {
-			form.setFieldValue("amount", numValue);
-		}
-	};
-
 	const handleDonation = async (values: DonationFormData) => {
 		setIsLoading(true);
 		try {
-			await onDonateButtonClick({
+			await onCampaignDonateButtonClick({
 				userInfo: {
 					name: values.name,
 					email: values.email,
@@ -120,8 +96,11 @@ export default function DonateForm() {
 					notes: values.notes || undefined,
 				},
 				is_anon: values.is_anonymous,
-				donation_details: {
-					amount: values.amount,
+				campaign_details: {
+					amount: props.selectedAmount,
+					campaign_id: props.campaignId,
+					products: props.selectedProducts,
+					auto_allocate: values.auto_allocate,
 				},
 			});
 		} catch (error) {
@@ -220,94 +199,6 @@ export default function DonateForm() {
 						</Grid.Col>
 					</Grid>
 
-					{/* Amount Selection - Moved here after phone number row */}
-					<Box>
-						<Text size="md" fw={500} c="gray.7" mb="md">
-							Select Donation Amount
-						</Text>
-						<SimpleGrid
-							cols={{ base: 2, sm: 3, lg: 6 }}
-							spacing="sm"
-							mb="md"
-						>
-							{PRESET_AMOUNTS.map((amount) => (
-								<Button
-									key={amount}
-									variant={
-										selectedAmount === amount
-											? "filled"
-											: "outline"
-									}
-									color={
-										selectedAmount === amount
-											? "blue"
-											: "gray"
-									}
-									size="md"
-									h={48}
-									style={{
-										transition: "all 0.2s ease",
-										transform:
-											selectedAmount === amount
-												? "scale(1.02)"
-												: "scale(1)",
-									}}
-									onClick={() => handleAmountSelect(amount)}
-									leftSection={<IndianRupee size={16} />}
-								>
-									{amount.toLocaleString()}
-								</Button>
-							))}
-							<Button
-								variant={
-									selectedAmount === "custom"
-										? "filled"
-										: "outline"
-								}
-								color={
-									selectedAmount === "custom"
-										? "blue"
-										: "gray"
-								}
-								size="md"
-								h={48}
-								style={{
-									transition: "all 0.2s ease",
-									transform:
-										selectedAmount === "custom"
-											? "scale(1.02)"
-											: "scale(1)",
-								}}
-								onClick={() => handleAmountSelect("custom")}
-							>
-								Other
-							</Button>
-						</SimpleGrid>
-
-						{/* Custom Amount Input */}
-						{selectedAmount === "custom" && (
-							<Box mt="md">
-								<Text size="sm" fw={500} c="gray.7" mb="xs">
-									Custom Donation Amount
-								</Text>
-								<NumberInput
-									placeholder="Enter amount"
-									value={customAmount}
-									onChange={handleCustomAmountChange}
-									min={1}
-									size="md"
-									leftSection={<IndianRupee size={16} />}
-									styles={{
-										input: {
-											fontSize: "18px",
-											height: "48px",
-										},
-									}}
-								/>
-							</Box>
-						)}
-					</Box>
-
 					{/* Checkboxes */}
 					<Stack gap="md">
 						<Checkbox
@@ -338,6 +229,24 @@ export default function DonateForm() {
 								},
 							}}
 						/>
+						{props.productsAvailable &&
+							Object.keys(props.selectedProducts).length ===
+								0 && (
+								<Checkbox
+									label="We noticed you haven't selected any products. Shall we automatically allocate your donation to the most needed items?"
+									size="md"
+									{...form.getInputProps("auto_allocate", {
+										type: "checkbox",
+									})}
+									key={form.key("auto_allocate")}
+									styles={{
+										label: {
+											fontWeight: 500,
+											color: "var(--mantine-color-gray-7)",
+										},
+									}}
+								/>
+							)}
 					</Stack>
 
 					{/* Tax Exemption Fields */}
@@ -450,7 +359,9 @@ export default function DonateForm() {
 								<Group gap={2}>
 									<IndianRupee size={16} />
 									<Text>
-										{form.values.amount.toLocaleString()}
+										{props.selectedAmount.toLocaleString(
+											"en-IN",
+										)}
 									</Text>
 								</Group>
 							</Group>

@@ -43,53 +43,6 @@ const getCampaignBySlug = async (slug: string) => {
 	return campaign as CampaignDetails;
 };
 
-interface BackerDetailsForCampaign {
-	id: string;
-	amount: number;
-	name: string;
-	is_anon: boolean;
-	created_at: Date;
-}
-
-const getBackersForCampaign = async (
-	campaignId: string,
-	limit = 10,
-	offset = 0,
-) => {
-	const { data, error } = await supabaseAdmin
-		.from("backers")
-		.select("id, amount, is_anon, created_at, name")
-		.neq("campaign_id", DEFAULT_CAMPAIGN)
-		.eq("campaign_id", campaignId)
-		.neq("payment_id", null)
-		.order("created_at", { ascending: false })
-		.range(offset, offset + limit); // fetch one extra
-
-	if (error) {
-		console.error("Error fetching backers for campaign:", error.message);
-		return { backers: null, hasMore: false };
-	}
-
-	// Determine if there's more
-	const hasMore = data.length > limit;
-
-	// Slice back to the requested limit
-	const slicedData = data.slice(0, limit) as BackerDetailsForCampaign[];
-
-	// Handle anonymizing
-	const backers = slicedData.map((backer) => {
-		if (backer.is_anon) {
-			return {
-				...backer,
-				name: "Anonymous",
-			};
-		}
-		return backer;
-	});
-
-	return { backers, hasMore };
-};
-
 interface PaginationCampaignFilters {
 	limit: number;
 	offset: number;
@@ -166,11 +119,6 @@ async function getAllCampaignsCount(): Promise<number> {
 	return (data as unknown as number) || 0;
 }
 
-export {
-	getCampaignBySlug,
-	getCampaigns,
-	getAllCampaignsCount,
-	getBackersForCampaign,
-};
+export { getCampaignBySlug, getCampaigns, getAllCampaignsCount };
 
-export type { CampaignDetails, CampaignProduct, BackerDetailsForCampaign };
+export type { CampaignDetails, CampaignProduct };

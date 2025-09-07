@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/structure/header";
 import Footer from "@/components/structure/footer";
-import StickyDonateButton from "@/components/ui/sticky-donate-button";
 import { ngoDetails } from "@/config/config";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export default function RootLayout({
 			<Header />
 			{/* <Navbar /> */}
 			<main className="flex-grow">{children}</main>
-			<StickyDonateButton />
 			<Footer />
 		</>
 	);

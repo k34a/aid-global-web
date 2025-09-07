@@ -5,6 +5,8 @@ import {
 	ColorSchemeScript,
 	MantineProvider,
 	mantineHtmlProps,
+	MantineColorsTuple,
+	createTheme,
 } from "@mantine/core";
 
 import type { Metadata } from "next";
@@ -47,6 +49,27 @@ export const metadata: Metadata = {
 	},
 };
 
+const sky: MantineColorsTuple = [
+	"#f0f9ff", // 50
+	"#e0f2fe", // 100
+	"#bae6fd", // 200
+	"#7dd3fc", // 300
+	"#38bdf8", // 400
+	"#0ea5e9", // 500
+	"#0284c7", // 600
+	"#0369a1", // 700
+	"#075985", // 800
+	"#0c4a6e", // 900
+	"#082f49", // 950
+];
+
+export const theme = createTheme({
+	colors: {
+		sky,
+	},
+	primaryColor: "sky",
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -60,7 +83,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<MantineProvider>{children}</MantineProvider>
+				<MantineProvider theme={theme}>{children}</MantineProvider>
 				<Toaster />
 			</body>
 		</html>
