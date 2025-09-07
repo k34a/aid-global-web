@@ -1,13 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCampaignBySlug } from "@/lib/db/campaigns";
-
 import CampaignDetails from "@/components/campaign/details";
 import { ngoDetails } from "@/config/config";
 import CampaignIntro from "@/components/campaign/intro";
 import { fetchCampaignDescription } from "@/lib/db/campaigns/description";
 import DonorDetailsForCampaign from "@/lib/db/campaigns/donor-details";
+import { CampaignService } from "@/lib/db/campaigns";
 
 type PageProps = {
 	params: Promise<{ slug: string }>;
@@ -16,7 +15,7 @@ type PageProps = {
 export async function generateMetadata({
 	params,
 }: PageProps): Promise<Metadata> {
-	const campaign = await getCampaignBySlug((await params).slug);
+	const campaign = await CampaignService.getBySlug((await params).slug);
 
 	if (!campaign) {
 		return {
@@ -36,7 +35,7 @@ export async function generateMetadata({
 export default async function CampaignDetailPage({ params }: PageProps) {
 	const { slug } = await params;
 
-	const campaign = await getCampaignBySlug(slug);
+	const campaign = await CampaignService.getBySlug(slug);
 	if (!campaign) return notFound();
 
 	const donorDetailsFinder = new DonorDetailsForCampaign(campaign.id);
