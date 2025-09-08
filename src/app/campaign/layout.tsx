@@ -19,7 +19,9 @@ export default function RootLayout({
 		<>
 			<Header />
 			{/* <Navbar /> */}
-			<main className="flex-grow">{children}</main>
+			<main className="flex-grow" style={{ marginTop: "80px" }}>
+				{children}
+			</main>
 			<Footer />
 		</>
 	);

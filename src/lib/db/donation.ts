@@ -1,5 +1,4 @@
 import { supabaseAdmin } from "./supabase";
-
 import { PostgrestError } from "@supabase/supabase-js";
 
 interface Donation {
