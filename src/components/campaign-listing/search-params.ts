@@ -1,10 +1,9 @@
+import { programLinks } from "@/config/links";
 import z, { ZodObject } from "zod";
 
 export const querySchema = z.object({
 	search: z.string().default(""),
-
 	page: z.coerce.number().int().nonnegative().default(0),
-
 	minBackers: z.coerce.number().int().nonnegative().default(0),
 	maxBackers: z
 		.union([
@@ -13,10 +12,12 @@ export const querySchema = z.object({
 		])
 		.transform((val) => (val === "Infinity" ? Infinity : val))
 		.default(Infinity),
-
 	sortBy: z
 		.enum(["latest", "oldest", "popular", "most-donated", "A-Z", "Z-A"])
 		.default("latest"),
+	program: z
+		.enum(["all", ...programLinks.map((program) => program.name)])
+		.default("all"),
 });
 
 export const campaignSortByVsQuery: Record<

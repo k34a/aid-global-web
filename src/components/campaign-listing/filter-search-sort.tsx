@@ -1,19 +1,21 @@
 "use client";
-
 import {
-	Accordion,
+	Card,
 	TextInput,
-	NumberInput,
 	Button,
 	Select,
-	Stack,
+	SimpleGrid,
 	Group,
+	Stack,
+	RangeSlider,
+	Text,
 } from "@mantine/core";
-import { IconFilter, IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconFilter } from "@tabler/icons-react";
 import { useRouter, usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import type { z } from "zod";
 import { querySchema } from "./search-params";
+import { programLinks } from "@/config/links";
 
 type FilterProps = z.infer<typeof querySchema>;
 
@@ -26,34 +28,53 @@ const SORT_OPTIONS = [
 	{ value: "Z-A", label: "Title Z-A" },
 ];
 
+const PROGRAM_OPTIONS = [
+	{ value: "all", label: "All Programs" },
+	...programLinks.map((program) => ({
+		value: program.name,
+		label: program.name,
+	})),
+];
+
 export default function FilterSearchSortCampaigns(props: FilterProps) {
 	const router = useRouter();
 	const pathname = usePathname();
 
 	const [search, setSearch] = useState(props.search ?? "");
-	const [minBackers, setMinBackers] = useState<number>(props.minBackers ?? 0);
-	const [maxBackers, setMaxBackers] = useState<number | undefined>(
-		isFinite(props.maxBackers) ? props.maxBackers : undefined,
-	);
 	const [sortBy, setSortBy] = useState<FilterProps["sortBy"]>(
 		props.sortBy ?? "latest",
 	);
+	const [backersRange, setBackersRange] = useState<[number, number]>([
+		props.minBackers ?? 0,
+		props.maxBackers === Infinity ? 2000 : (props.maxBackers ?? 2000),
+	]);
+
+	const [program, setProgram] = useState(props.program ?? "all");
 
 	const buildQuery = useCallback(() => {
 		const params = new URLSearchParams();
 
 		if (search) params.set("search", search);
-		if (minBackers) params.set("minBackers", String(minBackers));
-		if (maxBackers !== undefined) {
-			params.set("maxBackers", String(maxBackers));
+
+		if (backersRange[0] > 0) {
+			params.set("minBackers", String(backersRange[0]));
 		}
+
+		if (backersRange[1] < 2000) {
+			params.set("maxBackers", String(backersRange[1]));
+		} else {
+			params.set("maxBackers", "Infinity");
+		}
+
+		if (program && program !== "all") {
+			params.set("program", program);
+		}
+
 		if (sortBy) params.set("sortBy", sortBy);
 
-		// Always reset page when filters are applied
 		params.set("page", "0");
-
 		return params.toString();
-	}, [search, minBackers, maxBackers, sortBy]);
+	}, [search, backersRange, sortBy]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -61,78 +82,93 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 		router.push(`${pathname}?${query}`);
 	};
 
+	const resetFilters = () => {
+		setSearch("");
+		setBackersRange([0, 2000]);
+		setSortBy("latest");
+		setProgram("all");
+		router.push(`${pathname}?page=0`);
+	};
+
 	return (
-		<Accordion defaultValue="filter-search-sort">
-			<Accordion.Item value="filter-search-sort">
-				<Accordion.Control icon={<IconFilter />}>
-					Filter Campaigns
-				</Accordion.Control>
-				<Accordion.Panel>
-					<form onSubmit={handleSubmit}>
-						<Stack>
-							<TextInput
-								label="Search"
-								placeholder="Search by title"
-								leftSection={<IconSearch size={16} />}
-								value={search}
-								onChange={(e) =>
-									setSearch(e.currentTarget.value)
-								}
-							/>
+		<Card withBorder radius="md" p="lg" mb="xl" bd="2px solid #ccc">
+			<form onSubmit={handleSubmit}>
+				<Stack gap="md">
+					<SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
+						{/* Search */}
+						<TextInput
+							label="Search"
+							placeholder="Search by title"
+							leftSection={<IconSearch size={16} />}
+							value={search}
+							onChange={(e) => setSearch(e.currentTarget.value)}
+						/>
 
-							<Group grow>
-								<NumberInput
-									label="Min Backers"
-									min={0}
-									value={minBackers}
-									onChange={(val) => {
-										try {
-											if (typeof val === "string") {
-												setMinBackers(
-													parseInt(val) || 0,
-												);
-											} else {
-												setMinBackers(val || 0);
-											}
-										} catch (error) {
-											setMinBackers(0);
-										}
-									}}
-								/>
-								<NumberInput
-									label="Max Backers"
-									min={0}
-									value={maxBackers}
-									onChange={(val) => {
-										if (typeof val === "number") {
-											setMaxBackers(val);
-										} else {
-											// If input is cleared or invalid, treat as undefined (i.e. Infinity)
-											setMaxBackers(undefined);
-										}
-									}}
-									allowDecimal={false}
-									placeholder="Unlimited"
-									allowNegative={false}
-								/>
-							</Group>
+						{/* Program Select */}
+						<Select
+							label="Program"
+							data={PROGRAM_OPTIONS}
+							value={program}
+							onChange={(val) =>
+								setProgram(val as FilterProps["program"])
+							}
+							clearable={false}
+							allowDeselect={false}
+						/>
 
-							<Select
-								label="Sort By"
-								data={SORT_OPTIONS}
-								value={sortBy}
-								onChange={(val) =>
-									setSortBy(val as FilterProps["sortBy"])
-								}
-							/>
+						{/* Sort By */}
+						<Select
+							label="Sort By"
+							data={SORT_OPTIONS}
+							value={sortBy}
+							onChange={(val) =>
+								setSortBy(val as FilterProps["sortBy"])
+							}
+							clearable={false}
+							allowDeselect={false}
+						/>
+					</SimpleGrid>
 
-							<Button type="submit" mt="sm">
-								Apply Filters
-							</Button>
-						</Stack>
-					</form>
-				</Accordion.Panel>
-			</Accordion.Item>
-		</Accordion>
+					{/* Backers Range */}
+					<Stack gap="xs">
+						<Group justify="space-between">
+							<Text fw={500}>Donor Count</Text>
+							<Text size="sm" c="dimmed">
+								{backersRange[0]} -{" "}
+								{backersRange[1] === 2000
+									? "2000+"
+									: backersRange[1]}
+							</Text>
+						</Group>
+						<RangeSlider
+							min={0}
+							max={2000}
+							step={50}
+							value={backersRange}
+							onChange={setBackersRange}
+							label={(val) => `${val}`}
+							marks={[
+								{ value: 0, label: "0" },
+								{ value: 1000, label: "1k" },
+								{ value: 2000, label: "2k+" },
+							]}
+						/>
+					</Stack>
+
+					{/* Action Buttons */}
+					<Group justify="space-between" mt="sm">
+						<Button variant="default" onClick={resetFilters}>
+							Reset
+						</Button>
+						<Button
+							type="submit"
+							leftSection={<IconFilter size={16} />}
+						>
+							Apply Filters
+						</Button>
+					</Group>
+				</Stack>
+			</form>
+		</Card>
 	);
 }

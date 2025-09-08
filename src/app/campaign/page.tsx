@@ -1,11 +1,13 @@
 import CampaignCard from "@/components/campaign-listing/card";
 import FilterSearchSortCampaigns from "@/components/campaign-listing/filter-search-sort";
+import PaginationControls from "@/components/campaign-listing/pagination-controls";
 import {
 	parseQueryWithPerFieldDefaults,
 	querySchema,
 } from "@/components/campaign-listing/search-params";
 import { CampaignService } from "@/lib/db/campaigns";
 import { Container, SimpleGrid, Stack, Text } from "@mantine/core";
+import { IconSearchOff } from "@tabler/icons-react";
 
 interface Props {
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -21,16 +23,19 @@ export default async function Page(props: Props) {
 		<Container size="lg" py="xl">
 			<FilterSearchSortCampaigns {...params} />
 			{data.items.length === 0 ? (
-				<Text>No campaigns found.</Text>
+				<Stack align="center" py="xl" gap="sm">
+					<IconSearchOff size={48} stroke={1.5} color="gray" />
+					<Text fw={500} size="lg">
+						No campaigns found
+					</Text>
+					<Text size="sm" c="dimmed" ta="center" mx="auto" maw={300}>
+						We couldn&apos;t find any campaigns matching your
+						filters. Try adjusting your search or clearing some
+						filters.
+					</Text>
+				</Stack>
 			) : (
-				<SimpleGrid
-					cols={{
-						base: 1,
-						sm: 2,
-						md: 3,
-					}} // default 3 columns on large screens
-					spacing="lg"
-				>
+				<SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
 					{data.items.map((campaign) => (
 						<CampaignCard key={campaign.id} campaign={campaign} />
 					))}
@@ -40,6 +45,12 @@ export default async function Page(props: Props) {
 			<Text size="sm" c="dimmed" mt="md">
 				Showing {data.items.length} of {data.total} campaigns
 			</Text>
+
+			<PaginationControls
+				total={data.total}
+				currentPage={params.page}
+				pageSize={10}
+			/>
 		</Container>
 	);
 }

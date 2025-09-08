@@ -134,7 +134,8 @@ export class CampaignService {
 	static async list(
 		params: z.infer<typeof querySchema>,
 	): Promise<{ items: CampaignDetailsForListing[]; total: number }> {
-		const { page, search, minBackers, maxBackers, sortBy } = params;
+		const { page, search, minBackers, maxBackers, sortBy, program } =
+			params;
 
 		const sort =
 			campaignSortByVsQuery[sortBy] ?? campaignSortByVsQuery["latest"];
@@ -151,6 +152,10 @@ export class CampaignService {
 		if (minBackers !== undefined) query = query.gte("backers", minBackers);
 		if (maxBackers !== undefined && maxBackers !== Infinity)
 			query = query.lte("backers", maxBackers);
+
+		if (program !== "all") {
+			query = query.eq("program", program);
+		}
 
 		query = query.order(sort.column, { ascending: sort.ascending });
 
