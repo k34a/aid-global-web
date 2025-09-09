@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Heart, Shield, Star } from "lucide-react";
 import OneRupeeCard from "@/components/recurring-donations/1rupee/showcase-card";
 import HundredRupeeClub from "@/components/recurring-donations/100rupee/showcase-card";
-
+import { SegmentedControl } from "@mantine/core";
 interface ShowcaseProps {
 	subscribers1: number;
 	subscribers100: number;
@@ -56,31 +56,21 @@ export default function Showcase(props: ShowcaseProps) {
 					</p>
 				</div>
 
-				{/* Frequency Toggle */}
-				<div className="flex justify-center mb-12">
+				<div className="flex justify-center mb-12 px-10">
 					<div className="w-full max-w-sm">
-						<div className="flex border rounded-lg overflow-hidden">
-							<button
-								onClick={() => setSelectedFrequency("monthly")}
-								className={`flex-1 py-2 text-center ${
-									selectedFrequency === "monthly"
-										? "bg-sky-500 text-white"
-										: "bg-gray-100 text-gray-700"
-								}`}
-							>
-								Monthly
-							</button>
-							<button
-								onClick={() => setSelectedFrequency("daily")}
-								className={`flex-1 py-2 text-center ${
-									selectedFrequency === "daily"
-										? "bg-sky-500 text-white"
-										: "bg-gray-100 text-gray-700"
-								}`}
-							>
-								Daily
-							</button>
-						</div>
+						<SegmentedControl
+							fullWidth
+							color="blue"
+							value={selectedFrequency}
+							onChange={(val) =>
+								setSelectedFrequency(val as "monthly" | "daily")
+							}
+							data={[
+								{ label: "Monthly", value: "monthly" },
+								{ label: "Daily", value: "daily" },
+							]}
+							className="rounded-md border"
+						/>
 					</div>
 				</div>
 

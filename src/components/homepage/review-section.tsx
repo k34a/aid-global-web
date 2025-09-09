@@ -3,21 +3,8 @@ import React from "react";
 import { Carousel } from "@mantine/carousel";
 import { User, Star } from "lucide-react";
 import { reviews } from "@/components/homepage/data/reviews";
-
+import { Rating } from "@mantine/core";
 const ReviewSection = () => {
-	const renderStars = (rating: number) =>
-		Array.from({ length: 5 }, (_, i) => (
-			<Star
-				key={i}
-				size={16}
-				className={`${
-					i < rating
-						? "text-yellow-400 fill-yellow-400"
-						: "text-gray-200"
-				} sm:w-[18px] sm:h-[18px]`}
-			/>
-		));
-
 	return (
 		<div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
 			{/* Section Header */}
@@ -49,19 +36,7 @@ const ReviewSection = () => {
 					emblaOptions={{
 						align: "center",
 						loop: true,
-						skipSnaps: false,
 						dragFree: true,
-						containScroll: "trimSnaps",
-						slidesToScroll: 1,
-						duration: 25,
-						startIndex: 0,
-						active: true,
-						watchDrag: true,
-						watchResize: true,
-						watchSlides: true,
-						axis: "x",
-						direction: "ltr",
-						inViewThreshold: 0.7,
 					}}
 					styles={{
 						indicator: {
@@ -125,9 +100,13 @@ const ReviewSection = () => {
 									</div>
 
 									{/* Star Rating */}
-									<div className="flex items-center gap-1 sm:gap-1">
-										{renderStars(review.rating)}
-									</div>
+									<Rating
+										value={review.rating}
+										fractions={2} // allows half stars
+										readOnly
+										size="md"
+										color="yellow"
+									/>
 
 									{/* Review Text */}
 									<div

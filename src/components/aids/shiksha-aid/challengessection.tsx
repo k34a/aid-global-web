@@ -6,6 +6,7 @@ import {
 	UsersRound,
 	Wallet,
 } from "lucide-react";
+import { Text, Stack, Title } from "@mantine/core";
 const challengesData = [
 	{
 		id: 1,
@@ -50,9 +51,9 @@ const challengesData = [
 export default function Challengessection() {
 	return (
 		<section className="bg-white py-12 px-6 rounded-2xl shadow-xl max-w-6xl mx-auto my-4">
-			<h2 className="text-3xl font-sans text-center text-stone-800 mb-8">
+			<Title order={2} ta="center" mb="xl" c="stone.8" ff="sans">
 				Challenges We Face
-			</h2>
+			</Title>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 				{challengesData.map((challenge) => {
 					const Icon = challenge.icon;
@@ -64,14 +65,14 @@ export default function Challengessection() {
 							<div className="p-2 bg-red-400/20 rounded-full shadow">
 								<Icon className="h-5 w-5" />
 							</div>
-							<div>
-								<h4 className="font-semibold text-[#1a1a1d]">
+							<Stack gap={4}>
+								<Text fw={600} c="#1a1a1d">
 									{challenge.title}
-								</h4>
-								<p className="text-sm hidden sm:block text-gray-700">
+								</Text>
+								<Text size="sm" c="dimmed" visibleFrom="sm">
 									{challenge.description}
-								</p>
-							</div>
+								</Text>
+							</Stack>
 						</div>
 					);
 				})}

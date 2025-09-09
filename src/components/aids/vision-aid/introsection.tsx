@@ -2,6 +2,7 @@ import Image from "@/components/image";
 import { Eye } from "lucide-react";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import Link from "next/link";
+import { Button } from "@mantine/core";
 export default function VisionAidHero() {
 	return (
 		<section className="relative w-full overflow-hidden">
@@ -34,13 +35,22 @@ export default function VisionAidHero() {
 					</p>
 
 					{/* CTA */}
-					<Link
+					<Button
+						component={Link}
 						href="/donate?program=vision-aid"
-						className="w-fit mt-4 px-8 py-3 rounded-full bg-[#6a1e55] hover:bg-[#5d3dc4] text-white font-semibold shadow-lg transition-transform transform hover:scale-105 duration-300 flex items-center gap-2"
+						variant="filled"
+						radius="xl"
+						size="md"
+						leftSection={<Eye size={18} />}
+						styles={{
+							root: {
+								backgroundColor: "#6a1e55",
+								"&:hover": { backgroundColor: "#5d3dc4" },
+							},
+						}}
 					>
-						<Eye className="w-5 h-5" />
 						Be Their Vision
-					</Link>
+					</Button>
 				</div>
 
 				{/* Image Side */}
