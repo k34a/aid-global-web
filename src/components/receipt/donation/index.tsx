@@ -3,7 +3,6 @@
 import { Paper } from "@mantine/core";
 import { useState } from "react";
 import DownloadReceipt from "@/components/receipt/common/download-receipt";
-import { ReceiptDetails } from "@/lib/db/donation";
 import ReceiptHeader from "@/components/receipt/common/head";
 import ReceiptThankYou from "@/components/receipt/common/thank-you";
 import DonorInfo from "./donor-info";
@@ -14,6 +13,7 @@ import VerifyPinModal from "@/components/receipt/common/verification";
 import { getDonationDetails } from "@/app/receipt/donation/action";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import { ReceiptDetails } from "@/lib/db/backers/types";
 
 type Props = {
 	id: string;

@@ -1,10 +1,10 @@
 "use server";
 
-import { getSubscriptionDetailsById } from "@/lib/db/donation";
+import Subscribers from "@/lib/db/backers/subscribers";
 import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
 
 export const getSubscriptionDetails = async (id: string, pin: string) => {
-	const donation = await getSubscriptionDetailsById(id);
+	const donation = await Subscribers.getDetailsById(id);
 
 	if (!donation) {
 		return null;

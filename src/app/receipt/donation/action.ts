@@ -1,9 +1,9 @@
 "use server";
 
-import { getBackerDetailsById } from "@/lib/db/donation";
+import Donors from "@/lib/db/backers/donors";
 
 export const getDonationDetails = async (id: string, pin: string) => {
-	const donation = await getBackerDetailsById(id);
+	const donation = await Donors.getDetailsById(id);
 
 	if (!donation) {
 		return null;
