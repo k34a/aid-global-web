@@ -1,7 +1,7 @@
-import { doesSubscriptionExist } from "@/lib/db/donation";
 import SubscriptionReceipt from "@/components/receipt/subscription";
 import { notFound } from "next/navigation";
 import { z } from "zod/v4";
+import Subscribers from "@/lib/db/backers/subscribers";
 
 type PageProps = {
 	params: Promise<{ id: string }>;
@@ -12,7 +12,7 @@ export default async function DonationStatusPage({ params }: PageProps) {
 	if (!z.uuid().safeParse(slugId).success) {
 		notFound();
 	}
-	const exist = await doesSubscriptionExist(slugId);
+	const exist = await Subscribers.doesExist(slugId);
 
 	if (!exist) {
 		notFound();

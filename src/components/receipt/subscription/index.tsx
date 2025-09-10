@@ -14,8 +14,8 @@ import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import VerifyPinModal from "@/components/receipt/common/verification";
 import { getSubscriptionDetails } from "@/app/receipt/subscription/action";
-import type { SubscriptioDetails } from "@/lib/db/donation";
 import ManageSubscription from "./mange";
+import { SubscriptioDetails } from "@/lib/db/backers/types";
 
 type Props = {
 	id: string;

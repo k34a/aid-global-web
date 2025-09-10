@@ -72,49 +72,6 @@ export class CampaignService {
 		return data as CampaignDetails;
 	}
 
-	static async getPaginated(
-		offset: number,
-		limit: number,
-	): Promise<CampaignDetailsForListing[]> {
-		const { data, error } = await supabaseAdmin
-			.from("campaigns")
-			.select("*")
-			.neq("id", DEFAULT_CAMPAIGN)
-			.order("created_at", { ascending: false })
-			.range(offset, offset + limit);
-
-		if (error) {
-			console.error("Error fetching campaigns (paginated):", error);
-			return [];
-		}
-
-		return data || [];
-	}
-
-	static async getAll(): Promise<CampaignDetailsForListing[]> {
-		const { data, error } = await supabaseAdmin
-			.from("campaigns")
-			.select("*")
-			.neq("id", DEFAULT_CAMPAIGN)
-			.order("created_at", { ascending: false });
-
-		if (error) {
-			console.error("Error fetching all campaigns:", error);
-			return [];
-		}
-
-		return data || [];
-	}
-
-	static async getAllWithFilter(
-		filter: PaginationCampaignFilters | null,
-	): Promise<CampaignDetailsForListing[]> {
-		if (filter) {
-			return await this.getPaginated(filter.offset, filter.limit);
-		}
-		return await this.getAll();
-	}
-
 	static async getCount(): Promise<number> {
 		const { data, error } = await supabaseAdmin
 			.rpc("get_table_row_count", {
