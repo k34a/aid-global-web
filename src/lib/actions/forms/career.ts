@@ -48,8 +48,12 @@ export async function submitCareerApplication(
 		const validatedData: CareerApplicationData =
 			careerApplicationSchema.parse(data);
 
+		const formData = {
+			...validatedData.userInfo,
+			resume: validatedData.resume.fileName,
+		};
 		const { data: application, error: insertError } =
-			await submitFormDetails("career-application", validatedData);
+			await submitFormDetails("career-application", formData);
 
 		if (insertError) {
 			throw new Error(
