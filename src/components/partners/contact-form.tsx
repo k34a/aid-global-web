@@ -5,7 +5,7 @@ import { useForm } from "@mantine/form";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { submitCorporatePartnership } from "./actions";
+import { submitCorporatePartnership } from "@/lib/actions/forms/csr";
 import { zodResolver } from "mantine-form-zod-resolver";
 import { corporateFormSchema } from "./schema";
 

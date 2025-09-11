@@ -16,8 +16,8 @@ import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import { File, Upload, X } from "lucide-react";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
-import { userInfoSchema } from "@/lib/db/careers/schema";
-import { submitCareerApplication } from "@/app/(static)/careers/actions";
+import { userInfoSchema } from "@/lib/schema/forms/career";
+import { submitCareerApplication } from "@/lib/actions/forms/career";
 import toast from "react-hot-toast";
 import FormSubmitted from "./form-submitted";
 

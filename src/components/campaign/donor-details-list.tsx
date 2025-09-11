@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import DonorCard from "./donor-details-card";
 import { useState } from "react";
-import { getDonorDetails } from "./actions";
+import { getDonorDetails } from "@/lib/actions/campaigns/donor-details";
 import toast from "react-hot-toast";
 
 interface Props {

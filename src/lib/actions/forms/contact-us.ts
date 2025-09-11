@@ -1,10 +1,10 @@
 "use server";
 
-import { supabaseAdmin } from "@/lib/db/supabase";
 import { z } from "zod/v4";
-import { contactFormSchema } from "./schema";
+import { contactFormSchema } from "@/components/contact-us/schema";
 import { sendTelegramMessage } from "@/lib/telegram";
 import { escape } from "html-escaper";
+import submitFormDetails from "@/lib/db/form-submission";
 
 async function notifyAdmins(data: z.infer<typeof contactFormSchema>) {
 	try {
@@ -34,9 +34,7 @@ export async function submitContactMessage(
 		return "Invalid details provided";
 	}
 
-	const { error } = await supabaseAdmin
-		.from("contact_messages")
-		.insert([parsed.data]);
+	const { error } = await submitFormDetails("contact-us", parsed.data);
 
 	if (error) {
 		console.error(error);

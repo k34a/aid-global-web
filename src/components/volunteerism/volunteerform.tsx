@@ -20,10 +20,10 @@ import VolunteerSuccess from "@/components/volunteerism/volunteersuccess";
 import {
 	volunteerSchema,
 	type VolunteerData,
-} from "@/lib/db/volunteers/schema";
+} from "@/lib/schema/volunteer-application";
 import { zodResolver } from "mantine-form-zod-resolver";
 import { useForm } from "@mantine/form";
-import { submitVolunteer } from "@/app/(static)/volunteer/actions";
+import { submitVolunteer } from "@/lib/actions/forms/volunteer";
 
 const volunteerAreas = [
 	"Education & Teaching",

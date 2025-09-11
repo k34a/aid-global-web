@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import { TextInput, Textarea, Button } from "@mantine/core";
-import { submitContactMessage } from "./actions";
+import { submitContactMessage } from "@/lib/actions/forms/contact-us";
 import toast from "react-hot-toast";
 import { zod4Resolver } from "mantine-form-zod-resolver";
 import { contactFormSchema } from "./schema";
