@@ -1,7 +1,10 @@
 "use server";
 
-import { CorporateFormData, corporateFormSchema } from "./schema";
-import { supabaseAdmin } from "@/lib/db/supabase";
+import {
+	CorporateFormData,
+	corporateFormSchema,
+} from "@/components/partners/schema";
+import submitFormDetails from "@/lib/db/form-submission";
 import { sendTelegramMessage } from "@/lib/telegram";
 import { escape } from "html-escaper";
 
@@ -43,9 +46,10 @@ export async function submitCorporatePartnership(
 
 	const formData: CorporateFormData = parsed.data;
 
-	const { error } = await supabaseAdmin
-		.from("corporate_partnerships")
-		.insert([formData]);
+	const { error } = await submitFormDetails(
+		"csr-partnership-application",
+		formData,
+	);
 
 	if (error) {
 		console.error("Supabase error:", error);

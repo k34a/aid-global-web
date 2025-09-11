@@ -4,9 +4,10 @@ import { supabaseAdmin } from "@/lib/db/supabase";
 import {
 	careerApplicationSchema,
 	CareerApplicationData,
-} from "@/lib/db/careers/schema";
+} from "@/lib/schema/forms/career";
 import { escape } from "html-escaper";
 import { sendTelegramMessage } from "@/lib/telegram";
+import submitFormDetails from "@/lib/db/form-submission";
 
 async function notifyAdminsCareer(data: CareerApplicationData) {
 	try {
@@ -47,20 +48,8 @@ export async function submitCareerApplication(
 		const validatedData: CareerApplicationData =
 			careerApplicationSchema.parse(data);
 
-		const { data: application, error: insertError } = await supabaseAdmin
-			.from("careers")
-			.insert([
-				{
-					first_name: validatedData.userInfo.firstName,
-					last_name: validatedData.userInfo.lastName,
-					email: validatedData.userInfo.email,
-					contact: validatedData.userInfo.contact,
-					applying_for: validatedData.userInfo.applyingFor,
-					resume_file_name: validatedData.resume.fileName,
-				},
-			])
-			.select()
-			.single();
+		const { data: application, error: insertError } =
+			await submitFormDetails("career-application", validatedData);
 
 		if (insertError) {
 			throw new Error(

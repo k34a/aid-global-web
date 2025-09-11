@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
-import { subscribeEmail } from "./actions";
+import { subscribeEmail } from "@/lib/actions/blog/subscribe";
 
 const Newsletter: React.FC = () => {
 	const [email, setEmail] = useState("");

@@ -8,7 +8,7 @@ import {
 	createDonationIntent,
 	createDonationIntentForCampaigns,
 	createSubscriptionIntent,
-} from "@/components/donate/actions";
+} from "@/lib/actions/donate";
 import z from "zod/v4";
 import { userInfoSchema } from "@/lib/db/donation/donation";
 import { otherDonationDetailsSchema } from "@/lib/db/donation/other-donation";

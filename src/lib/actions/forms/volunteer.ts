@@ -1,12 +1,12 @@
 "use server";
 
-import { volunteerSchema } from "@/lib/db/volunteers/schema";
-import { createVolunteer } from "@/lib/db/volunteers/server";
+import { volunteerSchema } from "@/lib/schema/volunteer-application";
 import { z } from "zod";
 
 import { escape } from "html-escaper";
-import { VolunteerData } from "@/lib/db/volunteers/schema";
+import { VolunteerData } from "@/lib/schema/volunteer-application";
 import { sendTelegramMessage } from "@/lib/telegram";
+import submitFormDetails from "@/lib/db/form-submission";
 
 async function notifyAdminsVolunteer(data: VolunteerData) {
 	try {
@@ -49,14 +49,19 @@ async function notifyAdminsVolunteer(data: VolunteerData) {
 export async function submitVolunteer(data: z.infer<typeof volunteerSchema>) {
 	try {
 		const validatedData = volunteerSchema.parse(data);
-		const volunteer = await createVolunteer(validatedData);
+		const { error } = await submitFormDetails(
+			"volunteer-application",
+			validatedData,
+		);
+
+		if (error)
+			throw new Error(`Failed to create volunteer: ${error.message}`);
 
 		await notifyAdminsVolunteer(validatedData);
 
 		return {
 			success: true,
 			message: "Volunteer application submitted successfully",
-			data: volunteer,
 		};
 	} catch (error) {
 		if (error instanceof z.ZodError) {
