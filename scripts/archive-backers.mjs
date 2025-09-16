@@ -97,7 +97,7 @@ async function archiveSubscriptions() {
 
     const { data: subs, error } = await supabase
         .from("subscriptions")
-        .select("id, razorpay_subscription_id, start_date")
+        .select("*")
         .lt("start_date", threeDaysAgo)
         .eq("status", "Pending");
 

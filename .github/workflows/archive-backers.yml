@@ -1,8 +1,8 @@
 name: Archive Backers
 
 on:
-    schedule:
-        - cron: "0 0 */1 * *" # Every 1 days at 00:00 UTC
+    # schedule:
+    #     - cron: "0 0 */1 * *" # Every 1 days at 00:00 UTC
     workflow_dispatch:
 
 jobs:
