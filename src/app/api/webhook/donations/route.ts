@@ -1,8 +1,22 @@
 import { PaymentManager } from "@/lib/db/donation/payment-manager";
 import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
 import { NextRequest, NextResponse } from "next/server";
-import razorpay from "razorpay";
 import crypto from "crypto";
+import { escape } from "html-escaper";
+import { sendTelegramMessage } from "@/lib/telegram";
+
+async function notifyTelegram(title: string, payload?: any) {
+	try {
+		let message = `<h1>${title}</h1>`;
+		if (payload) {
+			message += `<pre>${escape(JSON.stringify(payload, null, 4))}</pre>`;
+		}
+		message += "<p>cc: @Sakshamk34a</p>";
+		await sendTelegramMessage(message);
+	} catch (err) {
+		console.error("Failed to send Telegram alert:", err);
+	}
+}
 
 async function getRawBody(req: NextRequest): Promise<Buffer> {
 	const reader = req.body?.getReader();
@@ -33,6 +47,11 @@ export async function POST(request: NextRequest) {
 
 		if (signature !== computedSignature) {
 			console.error("Invalid webhook signature");
+			await notifyTelegram("Invalid Razorpay Webhook Signature", {
+				signature,
+				computedSignature,
+				headers: Object.fromEntries(request.headers),
+			});
 			return NextResponse.json(
 				{ error: "Invalid signature" },
 				{ status: 400 },
@@ -53,6 +72,7 @@ export async function POST(request: NextRequest) {
 					"Missing required fields in payment entity:",
 					paymentEntity,
 				);
+				await notifyTelegram("Missing Payment Fields", paymentEntity);
 				return NextResponse.json(
 					{
 						error: "Missing required fields in payment entity",
@@ -81,6 +101,7 @@ export async function POST(request: NextRequest) {
 			const { id: subId } = subEntity;
 
 			if (!subId) {
+				await notifyTelegram("Missing Subscription ID", subEntity);
 				console.error(
 					"Missing required fields in payment entity:",
 					subEntity,
@@ -138,6 +159,10 @@ export async function POST(request: NextRequest) {
 		);
 	} catch (error) {
 		console.error("Error processing webhook:", error);
+		await notifyTelegram("Unhandled Webhook Error", {
+			message: error instanceof Error ? error.message : String(error),
+			stack: error instanceof Error ? error.stack : undefined,
+		});
 		return NextResponse.json(
 			{
 				error: "Error processing webhook",
