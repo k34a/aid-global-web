@@ -3,7 +3,7 @@ import {
 	StaticDonation,
 	DonationCreationSuccessResponse,
 	userInfoSchema,
-} from "./donation";
+} from "@/lib/db/donation/create/base";
 import { DEFAULT_CAMPAIGN } from "@/config/data";
 
 export const otherDonationDetailsSchema = z.object({

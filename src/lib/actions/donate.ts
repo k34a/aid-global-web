@@ -4,20 +4,20 @@ import {
 	DonationCreationErrorResponse,
 	DonationError,
 	userInfoSchema,
-} from "@/lib/db/donation/donation";
+} from "@/lib/db/donation/create/base";
 import {
 	campaignDetailsSchema,
 	CampaignDonation,
-} from "@/lib/db/donation/campaign-donation";
+} from "@/lib/db/donation/create/campaign";
 import {
 	otherDonationDetailsSchema,
 	OtherDonation,
-} from "@/lib/db/donation/other-donation";
+} from "@/lib/db/donation/create/other";
 import { z } from "zod/v4";
 import {
 	Subscription,
 	subscriptionDetailsSchema,
-} from "@/lib/db/donation/subscription-donation";
+} from "@/lib/db/donation/create/subscription";
 
 export async function createDonationIntentForCampaigns(
 	userInfo: z.infer<typeof userInfoSchema>,

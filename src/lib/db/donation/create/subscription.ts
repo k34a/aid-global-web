@@ -3,7 +3,7 @@ import {
 	DonationCreationSuccessResponse,
 	RecurringDonation,
 	userInfoSchema,
-} from "./donation";
+} from "@/lib/db/donation/create/base";
 import { razorpay } from "@/lib/razorpay";
 
 export const subscriptionDetailsSchema = z.object({

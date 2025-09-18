@@ -10,10 +10,10 @@ import {
 	createSubscriptionIntent,
 } from "@/lib/actions/donate";
 import z from "zod/v4";
-import { userInfoSchema } from "@/lib/db/donation/donation";
-import { otherDonationDetailsSchema } from "@/lib/db/donation/other-donation";
-import { campaignDetailsSchema } from "@/lib/db/donation/campaign-donation";
-import { subscriptionDetailsSchema } from "@/lib/db/donation/subscription-donation";
+import { userInfoSchema } from "@/lib/db/donation/create/base";
+import { otherDonationDetailsSchema } from "@/lib/db/donation/create/other";
+import { campaignDetailsSchema } from "@/lib/db/donation/create/campaign";
+import { subscriptionDetailsSchema } from "@/lib/db/donation/create/subscription";
 
 export const callbackBaseUrl =
 	process.env.NODE_ENV === "production"

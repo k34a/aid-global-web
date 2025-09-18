@@ -3,7 +3,7 @@
 import { Group, Text } from "@mantine/core";
 import CancelSubscriptionModal from "./cancel";
 import RestartSubscriptionModal from "./renew";
-import { userInfoSchema } from "@/lib/db/donation/donation";
+import { userInfoSchema } from "@/lib/db/donation/create/base";
 import { z } from "zod/v4";
 
 type Props = {
