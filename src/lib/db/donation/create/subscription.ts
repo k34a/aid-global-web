@@ -5,7 +5,7 @@ import {
 	userInfoSchema,
 } from "@/lib/db/donation/create/base";
 import { razorpay } from "@/lib/razorpay";
-import { supabaseAdmin } from "../../supabase";
+import { supabaseAdmin } from "@/lib/db/supabase";
 
 export const subscriptionDetailsSchema = z.object({
 	plan_id: z.uuid(),
