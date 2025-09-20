@@ -3,7 +3,7 @@
 import { Group, Text } from "@mantine/core";
 import CancelSubscriptionModal from "./cancel";
 import RestartSubscriptionModal from "./renew";
-import { userInfoSchema } from "@/lib/db/donation/donation";
+import { userInfoSchema } from "@/lib/db/donation/create/base";
 import { z } from "zod/v4";
 
 type Props = {
@@ -20,7 +20,7 @@ export default function ManageSubscription(props: Props) {
 				Manage Your Donation Subscription
 			</Text>
 			<Group>
-				{!["Complete", "Cancelled"].includes(props.current_status) ? (
+				{!["Completed", "Cancelled"].includes(props.current_status) ? (
 					<CancelSubscriptionModal
 						pin={props.pin}
 						razorpay_subscription_id={

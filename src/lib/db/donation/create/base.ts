@@ -1,6 +1,7 @@
 import { razorpay } from "@/lib/razorpay";
 import { z } from "zod/v4";
 import { supabaseAdmin } from "@/lib/db/supabase";
+import { SubscriptionStatus } from "@/lib/db/donation/manage/subscription/states";
 
 const userInfoSchema = z.object({
 	email: z.email("Invalid email address"),
@@ -76,6 +77,7 @@ abstract class Donation<T extends z.ZodType> {
 			this.userInfo,
 		);
 		if (!success) {
+			console.error(error.issues);
 			throw new DonationError(
 				"Invalid user information",
 				error.issues.map((issue) => issue.message)[0],
@@ -207,7 +209,7 @@ abstract class RecurringDonation<T extends z.ZodType> extends Donation<T> {
 				pan_number: this.userInfo.pan_number,
 				address: this.userInfo.address,
 				plan_id,
-				status: "Pending",
+				status: SubscriptionStatus.Created,
 				razorpay_subscription_id: sub_id,
 			})
 			.select();

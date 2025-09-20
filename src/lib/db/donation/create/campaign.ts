@@ -4,7 +4,7 @@ import {
 	DonationCreationSuccessResponse,
 	DonationError,
 	userInfoSchema,
-} from "./donation";
+} from "@/lib/db/donation/create/base";
 import { supabaseAdmin } from "@/lib/db/supabase";
 
 export const campaignDetailsSchema = z.object({

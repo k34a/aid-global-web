@@ -8,7 +8,7 @@ import { restartSubscription } from "@/app/receipt/subscription/action";
 import { callbackBaseUrl, RazorpayScript } from "@/components/donate";
 import { ngoDetails } from "@/config/config";
 import z from "zod/v4";
-import { userInfoSchema } from "@/lib/db/donation/donation";
+import { userInfoSchema } from "@/lib/db/donation/create/base";
 
 type Props = {
 	pin: string;

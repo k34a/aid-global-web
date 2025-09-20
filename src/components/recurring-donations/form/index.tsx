@@ -13,11 +13,21 @@ interface Props {
 	footer?: React.JSX.Element;
 }
 
+interface FormValues {
+	name: string;
+	email: string;
+	contact_number: string;
+	pan_number: string;
+	address: string;
+	is_anon: boolean;
+	notes: string;
+}
+
 export default function SubscriptionForm(props: Props) {
 	const [taxExemption, setTaxExemption] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const form = useForm({
+	const form = useForm<FormValues>({
 		mode: "uncontrolled",
 		initialValues: {
 			name: "",
@@ -51,25 +61,23 @@ export default function SubscriptionForm(props: Props) {
 		},
 	});
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (values: FormValues) => {
 		setLoading(true);
 		try {
 			await onSubscriptionButtonClick({
 				userInfo: {
-					name: form.values.name,
-					email: form.values.email,
-					contact_number: form.values.contact_number,
+					name: values.name,
+					email: values.email,
+					contact_number: values.contact_number,
 					pan_number:
-						form.values.pan_number.length > 0
-							? form.values.pan_number
+						values.pan_number.length > 0
+							? values.pan_number
 							: undefined,
 					address:
-						form.values.address.length > 0
-							? form.values.address
-							: undefined,
-					notes: form.values.notes,
+						values.address.length > 0 ? values.address : undefined,
+					notes: values.notes,
 				},
-				is_anon: form.values.is_anon,
+				is_anon: values.is_anon,
 				subscription_details: {
 					plan_id: props.plan_id,
 				},
@@ -202,7 +210,7 @@ export default function SubscriptionForm(props: Props) {
 						disabled={loading}
 						loading={loading}
 						type="submit"
-						className="bg-sky-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide rounded-lg"
+						className="bg-sky-500 text-white font-bold py-3 px-8 hover:bg-[#1d4ed8] transition-colors duration-300 uppercase tracking-wide rounded-lg"
 					>
 						{props.submitButton}
 					</Button>

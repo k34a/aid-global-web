@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Text, Avatar, Center, Stack } from "@mantine/core";
-import { Linkedin } from "../icons";
 import Link from "next/link";
 
 type TeamCardProps = {

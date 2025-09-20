@@ -1,7 +1,8 @@
 "use server";
 
 import Subscribers from "@/lib/db/backers/subscribers";
-import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
+import { Subscription } from "@/lib/db/donation/create/subscription";
+import { SubscriptionWebhookManager } from "@/lib/db/donation/manage/subscription/manager";
 
 export const getSubscriptionDetails = async (id: string, pin: string) => {
 	const donation = await Subscribers.getDetailsById(id);
@@ -24,7 +25,9 @@ export const cancelSubscription = async (
 	pin: string,
 ) => {
 	try {
-		const manager = new SubscriptionManager(razorpay_subscription_id);
+		const manager = await SubscriptionWebhookManager.init(
+			razorpay_subscription_id,
+		);
 		await manager.cancel(pin);
 	} catch (error) {
 		console.error(error);
@@ -43,9 +46,7 @@ export const restartSubscription = async (
 	pin: string,
 ) => {
 	try {
-		const manager = new SubscriptionManager(razorpay_subscription_id);
-		const data = await manager.restart(pin);
-		return data;
+		return await Subscription.restart(razorpay_subscription_id, pin);
 	} catch (error) {
 		console.error(error);
 		return {
