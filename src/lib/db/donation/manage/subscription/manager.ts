@@ -111,7 +111,7 @@ export class SubscriptionWebhookManager {
 				subscriber_name: data.name,
 				contact_number: data.phone,
 				status: data.status,
-				subscription_name: data.subscription_plans[0].name,
+				subscription_name: (data.subscription_plans as any).name,
 			},
 			razorpay_subscription_id,
 		);

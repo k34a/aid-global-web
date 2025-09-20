@@ -13,11 +13,11 @@ import {
 
 async function notifyTelegram(title: string, payload?: any) {
 	try {
-		let message = `<h1>${title}</h1>`;
+		let message = `<u><b>${title}</b></u>`;
 		if (payload) {
-			message += `<pre>${escape(JSON.stringify(payload, null, 4))}</pre>`;
+			message += `<pre>${escape(JSON.stringify(payload, null, 4)).slice(0, 3000)}</pre>`;
 		}
-		message += "<p>cc: @Sakshamk34a</p>";
+		message += "cc: @Sakshamk34a";
 		await sendTelegramMessage(message);
 	} catch (err) {
 		console.error("Failed to send Telegram alert:", err);
@@ -173,10 +173,12 @@ export async function POST(request: NextRequest) {
 			message = error.message;
 			stack = error.stack;
 		}
-		await notifyTelegram(message, {
-			message,
-			stack,
-		});
+		if (status >= 300) {
+			await notifyTelegram(message, {
+				message,
+				stack,
+			});
+		}
 		return NextResponse.json(
 			{
 				error: message,

@@ -13,6 +13,10 @@ export class CancelledState
 		payment_id: string,
 		created_at: number,
 	): Promise<void> {
-		await this.saveCharge(amount, payment_id, created_at);
+		try {
+			await this.saveCharge(amount, payment_id, created_at);
+		} catch (e) {
+			throw e;
+		}
 	}
 }

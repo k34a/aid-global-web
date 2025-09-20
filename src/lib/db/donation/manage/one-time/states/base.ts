@@ -15,7 +15,6 @@ export const PaymentStatus = {
 
 export interface PaymentState {
 	context: PaymentWebhookManager;
-	currentState: string;
 
 	onAuthorized: () => Promise<void>;
 	onCaptured: () => Promise<void>;
@@ -24,11 +23,9 @@ export interface PaymentState {
 
 export class BasePaymentState implements PaymentState {
 	context: PaymentWebhookManager;
-	currentState: string;
 
 	constructor(context: PaymentWebhookManager) {
 		this.context = context;
-		this.currentState = "Base";
 	}
 
 	private async notifyAdmins(message: string, newState: string) {

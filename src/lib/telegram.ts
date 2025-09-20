@@ -9,8 +9,8 @@ export async function sendTelegramMessage(text: string) {
 		const isProduction = process.env.NODE_ENV === "production";
 		const allowInDev = process.env.TELEGRAM_ENABLE_NON_PROD === "true";
 
-		console.log(`Telegram Message: ${text}`);
 		if (!isProduction && !allowInDev) {
+			console.log(`Telegram Message: ${text}`);
 			console.warn(
 				"[Telegram] Skipped sending message: Notifications are disabled in non-production environments.\n" +
 					"To enable Telegram messages in development, set TELEGRAM_ENABLE_NON_PROD=true in your .env file.",
