@@ -1,9 +1,15 @@
-import { PaymentManager } from "@/lib/db/donation/payment-manager";
-import { SubscriptionManager } from "@/lib/db/donation/subscription-manager";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { escape } from "html-escaper";
 import { sendTelegramMessage } from "@/lib/telegram";
+import {
+	SubscriptionWebhookManager,
+	SubscriptionWebookError,
+} from "@/lib/db/donation/manage/subscription/manager";
+import {
+	PaymentWebhookManager,
+	PaymentWebookError,
+} from "@/lib/db/donation/manage/one-time/manager";
 
 async function notifyTelegram(title: string, payload?: any) {
 	try {
@@ -82,17 +88,20 @@ export async function POST(request: NextRequest) {
 				);
 			}
 
-			const paymentManager = new PaymentManager(orderId, paymentId);
+			const paymentManager = await PaymentWebhookManager.init(
+				paymentId,
+				orderId,
+			);
 
 			switch (event) {
 				case "payment.authorized":
-					await paymentManager.authorizePayment();
+					await paymentManager.onAuthorized();
 					break;
 				case "payment.captured":
-					await paymentManager.capturePayment();
+					await paymentManager.onCaptured();
 					break;
 				case "payment.failed":
-					await paymentManager.failedPayment();
+					await paymentManager.onFailed();
 			}
 		}
 
@@ -115,12 +124,9 @@ export async function POST(request: NextRequest) {
 				);
 			}
 
-			const subManager = new SubscriptionManager(subId);
+			const subManager = await SubscriptionWebhookManager.init(subId);
 
 			switch (event) {
-				case "subscription.authenticated":
-					await subManager.onAuthenticated();
-					break;
 				case "subscription.activated":
 					await subManager.onActivated();
 					break;
@@ -135,17 +141,11 @@ export async function POST(request: NextRequest) {
 				case "subscription.completed":
 					await subManager.onCompleted(subEntity.end_at);
 					break;
-				case "subscription.pending":
-					await subManager.onPending();
-					break;
 				case "subscription.halted":
 					await subManager.onHalted();
 					break;
 				case "subscription.paused":
 					await subManager.onPaused();
-					break;
-				case "subscription.resumed":
-					await subManager.onResumed();
 					break;
 				case "subscription.cancelled":
 					await subManager.onCancelled(subEntity.end_at);
@@ -159,16 +159,30 @@ export async function POST(request: NextRequest) {
 		);
 	} catch (error) {
 		console.error("Error processing webhook:", error);
-		await notifyTelegram("Unhandled Webhook Error", {
-			message: error instanceof Error ? error.message : String(error),
-			stack: error instanceof Error ? error.stack : undefined,
+		let message = "Unhandled Webhook Error";
+		let status = 500;
+		let stack: string | undefined = undefined;
+		if (
+			error instanceof SubscriptionWebookError ||
+			error instanceof PaymentWebookError
+		) {
+			message = error.message;
+			status = error.getStatus();
+			stack = error.stack;
+		} else if (error instanceof Error) {
+			message = error.message;
+			stack = error.stack;
+		}
+		await notifyTelegram(message, {
+			message,
+			stack,
 		});
 		return NextResponse.json(
 			{
-				error: "Error processing webhook",
+				error: message,
 				success: false,
 			},
-			{ status: 500 },
+			{ status },
 		);
 	}
 }

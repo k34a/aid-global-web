@@ -6,7 +6,7 @@ import SubscriptionForm from "@/components/recurring-donations/100rupee/donation
 import FAQ from "@/components/faq";
 import { hundredRupeeFaqs } from "@/config/faqs";
 import SubscriberCounter from "@/components/recurring-donations/subscribers-count";
-import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
+import { getNumberOfSubscribers } from "@/lib/db/donation/fns";
 
 export const dynamic = "force-dynamic";
 

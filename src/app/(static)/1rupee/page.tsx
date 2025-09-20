@@ -6,7 +6,7 @@ import Register from "@/components/recurring-donations/1rupee/register";
 import type { Metadata } from "next";
 import FAQ from "@/components/faq";
 import { oneRupeeFaqs } from "@/config/faqs";
-import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
+import { getNumberOfSubscribers } from "@/lib/db/donation/fns";
 
 export const dynamic = "force-dynamic";
 

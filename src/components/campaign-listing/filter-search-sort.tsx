@@ -74,7 +74,7 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 
 		params.set("page", "0");
 		return params.toString();
-	}, [search, backersRange, sortBy]);
+	}, [search, backersRange, sortBy, program]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();

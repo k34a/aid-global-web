@@ -5,7 +5,7 @@ import AssuranceSection from "@/components/homepage/assurance-section";
 import ReviewSection from "@/components/homepage/review-section";
 import PartnersSection from "@/components/homepage/partners";
 import RecurringPlansShowcase from "@/components/recurring-donations/showcase";
-import { getNumberOfSubscribers } from "@/lib/db/donation/subscription-manager";
+import { getNumberOfSubscribers } from "@/lib/db/donation/fns";
 
 export const revalidate = 3600; // refresh every hour to prevent data from being stale for long
 

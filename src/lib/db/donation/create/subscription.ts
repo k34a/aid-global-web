@@ -5,6 +5,7 @@ import {
 	userInfoSchema,
 } from "@/lib/db/donation/create/base";
 import { razorpay } from "@/lib/razorpay";
+import { supabaseAdmin } from "../../supabase";
 
 export const subscriptionDetailsSchema = z.object({
 	plan_id: z.uuid(),
@@ -48,5 +49,45 @@ export class Subscription extends RecurringDonation<
 		};
 
 		return response;
+	}
+
+	public static async restart(razorpay_subscription_id: string, pin: string) {
+		const { data, error } = await supabaseAdmin
+			.from("subscriptions")
+			.select("*, subscription_plans(*)")
+			.eq("razorpay_subscription_id", razorpay_subscription_id)
+			.maybeSingle();
+
+		if (error) {
+			console.error("Error fetching subscription:", error);
+			throw new Error("Error fetching subscription details");
+		}
+
+		if (!data) {
+			console.error(
+				"No subscription found for Razorpay ID:",
+				razorpay_subscription_id,
+			);
+			throw new Error("No subscription found with this ID");
+		}
+
+		if (!data.phone.endsWith(pin)) {
+			console.error("Unauthorized to restart this subscription");
+			throw new Error(
+				"You are not authorized to start this subscription",
+			);
+		}
+
+		const sub = new Subscription(
+			{
+				email: data.email,
+				contact_number: data.phone,
+				name: data.name,
+				pan_number: data.pan_number,
+				address: data.address,
+			},
+			false,
+		);
+		return sub.create({ plan_id: data.subscription_plans[0].id });
 	}
 }
