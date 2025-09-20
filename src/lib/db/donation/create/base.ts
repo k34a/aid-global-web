@@ -77,6 +77,7 @@ abstract class Donation<T extends z.ZodType> {
 			this.userInfo,
 		);
 		if (!success) {
+			console.error(error.issues);
 			throw new DonationError(
 				"Invalid user information",
 				error.issues.map((issue) => issue.message)[0],

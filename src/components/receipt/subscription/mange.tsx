@@ -20,7 +20,7 @@ export default function ManageSubscription(props: Props) {
 				Manage Your Donation Subscription
 			</Text>
 			<Group>
-				{!["Complete", "Cancelled"].includes(props.current_status) ? (
+				{!["Completed", "Cancelled"].includes(props.current_status) ? (
 					<CancelSubscriptionModal
 						pin={props.pin}
 						razorpay_subscription_id={

@@ -83,11 +83,11 @@ export class Subscription extends RecurringDonation<
 				email: data.email,
 				contact_number: data.phone,
 				name: data.name,
-				pan_number: data.pan_number,
-				address: data.address,
+				pan_number: data.pan_number ? data.pan_number : undefined,
+				address: data.address ? data.address : undefined,
 			},
 			false,
 		);
-		return sub.create({ plan_id: data.subscription_plans[0].id });
+		return sub.create({ plan_id: data.subscription_plans.id });
 	}
 }

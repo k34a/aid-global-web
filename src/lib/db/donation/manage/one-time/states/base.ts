@@ -34,7 +34,7 @@ export class BasePaymentState implements PaymentState {
 			const text = `<u><b>${message}</b></u>
         <b>Donor Name:</b> ${escape(subData.name)} (${subData.id})
         <b>Amount:</b> ${escape(subData.amount)}
-        <b>Status:</b> ${subData.status} to ${newState}`;
+        <b>Status:</b> ${subData.status} --> ${newState}`;
 
 			await sendTelegramMessage(text);
 		} catch (error) {

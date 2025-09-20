@@ -47,7 +47,7 @@ export class BaseSubscriptionState implements SubscriptionState {
 			const text = `<u><b>${message}</b></u>
         <b>Donor Name:</b> ${escape(subData.subscriber_name)} (${subData.subscription_id})
         <b>Subscription:</b> ${escape(subData.subscription_name)}
-        <b>Status:</b> ${subData.status} to ${newState}`;
+        <b>Status:</b> ${subData.status} --> ${newState}`;
 
 			await sendTelegramMessage(text);
 		} catch (error) {
