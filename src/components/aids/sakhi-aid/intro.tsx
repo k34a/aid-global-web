@@ -6,7 +6,7 @@ export default function SakhiAidIntro() {
 		<section className="bg-rose-700 text-white py-8 sm:py-12 px-3 sm:px-6 md:px-10 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-8">
 			{/* TEXT CONTENT */}
 			<div className="w-full lg:w-1/2 text-center lg:text-left">
-				<h2 className="text-base sm:text-lg font-bold uppercase tracking-wide">
+				<h2 className="text-base sm:text-lg font-bold tracking-wide">
 					SakhiAid
 				</h2>
 				<p className="text-white/90 font-medium mb-2 text-sm sm:text-base">

@@ -21,7 +21,7 @@ export default function IntroCarousel() {
 			rightTitleHighlight: "Macro Impact",
 			rightTitleEnd: ".",
 			rightDescription:
-				"Real change doesn&apos;t need thousands. it needs consistency. This isn&apos;t charity. This is a movement, a commitment to do good daily, together.",
+				"Real change doesn\'t need thousands. it needs consistency. This isn\'t charity. This is a movement, a commitment to do good daily, together.",
 		},
 		{
 			title: "Small Steps,",

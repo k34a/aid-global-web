@@ -1,7 +1,9 @@
 import type React from "react";
+import Image from "@/components/image";
 
 interface Partner {
 	name: string;
+	imageSrc: string;
 }
 
 interface BannerProps {
@@ -14,8 +16,16 @@ const Banner = ({ partners, speed = 20000 }: BannerProps) => {
 		<div className="scroll-container">
 			<div className="scroll-content">
 				{[...partners, ...partners].map((partner, idx) => (
-					<div className="partner-name" key={idx}>
-						<span>{partner.name}</span>
+					<div className="partner-card" key={idx}>
+						<div className="partner-image-wrapper">
+							<Image
+								src={partner.imageSrc}
+								alt={partner.name}
+								width={200}
+								height={100}
+								className="partner-image"
+							/>
+						</div>
 					</div>
 				))}
 			</div>
@@ -25,7 +35,7 @@ const Banner = ({ partners, speed = 20000 }: BannerProps) => {
 					overflow: hidden;
 					width: 100%;
 					background: #111827;
-					height: 4rem;
+					height: 6rem; /* increased for better fit */
 					display: flex;
 					align-items: center;
 				}
@@ -36,27 +46,30 @@ const Banner = ({ partners, speed = 20000 }: BannerProps) => {
 					animation: scroll ${speed}ms linear infinite;
 				}
 
-				.partner-name {
+				.partner-card {
 					flex: none;
-					padding: 0 2rem;
+					padding: 0 1.5rem;
 					display: flex;
 					align-items: center;
-					white-space: nowrap;
+					justify-content: center;
 				}
 
-				.partner-name span {
-					color: #fff;
-					font-size: 1.5rem;
-					font-weight: 600;
-					text-shadow: 0 0 5px #fff;
-					transition: text-shadow 0.3s ease;
+				.partner-image-wrapper {
+					background: transparent;
+					padding: 0.5rem 1rem;
+					border-radius: 0.5rem;
+					box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 4rem;
+					width: 10rem; 
 				}
 
-				.partner-name:hover span {
-					text-shadow:
-						0 0 10px #fff,
-						0 0 20px #fff,
-						0 0 30px #fff;
+				.partner-image {
+					max-height: 100%;
+					max-width: 100%;
+					object-contain; 
 				}
 
 				@keyframes scroll {

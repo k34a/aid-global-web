@@ -19,7 +19,7 @@ export const aids = [
 	},
 	{
 		id: 3,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/enable.webp`,
+		image: `${STATIC_IMAGE_HOST}home-page/aids/enable-Aid.webp`,
 		title: "EnableAid",
 		desc: "Support and empowerment for differently-abled. Partner with Aid Global Foundation for disability elimination.",
 		button: "Read More",
@@ -27,7 +27,7 @@ export const aids = [
 	},
 	{
 		id: 4,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/cure.webp`,
+		image: `${STATIC_IMAGE_HOST}cure-aid/cureAid-1.webp`,
 		title: "CureAid",
 		desc: "Primary healthcare and wellness services. Partner with Aid Global Foundation to provide health resources to people who are suffering.",
 		button: "Read More",
@@ -43,7 +43,7 @@ export const aids = [
 	},
 	{
 		id: 6,
-		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar.webp`,
+		image: `${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`,
 		title: "GharAid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
 		button: "Read More",
@@ -51,7 +51,7 @@ export const aids = [
 	},
 	{
 		id: 7,
-		image: `${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`,
+		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner6.webp`,
 		title: "SakhiAid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Read More",
