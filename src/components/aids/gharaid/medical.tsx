@@ -12,7 +12,7 @@ const servinginfo = [
 ];
 function Medical() {
 	return (
-		<div className="relative font-serif bg-gradient-to-b from-sky-100 to-white py-10 px-6 sm:px-10 md:px-16 lg:px-24">
+		<div className="relative bg-gradient-to-b from-sky-100 to-white py-10 px-6 sm:px-10 md:px-16 lg:px-24">
 			<div className="max-w-7xl mx-auto text-center">
 				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-900 mb-6">
 					Medical, Mental Health & Addiction Support

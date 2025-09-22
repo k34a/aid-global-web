@@ -6,7 +6,7 @@ export default function SakhiAidProvides() {
 	return (
 		<section className="relative bg-gray-100 pb-0 pt-4 px-4 sm:px-6 lg:px-24 overflow-hidden">
 			{/* Heading */}
-			<h2 className="text-rose-900 text-center uppercase font-serif text-xl sm:text-2xl lg:text-2xl font-bold leading-tight relative z-10">
+			<h2 className="text-rose-900 text-center text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight relative z-10">
 				How SakhiAid Uplifts Women and Girls
 			</h2>
 

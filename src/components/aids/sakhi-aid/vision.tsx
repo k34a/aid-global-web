@@ -64,9 +64,7 @@ export default function SakhiAidVision() {
 								className="text-rose-800 mt-1 font-extrabold shrink-0 fill-rose-800"
 								size={22}
 							/>
-							<span className="font-serif whitespace-normal">
-								{text}
-							</span>
+							<span className="whitespace-normal">{text}</span>
 						</li>
 					))}
 				</ul>

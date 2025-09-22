@@ -44,8 +44,7 @@ export default function KeyInitiatives({
 								<Star size={18} />
 							</ThemeIcon>
 							<span>
-								<strong>{item.title}</strong>
-								{item.description}
+								<strong>{item.title}</strong> {item.description}
 							</span>
 						</li>
 					))}
