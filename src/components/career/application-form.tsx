@@ -280,7 +280,7 @@ export default function CareerApplicationForm() {
 							type="submit"
 							loading={loading}
 							disabled={loading}
-							className="font-serif px-6 py-2 text-white shadow-lg hover:shadow-lg"
+							className="px-6 py-2 text-white shadow-lg hover:shadow-lg"
 						>
 							Apply Now
 						</Button>

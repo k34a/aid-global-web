@@ -14,7 +14,7 @@ import {
 
 function Bhiwandi() {
 	return (
-		<div className="bg-gradient-to-br from-sky-100 to-slate-50 py-10 px-6 sm:px-10 md:px-16 lg:px-24 font-serif">
+		<div className="bg-gradient-to-br from-sky-100 to-slate-50 py-10 px-6 sm:px-10 md:px-16 lg:px-24">
 			<div className="max-w-7xl mx-auto text-center">
 				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-800 mb-3">
 					Permanent Shelter Home In Bhiwandi

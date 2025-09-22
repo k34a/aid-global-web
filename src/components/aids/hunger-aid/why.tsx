@@ -59,9 +59,7 @@ export default function WhyHungerAid() {
 								className="text-orange-800 mt-1 font-extrabold shrink-0 fill-orange-800"
 								size={22}
 							/>
-							<span className="font-serif whitespace-normal">
-								{text}
-							</span>
+							<span className="whitespace-normal">{text}</span>
 						</li>
 					))}
 				</ul>

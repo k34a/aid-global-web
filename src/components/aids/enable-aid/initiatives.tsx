@@ -11,13 +11,13 @@ export default function KeyInitiatives() {
 					className={`flex flex-col  md:gap-8 lg:gap-0 lg:flex-row ${item.id % 2 !== 0 ? "lg:flex-row-reverse" : ""} shadow-xl rounded-3xl my-3 mx-2 md:my-6 lg:my-8`}
 				>
 					{/* Image Section */}
-					<div className="relative w-[95%] mx-auto h-56 xs:h-64 sm:h-80 md:h-96 lg:w-1/2 lg:h-auto shadow-lg rounded-3xl overflow-hidden mx-3 mt-2 mb-0 lg:my-10 lg:mx-3 min-h-[220px]">
+					<div className="w-[95%] mx-auto lg:w-1/2 shadow-lg rounded-3xl overflow-hidden mx-3 mt-2 mb-0 lg:my-10 lg:mx-3">
 						<Image
 							src={item.image}
 							alt={item.title}
-							fill
-							className="object-cover"
-							sizes="(max-width: 1024px) 100vw, 50vw"
+							width={800}
+							height={600}
+							className="w-full h-auto rounded-3xl object-contain"
 						/>
 					</div>
 

@@ -3,7 +3,7 @@ import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Live() {
 	return (
-		<div className="font-serif mx-5 sm:mx-7 md:mx-9 lg:mx-11 py-6 mt-5 sm:mt-7 md:mt-9 bg-gradient-to-b from-gray-200 to-gray-50 lg:mt-11 relative ">
+		<div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11 py-6 mt-5 sm:mt-7 md:mt-9 bg-gradient-to-b from-gray-200 to-gray-50 lg:mt-11 relative ">
 			<h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-sky-900 mb-10">
 				{" "}
 				Reintegration & Livelihood Support

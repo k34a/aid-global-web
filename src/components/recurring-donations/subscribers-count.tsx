@@ -11,7 +11,7 @@ export default async function SubscriberCounter({
 		<section className="py-16 px-4 bg-gray-100">
 			<div className="container mx-auto max-w-4xl text-center">
 				{/* Title */}
-				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2563eb] mb-12 font-serif">
+				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2563eb] mb-12">
 					Become a part of the
 					<br />
 					&#8377;{subscriptionName} movement

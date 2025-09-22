@@ -30,10 +30,10 @@ export default function HungerAidProvides() {
 								{card.title}
 							</h3>
 							<hr className="my-2 sm:my-3 border-gray-200 w-2/3 mx-auto" />
-							<p className="text-sm sm:text-md font-serif text-gray-600 font-semibold mb-2 sm:mb-3">
+							<p className="text-sm sm:text-md text-gray-600 font-semibold mb-2 sm:mb-3">
 								{card.description}
 							</p>
-							<ul className="pl-4 sm:pl-5 text-md sm:text-md font-serif space-y-1 text-gray-600 font-semibold mb-2 sm:mb-3">
+							<ul className="pl-4 sm:pl-5 text-md sm:text-md space-y-1 text-gray-600 font-semibold mb-2 sm:mb-3">
 								{card.bullets.map((point, i) => (
 									<li
 										key={i}
@@ -66,7 +66,7 @@ export default function HungerAidProvides() {
 					<div className="absolute inset-0 bg-orange-100 opacity-80 z-10"></div>
 					{/* Content */}
 					<div className="relative z-20 flex flex-col items-center justify-center h-full w-full p-4 sm:p-6">
-						<h3 className="text-xl sm:text-2xl md:text-4xl font-serif text-center text-gray-800 font-semibold mb-2 sm:mb-4 mx-2 sm:mx-10 leading-tight">
+						<h3 className="text-xl sm:text-2xl md:text-4xl text-center text-gray-800 font-semibold mb-2 sm:mb-4 mx-2 sm:mx-10 leading-tight">
 							Your <br />
 							contribution <br />
 							creates a <br />
@@ -75,7 +75,7 @@ export default function HungerAidProvides() {
 						<Link
 							href="/donate?program=hunger-aid"
 							aria-label="Donate to HungerAid"
-							className="bg-orange-500 hover:bg-orange-800 hover:scale-105 hover:shadow-xl text-white text-base sm:text-2xl md:text-4xl font-serif font-bold py-2 px-4 sm:px-6 rounded shadow mt-6 sm:mt-10 transition-all"
+							className="bg-orange-500 hover:bg-orange-800 hover:scale-105 hover:shadow-xl text-white text-base sm:text-2xl md:text-4xl font-bold py-2 px-4 sm:px-6 rounded shadow mt-6 sm:mt-10 transition-all"
 						>
 							Donate now
 						</Link>

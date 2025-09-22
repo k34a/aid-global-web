@@ -3,7 +3,7 @@ import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 function Rescueinfo() {
 	return (
-		<div className="bg-gradient-to-b from-red-200 to-white mt-5 sm:mt-5 md:mt-7 lg:mt-9 px-4 sm:px-6 md:px-10 lg:px-24 py-16 sm:py-20 font-serif">
+		<div className="bg-gradient-to-b from-red-200 to-white mt-5 sm:mt-5 md:mt-7 lg:mt-9 px-4 sm:px-6 md:px-10 lg:px-24 py-16 sm:py-20">
 			<div className="mx-auto max-w-7xl">
 				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-900 text-center mb-12 sm:mb-14">
 					Rescue Across Maharashtra

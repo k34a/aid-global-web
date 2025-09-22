@@ -16,7 +16,7 @@ export default function PartnersSection() {
 						lasting change and expand our impact together.
 					</p>
 
-					<Banner partners={partners} speed={20000} />
+					<Banner partners={partners} speed={40000} />
 				</div>
 			</div>
 		</section>
