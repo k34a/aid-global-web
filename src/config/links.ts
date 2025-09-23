@@ -13,6 +13,10 @@ export const programLinks: NavigationLink[] = [
 export const links: Links = {
 	primaryLinks: [
 		{
+			name: "Home",
+			href: "/home",
+		},
+		{
 			name: "Who We Are",
 			href: "/who-we-are",
 			sublinks: [

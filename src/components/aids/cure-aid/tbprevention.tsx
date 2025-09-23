@@ -94,7 +94,7 @@ const TBPrevention = () => {
 				<div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 					<div className="relative w-full h-[250px] sm:h-[350px] md:h-[420px] md:col-span-5 rounded-xl overflow-hidden shadow-md">
 						<Image
-							src={`${STATIC_IMAGE_HOST}cure-aid/TB.webp`}
+							src={`${STATIC_IMAGE_HOST}cure-aid/cureAid-tb.webp`}
 							alt="TB Prevention"
 							fill
 							className="object-cover"

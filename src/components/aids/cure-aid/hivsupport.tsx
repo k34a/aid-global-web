@@ -70,7 +70,7 @@ const HivSupport = () => {
 				</div>
 				<div className="md:col-span-4 relative h-80 md:h-auto rounded-2xl overflow-hidden shadow-md">
 					<Image
-						src={`${STATIC_IMAGE_HOST}cure-aid/cureAid-4.webp`}
+						src={`${STATIC_IMAGE_HOST}cure-aid/cureAid-hiv.webp`}
 						alt="HIV Awareness"
 						fill
 						className="object-cover"
