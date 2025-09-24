@@ -1,4 +1,3 @@
-import { number } from "zod/v4";
 import { STATIC_IMAGE_HOST } from "./config";
 
 export const bankDetails = {
