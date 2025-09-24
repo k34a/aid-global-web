@@ -15,14 +15,17 @@ export default function OtherDonationModes() {
 					<h3 className="text-lg font-semibold text-gray-800 mb-2">
 						UPI Payment (Scan & Pay)
 					</h3>
-					<div className="flex justify-center">
+					<div className="flex flex-col items-center">
 						<Image
-							src={`${STATIC_IMAGE_HOST}donation/qr.webp`}
+							src={bankDetails.upi.qr}
 							alt="UPI QR Code"
 							width={500}
 							height={500}
 							className="rounded-lg border border-gray-300"
 						/>
+						<p className="mt-4 text-sm text-gray-800 font-mono bg-gray-100 px-4 py-2 rounded">
+							UPI ID: {bankDetails.upi.id}
+						</p>
 					</div>
 				</div>
 
@@ -34,31 +37,34 @@ export default function OtherDonationModes() {
 					<p className="text-md text-gray-500 mt-2">
 						{bankDetails.notes.bank}
 					</p>
-					<div className="bg-gray-100 rounded-lg p-4 text-sm leading-6">
-						<p>
-							<strong>Account Name:</strong>{" "}
-							{bankDetails.account.name}
-						</p>
-						<p>
-							<strong>Account Number:</strong>{" "}
-							{bankDetails.account.number}
-						</p>
-						<p>
-							<strong>Bank Name:</strong>{" "}
-							{bankDetails.account.bank}
-						</p>
-						<p>
-							<strong>Branch:</strong>{" "}
-							{bankDetails.account.branchAddress}
-						</p>
-						<p>
-							<strong>IFSC Code:</strong>{" "}
-							{bankDetails.account.ifsc}
-						</p>
-						<p>
-							<strong>MICR Code:</strong>{" "}
-							{bankDetails.account.micr}
-						</p>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+						{bankDetails.account.map((acc, idx) => (
+							<div
+								key={idx}
+								className="bg-gray-100 rounded-lg p-4 text-sm leading-6 border border-gray-200 shadow-sm"
+							>
+								<p>
+									<strong>Account Name:</strong> {acc.name}
+								</p>
+								<p>
+									<strong>Account Number:</strong>{" "}
+									{acc.number}
+								</p>
+								<p>
+									<strong>Bank Name:</strong> {acc.bank}
+								</p>
+								<p>
+									<strong>Branch:</strong> {acc.branchAddress}
+								</p>
+								<p>
+									<strong>IFSC Code:</strong> {acc.ifsc}
+								</p>
+								<p>
+									<strong>MICR Code:</strong> {acc.micr}
+								</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
