@@ -27,7 +27,7 @@ export const shgAwarenessData: AwarenessContent = {
 	desc2: "SHGs help women earn, learn, and lead together.",
 };
 export const livelihoodAwarenessData: AwarenessContent = {
-	image: `${STATIC_IMAGE_HOST}sakhi-aid/livelihood2.webp`,
+	image: `${STATIC_IMAGE_HOST}sakhi-aid/livelihoodSakhiAid.webp`,
 	title: "Livelihood & Skill Development for Self-Reliance",
 	desc1: "SakhiAid believes that economic freedom leads to personal freedom. We offer structured training to young girls, homemakers, and survivors of abuse to help them build their future with courage and skill.",
 	desc2: "With each training, we help a woman stand on her own feet, support her children, and inspire her neighbors.",

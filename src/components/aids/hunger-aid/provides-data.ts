@@ -3,7 +3,7 @@ import { STATIC_IMAGE_HOST } from "@/config/config";
 export const cards = [
 	{
 		id: 1,
-		image: `${STATIC_IMAGE_HOST}hunger-aid/hungerAid-meals.webp`,
+		image: `${STATIC_IMAGE_HOST}hunger-aid/hungerAid-cookedmeals.webp`,
 		title: "Fresh Cooked Meals",
 		description: "We serve hot, nutritious meals to:",
 		bullets: [
