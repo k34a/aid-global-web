@@ -14,7 +14,7 @@ export const links: Links = {
 	primaryLinks: [
 		{
 			name: "Home",
-			href: "/home",
+			href: "/",
 		},
 		{
 			name: "Who We Are",
