@@ -135,10 +135,11 @@ export default function DonatePanel(props: Props) {
 							visibleFrom="lg"
 						>
 							<Stack gap="lg">
-								<Group gap="xs">
+								<Group gap="sm">
 									{presetAmounts.map((amt) => (
 										<Button
 											key={amt}
+											size="md"
 											variant={
 												props.amount === amt
 													? "filled"
