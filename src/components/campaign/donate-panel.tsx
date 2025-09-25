@@ -46,85 +46,6 @@ export default function DonatePanel(props: Props) {
 				<Paper p="md">
 					<Title order={5}></Title>
 					<Stack gap="xl">
-						<Group gap="xs" justify="center">
-							<Flex
-								onClick={() =>
-									window.open(
-										`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-										"_blank",
-									)
-								}
-								style={{
-									backgroundColor: "#1877F2",
-									borderRadius: 10000,
-									color: "white",
-									fontSize: "14px",
-									cursor: "pointer",
-								}}
-								p="xs"
-								gap="xs"
-							>
-								<IconBrandFacebookFilled color="white" />
-								<span>Spread the word</span>
-							</Flex>
-							<Flex
-								onClick={() =>
-									window.open(
-										`https://x.com/intent/post?url=${encodeURIComponent(url)}&text=Support%20this%20campaign!`,
-										"_blank",
-									)
-								}
-								style={{
-									backgroundColor: "black",
-									borderRadius: 10000,
-									fontSize: "14px",
-									cursor: "pointer",
-								}}
-								p="xs"
-							>
-								<IconBrandX color="white" />
-							</Flex>
-							<Flex
-								onClick={() =>
-									window.open(
-										`https://wa.me/?text=${encodeURIComponent(url)}`,
-										"_blank",
-									)
-								}
-								align="center"
-								justify="center"
-								style={{
-									backgroundColor: "#25D366",
-									borderRadius: 10000,
-									fontSize: "14px",
-									cursor: "pointer",
-								}}
-								p="xs"
-								gap="xs"
-							>
-								<IconBrandWhatsappFilled color="white" />
-							</Flex>
-							<CopyButton value={url}>
-								{({ copy }) => (
-									<Flex
-										style={{
-											backgroundColor: "grey",
-											borderRadius: 10000,
-											fontSize: "14px",
-											cursor: "pointer",
-										}}
-										p="xs"
-										gap="xs"
-										onClick={() => {
-											toast.success("Link copied");
-											copy();
-										}}
-									>
-										<IconLink color="white" />
-									</Flex>
-								)}
-							</CopyButton>
-						</Group>
 						<Paper
 							withBorder
 							shadow="md"
@@ -191,6 +112,86 @@ export default function DonatePanel(props: Props) {
 									)}{" "}
 									now
 								</Button>
+								<Group gap="xs" justify="center">
+									<Flex
+										onClick={() =>
+											window.open(
+												`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+												"_blank",
+											)
+										}
+										style={{
+											backgroundColor: "#1877F2",
+											borderRadius: 10000,
+											color: "white",
+											fontSize: "14px",
+											cursor: "pointer",
+										}}
+										p="xs"
+									>
+										<IconBrandFacebookFilled color="white" />
+										<span>Spread the word</span>
+									</Flex>
+									<Flex
+										onClick={() =>
+											window.open(
+												`https://x.com/intent/post?url=${encodeURIComponent(url)}&text=Support%20this%20campaign!`,
+												"_blank",
+											)
+										}
+										style={{
+											backgroundColor: "black",
+											borderRadius: 10000,
+											fontSize: "14px",
+											cursor: "pointer",
+										}}
+										p="xs"
+									>
+										<IconBrandX color="white" />
+									</Flex>
+									<Flex
+										onClick={() =>
+											window.open(
+												`https://wa.me/?text=${encodeURIComponent(url)}`,
+												"_blank",
+											)
+										}
+										align="center"
+										justify="center"
+										style={{
+											backgroundColor: "#25D366",
+											borderRadius: 10000,
+											fontSize: "14px",
+											cursor: "pointer",
+										}}
+										p="xs"
+										gap="xs"
+									>
+										<IconBrandWhatsappFilled color="white" />
+									</Flex>
+									<CopyButton value={url}>
+										{({ copy }) => (
+											<Flex
+												style={{
+													backgroundColor: "grey",
+													borderRadius: 10000,
+													fontSize: "14px",
+													cursor: "pointer",
+												}}
+												p="xs"
+												gap="xs"
+												onClick={() => {
+													toast.success(
+														"Link copied",
+													);
+													copy();
+												}}
+											>
+												<IconLink color="white" />
+											</Flex>
+										)}
+									</CopyButton>
+								</Group>
 							</Stack>
 						</Paper>
 					</Stack>
