@@ -1,4 +1,4 @@
-import { DEFAULT_CAMPAIGN } from "@/config/data";
+import { DEFAULT_CAMPAIGN } from "@/config/config";
 import { supabaseAdmin } from "@/lib/db/supabase";
 
 interface DonorDetail {

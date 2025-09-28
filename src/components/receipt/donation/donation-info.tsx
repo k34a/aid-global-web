@@ -1,6 +1,6 @@
 "use client";
 
-import { DEFAULT_CAMPAIGN } from "@/config/data";
+import { DEFAULT_CAMPAIGN } from "@/config/config";
 import { IndianRupee } from "lucide-react";
 
 interface DonationInfoProps {

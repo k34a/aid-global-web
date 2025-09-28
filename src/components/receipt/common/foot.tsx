@@ -8,7 +8,13 @@ const ReceiptFooter = ({ id }: { id: string }) => {
 			<p>
 				<strong>{ngoDetails.name}</strong>
 			</p>
-			<p>{ngoDetails.contact.address}</p>
+			<p>
+				{
+					ngoDetails.contact.addresses.filter(
+						(a) => a.type === "communication",
+					)[0].address
+				}
+			</p>
 			<p>
 				Email: {ngoDetails.contact.email} | Phone:{" "}
 				{ngoDetails.contact.phone}

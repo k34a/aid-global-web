@@ -128,7 +128,11 @@ const Footer: React.FC = () => {
 							<div className="flex items-start sm:items-center sm:space-x-3 justify-center sm:justify-start">
 								<MapPin className="w-5 h-5 mt-1 sm:mt-0 text-gray-400 shrink-0" />
 								<p className="text-gray-300 text-sm leading-relaxed">
-									{ngoDetails.contact.address}
+									{
+										ngoDetails.contact.addresses.filter(
+											(a) => a.type === "communication",
+										)[0].address
+									}
 								</p>
 							</div>
 

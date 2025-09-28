@@ -1,6 +1,10 @@
+"use client";
+
+import type React from "react";
+
 import { ngoDetails } from "@/config/config";
 import { links } from "@/config/links";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import {
 	Facebook,
 	Twitter,
@@ -22,6 +26,14 @@ const SocialIcon: React.FC<{ name: string }> = ({ name }) => {
 };
 
 const ContactUsDetails = () => {
+	const handleWhatsAppClick = () => {
+		const message = encodeURIComponent(
+			"Hello! I would like to know more about Aid Global Foundation and how I can contribute to your cause.",
+		);
+		const whatsappUrl = `https://wa.me/${ngoDetails.contact.whatsapp.replace(/\D/g, "")}?text=${message}`;
+		window.open(whatsappUrl, "_blank");
+	};
+
 	return (
 		<div className="bg-gradient-to-tr from-sky-700 via-sky-600 to-sky-500 text-white p-6 sm:p-10 flex flex-col justify-between rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl">
 			<div>
@@ -34,11 +46,30 @@ const ContactUsDetails = () => {
 				</p>
 
 				<div className="flex flex-col sm:block space-y-3 sm:space-y-5 text-sm sm:text-base font-medium">
+					{/* National Helpline */}
+					<a
+						href={`tel:${ngoDetails.contact.nationalHelpline.replace(/\D/g, "")}`}
+						className="flex items-center gap-3 hover:text-sky-200 transition"
+					>
+						<Phone className="w-5 h-5" />
+						<div>
+							<div className="text-xs opacity-75">
+								National Helpline
+							</div>
+							<div>{ngoDetails.contact.nationalHelpline}</div>
+						</div>
+					</a>
 					<a
 						href={`tel:${ngoDetails.contact.phone.replace(/\D/g, "")}`}
 						className="flex items-center gap-3 hover:text-sky-200 transition"
 					>
-						<Phone className="w-5 h-5" /> {ngoDetails.contact.phone}
+						<Phone className="w-5 h-5" />
+						<div>
+							<div className="text-xs opacity-75">
+								Mobile Number
+							</div>
+							<div>{ngoDetails.contact.phone}</div>
+						</div>
 					</a>
 					<a
 						href={`mailto:${ngoDetails.contact.email}`}
@@ -46,11 +77,48 @@ const ContactUsDetails = () => {
 					>
 						<Mail className="w-5 h-5" /> {ngoDetails.contact.email}
 					</a>
-					<div className="flex items-start gap-3">
-						<MapPin className="w-6 h-6 mt-1" />
-						<address className="not-italic text-xs sm:text-sm leading-snug opacity-90">
-							{ngoDetails.contact.address}
-						</address>
+
+					{/* Working Hours */}
+					<div className="flex items-center gap-3">
+						<Clock className="w-5 h-5" />
+						<div>
+							<div className="text-xs opacity-75">
+								Working Hours
+							</div>
+							<div>{ngoDetails.contact.workingHours.days}</div>
+							<div>{ngoDetails.contact.workingHours.hours}</div>
+						</div>
+					</div>
+
+					{/* WhatsApp Button */}
+					<button
+						onClick={handleWhatsAppClick}
+						className="flex items-center gap-3 hover:text-sky-200 transition bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg mt-4 w-fit"
+					>
+						<MessageCircle className="w-5 h-5" />
+						<span>Chat on WhatsApp</span>
+					</button>
+
+					{/* Addresses */}
+					<div className="mt-6 space-y-4">
+						{ngoDetails.contact.addresses.map((addr, index) => (
+							<div key={index} className="flex items-start gap-3">
+								<MapPin className="w-6 h-6 mt-1 flex-shrink-0" />
+								<div>
+									<div className="text-sm font-semibold">
+										{addr.label}
+									</div>
+									{addr.description && (
+										<div className="text-xs opacity-75 mb-1">
+											({addr.description})
+										</div>
+									)}
+									<address className="not-italic text-xs sm:text-sm leading-snug opacity-90">
+										{addr.address}
+									</address>
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>

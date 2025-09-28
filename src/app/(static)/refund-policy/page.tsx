@@ -97,7 +97,11 @@ export default function RefundPolicyPage() {
 						<MapPinCheck size={18} className="text-red-500" />{" "}
 						<span>
 							<strong>{ngoDetails.name}</strong>:{" "}
-							{ngoDetails.contact.address}
+							{
+								ngoDetails.contact.addresses.filter(
+									(a) => a.type === "communication",
+								)[0].address
+							}
 						</span>
 						<br />
 					</li>

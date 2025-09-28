@@ -4,7 +4,7 @@ import {
 	DonationCreationSuccessResponse,
 	userInfoSchema,
 } from "@/lib/db/donation/create/base";
-import { DEFAULT_CAMPAIGN } from "@/config/data";
+import { DEFAULT_CAMPAIGN } from "@/config/config";
 
 export const otherDonationDetailsSchema = z.object({
 	amount: z.number().min(1, "Amount must be greater than 0"),

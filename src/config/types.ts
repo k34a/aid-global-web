@@ -1,8 +1,19 @@
 export interface ContactInfo {
-	address: string;
+	addresses: {
+		type: "registration" | "communication";
+		label: string;
+		description: string;
+		address: string;
+	}[];
 	email: string;
 	phone: string;
+	nationalHelpline: string;
+	whatsapp: string;
 	website?: string;
+	workingHours: {
+		days: string;
+		hours: string;
+	};
 }
 
 export interface NGODetails {
