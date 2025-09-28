@@ -40,7 +40,7 @@ export const ngoDetails: NGODetails = {
 		email: "info@aidglobal.ngo",
 		phone: "+91-93734-69754",
 		nationalHelpline: "+91-22-6971-9935",
-		whatsapp: "+919373469754",
+		whatsapp: "+912269719935",
 		website: "https://www.aidglobal.ngo",
 		workingHours: {
 			days: "Monday - Saturday",

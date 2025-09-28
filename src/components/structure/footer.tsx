@@ -149,10 +149,10 @@ const Footer: React.FC = () => {
 							<div className="flex items-center justify-center sm:justify-start space-x-3">
 								<Phone className="w-5 h-5 text-gray-400 shrink-0" />
 								<a
-									href={`tel:${ngoDetails.contact.phone}`}
+									href={`tel:${ngoDetails.contact.nationalHelpline}`}
 									className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
 								>
-									{ngoDetails.contact.phone}
+									{ngoDetails.contact.nationalHelpline}
 								</a>
 							</div>
 						</div>

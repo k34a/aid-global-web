@@ -38,11 +38,11 @@ export const links: Links = {
 					href: "/corporate-partnerships",
 				},
 				{
-					name: "Donate Rs.1/day",
+					name: <>&#8377;1 Rupee Warrier</>,
 					href: "/1rupee",
 				},
 				{
-					name: "Donate Rs.100/month",
+					name: <>The &#8377;100 Club</>,
 					href: "/100rupee",
 				},
 			],

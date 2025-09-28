@@ -1,3 +1,4 @@
+import React from "react";
 export interface ContactInfo {
 	addresses: {
 		type: "registration" | "communication";
@@ -36,7 +37,7 @@ export interface NavigationLink {
 }
 
 interface NavigationLinkWithSubLinks extends Omit<NavigationLink, "href"> {
-	sublinks: { name: string; href: string }[];
+	sublinks: { name: string | React.JSX.Element; href: string }[];
 	href?: string;
 }
 

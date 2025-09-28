@@ -103,7 +103,8 @@ export default function OtherDonationModes() {
 						donation receipt.
 					</p>
 					<p className="text-sm text-gray-600 mt-4">
-						<strong>Contact:</strong> {ngoDetails.contact.phone}
+						<strong>Contact:</strong>{" "}
+						{ngoDetails.contact.nationalHelpline}
 						<br />
 						<strong>Email:</strong> {ngoDetails.contact.email}
 					</p>

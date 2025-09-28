@@ -17,7 +17,7 @@ const ReceiptFooter = ({ id }: { id: string }) => {
 			</p>
 			<p>
 				Email: {ngoDetails.contact.email} | Phone:{" "}
-				{ngoDetails.contact.phone}
+				{ngoDetails.contact.nationalHelpline}
 			</p>
 			<p>Website: {ngoDetails.contact.website}</p>
 			<p className="mt-4 text-xs text-center text-gray-500">
