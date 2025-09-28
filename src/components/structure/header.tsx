@@ -169,9 +169,9 @@ export default function HeaderMegaMenu() {
 										</Center>
 									</UnstyledButton>
 									<Collapse in={openDropdown === link.name}>
-										{link.sublinks.map((item) => (
+										{link.sublinks.map((item, idx) => (
 											<Link
-												key={item.name}
+												key={idx}
 												href={item.href}
 												onClick={closeDrawer}
 												className={classes.subLink}
