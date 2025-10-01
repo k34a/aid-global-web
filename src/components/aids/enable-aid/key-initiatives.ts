@@ -41,7 +41,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 2,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-3.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-clubfoot.webp`,
 		icon: Footprints,
 		title: "Clubfoot Program - Early Steps Toward a Better Future",
 
@@ -87,7 +87,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 4,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-5.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-accessibility.webp`,
 		icon: Accessibility,
 		title: "Assistive Devices & Accessibility Support",
 		tagline: "Tools for independence. Resources for dignity.",
@@ -106,7 +106,7 @@ export const enableAidData: EnableAidItem[] = [
 	},
 	{
 		id: 5,
-		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-awareness.webp`,
+		image: `${STATIC_IMAGE_HOST}enable-aid/enableAid-aware.webp`,
 		icon: Megaphone,
 		title: "Awareness, Advocacy & Inclusion",
 		tagline: "Changing minds. Creating opportunity.",

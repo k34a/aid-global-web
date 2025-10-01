@@ -3,9 +3,9 @@ import Image from "@/components/image";
 
 export default function HeroImage() {
 	return (
-		<section className="relative w-[95%] mx-auto rounded-2xl h-[100vh] md:h-[115vh] overflow-hidden shadow-2xl">
+		<section className="relative w-[95%] mx-auto rounded-2xl h-[150vh] md:h-[160vh] overflow-hidden shadow-2xl">
 			<Image
-				src={`${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid-1.webp`}
+				src={`${STATIC_IMAGE_HOST}shiksha-aid/shikshaAid.webp`}
 				alt="ShikshaAid Hero"
 				fill
 				style={{ objectFit: "cover" }}
