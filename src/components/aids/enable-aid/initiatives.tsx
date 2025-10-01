@@ -8,7 +8,7 @@ export default function KeyInitiatives() {
 			{enableAidData.map((item) => (
 				<div
 					key={item.id}
-					className={`flex flex-col  md:gap-8 lg:gap-0 lg:flex-row ${item.id % 2 !== 0 ? "lg:flex-row-reverse" : ""} shadow-xl rounded-3xl my-3 mx-2 md:my-6 lg:my-8`}
+					className={`flex flex-col items-center md:gap-8 lg:gap-0 lg:flex-row ${item.id % 2 !== 0 ? "lg:flex-row-reverse" : ""} shadow-xl rounded-3xl my-3 mx-2 md:my-6 lg:my-8`}
 				>
 					{/* Image Section */}
 					<div className="w-[95%] mx-auto lg:w-1/2 shadow-lg rounded-3xl overflow-hidden mx-3 mt-2 mb-0 lg:my-10 lg:mx-3">
