@@ -1,8 +1,5 @@
 "use client";
 import Image from "@/components/image";
-import { STATIC_IMAGE_HOST } from "@/config/config";
-import PartnerSay from "./partner-testimonial";
-import Link from "next/link";
 import { HeartPlus } from "lucide-react";
 import { NotepadText } from "lucide-react";
 import { LockKeyhole } from "lucide-react";

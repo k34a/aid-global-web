@@ -1,4 +1,3 @@
-import { ArrowRight, Mail, Phone } from "lucide-react";
 import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 
