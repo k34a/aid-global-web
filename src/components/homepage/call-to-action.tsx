@@ -75,9 +75,9 @@ export default function CallToActionSection() {
 					<CallToActionQuote />
 
 					<p className="text-slate-700 mt-4 mb-8 text-base sm:text-lg leading-relaxed">
-						Your support delivers food, education, healthcare, and
-						hope. Join us in lighting up lives-one act of kindness
-						at a time.
+						Your support sparks education, ends hunger, restores
+						health, and inspires hope. Together, we light up
+						lives-one act of kindness at a time.
 					</p>
 
 					<div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
