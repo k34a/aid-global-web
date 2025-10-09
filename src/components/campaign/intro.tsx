@@ -48,8 +48,8 @@ const Details = (props: CampaignIntroProps) => {
 	const daysLeft = formatTimeLeft(endDate);
 
 	return (
-		<Card radius="md" shadow="none" p={0}>
-			<Text fw={700} fz="h2" mb="sm">
+		<Card radius="md" shadow="none" p={0} bg="transparent">
+			<Text fw={700} fz="h2" mb="sm" c="white">
 				{title}
 			</Text>
 
@@ -94,9 +94,9 @@ const Details = (props: CampaignIntroProps) => {
 				)}
 			</Group>
 
-			<Text fw={500}>
+			<Text fw={500} c="white">
 				&#8377;{progress.collection.toLocaleString("en-IN")}{" "}
-				<Text span c="dimmed">
+				<Text span c="gray.3">
 					raised out of &#8377;
 					{progress.total.toLocaleString("en-IN")}
 				</Text>
@@ -107,18 +107,28 @@ const Details = (props: CampaignIntroProps) => {
 			<Group justify="space-between" mt="md" mb="md">
 				{daysLeft !== null && (
 					<Group gap="xs">
-						<IconClock size={16} />
-						<Text fz="sm">{daysLeft} days left</Text>
+						<IconClock size={16} color="white" />
+						<Text fz="sm" c="white">
+							{daysLeft} days left
+						</Text>
 					</Group>
 				)}
 				<Group gap="xs">
-					<IconUsers size={16} />
-					<Text fz="sm">{backerCount} Backers</Text>
+					<IconUsers size={16} color="white" />
+					<Text fz="sm" c="white">
+						{backerCount} Backers
+					</Text>
 				</Group>
 			</Group>
 
 			{beneficiary && beneficiary.name && beneficiary.location && (
-				<Card withBorder padding="md" radius="md">
+				<Card
+					withBorder
+					padding="md"
+					radius="md"
+					bg="rgba(255, 255, 255, 0.9)"
+					style={{ backdropFilter: "blur(4px)" }}
+				>
 					<Text fw={500} fz="sm" c="dimmed">
 						Campaign Beneficiary
 					</Text>
@@ -143,32 +153,44 @@ export default function CampaignIntro(props: CampaignIntroProps) {
 	const imageUrl = getImageForCampaign(props.id, props.bannerImage);
 
 	return (
-		<Paper mb="md">
-			<Grid gutter={0}>
-				<Grid.Col span={{ base: 12, lg: 8 }}>
-					<Box pos="relative" h={{ base: 260, lg: "100%" }}>
-						<Image
-							src={imageUrl}
-							alt={props.title}
-							fill
-							style={{ objectFit: "cover" }}
-							priority
-						/>
-					</Box>
-				</Grid.Col>
+		<Paper mb="md" radius="md" style={{ overflow: "hidden" }}>
+			<Box pos="relative" h={{ base: 400, lg: 350 }}>
+				{/* Background Image */}
+				<Image
+					src={imageUrl}
+					alt={props.title}
+					fill
+					style={{ objectFit: "cover" }}
+					priority
+				/>
 
-				<Grid.Col span={{ base: 12, lg: 4 }}>
-					<Box
-						p={{ sm: "md", lg: "xl" }}
-						py={{ base: "md" }}
-						h="100%"
-						display="flex"
-						style={{ alignContent: "center" }}
-					>
-						<Details {...props} />
-					</Box>
-				</Grid.Col>
-			</Grid>
+				{/* Gradient */}
+				<Box
+					pos="absolute"
+					top={0}
+					left={0}
+					right={0}
+					bottom={0}
+					style={{
+						background:
+							"linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)",
+					}}
+				/>
+
+				{/* Content Overlay */}
+				<Box
+					pos="absolute"
+					top={0}
+					left={0}
+					right={0}
+					bottom={0}
+					p={{ base: "md", lg: "xl" }}
+					display="flex"
+					style={{ alignItems: "center" }}
+				>
+					<Details {...props} />
+				</Box>
+			</Box>
 		</Paper>
 	);
 }

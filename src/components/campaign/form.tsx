@@ -163,41 +163,41 @@ export default function CampaignForm(props: Props) {
 						</Grid.Col>
 					</Grid>
 
-					<Grid>
-						<Grid.Col span={{ base: 12, md: 6 }}>
-							<TextInput
-								label="Phone Number"
-								placeholder="10-digit mobile number"
-								required
-								size="md"
-								{...form.getInputProps("contact_number")}
-								key={form.key("contact_number")}
-								styles={{
-									input: { height: "48px" },
-									label: {
-										fontWeight: 500,
-										color: "var(--mantine-color-gray-7)",
-									},
-								}}
-							/>
-						</Grid.Col>
-						<Grid.Col span={{ base: 12, md: 6 }}>
-							<Textarea
-								label="Additional Notes (Optional)"
-								placeholder="Any special instructions or messages"
-								minRows={2}
-								size="md"
-								{...form.getInputProps("notes")}
-								key={form.key("notes")}
-								styles={{
-									label: {
-										fontWeight: 500,
-										color: "var(--mantine-color-gray-7)",
-									},
-								}}
-							/>
-						</Grid.Col>
-					</Grid>
+					<Stack>
+						{/* <Grid.Col span={{ base: 12, md: 6 }}> */}
+						<TextInput
+							label="Phone Number"
+							placeholder="10-digit mobile number"
+							required
+							size="md"
+							{...form.getInputProps("contact_number")}
+							key={form.key("contact_number")}
+							styles={{
+								input: { height: "48px" },
+								label: {
+									fontWeight: 500,
+									color: "var(--mantine-color-gray-7)",
+								},
+							}}
+						/>
+						{/* </Grid.Col> */}
+						{/* <Grid.Col span={{ base: 12, md: 6 }}> */}
+						<Textarea
+							label="Additional Notes (Optional)"
+							placeholder="Any special instructions or messages"
+							minRows={2}
+							size="md"
+							{...form.getInputProps("notes")}
+							key={form.key("notes")}
+							styles={{
+								label: {
+									fontWeight: 500,
+									color: "var(--mantine-color-gray-7)",
+								},
+							}}
+						/>
+						{/* </Grid.Col> */}
+					</Stack>
 
 					{/* Checkboxes */}
 					<Stack gap="md">
