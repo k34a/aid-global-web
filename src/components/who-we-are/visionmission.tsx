@@ -13,7 +13,7 @@ function Visionmission() {
 				<div className="relative flex-1 min-h-[14rem] sm:min-h-[20rem] md:min-h-[26rem] lg:min-h-[30rem] rounded-2xl shadow-md overflow-hidden">
 					<div className="absolute inset-0">
 						<Image
-							src={`${STATIC_IMAGE_HOST}whoweare/vision.webp`}
+							src={`${STATIC_IMAGE_HOST}whoweare/whoweare-vision.webp`}
 							alt="Vision"
 							fill
 							className="object-cover object-center"
@@ -34,7 +34,7 @@ function Visionmission() {
 				<div className="relative flex-1 min-h-[14rem] sm:min-h-[20rem] md:min-h-[26rem] lg:min-h-[30rem] rounded-2xl shadow-md overflow-hidden">
 					<div className="absolute inset-0">
 						<Image
-							src={`${STATIC_IMAGE_HOST}whoweare/mission.webp`}
+							src={`${STATIC_IMAGE_HOST}whoweare/whoweare-mission.webp`}
 							alt="Mission"
 							fill
 							className="object-cover object-center"

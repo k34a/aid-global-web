@@ -1,8 +1,20 @@
+import React from "react";
 export interface ContactInfo {
-	address: string;
+	addresses: {
+		type: "registration" | "communication";
+		label: string;
+		description: string;
+		address: string;
+	}[];
 	email: string;
 	phone: string;
+	nationalHelpline: string;
+	whatsapp: string;
 	website?: string;
+	workingHours: {
+		days: string;
+		hours: string;
+	};
 }
 
 export interface NGODetails {
@@ -25,7 +37,7 @@ export interface NavigationLink {
 }
 
 interface NavigationLinkWithSubLinks extends Omit<NavigationLink, "href"> {
-	sublinks: { name: string; href: string }[];
+	sublinks: { name: string | React.JSX.Element; href: string }[];
 	href?: string;
 }
 

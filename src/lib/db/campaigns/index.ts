@@ -2,7 +2,7 @@ import {
 	campaignSortByVsQuery,
 	querySchema,
 } from "@/components/campaign-listing/search-params";
-import { DEFAULT_CAMPAIGN } from "@/config/data";
+import { DEFAULT_CAMPAIGN } from "@/config/config";
 import { supabaseAdmin } from "@/lib/db/supabase";
 import z from "zod";
 

@@ -43,7 +43,7 @@ export const aids = [
 	},
 	{
 		id: 6,
-		image: `${STATIC_IMAGE_HOST}whoweare/aboutus-4.webp`,
+		image: `${STATIC_IMAGE_HOST}home-page/aids/ghar-aid.webp`,
 		title: "GharAid",
 		desc: "Safe and secure shelter for homeless and orphans. Partner with Aid Global Foundation to become the reason someone finds a home.",
 		button: "Read More",
@@ -51,7 +51,7 @@ export const aids = [
 	},
 	{
 		id: 7,
-		image: `${STATIC_IMAGE_HOST}sakhi-aid/partner6.webp`,
+		image: `${STATIC_IMAGE_HOST}home-page/aids/sakhi-aid.webp`,
 		title: "SakhiAid",
 		desc: "Women's empowerment adn hygiene protection initiatives. Partner with Aid Global Foundation to drive meaningful change and lasting impact.",
 		button: "Read More",

@@ -83,9 +83,11 @@ export const donationFaqs: FaqItem[] = [
 		question: "Need Help or Have Questions?",
 		answer: (
 			<>
-				We&apos;re here to help! Phone: {ngoDetails.contact.phone}|
-				Email: {ngoDetails.contact.email}. Available Monday-Friday,
-				10:00 AM-6:00 PM IST.
+				We&apos;re here to help! Phone:{" "}
+				{ngoDetails.contact.nationalHelpline}| Email:{" "}
+				{ngoDetails.contact.email}. Available{" "}
+				{ngoDetails.contact.workingHours.days},{" "}
+				{ngoDetails.contact.workingHours.hours} IST.
 			</>
 		),
 	},

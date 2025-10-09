@@ -23,6 +23,7 @@ import { CampaignDetailsForListing } from "@/lib/db/campaigns";
 import Image from "@/components/image";
 import { getImageForCampaign, getInitials } from "../campaign/utils";
 import { ngoDetails } from "@/config/config";
+import Link from "next/link";
 
 interface Props {
 	campaign: CampaignDetailsForListing;
@@ -48,21 +49,25 @@ export default function CampaignCard({ campaign }: Props) {
 
 	const percent = amount > 0 ? Math.min((collection / amount) * 100, 100) : 0;
 
+	const campaignLink = `/campaign/${slug}`;
+
 	return (
 		<Card shadow="sm" radius="md" p={0} withBorder maw={350}>
 			{banner_image && (
 				<Card.Section style={{ position: "relative" }}>
-					<Image
-						src={getImageForCampaign(id, banner_image)}
-						alt={`${title} banner`}
-						width={400}
-						height={220}
-						style={{
-							objectFit: "cover",
-							width: "100%",
-							height: 220,
-						}}
-					/>
+					<Link href={campaignLink}>
+						<Image
+							src={getImageForCampaign(id, banner_image)}
+							alt={`${title} banner`}
+							width={400}
+							height={220}
+							style={{
+								objectFit: "cover",
+								width: "100%",
+								height: 220,
+							}}
+						/>
+					</Link>
 					<Badge
 						variant="filled"
 						size="sm"
@@ -82,10 +87,11 @@ export default function CampaignCard({ campaign }: Props) {
 			)}
 
 			<Stack gap="xs" p="md">
-				{/* Title with bold large font */}
-				<Title size="lg" order={3}>
-					{title}
-				</Title>
+				<Link href={campaignLink}>
+					<Title size="lg" order={3}>
+						{title}
+					</Title>
+				</Link>
 
 				{beneficiary && beneficiary.name && beneficiary.location && (
 					<Group mt="sm">
@@ -132,7 +138,6 @@ export default function CampaignCard({ campaign }: Props) {
 
 				<Progress value={percent} mt="sm" />
 
-				{/* Buttons: Share and Donate */}
 				<Flex gap="sm">
 					<Button
 						component="a"
@@ -150,9 +155,7 @@ export default function CampaignCard({ campaign }: Props) {
 
 					<Button
 						component="a"
-						href={`/campaign/${slug}`}
-						target="_blank"
-						rel="noopener noreferrer"
+						href={campaignLink}
 						variant="filled"
 						fullWidth
 						size="md"

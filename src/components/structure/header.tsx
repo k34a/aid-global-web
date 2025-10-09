@@ -89,9 +89,9 @@ export default function HeaderMegaMenu() {
 										</button>
 									</HoverCard.Target>
 									<HoverCard.Dropdown>
-										{link.sublinks.map((item) => (
+										{link.sublinks.map((item, idx) => (
 											<UnstyledButton
-												key={item.name}
+												key={idx}
 												component={Link}
 												href={item.href}
 												className={classes.subLink}
@@ -169,9 +169,9 @@ export default function HeaderMegaMenu() {
 										</Center>
 									</UnstyledButton>
 									<Collapse in={openDropdown === link.name}>
-										{link.sublinks.map((item) => (
+										{link.sublinks.map((item, idx) => (
 											<Link
-												key={item.name}
+												key={idx}
 												href={item.href}
 												onClick={closeDrawer}
 												className={classes.subLink}
@@ -212,9 +212,9 @@ export default function HeaderMegaMenu() {
 								<Phone className="w-5" />
 								<a
 									className=" font-semibold"
-									href={`tel:${ngoDetails.contact.phone}`}
+									href={`tel:${ngoDetails.contact.nationalHelpline}`}
 								>
-									{ngoDetails.contact.phone}
+									{ngoDetails.contact.nationalHelpline}
 								</a>
 							</div>
 							<div className="flex items-center gap-3">

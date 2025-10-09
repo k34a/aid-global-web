@@ -19,7 +19,7 @@ function Gharintro() {
 						<div className="w-full max-w-[520px] h-[500px] flex">
 							<Image
 								className="rounded-xl border-4 border-sky-400 shadow-xl object-cover w-full h-full"
-								src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-1.webp`}
+								src={`${STATIC_IMAGE_HOST}ghar-aid/gharAid-hero.webp`}
 								width={520}
 								height={500}
 								alt="GharAid"
