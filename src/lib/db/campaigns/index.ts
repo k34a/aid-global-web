@@ -32,8 +32,8 @@ export interface CampaignDetails {
 	unallocated_amount: number;
 	banner_image: string;
 	beneficiary?: null | Record<string, any>;
-	program?: null | string;
 	campaign_products: Array<CampaignProduct>;
+	tags: Array<string>;
 }
 
 export interface CampaignDetailsForListing {
@@ -69,7 +69,34 @@ export class CampaignService {
 			return null;
 		}
 
-		return data as CampaignDetails;
+		// Fetch tags associated with this campaign
+		const { data: tagData, error: tagError } = await supabaseAdmin
+			.from("tag_campaigns")
+			.select("tag_id")
+			.eq("campaign_id", data.id);
+
+		if (tagError || !tagData?.length) {
+			console.error("Error fetching campaign tags:", tagError?.message);
+			return { ...data, tags: [] }; // Return empty tags if there is an error
+		}
+
+		// Fetch tag names using tag IDs
+		const tagIds = tagData.map((t) => t.tag_id);
+		const { data: tags, error: tagsError } = await supabaseAdmin
+			.from("tags")
+			.select("name")
+			.in("id", tagIds);
+
+		if (tagsError || !tags?.length) {
+			console.error("Error fetching tag names:", tagsError?.message);
+			return { ...data, tags: [] }; // Return empty tags if there is an error
+		}
+
+		// Return the campaign data along with its associated tags
+		return {
+			...data,
+			tags: tags.map((tag) => tag.name),
+		};
 	}
 
 	static async getCount(): Promise<number> {
@@ -88,11 +115,21 @@ export class CampaignService {
 		return (data as unknown as number) || 0;
 	}
 
+	static async getTagNames(): Promise<string[]> {
+		const { data, error } = await supabaseAdmin.from("tags").select("name");
+
+		if (error) {
+			console.error("Error fetching tags:", error.message);
+			return [];
+		}
+
+		return data?.map((tag) => tag.name) ?? [];
+	}
+
 	static async list(
 		params: z.infer<typeof querySchema>,
 	): Promise<{ items: CampaignDetailsForListing[]; total: number }> {
-		const { page, search, minBackers, maxBackers, sortBy, program } =
-			params;
+		const { page, search, minBackers, maxBackers, sortBy, tags } = params;
 
 		const sort =
 			campaignSortByVsQuery[sortBy] ?? campaignSortByVsQuery["latest"];
@@ -110,11 +147,51 @@ export class CampaignService {
 		if (maxBackers !== undefined && maxBackers !== Infinity)
 			query = query.lte("backers", maxBackers);
 
-		if (program !== "all") {
-			query = query.eq("program", program);
+		if (tags && tags.length > 0) {
+			// Step 1: Get tag IDs for given tag names
+			const { data: tagData, error: tagError } = await supabaseAdmin
+				.from("tags")
+				.select("id")
+				.in("name", tags);
+
+			if (tagError || !tagData?.length) {
+				console.error("Error fetching tag IDs:", tagError?.message);
+				return { items: [], total: 0 };
+			}
+
+			const tagIds = tagData.map((t) => t.id);
+
+			// Step 2: Get campaign IDs that match any of the tags
+			const { data: matchingCampaigns, error: matchingError } =
+				await supabaseAdmin
+					.from("tag_campaigns")
+					.select("campaign_id")
+					.in("tag_id", tagIds);
+
+			if (matchingError || !matchingCampaigns?.length) {
+				console.error(
+					"Error fetching campaigns by tags:",
+					matchingError?.message,
+				);
+				return { items: [], total: 0 };
+			}
+
+			// Get distinct campaign IDs
+			const campaignIds = Array.from(
+				new Set(matchingCampaigns.map((row) => row.campaign_id)),
+			);
+
+			if (campaignIds.length === 0) {
+				return { items: [], total: 0 };
+			}
+
+			// Include campaigns with matching tag IDs (ANY tag match)
+			query = query.in("id", campaignIds);
 		}
 
-		query = query.order(sort.column, { ascending: sort.ascending });
+		query = query
+			.eq("status", "Published")
+			.order(sort.column, { ascending: sort.ascending });
 
 		const from = page * PAGE_SIZE;
 		const to = from + PAGE_SIZE - 1;

@@ -1,4 +1,3 @@
-import { programLinks } from "@/config/links";
 import z, { ZodObject } from "zod";
 
 export const querySchema = z.object({
@@ -15,9 +14,18 @@ export const querySchema = z.object({
 	sortBy: z
 		.enum(["latest", "oldest", "popular", "most-donated", "A-Z", "Z-A"])
 		.default("latest"),
-	program: z
-		.enum(["all", ...programLinks.map((program) => program.name)])
-		.default("all"),
+	tags: z
+		.preprocess((val) => {
+			// Convert query param (e.g., ?tags=health,education) to array
+			if (typeof val === "string") {
+				return val
+					.split(",")
+					.map((tag) => tag.trim())
+					.filter(Boolean);
+			}
+			return Array.isArray(val) ? val : [];
+		}, z.array(z.string()))
+		.default([]),
 });
 
 export const campaignSortByVsQuery: Record<

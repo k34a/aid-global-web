@@ -116,7 +116,7 @@ describe("getImageForCampaign", () => {
 	test("returns fallback format if not prefixed with 'campaigns/'", () => {
 		const imageName = "banner.png";
 		expect(getImageForCampaign("123", imageName)).toBe(
-			`https://${HOSTNAME}/storage/v1/object/public/content/campaigns/123/images/banner.png`,
+			`https://${HOSTNAME}/storage/v1/object/public/content/campaigns/123/banner.png`,
 		);
 	});
 

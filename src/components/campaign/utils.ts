@@ -17,7 +17,7 @@ function getImageForCampaign(id: string, imageName: string): string {
 	}
 
 	// Fallback to the old format
-	return `https://${hostname}/storage/v1/object/public/content/campaigns/${id}/images/${imageName.trim()}`;
+	return `https://${hostname}/storage/v1/object/public/content/campaigns/${id}/${imageName.trim()}`;
 }
 
 function formatTimeLeft(end_date?: Date | null): string | null {

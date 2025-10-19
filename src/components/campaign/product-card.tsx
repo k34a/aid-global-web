@@ -1,5 +1,6 @@
 import type { CampaignProduct } from "@/lib/db/campaigns";
 import {
+	Box,
 	Button,
 	Card,
 	em,
@@ -14,6 +15,7 @@ import {
 import Image from "@/components/image";
 import {
 	IconCurrencyRupee,
+	IconImageInPicture,
 	IconInfoCircle,
 	IconMinus,
 	IconPlus,
@@ -49,13 +51,33 @@ export default function ProductCard({
 				direction={isSmallScreen ? "column" : "row"}
 			>
 				{/* LEFT: Product Image */}
-				<Image
-					src={getImageForCampaign(campaignId, product.image!)}
-					alt={product.title}
-					width={100}
-					height={100}
-					style={{ objectFit: "contain" }}
-				/>
+				{product.image ? (
+					<Image
+						src={getImageForCampaign(
+							campaignId,
+							`products/${product.id}/${product.image}`,
+						)}
+						alt={product.title}
+						width={100}
+						height={100}
+						style={{ maxWidth: "100%", height: "auto" }}
+					/>
+				) : (
+					<Box
+						w={100}
+						h={100}
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							backgroundColor: "#f0f0f0",
+							borderRadius: "8px",
+							overflow: "hidden",
+						}}
+					>
+						<IconImageInPicture size={48} color="gray" />
+					</Box>
+				)}
 
 				{/* RIGHT: Product Info */}
 				<Stack gap={6} style={{ flex: 1 }}>

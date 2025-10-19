@@ -25,6 +25,7 @@ export const links: Links = {
 				{ name: "Core Values", href: "/who-we-are#core" },
 				{ name: "Our Team", href: "/who-we-are#team" },
 				{ name: "Partners", href: "/who-we-are#partners" },
+				{ name: "Our Clinics", href: "our-clinics" },
 			],
 		},
 		{ name: "Programs", sublinks: programLinks },
@@ -48,7 +49,7 @@ export const links: Links = {
 			],
 		},
 		{ name: "Contact", href: "/contact" },
-		{ name: "Our Clinics", href: "our-clinics" },
+		{ name: "Campaigns", href: "/campaign" },
 	],
 
 	donateLink: {
