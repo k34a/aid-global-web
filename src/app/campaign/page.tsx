@@ -18,10 +18,11 @@ export default async function Page(props: Props) {
 	const params = parseQueryWithPerFieldDefaults(querySchema, searchParams);
 
 	const data = await CampaignService.list(params);
+	const tags = await CampaignService.getTagNames();
 
 	return (
 		<Container size="lg" py="xl">
-			<FilterSearchSortCampaigns {...params} />
+			<FilterSearchSortCampaigns {...params} availableTags={tags} />
 			{data.items.length === 0 ? (
 				<Stack align="center" py="xl" gap="sm">
 					<IconSearchOff size={48} stroke={1.5} color="gray" />

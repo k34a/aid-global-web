@@ -20,7 +20,6 @@ import { getImageForCampaign } from "./utils";
 
 interface CampaignIntroProps {
 	id: string;
-	program?: string;
 	bannerImage: string;
 	title: string;
 	description: string;
@@ -34,11 +33,11 @@ interface CampaignIntroProps {
 		name?: string;
 		location?: string;
 	};
+	tags: Array<string>;
 }
 
 const Details = (props: CampaignIntroProps) => {
-	const { title, program, progress, endDate, backerCount, beneficiary } =
-		props;
+	const { title, progress, endDate, backerCount, beneficiary } = props;
 
 	const percent =
 		progress.total > 0
@@ -83,15 +82,18 @@ const Details = (props: CampaignIntroProps) => {
 					</Badge>
 				</Tooltip>
 
-				{program && (
-					<Badge
-						style={{
-							textTransform: "none",
-						}}
-					>
-						{program}
-					</Badge>
-				)}
+				{props.tags.map((t, idx) => {
+					return (
+						<Badge
+							style={{
+								textTransform: "none",
+							}}
+							key={idx}
+						>
+							{t}
+						</Badge>
+					);
+				})}
 			</Group>
 
 			<Text fw={500}>
@@ -150,8 +152,12 @@ export default function CampaignIntro(props: CampaignIntroProps) {
 						<Image
 							src={imageUrl}
 							alt={props.title}
-							fill
-							style={{ objectFit: "cover" }}
+							width={1000}
+							height={1000}
+							style={{
+								maxWidth: "100%",
+								height: "auto",
+							}}
 							priority
 						/>
 					</Box>

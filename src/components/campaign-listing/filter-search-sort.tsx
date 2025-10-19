@@ -3,7 +3,7 @@ import {
 	TextInput,
 	ActionIcon,
 	Popover,
-	Select,
+	MultiSelect,
 	RangeSlider,
 	Group,
 	Text,
@@ -22,10 +22,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import type { z } from "zod";
 import { querySchema } from "./search-params";
-import { programLinks } from "@/config/links";
 import { useDebouncedCallback } from "@mantine/hooks";
 
 type FilterProps = z.infer<typeof querySchema>;
+
+interface Props extends FilterProps {
+	availableTags: string[];
+}
 
 const SORT_OPTIONS = [
 	{ value: "latest", label: "Latest" },
@@ -36,15 +39,7 @@ const SORT_OPTIONS = [
 	{ value: "Z-A", label: "Title Z-A" },
 ];
 
-const PROGRAM_OPTIONS = [
-	{ value: "all", label: "All Programs" },
-	...programLinks.map((program) => ({
-		value: program.name,
-		label: program.name,
-	})),
-];
-
-export default function FilterSearchSortCampaigns(props: FilterProps) {
+export default function FilterSearchSortCampaigns(props: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -56,7 +51,9 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 		props.minBackers ?? 0,
 		props.maxBackers === Infinity ? 2000 : (props.maxBackers ?? 2000),
 	]);
-	const [program, setProgram] = useState(props.program ?? "all");
+	const [selectedTags, setSelectedTags] = useState<string[]>(
+		props.tags ?? [],
+	);
 
 	const [filterOpened, setFilterOpened] = useState(false);
 	const [sortOpened, setSortOpened] = useState(false);
@@ -77,19 +74,23 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 		} else {
 			params.set("maxBackers", "Infinity");
 		}
-		if (program && program !== "all") params.set("program", program);
+		if (selectedTags.length > 0) {
+			params.set("tags", selectedTags.join(","));
+		}
 		if (sortBy) params.set("sortBy", sortBy);
 
 		params.set("page", "0");
 		return params.toString();
-	}, [search, backersRange, sortBy, program]);
+	}, [search, backersRange, sortBy, selectedTags]);
 
 	useEffect(() => {
 		debouncedApplyFilters();
-	}, [program, search, sortBy, backersRange]);
+	}, [selectedTags, search, sortBy, backersRange]);
 
 	const hasActiveFilter =
-		program !== "all" || backersRange[0] > 0 || backersRange[1] < 2000;
+		selectedTags.length > 0 ||
+		backersRange[0] > 0 ||
+		backersRange[1] < 2000;
 
 	const hasActiveSort = sortBy !== "latest";
 
@@ -112,7 +113,7 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 					opened={filterOpened}
 					onChange={setFilterOpened}
 					position="bottom-end"
-					width={250}
+					width={300}
 					trapFocus
 				>
 					<Popover.Target>
@@ -134,14 +135,16 @@ export default function FilterSearchSortCampaigns(props: FilterProps) {
 					</Popover.Target>
 					<Popover.Dropdown>
 						<Stack gap="sm">
-							<Select
-								label="Program"
-								data={PROGRAM_OPTIONS}
-								value={program}
-								onChange={(val) => {
-									if (val) setProgram(val);
-								}}
-								clearable={false}
+							<MultiSelect
+								label="Tags"
+								data={props.availableTags.map((tag) => ({
+									value: tag,
+									label: tag,
+								}))}
+								value={selectedTags}
+								onChange={setSelectedTags}
+								searchable
+								placeholder="Select tags"
 							/>
 
 							<Box pb="lg">
