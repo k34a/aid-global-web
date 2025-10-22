@@ -58,4 +58,15 @@ export const developers: DeveloperSection[] = [
 			},
 		],
 	},
+	{
+		role: "Backend Developer - Admin Dashboard",
+		members: [
+			{
+				name: "Prakarsh Srivastava",
+				github: "PrakarshSrivastav",
+				linkedin:
+					"https://www.linkedin.com/in/prakarsh-srivastava-2352412a7/",
+			}
+		]
+	}
 ];
