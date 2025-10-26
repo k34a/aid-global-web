@@ -34,7 +34,7 @@ export async function submitContactMessage(
 		return "Invalid details provided";
 	}
 
-	const { error } = await submitFormDetails("contact-us", parsed.data);
+	const { error } = await submitFormDetails("contact_us", parsed.data);
 
 	if (error) {
 		console.error(error);

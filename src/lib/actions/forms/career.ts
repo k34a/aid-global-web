@@ -53,7 +53,7 @@ export async function submitCareerApplication(
 			resume: validatedData.resume.fileName,
 		};
 		const { data: application, error: insertError } =
-			await submitFormDetails("career-application", formData);
+			await submitFormDetails("career_application", formData);
 
 		if (insertError) {
 			throw new Error(

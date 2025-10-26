@@ -50,7 +50,7 @@ export async function submitVolunteer(data: z.infer<typeof volunteerSchema>) {
 	try {
 		const validatedData = volunteerSchema.parse(data);
 		const { error } = await submitFormDetails(
-			"volunteer-application",
+			"volunteer_application",
 			validatedData,
 		);
 

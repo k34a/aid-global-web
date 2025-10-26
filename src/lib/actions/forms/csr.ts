@@ -47,7 +47,7 @@ export async function submitCorporatePartnership(
 	const formData: CorporateFormData = parsed.data;
 
 	const { error } = await submitFormDetails(
-		"csr-partnership-application",
+		"csr_partnership_application",
 		formData,
 	);
 

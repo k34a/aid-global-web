@@ -17,6 +17,7 @@ export interface CampaignProduct {
 	price_per_unit: number;
 	units_required: number;
 	units_collected: number;
+	status?: string | null;
 }
 
 export interface CampaignDetails {
@@ -95,6 +96,9 @@ export class CampaignService {
 		// Return the campaign data along with its associated tags
 		return {
 			...data,
+			campaign_products: data.campaign_products.filter(
+				(p: CampaignProduct) => p.status !== "Archived",
+			),
 			tags: tags.map((tag) => tag.name),
 		};
 	}
