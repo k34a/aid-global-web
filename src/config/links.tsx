@@ -32,8 +32,8 @@ export const links: Links = {
 		{
 			name: "Get Involved",
 			sublinks: [
-				{ name: "Volunteer", href: "/volunteer" },
-				{ name: "Careers", href: "/careers" },
+				{ name: "Volunteer", href: "/fill-me/volunteer_application" },
+				{ name: "Careers", href: "/fill-me/career_application" },
 				{
 					name: "Corporate Partnerships",
 					href: "/corporate-partnerships",
@@ -59,8 +59,8 @@ export const links: Links = {
 
 	secondaryLinks: [
 		{ name: "Partners", href: "/partners" },
-		{ name: "Volunteer", href: "/volunteer" },
-		{ name: "Careers", href: "/careers" },
+		{ name: "Volunteer", href: "/fill-me/volunteer_application" },
+		{ name: "Careers", href: "/fill-me/career_application" },
 		{ name: "Corporate Partnerships", href: "/corporate-partnerships" },
 	],
 

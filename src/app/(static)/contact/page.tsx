@@ -1,7 +1,24 @@
 import ContactUsDetails from "@/components/contact-us/details";
-import ContactUsForm from "@/components/contact-us/form";
+import { FillMe } from "@/components/fill-me";
+import { adminPanelLink, ORG_ID } from "@/config/config";
+import { supabaseAdmin } from "@/lib/db/supabase";
+import { FormFillingService } from "@k34a/forms";
+import { Box } from "@mantine/core";
+import { notFound } from "next/navigation";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+	let schema;
+	const formType = "contact_us";
+	try {
+		schema = await new FormFillingService(
+			adminPanelLink,
+			ORG_ID,
+			supabaseAdmin,
+		).getFormSchema(formType);
+	} catch (err) {
+		console.error(err);
+		notFound();
+	}
 	return (
 		<main>
 			<section className="min-h-screen bg-gradient-to-b from-sky-100 to-white py-16 px-4 sm:px-6 flex items-start justify-center">
@@ -29,9 +46,9 @@ export default function ContactPage() {
 					</div>
 
 					{/* Bottom: Contact Form */}
-					<div>
-						<ContactUsForm />
-					</div>
+					<Box py="md" mx="auto">
+						<FillMe schema={schema} formType={formType} />
+					</Box>
 				</div>
 			</section>
 		</main>

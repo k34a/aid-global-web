@@ -2,6 +2,7 @@ import type { NGODetails } from "./types";
 
 export const APP_ENV = process.env.NODE_ENV;
 export const STATIC_IMAGE_HOST = "https://website-content.aidglobal.ngo/";
+
 export const ngoDetails: NGODetails = {
 	name: "Aid Global Foundation",
 	tagline: "Aid with heart. Impact with purpose",
@@ -51,4 +52,7 @@ export const ngoDetails: NGODetails = {
 	twitterCardType: "summary_large_image",
 };
 
+export const ORG_ID = "8d01a997-4097-4905-a7b9-0ab57bff72d3";
+
 export const DEFAULT_CAMPAIGN = "935203bf-247a-4939-b652-c0a95277fa41";
+export const adminPanelLink = "https://k34a.vercel.app";
