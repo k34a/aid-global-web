@@ -4,9 +4,16 @@ import { HeartPlus } from "lucide-react";
 import { NotepadText } from "lucide-react";
 import { LockKeyhole } from "lucide-react";
 import { partners } from "@/config/partners";
-import ContactForm from "./contact-form";
+import { FormSchema } from "@k34a/forms";
+import z from "zod";
+import CorporatePartnershipForm from "./contact-form";
 
-function Partners() {
+interface PartnersProps {
+	schema: z.infer<typeof FormSchema>;
+	formType: string;
+}
+
+function Partners(props: PartnersProps) {
 	return (
 		<section className="overflow-x-hidden">
 			<div className="flex flex-col items-center py-10 px-4">
@@ -27,7 +34,7 @@ function Partners() {
 				</div>
 			</div>
 
-			<ContactForm />
+			<CorporatePartnershipForm {...props} />
 
 			<div className="flex flex-col sm:flex-row justify-center gap-6 py-10 px-4 text-sm text-zinc-600">
 				<div className="flex gap-2 items-start">
