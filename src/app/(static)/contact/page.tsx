@@ -6,6 +6,8 @@ import { FormFillingService } from "@k34a/forms";
 import { Box } from "@mantine/core";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function ContactPage() {
 	let schema;
 	const formType = "contact_us";
