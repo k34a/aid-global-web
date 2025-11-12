@@ -13,6 +13,7 @@ import {
 	Flex,
 	Title,
 	Grid,
+	useMantineTheme,
 } from "@mantine/core";
 import {
 	IconUser,
@@ -24,6 +25,7 @@ import Image from "@/components/image";
 import { getImageForCampaign, getInitials } from "../campaign/utils";
 import { ngoDetails } from "@/config/config";
 import Link from "next/link";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface Props {
 	campaign: CampaignDetailsForListing;
@@ -41,18 +43,29 @@ export default function CampaignCard({ campaign }: Props) {
 		amount,
 	} = campaign;
 
-	const shareUrl = `${ngoDetails.contact.website}/campaign/${slug}`;
+	const theme = useMantineTheme();
+	const isSmallScreen = useMediaQuery(
+		`(max-width: ${theme.breakpoints.sm}px)`,
+	);
+
+	const shareUrl = `${ngoDetails.contact.website}/campaigns/${slug}`;
 	const shareText = encodeURIComponent(
 		`Check out this campaign "${title}": ${shareUrl}`,
 	);
 	const whatsappLink = `https://wa.me/?text=${shareText}`;
 
 	const percent = amount > 0 ? Math.min((collection / amount) * 100, 100) : 0;
-
-	const campaignLink = `/campaign/${slug}`;
+	const campaignLink = `/campaigns/${slug}`;
 
 	return (
-		<Card shadow="sm" radius="md" p={0} withBorder maw={350}>
+		<Card
+			shadow="sm"
+			radius="md"
+			p={0}
+			withBorder
+			maw={350}
+			style={{ width: "100%" }}
+		>
 			{banner_image && (
 				<Card.Section style={{ position: "relative" }}>
 					<Link href={campaignLink}>
@@ -94,7 +107,7 @@ export default function CampaignCard({ campaign }: Props) {
 				</Link>
 
 				{beneficiary && beneficiary.name && beneficiary.location && (
-					<Group mt="sm">
+					<Group mt="sm" gap="xs">
 						<Avatar size="sm" radius="xl">
 							{getInitials(beneficiary.name)}
 						</Avatar>
@@ -104,8 +117,11 @@ export default function CampaignCard({ campaign }: Props) {
 					</Group>
 				)}
 
-				<Grid columns={2} align="center">
-					<Grid.Col span={1} style={{ textAlign: "left" }}>
+				<Grid columns={isSmallScreen ? 1 : 2} align="center">
+					<Grid.Col
+						span={1}
+						style={{ textAlign: isSmallScreen ? "left" : "left" }}
+					>
 						<Text w={600} size="md" c="black" inline>
 							<IconCurrencyRupee
 								size={18}
@@ -118,12 +134,15 @@ export default function CampaignCard({ campaign }: Props) {
 						</Text>
 					</Grid.Col>
 
-					<Grid.Col span={1} style={{ textAlign: "right" }}>
+					<Grid.Col
+						span={1}
+						style={{ textAlign: isSmallScreen ? "left" : "right" }}
+					>
 						<Group
 							gap={4}
 							align="center"
 							wrap="nowrap"
-							justify="flex-end"
+							justify={isSmallScreen ? "flex-start" : "flex-end"}
 						>
 							<IconUser size={18} />
 							<Text size="md" c="black" inline>
@@ -138,7 +157,7 @@ export default function CampaignCard({ campaign }: Props) {
 
 				<Progress value={percent} mt="sm" />
 
-				<Flex gap="sm">
+				<Flex gap="sm" direction={isSmallScreen ? "column" : "row"}>
 					<Button
 						component="a"
 						href={whatsappLink}

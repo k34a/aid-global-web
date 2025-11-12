@@ -9,6 +9,8 @@ import { supabaseAdmin } from "@/lib/db/supabase";
 import { notFound } from "next/navigation";
 import { adminPanelLink, ORG_ID } from "@/config/config";
 
+export const dynamic = "force-dynamic";
+
 export default async function PartnersPage() {
 	let schema;
 	const formType = "csr_partnership_inquiry";

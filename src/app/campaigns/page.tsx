@@ -1,10 +1,8 @@
 import CampaignCard from "@/components/campaign-listing/card";
 import FilterSearchSortCampaigns from "@/components/campaign-listing/filter-search-sort";
-import PaginationControls from "@/components/campaign-listing/pagination-controls";
-import {
-	parseQueryWithPerFieldDefaults,
-	querySchema,
-} from "@/components/campaign-listing/search-params";
+import PaginationControls from "@/components/content-management/pagination-controls";
+import { querySchema } from "@/components/campaign-listing/search-params";
+import { parseQueryWithPerFieldDefaults } from "@/lib/utils/query-params";
 import { CampaignService } from "@/lib/db/campaigns";
 import { Container, SimpleGrid, Stack, Text } from "@mantine/core";
 import { IconSearchOff } from "@tabler/icons-react";

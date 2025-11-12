@@ -3,6 +3,8 @@ import Header from "@/components/structure/header";
 import Footer from "@/components/structure/footer";
 import { ngoDetails } from "@/config/config";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
 	title: {
 		default: ngoDetails.name,
@@ -18,7 +20,6 @@ export default function RootLayout({
 	return (
 		<>
 			<Header />
-			{/* <Navbar /> */}
 			<main className="flex-grow" style={{ marginTop: "80px" }}>
 				{children}
 			</main>

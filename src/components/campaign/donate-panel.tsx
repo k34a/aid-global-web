@@ -33,7 +33,7 @@ interface Props {
 }
 
 export default function DonatePanel(props: Props) {
-	const url = `${ngoDetails.contact.website}/campaign/${props.slug}`;
+	const url = `${ngoDetails.contact.website}/campaigns/${props.slug}`;
 
 	return (
 		<Grid.Col span={{ base: 12, lg: 4 }}>

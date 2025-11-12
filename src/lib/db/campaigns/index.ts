@@ -175,7 +175,7 @@ export class CampaignService {
 			if (matchingError || !matchingCampaigns?.length) {
 				console.error(
 					"Error fetching campaigns by tags:",
-					matchingError?.message,
+					matchingError,
 				);
 				return { items: [], total: 0 };
 			}

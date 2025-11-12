@@ -1,47 +1,75 @@
+import { BannerImage } from "@/components/articles/banner-image";
+import ArticleDescription from "@/components/articles/description";
+import Image from "@/components/image";
+import { ArticleService } from "@/lib/db/articles";
+import { Badge, Box, Flex, Pill, Stack, Title } from "@mantine/core";
+import { IconHash } from "@tabler/icons-react";
 import { Metadata } from "next";
-import { getArticle } from "@/lib/db/articles";
-import ReactMarkdown from "react-markdown";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-type ArticlePageProps = {
+type PageProps = {
 	params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({
 	params,
-}: ArticlePageProps): Promise<Metadata> {
-	const article = await getArticle((await params).slug);
+}: PageProps): Promise<Metadata> {
+	const campaign = await ArticleService.getBySlug((await params).slug);
 
-	if (!article) {
+	if (!campaign) {
 		return {
-			title: "Article Not Found",
-			description: "The requested article does not exist.",
+			title: "Not Found",
+			description: "The article you're looking for does not exist.",
 		};
 	}
 
 	return {
-		title: article.title,
-		description: article.description,
+		title: campaign.title,
+		description: campaign.description,
 	};
 }
 
-export default async function ArticlePage({ params }: ArticlePageProps) {
-	const article = await getArticle((await params).slug);
+export default async function ArticlePage({ params }: PageProps) {
+	const { slug } = await params;
 
+	const article = await ArticleService.getBySlug(slug);
 	if (!article) {
-		return (
-			<h1 className="text-center mt-10 text-xl">
-				404 - Article Not Found
-			</h1>
-		);
+		return notFound();
 	}
 
+	const description = (await ArticleService.getDescription(article.id)) ?? "";
+
 	return (
-		<main className="max-w-3xl mx-auto p-6">
-			<h1 className="text-3xl font-bold mb-4">{article.title}</h1>
-			<p className="text-gray-600 mb-6">{article.description}</p>
-			<article className="prose prose-teal max-w-none">
-				<ReactMarkdown>{article.content}</ReactMarkdown>
-			</article>
-		</main>
+		<Box maw={800} mx="auto" px="sm" py="lg">
+			<Stack gap="md">
+				<Title order={1}>{article.title}</Title>
+				{article.banner_image && (
+					<BannerImage
+						id={article.id}
+						src={article.banner_image}
+						title={article.title}
+					/>
+				)}
+				<ArticleDescription articleId={article.id} html={description} />
+				<Flex wrap="wrap" gap="md" align="center" mb="lg">
+					{article.tags.map((t) => {
+						return (
+							<Link href={`/articles?tags=${t}`} key={t}>
+								<Badge
+									size="md"
+									color="sky.5"
+									variant="outline"
+									leftSection={<IconHash size={14} />}
+									style={{ cursor: "pointer" }}
+								>
+									{t}
+								</Badge>
+							</Link>
+						);
+					})}
+				</Flex>
+			</Stack>
+		</Box>
 	);
 }

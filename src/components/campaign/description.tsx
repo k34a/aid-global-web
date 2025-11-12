@@ -4,10 +4,8 @@ import { CampaignProduct } from "@/lib/db/campaigns";
 import { Grid, Stack, Typography } from "@mantine/core";
 import WhereMoneyGoes from "./where-money-goes";
 import ProductGrid from "./product-grid";
-import { parseDocument } from "htmlparser2";
-import { DomUtils } from "htmlparser2";
-import serialize from "dom-serializer";
 import { getImageForCampaign } from "./utils";
+import { applyImageFullPaths } from "@/lib/client-utils/fix-image-paths";
 interface Props {
 	campaignId: string;
 	html: string;
@@ -18,28 +16,6 @@ interface Props {
 	productSelection: Record<string, number>;
 	addProduct: (productId: string) => void;
 	removeProduct: (productId: string) => void;
-}
-
-export function applyImageFullPaths(
-	html: string,
-	getImageFullPath: (src: string) => string,
-): string {
-	if (!html) return html;
-
-	const dom = parseDocument(html);
-	const images = DomUtils.findAll(
-		(elem) => elem.name === "img",
-		dom.children,
-	);
-
-	for (const img of images) {
-		const srcAttr = img.attribs?.src;
-		if (srcAttr) {
-			img.attribs.src = getImageFullPath(srcAttr);
-		}
-	}
-
-	return serialize(dom);
 }
 
 export default function CampaignDescription(props: Props) {
