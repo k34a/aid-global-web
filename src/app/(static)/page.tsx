@@ -6,6 +6,8 @@ import ReviewSection from "@/components/homepage/review-section";
 import PartnersSection from "@/components/homepage/partners";
 import RecurringPlansShowcase from "@/components/recurring-donations/showcase";
 import { getNumberOfSubscribers } from "@/lib/db/donation/fns";
+import { CampaignShowcase } from "@/components/homepage/campaign";
+import { BlogShowcase } from "@/components/homepage/blog";
 
 export const revalidate = 3600; // refresh every hour to prevent data from being stale for long
 
@@ -19,12 +21,14 @@ export default async function HomePage() {
 			<main className={`p-0 overflow-hidden`}>
 				<CalltoActionSection />
 				<MissionSection />
+				<CampaignShowcase />
 				<RecurringPlansShowcase
 					subscribers1={subscribers1}
 					subscribers100={subscribers100}
 				/>
 				<AidsSection />
 				<ReviewSection />
+				<BlogShowcase />
 				<AssuranceSection />
 				<PartnersSection />
 			</main>

@@ -26,6 +26,7 @@ export const links: Links = {
 				{ name: "Our Team", href: "/who-we-are#team" },
 				{ name: "Partners", href: "/who-we-are#partners" },
 				{ name: "Our Clinics", href: "our-clinics" },
+				{ name: "Contact Us", href: "/contact" },
 			],
 		},
 		{ name: "Programs", sublinks: programLinks },
@@ -48,8 +49,8 @@ export const links: Links = {
 				},
 			],
 		},
-		{ name: "Contact", href: "/contact" },
-		{ name: "Campaigns", href: "/campaign" },
+		{ name: "Blog", href: "/articles" },
+		{ name: "Campaigns", href: "/campaigns" },
 	],
 
 	donateLink: {

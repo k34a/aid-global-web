@@ -3,6 +3,7 @@
 import Image from "@/components/image";
 import { STATIC_IMAGE_HOST } from "@/config/config";
 import { HeartHandshake, HandCoins, PiggyBank } from "lucide-react";
+import Link from "next/link";
 
 const MissionSection = () => {
 	return (
@@ -30,19 +31,26 @@ const MissionSection = () => {
 				</div>
 
 				<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 w-full">
-					<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
-						<HeartHandshake className="text-sky-600 h-8 w-8 mb-2" />
-						<span className="text-base font-semibold">
-							Join Our Team
-						</span>
-						<span className="text-sm text-zinc-700">120+</span>
-					</div>
-					<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
-						<HandCoins className="text-sky-600 h-8 w-8 mb-2" />
-						<span className="text-base font-semibold">
-							Donate Now
-						</span>
-					</div>
+					<Link
+						href="/fill-me/volunteer_application"
+						style={{ cursor: "pointer" }}
+					>
+						<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
+							<HeartHandshake className="text-sky-600 h-8 w-8 mb-2" />
+							<span className="text-base font-semibold">
+								Join Our Team
+							</span>
+							<span className="text-sm text-zinc-700">120+</span>
+						</div>
+					</Link>
+					<Link href="/donate" style={{ cursor: "pointer" }}>
+						<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
+							<HandCoins className="text-sky-600 h-8 w-8 mb-2" />
+							<span className="text-base font-semibold">
+								Donate Now
+							</span>
+						</div>
+					</Link>
 
 					<div className="flex flex-col items-center bg-sky-50 p-6 rounded-2xl shadow-sm">
 						<PiggyBank className="text-sky-600 h-8 w-8 mb-2" />
