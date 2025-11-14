@@ -86,7 +86,7 @@ export default function SubscriptionReceipt({ id }: Props) {
 				<ChargeTable charges={subscription.charges} />
 				<TaxNote />
 				<DownloadReceipt />
-				<ReceiptFooter id={subscription.id} />
+				<ReceiptFooter id={subscription.id} oneTime={false} />
 				<ManageSubscription
 					razorpay_subscription_id={
 						subscription.razorpay_subscription_id

@@ -83,7 +83,7 @@ export default function DonationReceipt({ id }: Props) {
 				/>
 				<TaxNote />
 				<DownloadReceipt />
-				<ReceiptFooter id={donation.id} />
+				<ReceiptFooter id={donation.id} oneTime={true} />
 			</Paper>
 		</main>
 	);
