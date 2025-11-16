@@ -1,11 +1,11 @@
 import ArticlesCard from "@/components/articles-listing/card";
-import FilterSearchSortArticles from "@/components/articles-listing/filter-search-sort";
-import PaginationControls from "@/components/content-management/pagination-controls";
-import { articleQuerySchema } from "@/components/articles-listing/search-params";
+import { articleQuerySchema } from "@k34a/blog";
 import { parseQueryWithPerFieldDefaults } from "@/lib/utils/query-params";
 import { Container, SimpleGrid, Stack, Text } from "@mantine/core";
 import { IconSearchOff } from "@tabler/icons-react";
-import { ArticleService } from "@/lib/db/articles";
+import { articleService } from "@/lib/db/articles";
+import PaginationControls from "@/components/content-management/pagination-controls";
+import { FilterSearchSort } from "@/components/articles-listing/filter-search-sort";
 
 interface Props {
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -18,12 +18,12 @@ export default async function Page(props: Props) {
 		searchParams,
 	);
 
-	const data = await ArticleService.list(params);
-	const tags = await ArticleService.getTagNames();
+	const data = await articleService.list(params);
+	const tags = await articleService.getTagNames();
 
 	return (
 		<Container size="lg" py="xl">
-			<FilterSearchSortArticles {...params} availableTags={tags} />
+			<FilterSearchSort {...params} availableTags={tags} />
 			{data.items.length === 0 ? (
 				<Stack align="center" py="xl" gap="sm">
 					<IconSearchOff size={48} stroke={1.5} color="gray" />

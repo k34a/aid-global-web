@@ -12,11 +12,13 @@ import {
 	Divider,
 } from "@mantine/core";
 import { IconBrandWhatsapp, IconClock, IconTag } from "@tabler/icons-react";
-import { ArticleDetailsForListing } from "@/lib/db/articles";
 import Image from "@/components/image";
 import Link from "next/link";
 import { ngoDetails } from "@/config/config";
-import { getImageForArticle } from "../articles/description";
+import {
+	type ArticleDetailsForListing,
+	resolveImageForArticle,
+} from "@k34a/blog";
 
 interface Props {
 	article: ArticleDetailsForListing & { tags?: string[] };
@@ -53,7 +55,11 @@ export default function ArticleCard({ article }: Props) {
 				<Card.Section style={{ position: "relative" }}>
 					<Link href={articleLink}>
 						<Image
-							src={getImageForArticle(id, banner_image)}
+							src={resolveImageForArticle(
+								process.env.NEXT_PUBLIC_SUPABASE_HOSTNAME!,
+								id,
+								banner_image,
+							)}
 							alt={`${title} banner`}
 							width={400}
 							height={220}

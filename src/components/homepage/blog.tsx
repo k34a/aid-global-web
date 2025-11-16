@@ -1,4 +1,4 @@
-import { ArticleService } from "@/lib/db/articles";
+import { articleService } from "@/lib/db/articles";
 import BlogCard from "@/components/articles-listing/card";
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -16,7 +16,7 @@ function isViewMoreAtBottom(nTiles: number, screenSize: "sm" | "md" | "lg") {
 }
 
 export const BlogShowcase = async () => {
-	const blogs = await ArticleService.list({
+	const blogs = await articleService.list({
 		page: 0,
 		search: "",
 		tags: ["featured"],
