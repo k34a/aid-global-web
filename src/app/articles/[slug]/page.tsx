@@ -39,11 +39,15 @@ export default async function ArticlePage({ params }: PageProps) {
 		<Article
 			config={{
 				supabaseHost: process.env.NEXT_PUBLIC_SUPABASE_HOSTNAME!,
-				listingPage: "/articles",
 			}}
 			description={description}
-			tags={article.tags}
+			tags={article.tags.map((t) => ({
+				name: t,
+				href: `/blog?tags=${t}`,
+			}))}
 			title={article.title}
+			created_at={article.created_at}
+			updated_at={article.updated_at}
 			banner_image={article.banner_image ?? undefined}
 			id={article.id}
 		/>
